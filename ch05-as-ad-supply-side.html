@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch. 5 — Aggregate Supply and Demand | Macroeconomics</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<style>
+  :root {
+    --bg: #0f1117; --surface: #1a1d27; --surface2: #222635;
+    --border: #2e3348; --accent: #5b8dee; --accent2: #7c6ced;
+    --green: #3ecf8e; --yellow: #f4c542; --red: #e05c5c;
+    --text: #d4d8f0; --muted: #7a80a0; --heading: #eef0ff;
+    --sidebar-w: 260px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Georgia', serif;
+    font-size: 16px; line-height: 1.75; display: flex; min-height: 100vh; }
+
+  /* ── Sidebar ── */
+  nav#sidebar {
+    position: fixed; top: 0; left: 0; width: var(--sidebar-w);
+    height: 100vh; background: var(--surface); border-right: 1px solid var(--border);
+    overflow-y: auto; padding: 24px 0; z-index: 100;
+  }
+  nav#sidebar .nav-header {
+    padding: 0 20px 16px; border-bottom: 1px solid var(--border); margin-bottom: 12px;
+  }
+  nav#sidebar .nav-header span { font-size: 11px; text-transform: uppercase;
+    letter-spacing: .1em; color: var(--muted); }
+  nav#sidebar .nav-header h3 { font-size: 13px; color: var(--heading); margin-top: 4px; }
+  nav#sidebar a { display: block; padding: 6px 20px; font-size: 13px; font-family: sans-serif;
+    color: var(--muted); text-decoration: none; transition: color .15s, background .15s; }
+  nav#sidebar a:hover, nav#sidebar a.active { color: var(--accent); background: rgba(91,141,238,.08); }
+  nav#sidebar a.l2 { padding-left: 34px; font-size: 12px; }
+  nav#sidebar a.l3 { padding-left: 48px; font-size: 11.5px; }
+
+  /* ── Main ── */
+  main { margin-left: var(--sidebar-w); flex: 1; max-width: 900px;
+    padding: 48px 56px 96px; }
+
+  /* ── Typography ── */
+  h1 { font-size: 2rem; color: var(--heading); line-height: 1.2; margin-bottom: 6px; }
+  h1 .ch-num { font-size: 1rem; color: var(--accent); font-family: sans-serif;
+    font-weight: 600; display: block; margin-bottom: 8px; }
+  h2 { font-size: 1.35rem; color: var(--heading); margin: 52px 0 16px;
+    padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+  h3 { font-size: 1.1rem; color: var(--heading); margin: 32px 0 12px; }
+  h4 { font-size: .95rem; color: var(--accent); font-family: sans-serif;
+    font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
+    margin: 24px 0 8px; }
+  p { margin-bottom: 14px; }
+  strong { color: var(--heading); }
+
+  /* ── Chapter meta strip ── */
+  .ch-meta { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 40px; }
+  .ch-meta span { background: var(--surface); border: 1px solid var(--border);
+    border-radius: 4px; padding: 4px 12px; font-size: 12px; font-family: sans-serif;
+    color: var(--muted); }
+  .ch-meta span b { color: var(--text); }
+
+  /* ── Highlights box ── */
+  .highlights { background: var(--surface); border: 1px solid var(--border);
+    border-left: 3px solid var(--accent); border-radius: 6px;
+    padding: 20px 24px; margin-bottom: 40px; }
+  .highlights h4 { margin: 0 0 12px; font-size: .8rem; }
+  .highlights ul { padding-left: 18px; }
+  .highlights li { margin-bottom: 6px; font-size: .95rem; }
+
+  /* ── Definition box ── */
+  .def { background: rgba(91,141,238,.07); border: 1px solid rgba(91,141,238,.25);
+    border-left: 3px solid var(--accent); border-radius: 6px;
+    padding: 16px 20px; margin: 20px 0; }
+  .def .def-label { font-size: 10.5px; font-family: sans-serif; font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--accent);
+    margin-bottom: 6px; }
+  .def .def-term { font-weight: bold; color: var(--heading); }
+
+  /* ── Derivation block ── */
+  .derivation { background: var(--surface); border: 1px solid var(--border);
+    border-radius: 6px; padding: 20px 24px; margin: 24px 0; }
+  .derivation .deriv-label { font-size: 10.5px; font-family: sans-serif; font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--green);
+    margin-bottom: 14px; }
+  .derivation .step { display: flex; gap: 16px; margin-bottom: 10px;
+    align-items: flex-start; }
+  .derivation .step-num { flex-shrink: 0; width: 22px; height: 22px;
+    background: var(--surface2); border-radius: 50%; font-size: 11px;
+    font-family: sans-serif; display: flex; align-items: center; justify-content: center;
+    color: var(--muted); margin-top: 2px; }
+  .derivation .step-body { flex: 1; }
+  .derivation .step-note { font-size: .85rem; color: var(--muted); margin-top: 4px; }
+
+  /* ── Equation display ── */
+  .eq-block { text-align: center; margin: 24px 0; padding: 16px;
+    background: var(--surface); border-radius: 6px; overflow-x: auto; }
+  .eq-label { font-size: 11px; font-family: sans-serif; color: var(--muted);
+    margin-top: 8px; }
+
+  /* ── Graph container ── */
+  .graph-wrap { background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 20px; margin: 28px 0; }
+  .graph-title { font-family: sans-serif; font-size: 12px; font-weight: 600;
+    color: var(--muted); text-transform: uppercase; letter-spacing: .08em;
+    margin-bottom: 14px; }
+  .graph-caption { font-size: .82rem; color: var(--muted); margin-top: 10px;
+    font-style: italic; }
+  svg text { font-family: 'Georgia', serif; }
+
+  /* ── Case comparison ── */
+  .cases { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+  @media (max-width: 700px) { .cases { grid-template-columns: 1fr; } }
+  .case-card { background: var(--surface); border: 1px solid var(--border);
+    border-radius: 6px; padding: 16px 18px; }
+  .case-card .case-title { font-family: sans-serif; font-size: 12px; font-weight: 700;
+    letter-spacing: .06em; text-transform: uppercase; margin-bottom: 10px; }
+  .case-card.keynesian .case-title { color: var(--accent); }
+  .case-card.classical .case-title { color: var(--green); }
+
+  /* ── Examiner note ── */
+  .examiner { background: rgba(244,197,66,.06); border: 1px solid rgba(244,197,66,.2);
+    border-left: 3px solid var(--yellow); border-radius: 6px;
+    padding: 14px 18px; margin: 20px 0; font-size: .9rem; }
+  .examiner .ex-label { font-size: 10px; font-family: sans-serif; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--yellow);
+    margin-bottom: 6px; }
+
+  /* ── Warning / Trap ── */
+  .trap { background: rgba(224,92,92,.06); border: 1px solid rgba(224,92,92,.2);
+    border-left: 3px solid var(--red); border-radius: 6px;
+    padding: 14px 18px; margin: 16px 0; font-size: .9rem; }
+  .trap .trap-label { font-size: 10px; font-family: sans-serif; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--red);
+    margin-bottom: 6px; }
+
+  /* ── Formula summary ── */
+  .formula-sheet { background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 24px; margin: 40px 0; }
+  .formula-sheet h3 { margin-top: 0; color: var(--accent); }
+  .formula-row { display: flex; align-items: flex-start; gap: 16px;
+    padding: 10px 0; border-bottom: 1px solid var(--border); font-size: .9rem; }
+  .formula-row:last-child { border-bottom: none; }
+  .formula-row .fr-eq { flex: 0 0 240px; }
+  .formula-row .fr-desc { color: var(--muted); }
+
+  /* ── Questions ── */
+  .questions { margin-top: 48px; }
+  .q-item { background: var(--surface); border: 1px solid var(--border);
+    border-radius: 6px; padding: 16px 20px; margin-bottom: 12px; }
+  .q-item .q-meta { display: flex; gap: 8px; margin-bottom: 8px; }
+  .q-badge { font-size: 10.5px; font-family: sans-serif; font-weight: 700;
+    padding: 2px 8px; border-radius: 3px; }
+  .q-badge.marks-2  { background: rgba(62,207,142,.15); color: var(--green); }
+  .q-badge.marks-5  { background: rgba(91,141,238,.15); color: var(--accent); }
+  .q-badge.marks-10 { background: rgba(244,197,66,.15);  color: var(--yellow); }
+  .q-badge.type     { background: var(--surface2); color: var(--muted); }
+
+  /* ── Revision block ── */
+  .revision { background: var(--surface2); border-radius: 8px;
+    padding: 20px 24px; margin: 40px 0; }
+  .revision h3 { color: var(--accent); margin-top: 0; }
+  .revision ul { padding-left: 20px; }
+  .revision li { margin-bottom: 8px; font-size: .9rem; }
+
+  /* ── Print ── */
+  @media print {
+    nav#sidebar { display: none; }
+    main { margin-left: 0; padding: 20px; }
+    .graph-wrap { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════ SIDEBAR ═══════════════════════════ -->
+<nav id="sidebar">
+  <div class="nav-header">
+    <span>Macroeconomics</span>
+    <h3>Dornbusch · Fischer · Startz</h3>
+  </div>
+  <a href="#overview">Overview</a>
+  <a href="#as-curve" class="l2">Aggregate Supply Curve</a>
+  <a href="#classical-as" class="l3">Classical AS</a>
+  <a href="#keynesian-as" class="l3">Keynesian AS</a>
+  <a href="#natural-rate" class="l3">Natural Rate</a>
+  <a href="#price-adj" class="l2">Price Adjustment Mechanism</a>
+  <a href="#ad-curve" class="l2">Aggregate Demand Curve</a>
+  <a href="#qty-theory" class="l3">Quantity Theory</a>
+  <a href="#policy" class="l2">Policy Under Supply Assumptions</a>
+  <a href="#keynesian-case" class="l3">Keynesian Case</a>
+  <a href="#classical-case" class="l3">Classical Case</a>
+  <a href="#supply-side" class="l2">Supply-Side Economics</a>
+  <a href="#long-run" class="l2">Long-Run Dynamics</a>
+  <a href="#formulas" class="l2">Formula Sheet</a>
+  <a href="#questions" class="l2">Practice Questions</a>
+</nav>
+
+<!-- ═══════════════════════════ MAIN ═══════════════════════════════ -->
+<main>
+
+<!-- ── Header ── -->
+<h1>
+  <span class="ch-num">Chapter 5</span>
+  Aggregate Supply and Demand
+</h1>
+<div class="ch-meta">
+  <span>Book pp. <b>97–117</b></span>
+  <span>PDF pp. <b>115–135</b></span>
+  <span>Exam weight <b>High</b></span>
+  <span>Dornbusch · Fischer · Startz 11e</span>
+</div>
+
+<div class="highlights" id="overview">
+  <h4>Chapter Highlights</h4>
+  <ul>
+    <li>Output and prices are determined jointly by aggregate supply and aggregate demand.</li>
+    <li><strong>Short run:</strong> AS curve is flat (Keynesian) — demand determines output, not prices.</li>
+    <li><strong>Long run:</strong> AS curve is vertical (Classical) — demand determines prices, not output.</li>
+    <li>The AS curve describes the economy's <em>price adjustment mechanism</em> over time.</li>
+    <li>Fiscal and monetary policy shift AD; only supply-side policies can permanently raise output.</li>
+  </ul>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<h2 id="as-curve">1 · The Aggregate Supply Curve</h2>
+
+<div class="def">
+  <div class="def-label">Definition</div>
+  <p><span class="def-term">Aggregate Supply (AS) curve</span> — for each given price level, the quantity of output firms are willing to supply. It is upward-sloping because firms supply more at higher prices.</p>
+</div>
+
+<p>The AS curve describes <em>how the price level adjusts</em> over time in response to the gap between actual and potential output. It has two polar forms — classical and Keynesian — and a spectrum of intermediate slopes for medium-run horizons.</p>
+
+<!-- ── Classical AS ── -->
+<h3 id="classical-as">1.1  The Classical (Long-Run) AS Curve</h3>
+
+<div class="def">
+  <div class="def-label">Definition</div>
+  <p><span class="def-term">Classical AS curve</span> — vertical at $Y^*$ (potential/full-employment GDP). The same quantity is supplied regardless of the price level because the labour market always clears.</p>
+</div>
+
+<p>When demand is economy-wide, all factors are already employed. No additional labour or capital can be bid away from other sectors, so only the <em>price level</em> rises — not output. Potential GDP $Y^*$ grows over time as resources accumulate and technology improves, shifting the vertical line rightward, but this shift is exogenous to the price level.</p>
+
+<div class="graph-wrap">
+  <div class="graph-title">Fig 5.1 — Classical & Keynesian AS Curves</div>
+  <svg id="fig-classical-keynesian" width="100%" viewBox="0 0 520 280"></svg>
+  <div class="graph-caption">Left: Keynesian (horizontal) — output determined by demand; price fixed. &nbsp;|&nbsp; Right: Classical (vertical) — output fixed at $Y^*$; price adjusts.</div>
+</div>
+
+<!-- ── Keynesian AS ── -->
+<h3 id="keynesian-as">1.2  The Keynesian (Short-Run) AS Curve</h3>
+
+<div class="def">
+  <div class="def-label">Definition</div>
+  <p><span class="def-term">Keynesian AS curve</span> — horizontal at the current price level. Firms supply <em>whatever quantity is demanded</em> without changing prices, because there is unemployment and unit costs do not rise with output.</p>
+</div>
+
+<p>The intellectual genesis is the Great Depression: idle capital and labour could be put to work without raising costs. Modern framing: <strong>short-run price stickiness</strong> — firms are reluctant to reprice when demand shifts. Instead, they adjust quantities. Key implication:</p>
+
+<div class="trap">
+  <div class="trap-label">Common Mistake</div>
+  On a Keynesian AS curve, the <em>price level does not depend on GDP</em>. Ongoing inflation is explained by an <em>upward shift</em> of the AS curve — not by a movement along it.
+</div>
+
+<div class="examiner">
+  <div class="ex-label">Examiner Note</div>
+  Questions often ask why AS is horizontal in the short run. The correct answer combines <strong>two ideas</strong>: (1) excess unemployment means firms can hire more labour at the current wage, keeping unit costs constant; and (2) short-run nominal price/wage rigidity (stickiness). A one-idea answer scores partial marks only.
+</div>
+
+<!-- ── Natural Rate ── -->
+<h3 id="natural-rate">1.3  Frictional Unemployment and the Natural Rate</h3>
+
+<div class="def">
+  <div class="def-label">Definition</div>
+  <p><span class="def-term">Natural rate of unemployment</span> — the rate of unemployment arising from normal labour market frictions (job search, reallocation, new entrants) when the labour market is in equilibrium. CBO estimate for the US: ~5.2%.</p>
+</div>
+
+<p>Even in the classical model — full employment of the <em>willing-to-work</em> labour force — there is always <strong>frictional unemployment</strong>. People take time to find the right job. So $Y^*$ corresponds not to zero unemployment, but to the natural rate.</p>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<h2 id="price-adj">2 · The Price Adjustment Mechanism</h2>
+
+<p>The AS curve is not just a static schedule — it describes how prices move dynamically toward equilibrium. The key equation:</p>
+
+<div class="eq-block">
+  $$P_{t+1} = P_t\bigl[1 + \lambda(Y - Y^*)\bigr]$$
+  <div class="eq-label">Equation (1) — Aggregate Supply / Price Adjustment</div>
+</div>
+
+<div class="derivation">
+  <div class="deriv-label">Reading Equation (1)</div>
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      If $Y > Y^*$ (boom): the term $\lambda(Y - Y^*) > 0$, so $P_{t+1} > P_t$ — prices rise next period.
+      <div class="step-note">Overemployment → firms bid up wages → cost-push → higher prices.</div>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      If $Y < Y^*$ (recession): $\lambda(Y - Y^*) < 0$, so $P_{t+1} < P_t$ — prices fall next period.
+      <div class="step-note">Slack → downward pressure on wages → prices fall (sticky in practice, slow).</div>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      Prices stop adjusting only when $Y = Y^*$ — the long-run equilibrium.
+      <div class="step-note">This is why the <em>long-run</em> AS is vertical at $Y^*$.</div>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      $\lambda$ controls the <strong>speed of price adjustment</strong>. Large $\lambda$ → fast return to $Y^*$ (classical emphasis). Small $\lambda$ → slow return (Keynesian emphasis, larger role for demand policy).
+    </div>
+  </div>
+</div>
+
+<div class="def">
+  <div class="def-label">Definition</div>
+  <p><span class="def-term">Output gap (GDP gap)</span> $= Y - Y^*$. Positive gap (boom) → upward price pressure. Negative gap (recession) → downward pressure.</p>
+</div>
+
+<div class="graph-wrap">
+  <div class="graph-title">Fig 5.2 — AS-AD Equilibrium and Demand Shock</div>
+  <svg id="fig-asad-shift" width="100%" viewBox="0 0 520 300"></svg>
+  <div class="graph-caption">An increase in the money supply shifts AD rightward. In the short run output rises ($Y_0 \to Y'$) and prices rise slightly ($P_0 \to P'$). In the long run the AS curve rotates upward until $Y = Y^*$ and only the price level is higher.</div>
+</div>
+
+<div class="examiner">
+  <div class="ex-label">Examiner Note</div>
+  $\lambda$ (lambda) appears in many university exam questions. You must know that it parameterises <em>adjustment speed</em>, not the slope of a static curve. High $\lambda$ ≈ neoclassical world; low $\lambda$ ≈ Keynesian world. Policy relevance: if $\lambda$ is low, activist demand management is warranted.
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<h2 id="ad-curve">3 · The Aggregate Demand Curve</h2>
+
+<div class="def">
+  <div class="def-label">Definition</div>
+  <p><span class="def-term">Aggregate Demand (AD) curve</span> — shows combinations of the price level and output at which <strong>both</strong> the goods market and the money market are simultaneously in equilibrium. Slopes <em>downward</em>.</p>
+</div>
+
+<p>The full derivation of the AD curve from the IS-LM framework comes in Chapter 10. Here we use the quantity theory as a short-cut.</p>
+
+<h3 id="qty-theory">3.1  Quantity Theory Derivation of AD</h3>
+
+<div class="eq-block">
+  $$M \cdot V = P \cdot Y$$
+  <div class="eq-label">Equation (2) — Quantity Theory of Money</div>
+</div>
+
+<div class="derivation">
+  <div class="deriv-label">From Quantity Theory to the AD Curve</div>
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      $P \cdot Y$ = nominal GDP = total dollars spent. $M$ = money supply. $V$ = velocity (times a dollar turns over per year).
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      Assume $V$ is constant. Then $M \cdot \bar{V} = P \cdot Y$, giving: $Y = \dfrac{M\bar{V}}{P}$.
+      <div class="step-note">For fixed $M$, higher $P$ → lower $Y$: <strong>downward-sloping AD</strong>.</div>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      A 10% increase in $M$ shifts AD up by exactly 10%. At every output level $Y$, the price level consistent with equilibrium is 10% higher.
+      <div class="step-note">Because $P' = 1.1P_0$ restores $M'/P' = M_0/P_0$ — the same real money supply.</div>
+    </div>
+  </div>
+</div>
+
+<p>The deeper intuition: AD depends on the <strong>real money supply</strong> $\bar{M}/P$. High prices erode the real value of the money stock → lower investment → lower aggregate demand.</p>
+
+<div class="trap">
+  <div class="trap-label">Micro vs. Macro Confusion — Common Trap</div>
+  The AS-AD diagram looks identical to a microeconomic supply-demand graph, but the <em>economics are completely different</em>. In micro, the "price" is a relative price (exchange ratio). In macro, "price" is the nominal price level. And unlike micro supply curves, the macro AS curve is <em>more elastic</em> in the short run and <em>less elastic</em> (vertical) in the long run — the opposite of micro.
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<h2 id="policy">4 · Aggregate Demand Policy Under Alternative Supply Assumptions</h2>
+
+<div class="cases">
+  <div class="case-card keynesian">
+    <div class="case-title">Keynesian Case (Short Run)</div>
+    <p style="font-size:.9rem">AS is <strong>horizontal</strong>. Firms supply any amount at $P_0$.</p>
+    <p style="font-size:.9rem">AD shifts right → output rises from $Y_0$ to $Y'$. <strong>No effect on prices.</strong></p>
+    <p style="font-size:.9rem">Government spending, tax cuts, or money supply expansion are effective at raising employment.</p>
+  </div>
+  <div class="case-card classical">
+    <div class="case-title">Classical Case (Long Run)</div>
+    <p style="font-size:.9rem">AS is <strong>vertical</strong> at $Y^*$. Firms always supply full-employment output.</p>
+    <p style="font-size:.9rem">AD shifts right → prices rise from $P_0$ to $P'$. <strong>No effect on output.</strong></p>
+    <p style="font-size:.9rem">Demand expansion is entirely inflationary. Real variables unchanged.</p>
+  </div>
+</div>
+
+<h3 id="keynesian-case">4.1  Keynesian Case in Detail</h3>
+
+<div class="graph-wrap">
+  <div class="graph-title">Fig 5.3 — Keynesian Case: AD Expansion</div>
+  <svg id="fig-keynesian-case" width="100%" viewBox="0 0 360 260"></svg>
+  <div class="graph-caption">Horizontal AS at $P_0$. Rightward shift of AD raises output from $E$ to $E'$ with no price change. The entire multiplier effect passes through to real output.</div>
+</div>
+
+<h3 id="classical-case">4.2  Classical Case in Detail</h3>
+
+<div class="graph-wrap">
+  <div class="graph-title">Fig 5.4 — Classical Case: AD Expansion</div>
+  <svg id="fig-classical-case" width="100%" viewBox="0 0 360 260"></svg>
+  <div class="graph-caption">Vertical AS at $Y^*$. AD shift drives prices from $P_0$ to $P'$; output stays at $Y^*$. Demand management is fully inflationary with no real effect.</div>
+</div>
+
+<div class="examiner">
+  <div class="ex-label">Examiner Note</div>
+  A common 10-mark question: <em>"Using AS-AD analysis, evaluate the effectiveness of fiscal expansion under Keynesian and classical assumptions."</em> Structure your answer as: (1) define both AS assumptions; (2) draw both diagrams; (3) trace the equilibrium shift in each; (4) interpret: output vs. price effects; (5) policy implication — when is demand management justified?
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<h2 id="supply-side">5 · Supply-Side Economics</h2>
+
+<p>All economists agree that policies genuinely shifting AS rightward — removing inefficient regulation, improving technology, legal infrastructure — are desirable. "Supply-side economics" in the political sense makes the additional claim that <strong>tax cuts are self-financing</strong> because the resulting growth raises the tax base enough to offset revenue loss. Dornbusch et al. label this "voodoo economics" (the phrase is George H.W. Bush's).</p>
+
+<div class="graph-wrap">
+  <div class="graph-title">Fig 5.5 — Effects of Tax Rate Cuts on AS and AD</div>
+  <svg id="fig-supply-side" width="100%" viewBox="0 0 400 280"></svg>
+  <div class="graph-caption">A tax cut causes a large rightward shift of AD (strong demand stimulus) and a small rightward shift of AS (weak incentive effect). Short-run result: $E \to E'$ — both output and prices rise. Long-run result: $E \to E''$ — a small permanent output gain at significantly higher prices. Tax revenues <em>fall</em>.</div>
+</div>
+
+<div class="trap">
+  <div class="trap-label">Examiner Trap — Supply-Side Claim</div>
+  Never state that supply-side tax cuts raise tax revenues in a standard macro exam unless specifically asked to argue that position. The textbook evidence (US 1981–83) shows revenues fell. State: AD shift large, AS shift small → net effect is higher prices and modest output gain with a larger deficit.
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<h2 id="long-run">6 · Long-Run Dynamics</h2>
+
+<p>Over decades, the long-run AS curve marches steadily rightward at the rate of potential GDP growth (roughly 2–4% per year). The position of the AD curve, driven mainly by money supply growth, determines the <strong>price level trajectory</strong>.</p>
+
+<ul>
+  <li>If AD grows faster than AS → persistent inflation (as in the US 1970s).</li>
+  <li>If AD growth matches AS growth → stable price level.</li>
+  <li>In the long run, <strong>output is supply-determined</strong> and <strong>prices are demand-determined</strong> relative to supply.</li>
+</ul>
+
+<div class="examiner">
+  <div class="ex-label">Examiner Note</div>
+  The long-run insight — "prices are determined by the relative movement of AD vs. AS" — is the correct answer to questions like "What causes sustained inflation?" Demand growth exceeding potential output growth. This is the monetarist core: excess money growth → excess AD growth → inflation.
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<h2 id="formulas">Formula &amp; Concept Summary</h2>
+
+<div class="formula-sheet">
+  <h3>Quick Reference</h3>
+  <div class="formula-row">
+    <div class="fr-eq">$P_{t+1} = P_t[1+\lambda(Y-Y^*)]$</div>
+    <div class="fr-desc">Price adjustment (AS curve). $\lambda>0$ is adjustment speed.</div>
+  </div>
+  <div class="formula-row">
+    <div class="fr-eq">$Y - Y^*$</div>
+    <div class="fr-desc">Output gap / GDP gap. Positive = boom; negative = recession.</div>
+  </div>
+  <div class="formula-row">
+    <div class="fr-eq">$M \cdot V = P \cdot Y$</div>
+    <div class="fr-desc">Quantity theory of money. $V$ assumed constant → AD curve.</div>
+  </div>
+  <div class="formula-row">
+    <div class="fr-eq">$\bar{M}/P$</div>
+    <div class="fr-desc">Real money supply. Higher $P$ → lower real balances → lower AD.</div>
+  </div>
+  <div class="formula-row">
+    <div class="fr-eq">Classical AS: $Y = Y^*$ for all $P$</div>
+    <div class="fr-desc">Vertical. Full employment always. AD changes → only $P$ changes.</div>
+  </div>
+  <div class="formula-row">
+    <div class="fr-eq">Keynesian AS: $P = P_0$ for all $Y$</div>
+    <div class="fr-desc">Horizontal. Price fixed in SR. AD changes → only $Y$ changes.</div>
+  </div>
+</div>
+
+<div class="revision">
+  <h3>Revision — Key Distinctions</h3>
+  <ul>
+    <li><strong>Short run vs. long run:</strong> not two models — both are true at different horizons. Keynesian ≈ months; Classical ≈ decade+. The contested zone is several quarters to a few years.</li>
+    <li><strong>AS shift vs. AS movement:</strong> Ongoing inflation = repeated upward <em>shifts</em> of horizontal SR-AS; not a slide along the curve.</li>
+    <li><strong>$\lambda$ large:</strong> economy self-corrects quickly → less need for activist policy. <strong>$\lambda$ small:</strong> slow self-correction → Keynesian case for intervention.</li>
+    <li><strong>Supply-side economics:</strong> small real AS effect, large AD effect, net inflationary with revenue loss. Do not confuse with genuine productivity-enhancing supply policies.</li>
+    <li><strong>Potential GDP $Y^*$:</strong> grows exogenously over time (technology, capital, labour). Demand policy cannot permanently shift it.</li>
+  </ul>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<h2 id="questions">Practice Questions</h2>
+
+<div class="questions">
+
+  <div class="q-item">
+    <div class="q-meta">
+      <span class="q-badge marks-2">2 Marks</span>
+      <span class="q-badge type">Conceptual</span>
+    </div>
+    <p>Define the output gap. What does a positive output gap imply for price level changes according to the price adjustment equation?</p>
+  </div>
+
+  <div class="q-item">
+    <div class="q-meta">
+      <span class="q-badge marks-2">2 Marks</span>
+      <span class="q-badge type">Conceptual</span>
+    </div>
+    <p>Why is the aggregate supply curve vertical in the classical model? How does this differ from a microeconomic supply curve in the long run?</p>
+  </div>
+
+  <div class="q-item">
+    <div class="q-meta">
+      <span class="q-badge marks-5">5 Marks</span>
+      <span class="q-badge type">Diagram + Analysis</span>
+    </div>
+    <p>Using separate AS-AD diagrams, illustrate and explain the effect of an increase in government spending (a) under Keynesian supply assumptions and (b) under classical supply assumptions. What determines whether the policy is effective?</p>
+  </div>
+
+  <div class="q-item">
+    <div class="q-meta">
+      <span class="q-badge marks-5">5 Marks</span>
+      <span class="q-badge type">Derivation</span>
+    </div>
+    <p>Using the quantity theory of money $MV = PY$ (with $V$ constant), derive the aggregate demand curve and show that a 10% increase in the money supply shifts the AD curve upward by exactly 10%. Interpret the real-money-supply mechanism.</p>
+  </div>
+
+  <div class="q-item">
+    <div class="q-meta">
+      <span class="q-badge marks-10">10 Marks</span>
+      <span class="q-badge type">Long-form Analytical</span>
+    </div>
+    <p>Critically evaluate the claim that tax cuts are self-financing through supply-side growth effects. In your answer: (a) use AS-AD analysis to show the short-run and long-run effects of a tax cut; (b) distinguish between the demand-side and supply-side effects; (c) explain what empirical evidence from the 1981–83 US tax cuts suggests; (d) identify under what conditions (if any) supply-side effects could be significant.</p>
+  </div>
+
+  <div class="q-item">
+    <div class="q-meta">
+      <span class="q-badge marks-10">10 Marks</span>
+      <span class="q-badge type">Long-form Analytical</span>
+    </div>
+    <p>"The aggregate supply curve is not a curve — it is a process." Explain this statement with reference to the price adjustment equation $P_{t+1} = P_t[1+\lambda(Y-Y^*)]$. How does the parameter $\lambda$ influence the policy debate between Keynesians and Classicals? Illustrate with diagrams showing dynamic adjustment paths.</p>
+  </div>
+
+</div>
+
+</main>
+
+<!-- ═══════════════════════════ D3 GRAPHS ═══════════════════════ -->
+<script>
+/* ── Utility ── */
+const C = { accent:"#5b8dee", green:"#3ecf8e", yellow:"#f4c542",
+            red:"#e05c5c", muted:"#7a80a0", text:"#d4d8f0", heading:"#eef0ff",
+            surface:"#1a1d27", border:"#2e3348" };
+
+function asadAxes(svg, W, H, ml, mr, mt, mb, xLabel, yLabel) {
+  const g = svg.append("g").attr("transform",`translate(${ml},${mt})`);
+  const iw = W-ml-mr, ih = H-mt-mb;
+  // Axes
+  g.append("line").attr("x1",0).attr("y1",ih).attr("x2",iw).attr("y2",ih)
+    .attr("stroke",C.muted).attr("stroke-width",1.5);
+  g.append("line").attr("x1",0).attr("y1",0).attr("x2",0).attr("y2",ih)
+    .attr("stroke",C.muted).attr("stroke-width",1.5);
+  // Arrow heads
+  g.append("polygon").attr("points",`${iw},${ih-5} ${iw+8},${ih} ${iw},${ih+5}`)
+    .attr("fill",C.muted);
+  g.append("polygon").attr("points",`-5,0 0,-8 5,0`)
+    .attr("fill",C.muted);
+  // Labels
+  g.append("text").attr("x",iw/2).attr("y",ih+36).attr("text-anchor","middle")
+    .attr("fill",C.muted).attr("font-size",13).text(xLabel);
+  g.append("text").attr("transform",`translate(-38,${ih/2}) rotate(-90)`)
+    .attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",13).text(yLabel);
+  return {g, iw, ih};
+}
+
+/* ─── Fig 1: Classical & Keynesian side by side ─── */
+(function(){
+  const svg = d3.select("#fig-classical-keynesian");
+  const W=520, H=280, m={t:20,b:50,l:55,r:20};
+  const iw=(W-m.l-m.r)/2-16, ih=H-m.t-m.b;
+
+  // LEFT panel — Keynesian
+  const gK = svg.append("g").attr("transform",`translate(${m.l},${m.t})`);
+  // axes
+  gK.append("line").attr("x1",0).attr("y1",ih).attr("x2",iw).attr("y2",ih).attr("stroke",C.muted).attr("stroke-width",1.5);
+  gK.append("line").attr("x1",0).attr("y1",0).attr("x2",0).attr("y2",ih).attr("stroke",C.muted).attr("stroke-width",1.5);
+  gK.append("polygon").attr("points",`${iw},${ih-5} ${iw+7},${ih} ${iw},${ih+5}`).attr("fill",C.muted);
+  gK.append("polygon").attr("points",`-5,0 0,-7 5,0`).attr("fill",C.muted);
+  gK.append("text").attr("x",iw/2).attr("y",ih+36).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",12).text("Output Y");
+  gK.append("text").attr("transform",`translate(-38,${ih/2}) rotate(-90)`).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",12).text("Price Level P");
+  // Keynesian AS — horizontal
+  const kyP = ih*0.5;
+  gK.append("line").attr("x1",0).attr("y1",kyP).attr("x2",iw).attr("y2",kyP)
+    .attr("stroke",C.accent).attr("stroke-width",2.5);
+  gK.append("text").attr("x",iw-2).attr("y",kyP-8).attr("fill",C.accent).attr("font-size",13).attr("text-anchor","end").text("AS (Keynesian)");
+  // AD downward
+  gK.append("line").attr("x1",20).attr("y1",ih*0.15).attr("x2",iw-10).attr("y2",ih*0.85)
+    .attr("stroke",C.green).attr("stroke-width",2);
+  gK.append("text").attr("x",iw-8).attr("y",ih*0.85+14).attr("fill",C.green).attr("font-size",12).attr("text-anchor","end").text("AD");
+  // Equilibrium
+  const ekX = 120, ekY = kyP;
+  gK.append("circle").attr("cx",ekX).attr("cy",ekY).attr("r",4).attr("fill",C.yellow);
+  gK.append("text").attr("x",ekX+8).attr("y",ekY-6).attr("fill",C.yellow).attr("font-size",11).text("E");
+  // dashed to axes
+  gK.append("line").attr("x1",0).attr("y1",ekY).attr("x2",ekX).attr("y2",ekY)
+    .attr("stroke",C.muted).attr("stroke-dasharray","4,3").attr("stroke-width",1);
+  gK.append("line").attr("x1",ekX).attr("y1",ih).attr("x2",ekX).attr("y2",ekY)
+    .attr("stroke",C.muted).attr("stroke-dasharray","4,3").attr("stroke-width",1);
+  gK.append("text").attr("x",-6).attr("y",ekY+4).attr("fill",C.muted).attr("font-size",11).attr("text-anchor","end").text("P₀");
+  gK.append("text").attr("x",ekX).attr("y",ih+16).attr("fill",C.muted).attr("font-size",11).attr("text-anchor","middle").text("Y₀");
+  // Title
+  gK.append("text").attr("x",iw/2).attr("y",-4).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",11).text("(a) Keynesian");
+
+  // RIGHT panel — Classical
+  const ox = m.l + iw + 52;
+  const gC = svg.append("g").attr("transform",`translate(${ox},${m.t})`);
+  gC.append("line").attr("x1",0).attr("y1",ih).attr("x2",iw).attr("y2",ih).attr("stroke",C.muted).attr("stroke-width",1.5);
+  gC.append("line").attr("x1",0).attr("y1",0).attr("x2",0).attr("y2",ih).attr("stroke",C.muted).attr("stroke-width",1.5);
+  gC.append("polygon").attr("points",`${iw},${ih-5} ${iw+7},${ih} ${iw},${ih+5}`).attr("fill",C.muted);
+  gC.append("polygon").attr("points",`-5,0 0,-7 5,0`).attr("fill",C.muted);
+  gC.append("text").attr("x",iw/2).attr("y",ih+36).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",12).text("Output Y");
+  gC.append("text").attr("transform",`translate(-38,${ih/2}) rotate(-90)`).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",12).text("Price Level P");
+  // Classical AS — vertical at Y*
+  const cxAS = iw*0.55;
+  gC.append("line").attr("x1",cxAS).attr("y1",0).attr("x2",cxAS).attr("y2",ih)
+    .attr("stroke",C.green).attr("stroke-width",2.5);
+  gC.append("text").attr("x",cxAS+4).attr("y",12).attr("fill",C.green).attr("font-size",12).text("AS (Classical)");
+  // AD
+  gC.append("line").attr("x1",15).attr("y1",ih*0.1).attr("x2",iw-5).attr("y2",ih*0.92)
+    .attr("stroke",C.accent).attr("stroke-width",2);
+  gC.append("text").attr("x",iw-3).attr("y",ih*0.92+14).attr("fill",C.accent).attr("font-size",12).attr("text-anchor","end").text("AD");
+  // Eq point
+  const cEq = cxAS, cEqY = ih*0.55;
+  gC.append("circle").attr("cx",cEq).attr("cy",cEqY).attr("r",4).attr("fill",C.yellow);
+  gC.append("text").attr("x",cEq+8).attr("y",cEqY-6).attr("fill",C.yellow).attr("font-size",11).text("E");
+  gC.append("line").attr("x1",0).attr("y1",cEqY).attr("x2",cEq).attr("y2",cEqY)
+    .attr("stroke",C.muted).attr("stroke-dasharray","4,3").attr("stroke-width",1);
+  gC.append("text").attr("x",-6).attr("y",cEqY+4).attr("fill",C.muted).attr("font-size",11).attr("text-anchor","end").text("P₀");
+  gC.append("text").attr("x",cxAS).attr("y",ih+16).attr("fill",C.muted).attr("font-size",11).attr("text-anchor","middle").text("Y*");
+  gC.append("text").attr("x",iw/2).attr("y",-4).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",11).text("(b) Classical");
+})();
+
+/* ─── Fig 2: AS-AD with AD shift ─── */
+(function(){
+  const svg = d3.select("#fig-asad-shift");
+  const W=520, H=300;
+  const {g, iw, ih} = asadAxes(svg, W, H, 60, 24, 20, 54, "Output  Y", "Price Level  P");
+
+  // Keynesian AS (short-run horizontal)
+  const p0y = ih*0.52, p1y = ih*0.34;
+  g.append("line").attr("x1",0).attr("y1",p0y).attr("x2",iw).attr("y2",p0y)
+    .attr("stroke",C.accent).attr("stroke-width",2.2);
+  g.append("text").attr("x",iw-4).attr("y",p0y-8).attr("fill",C.accent).attr("font-size",12).attr("text-anchor","end").text("AS (SR)");
+
+  // Long-run AS — vertical at Y*
+  const yStar = iw*0.62;
+  g.append("line").attr("x1",yStar).attr("y1",0).attr("x2",yStar).attr("y2",ih)
+    .attr("stroke",C.accent).attr("stroke-width",1.5).attr("stroke-dasharray","6,4");
+  g.append("text").attr("x",yStar+4).attr("y",12).attr("fill",C.accent).attr("font-size",11).text("LRAS (Y*)");
+
+  // AD0 — downward
+  function adLine(xShift, col, label) {
+    const x1=20+xShift, y1=ih*0.05, x2=iw-10+xShift, y2=ih*0.95;
+    // clip to graph area
+    const slope = (y2-y1)/(x2-x1);
+    const cx1=Math.max(0,x1), cy1=y1+(cx1-x1)*slope;
+    const cx2=Math.min(iw,x2), cy2=y1+(cx2-x1)*slope;
+    g.append("line").attr("x1",cx1).attr("y1",cy1).attr("x2",cx2).attr("y2",cy2)
+      .attr("stroke",col).attr("stroke-width",2);
+    g.append("text").attr("x",cx2-2).attr("y",Math.min(ih-4,cy2)+14).attr("fill",col).attr("font-size",12).attr("text-anchor","end").text(label);
+    return {x1,y1,x2,y2,slope};
+  }
+  const ad0 = adLine(0, C.green, "AD");
+  const ad1 = adLine(68, C.yellow, "AD'");
+
+  // Intersections
+  function intersection(adObj, pyHoriz) {
+    const {x1,y1,slope} = adObj;
+    const x = x1 + (pyHoriz - y1)/slope;
+    return {x, y: pyHoriz};
+  }
+  const E  = intersection(ad0, p0y);
+  const Ep = intersection(ad1, p0y);   // short-run new eq
+  const Epp= {x: yStar, y: p1y};       // long-run eq (AS shifts up)
+
+  // SR new AS line (shifted up)
+  g.append("line").attr("x1",0).attr("y1",p1y).attr("x2",iw).attr("y2",p1y)
+    .attr("stroke",C.accent).attr("stroke-width",1.5).attr("stroke-dasharray","5,3");
+  g.append("text").attr("x",4).attr("y",p1y-7).attr("fill",C.accent).attr("font-size",10).text("AS (shifted)");
+
+  // Points
+  [[E,"E",C.green],[Ep,"E'",C.yellow],[Epp,"E''",C.red]].forEach(([pt,lbl,col])=>{
+    g.append("circle").attr("cx",pt.x).attr("cy",pt.y).attr("r",5).attr("fill",col);
+    g.append("text").attr("x",pt.x+8).attr("y",pt.y-7).attr("fill",col).attr("font-size",12).text(lbl);
+  });
+
+  // Dashed references
+  [[E.x,"Y₀"],[Ep.x,"Y'"],[yStar,"Y*"]].forEach(([x,l])=>{
+    g.append("line").attr("x1",x).attr("y1",ih).attr("x2",x).attr("y2",p0y)
+      .attr("stroke",C.muted).attr("stroke-dasharray","3,3").attr("stroke-width",1);
+    g.append("text").attr("x",x).attr("y",ih+16).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",11).text(l);
+  });
+  [[p0y,"P₀"],[p1y,"P'"]].forEach(([y,l])=>{
+    g.append("line").attr("x1",0).attr("y1",y).attr("x2",E.x).attr("y2",y)
+      .attr("stroke",C.muted).attr("stroke-dasharray","3,3").attr("stroke-width",1);
+    g.append("text").attr("x",-6).attr("y",y+4).attr("text-anchor","end").attr("fill",C.muted).attr("font-size",11).text(l);
+  });
+})();
+
+/* ─── Fig 3: Keynesian Case ─── */
+(function(){
+  const svg = d3.select("#fig-keynesian-case");
+  const W=360, H=260;
+  const {g, iw, ih} = asadAxes(svg, W, H, 55, 20, 16, 50, "Output  Y", "Price Level  P");
+
+  const p0y = ih*0.5;
+  g.append("line").attr("x1",0).attr("y1",p0y).attr("x2",iw).attr("y2",p0y)
+    .attr("stroke",C.accent).attr("stroke-width",2.5);
+  g.append("text").attr("x",iw-2).attr("y",p0y-8).attr("fill",C.accent).attr("font-size",12).attr("text-anchor","end").text("AS");
+
+  function ad(sh,col,lbl){
+    const x1=20+sh,y1=ih*0.08,x2=iw-10+sh,y2=ih*0.92;
+    const sl=(y2-y1)/(x2-x1);
+    const cx2=Math.min(iw,x2), cy2=y1+(cx2-x1)*sl;
+    g.append("line").attr("x1",Math.max(0,x1)).attr("y1",Math.max(0,y1+(Math.max(0,x1)-x1)*sl))
+      .attr("x2",cx2).attr("y2",cy2).attr("stroke",col).attr("stroke-width",2);
+    g.append("text").attr("x",cx2-2).attr("y",cy2+14).attr("fill",col).attr("font-size",12).attr("text-anchor","end").text(lbl);
+    return {x1,y1,sl};
+  }
+  const a0=ad(0,C.green,"AD"); const a1=ad(60,C.yellow,"AD'");
+  function ix(a){return {x:a.x1+(p0y-a.y1)/a.sl, y:p0y};}
+  const E=ix(a0), Ep=ix(a1);
+
+  g.append("circle").attr("cx",E.x).attr("cy",E.y).attr("r",4).attr("fill",C.green);
+  g.append("text").attr("x",E.x+7).attr("y",E.y-7).attr("fill",C.green).attr("font-size",12).text("E");
+  g.append("circle").attr("cx",Ep.x).attr("cy",Ep.y).attr("r",4).attr("fill",C.yellow);
+  g.append("text").attr("x",Ep.x+7).attr("y",Ep.y-7).attr("fill",C.yellow).attr("font-size",12).text("E'");
+
+  // Arrow showing output increase
+  g.append("defs").append("marker").attr("id","arr-k").attr("markerWidth",8).attr("markerHeight",8)
+    .attr("refX",4).attr("refY",2).append("polygon").attr("points","0,0 8,2 0,4").attr("fill",C.yellow);
+  g.append("line").attr("x1",E.x+6).attr("y1",p0y-18).attr("x2",Ep.x-6).attr("y2",p0y-18)
+    .attr("stroke",C.yellow).attr("stroke-width",1.5).attr("marker-end","url(#arr-k)");
+  g.append("text").attr("x",(E.x+Ep.x)/2).attr("y",p0y-26).attr("text-anchor","middle")
+    .attr("fill",C.yellow).attr("font-size",10).text("ΔY (output ↑)");
+
+  [[E.x,"Y₀"],[Ep.x,"Y'"]].forEach(([x,l])=>{
+    g.append("line").attr("x1",x).attr("y1",ih).attr("x2",x).attr("y2",p0y).attr("stroke",C.muted).attr("stroke-dasharray","3,3").attr("stroke-width",1);
+    g.append("text").attr("x",x).attr("y",ih+16).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",11).text(l);
+  });
+  g.append("text").attr("x",-6).attr("y",p0y+4).attr("text-anchor","end").attr("fill",C.muted).attr("font-size",11).text("P₀");
+  g.append("text").attr("x",iw/2).attr("y",ih+34).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",10).text("No price change — output absorbs the full shock");
+})();
+
+/* ─── Fig 4: Classical Case ─── */
+(function(){
+  const svg = d3.select("#fig-classical-case");
+  const W=360, H=260;
+  const {g, iw, ih} = asadAxes(svg, W, H, 55, 20, 16, 50, "Output  Y", "Price Level  P");
+
+  const xStar = iw*0.55;
+  g.append("line").attr("x1",xStar).attr("y1",0).attr("x2",xStar).attr("y2",ih)
+    .attr("stroke",C.green).attr("stroke-width",2.5);
+  g.append("text").attr("x",xStar+4).attr("y",12).attr("fill",C.green).attr("font-size",12).text("AS  (Y*)");
+
+  function ad(sh,col,lbl){
+    const x1=15+sh,y1=ih*0.06,x2=iw-8+sh,y2=ih*0.94;
+    const sl=(y2-y1)/(x2-x1);
+    const cx2=Math.min(iw,x2), cy2=y1+(cx2-x1)*sl;
+    g.append("line").attr("x1",Math.max(0,x1)).attr("y1",Math.max(0,y1+(Math.max(0,x1)-x1)*sl))
+      .attr("x2",cx2).attr("y2",cy2).attr("stroke",col).attr("stroke-width",2);
+    g.append("text").attr("x",cx2-2).attr("y",cy2+14).attr("fill",col).attr("font-size",12).attr("text-anchor","end").text(lbl);
+    return {x1,y1,sl};
+  }
+  const a0=ad(0,C.accent,"AD"); const a1=ad(55,C.yellow,"AD'");
+  function ix(a){const sl=a.sl; const x=xStar; const y=a.y1+(x-a.x1)*sl; return {x,y};}
+  const E=ix(a0), Ep=ix(a1);
+
+  g.append("circle").attr("cx",E.x).attr("cy",E.y).attr("r",4).attr("fill",C.accent);
+  g.append("text").attr("x",E.x+7).attr("y",E.y+4).attr("fill",C.accent).attr("font-size",12).text("E");
+  g.append("circle").attr("cx",Ep.x).attr("cy",Ep.y).attr("r",4).attr("fill",C.yellow);
+  g.append("text").attr("x",Ep.x+7).attr("y",Ep.y-7).attr("fill",C.yellow).attr("font-size",12).text("E'");
+
+  // Arrow showing price increase
+  g.append("defs").append("marker").attr("id","arr-c").attr("markerWidth",8).attr("markerHeight",8)
+    .attr("refX",4).attr("refY",2).append("polygon").attr("points","0,0 8,2 0,4").attr("fill",C.yellow);
+  g.append("line").attr("x1",xStar+18).attr("y1",Ep.y+6).attr("x2",xStar+18).attr("y2",E.y-6)
+    .attr("stroke",C.yellow).attr("stroke-width",1.5).attr("marker-end","url(#arr-c)");
+  g.append("text").attr("x",xStar+22).attr("y",(E.y+Ep.y)/2).attr("fill",C.yellow).attr("font-size",10).text("ΔP");
+
+  [[E.y,"P₀"],[Ep.y,"P'"]].forEach(([y,l])=>{
+    g.append("line").attr("x1",0).attr("y1",y).attr("x2",xStar).attr("y2",y).attr("stroke",C.muted).attr("stroke-dasharray","3,3").attr("stroke-width",1);
+    g.append("text").attr("x",-6).attr("y",y+4).attr("text-anchor","end").attr("fill",C.muted).attr("font-size",11).text(l);
+  });
+  g.append("text").attr("x",xStar).attr("y",ih+16).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",11).text("Y*");
+  g.append("text").attr("x",iw/2).attr("y",ih+34).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",10).text("No output change — price level absorbs the full shock");
+})();
+
+/* ─── Fig 5: Supply-Side ─── */
+(function(){
+  const svg = d3.select("#fig-supply-side");
+  const W=400, H=280;
+  const {g, iw, ih} = asadAxes(svg, W, H, 56, 20, 20, 52, "Output  Y", "Price Level  P");
+
+  // AS0 — vertical
+  const xs0=iw*0.42, xs1=iw*0.52;
+  g.append("line").attr("x1",xs0).attr("y1",0).attr("x2",xs0).attr("y2",ih)
+    .attr("stroke",C.green).attr("stroke-width",2).attr("stroke-dasharray","6,3");
+  g.append("text").attr("x",xs0+3).attr("y",14).attr("fill",C.green).attr("font-size",11).text("AS");
+
+  g.append("line").attr("x1",xs1).attr("y1",0).attr("x2",xs1).attr("y2",ih)
+    .attr("stroke",C.green).attr("stroke-width",2.5);
+  g.append("text").attr("x",xs1+3).attr("y",14).attr("fill",C.green).attr("font-size",11).text("AS'");
+
+  // AD0 and AD' (large rightward shift)
+  function ad(sh,col,lbl){
+    const x1=10+sh,y1=ih*0.05,x2=iw-5+sh,y2=ih*0.95;
+    const sl=(y2-y1)/(x2-x1);
+    const cx2=Math.min(iw,x2), cy2=y1+(cx2-x1)*sl;
+    g.append("line").attr("x1",Math.max(0,x1)).attr("y1",Math.max(0,y1+(Math.max(0,x1)-x1)*sl))
+      .attr("x2",cx2).attr("y2",cy2).attr("stroke",col).attr("stroke-width",2);
+    g.append("text").attr("x",cx2-2).attr("y",Math.min(ih,cy2)+14).attr("fill",col).attr("font-size",12).attr("text-anchor","end").text(lbl);
+    return {x1,y1,sl};
+  }
+  const a0=ad(0,C.accent,"AD"); const a1=ad(72,C.yellow,"AD'");
+
+  // Equilibria: E on AS0×AD0, E' on AS0×AD1 (SR), E'' on AS'×AD1 (LR)
+  function ixV(a,x){return {x, y:a.y1+(x-a.x1)*a.sl};}
+  const E   = ixV(a0, xs0);
+  const Ep  = ixV(a1, xs0);   // SR: output same AS0 intersects AD'
+  const Epp = ixV(a1, xs1);   // LR: AS' intersects AD'
+
+  [[E,"E",C.accent],[Ep,"E'",C.yellow],[Epp,"E''",C.red]].forEach(([pt,l,col])=>{
+    g.append("circle").attr("cx",pt.x).attr("cy",pt.y).attr("r",4).attr("fill",col);
+    g.append("text").attr("x",pt.x+7).attr("y",pt.y-7).attr("fill",col).attr("font-size",12).text(l);
+  });
+
+  [[E.y,"P₀"],[Ep.y,"P'"],[Epp.y,"P''"]].forEach(([y,l])=>{
+    g.append("line").attr("x1",0).attr("y1",y).attr("x2",xs1).attr("y2",y).attr("stroke",C.muted).attr("stroke-dasharray","3,3").attr("stroke-width",1);
+    g.append("text").attr("x",-6).attr("y",y+4).attr("text-anchor","end").attr("fill",C.muted).attr("font-size",11).text(l);
+  });
+  [[xs0,"Y₀"],[xs1,"Y''"]].forEach(([x,l])=>{
+    g.append("line").attr("x1",x).attr("y1",ih).attr("x2",x).attr("y2",E.y).attr("stroke",C.muted).attr("stroke-dasharray","3,3").attr("stroke-width",1);
+    g.append("text").attr("x",x).attr("y",ih+16).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",11).text(l);
+  });
+  // Annotation
+  g.append("text").attr("x",iw/2).attr("y",ih+36).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",10.5)
+    .text("Large AD shift · Small AS shift → prices ↑↑, output ↑ small");
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch. 9 — Income, Spending & the Multiplier | Macroeconomics</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<style>
+  :root {
+    --bg:#0f1117;--surface:#1a1d27;--surface2:#222635;--border:#2e3348;
+    --accent:#5b8dee;--accent2:#7c6ced;--green:#3ecf8e;--yellow:#f4c542;
+    --red:#e05c5c;--text:#d4d8f0;--muted:#7a80a0;--heading:#eef0ff;
+    --sidebar-w:260px;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:'Georgia',serif;font-size:16px;line-height:1.75;display:flex;min-height:100vh;}
+
+  nav#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--surface);border-right:1px solid var(--border);overflow-y:auto;padding:24px 0;z-index:100;}
+  nav#sidebar .nav-header{padding:0 20px 16px;border-bottom:1px solid var(--border);margin-bottom:12px;}
+  nav#sidebar .nav-header span{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);}
+  nav#sidebar .nav-header h3{font-size:13px;color:var(--heading);margin-top:4px;}
+  nav#sidebar a{display:block;padding:6px 20px;font-size:13px;font-family:sans-serif;color:var(--muted);text-decoration:none;transition:color .15s,background .15s;}
+  nav#sidebar a:hover,nav#sidebar a.active{color:var(--accent);background:rgba(91,141,238,.08);}
+  nav#sidebar a.l2{padding-left:34px;font-size:12px;}
+  nav#sidebar a.l3{padding-left:48px;font-size:11.5px;}
+
+  main{margin-left:var(--sidebar-w);flex:1;max-width:900px;padding:48px 56px 96px;}
+  h1{font-size:2rem;color:var(--heading);line-height:1.2;margin-bottom:6px;}
+  h1 .ch-num{font-size:1rem;color:var(--accent);font-family:sans-serif;font-weight:600;display:block;margin-bottom:8px;}
+  h2{font-size:1.35rem;color:var(--heading);margin:52px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+  h3{font-size:1.1rem;color:var(--heading);margin:32px 0 12px;}
+  h4{font-size:.95rem;color:var(--accent);font-family:sans-serif;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin:24px 0 8px;}
+  p{margin-bottom:14px;}
+  strong{color:var(--heading);}
+
+  .ch-meta{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0 40px;}
+  .ch-meta span{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:4px 12px;font-size:12px;font-family:sans-serif;color:var(--muted);}
+  .ch-meta span b{color:var(--text);}
+
+  .highlights{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:6px;padding:20px 24px;margin-bottom:40px;}
+  .highlights h4{margin:0 0 12px;font-size:.8rem;}
+  .highlights ul{padding-left:18px;}
+  .highlights li{margin-bottom:6px;font-size:.95rem;}
+
+  .def{background:rgba(91,141,238,.07);border:1px solid rgba(91,141,238,.25);border-left:3px solid var(--accent);border-radius:6px;padding:16px 20px;margin:20px 0;}
+  .def .def-label{font-size:10.5px;font-family:sans-serif;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;}
+  .def .def-term{font-weight:bold;color:var(--heading);}
+
+  .derivation{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:20px 24px;margin:24px 0;}
+  .derivation .deriv-label{font-size:10.5px;font-family:sans-serif;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:14px;}
+  .derivation .step{display:flex;gap:16px;margin-bottom:10px;align-items:flex-start;}
+  .derivation .step-num{flex-shrink:0;width:22px;height:22px;background:var(--surface2);border-radius:50%;font-size:11px;font-family:sans-serif;display:flex;align-items:center;justify-content:center;color:var(--muted);margin-top:2px;}
+  .derivation .step-body{flex:1;}
+  .derivation .step-note{font-size:.85rem;color:var(--muted);margin-top:4px;}
+
+  .eq-block{text-align:center;margin:24px 0;padding:16px;background:var(--surface);border-radius:6px;overflow-x:auto;}
+  .eq-label{font-size:11px;font-family:sans-serif;color:var(--muted);margin-top:8px;}
+
+  .graph-wrap{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:20px;margin:28px 0;}
+  .graph-title{font-family:sans-serif;font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;}
+  .graph-caption{font-size:.82rem;color:var(--muted);margin-top:10px;font-style:italic;}
+
+  .table-wrap{overflow-x:auto;margin:24px 0;}
+  table{width:100%;border-collapse:collapse;font-size:.9rem;}
+  th{background:var(--surface2);color:var(--accent);font-family:sans-serif;font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:10px 14px;border-bottom:2px solid var(--border);text-align:left;}
+  td{padding:9px 14px;border-bottom:1px solid var(--border);color:var(--text);}
+  tr:last-child td{border-bottom:none;}
+
+  .examiner{background:rgba(244,197,66,.06);border:1px solid rgba(244,197,66,.2);border-left:3px solid var(--yellow);border-radius:6px;padding:14px 18px;margin:20px 0;font-size:.9rem;}
+  .examiner .ex-label{font-size:10px;font-family:sans-serif;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--yellow);margin-bottom:6px;}
+
+  .trap{background:rgba(224,92,92,.06);border:1px solid rgba(224,92,92,.2);border-left:3px solid var(--red);border-radius:6px;padding:14px 18px;margin:16px 0;font-size:.9rem;}
+  .trap .trap-label{font-size:10px;font-family:sans-serif;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:6px;}
+
+  .formula-sheet{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:24px;margin:40px 0;}
+  .formula-sheet h3{margin-top:0;color:var(--accent);}
+  .formula-row{display:flex;align-items:flex-start;gap:16px;padding:10px 0;border-bottom:1px solid var(--border);font-size:.9rem;}
+  .formula-row:last-child{border-bottom:none;}
+  .formula-row .fr-eq{flex:0 0 260px;}
+  .formula-row .fr-desc{color:var(--muted);}
+
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0;}
+  @media(max-width:700px){.two-col{grid-template-columns:1fr;}}
+  .info-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:16px 18px;}
+  .info-card .card-title{font-family:sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--green);margin-bottom:8px;}
+
+  .revision{background:var(--surface2);border-radius:8px;padding:20px 24px;margin:40px 0;}
+  .revision h3{color:var(--accent);margin-top:0;}
+  .revision ul{padding-left:20px;}
+  .revision li{margin-bottom:8px;font-size:.9rem;}
+
+  .questions{margin-top:48px;}
+  .q-item{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:16px 20px;margin-bottom:12px;}
+  .q-item .q-meta{display:flex;gap:8px;margin-bottom:8px;}
+  .q-badge{font-size:10.5px;font-family:sans-serif;font-weight:700;padding:2px 8px;border-radius:3px;}
+  .q-badge.marks-2{background:rgba(62,207,142,.15);color:var(--green);}
+  .q-badge.marks-5{background:rgba(91,141,238,.15);color:var(--accent);}
+  .q-badge.marks-10{background:rgba(244,197,66,.15);color:var(--yellow);}
+  .q-badge.type{background:var(--surface2);color:var(--muted);}
+
+  @media print{nav#sidebar{display:none;}main{margin-left:0;padding:20px;}}
+</style>
+</head>
+<body>
+
+<nav id="sidebar">
+  <div class="nav-header">
+    <span>Macroeconomics</span>
+    <h3>Dornbusch · Fischer · Startz</h3>
+  </div>
+  <a href="#overview">Overview</a>
+  <a href="#ad-equilibrium" class="l2">AD and Equilibrium Output</a>
+  <a href="#consumption-fn" class="l2">Consumption Function</a>
+  <a href="#mpc-mps" class="l3">MPC &amp; MPS</a>
+  <a href="#savings-fn" class="l3">Savings Function</a>
+  <a href="#autonomous-spending" class="l2">Autonomous Spending &amp; AD</a>
+  <a href="#equilibrium-formula" class="l2">Equilibrium Income</a>
+  <a href="#saving-investment" class="l3">Saving = Investment</a>
+  <a href="#multiplier" class="l2">The Multiplier</a>
+  <a href="#multiplier-derivation" class="l3">Derivation</a>
+  <a href="#multiplier-diagram" class="l3">Graphical Interpretation</a>
+  <a href="#government" class="l2">Government Sector</a>
+  <a href="#taxes-multiplier" class="l3">Income Taxes &amp; Multiplier</a>
+  <a href="#auto-stabilizers" class="l3">Automatic Stabilizers</a>
+  <a href="#fiscal-effects" class="l3">Fiscal Policy Effects</a>
+  <a href="#budget" class="l2">Budget Surplus &amp; Deficit</a>
+  <a href="#fe-surplus" class="l3">Full-Employment Surplus</a>
+  <a href="#formulas" class="l2">Formula Sheet</a>
+  <a href="#questions" class="l2">Practice Questions</a>
+</nav>
+
+<main>
+
+<h1>
+  <span class="ch-num">Chapter 9</span>
+  Income, Spending and the Multiplier
+</h1>
+<div class="ch-meta">
+  <span>Book pp. <b>194–218</b></span>
+  <span>PDF pp. <b>212–236</b></span>
+  <span>Exam weight <b>High</b></span>
+  <span>Dornbusch · Fischer · Startz 11e</span>
+</div>
+
+<div class="highlights" id="overview">
+  <h4>Chapter Highlights</h4>
+  <ul>
+    <li>In the Keynesian model, <strong>spending determines output</strong> and output determines income, which then determines spending — a circular feedback.</li>
+    <li>Increases in autonomous spending raise output <strong>more than one-for-one</strong>: the multiplier effect.</li>
+    <li>The multiplier $\alpha = \dfrac{1}{1-c}$ depends on the MPC. Higher MPC → larger multiplier.</li>
+    <li>Income taxes reduce the multiplier and act as <strong>automatic stabilisers</strong>.</li>
+    <li>Increased government spending raises the deficit — tax revenues rise by less than spending because the multiplier is finite.</li>
+  </ul>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<h2 id="ad-equilibrium">1 · Aggregate Demand and Equilibrium Output</h2>
+
+<div class="def">
+  <div class="def-label">Definition</div>
+  <p><span class="def-term">Aggregate Demand (AD)</span> — the total amount of goods demanded in the economy, decomposed as:</p>
+  $$AD = C + I + G + NX$$
+</div>
+
+<div class="def">
+  <div class="def-label">Definition</div>
+  <p><span class="def-term">Equilibrium output</span> — the level at which quantity produced equals quantity demanded:</p>
+  $$Y = AD \quad \Longleftrightarrow \quad I_U = Y - AD = 0$$
+  <p style="margin-top:8px;margin-bottom:0">where $I_U$ is <em>unplanned inventory investment</em>. If $I_U > 0$ (excess production), firms cut back. If $I_U < 0$ (excess demand), firms expand. The system self-corrects to $Y = AD$.</p>
+</div>
+
+<p>This chapter assumes prices are <strong>fixed</strong> (horizontal Keynesian AS) and focuses entirely on what determines the <em>position</em> of the AD schedule. Interest rates are introduced in Chapter 10 (IS-LM).</p>
+
+<!-- ════════════════════════════════════════════════════ -->
+<h2 id="consumption-fn">2 · The Consumption Function</h2>
+
+<div class="eq-block">
+  $$C = \bar{C} + cY \qquad \bar{C} > 0,\quad 0 < c < 1$$
+  <div class="eq-label">Equation (4) — Consumption Function</div>
+</div>
+
+<ul style="margin-bottom:14px">
+  <li>$\bar{C}$ = autonomous consumption (consumption when $Y = 0$; reflects wealth, expectations).</li>
+  <li>$c$ = slope of the consumption function = <strong>MPC</strong>.</li>
+  <li>Empirical US estimate (Dornbusch): $C = -1354 + 0.97\,Y_D$ — an MPC of ~0.97 out of disposable income.</li>
+</ul>
+
+<h3 id="mpc-mps">2.1 MPC and MPS</h3>
+
+<div class="def">
+  <div class="def-label">Definition</div>
+  <p><span class="def-term">Marginal Propensity to Consume (MPC)</span> $= c = \Delta C / \Delta Y$. The fraction of each extra dollar of income devoted to consumption. $0 < c < 1$.</p>
+</div>
+
+<div class="def">
+  <div class="def-label">Definition</div>
+  <p><span class="def-term">Marginal Propensity to Save (MPS)</span> $= s = 1 - c = \Delta S / \Delta Y$. Since income is either consumed or saved, MPC + MPS $= 1$ by definition.</p>
+</div>
+
+<div class="two-col">
+  <div class="info-card">
+    <div class="card-title">Example: c = 0.9</div>
+    <p style="font-size:.9rem">MPC = 0.9 → of each extra dollar of income, 90¢ is consumed, 10¢ is saved (MPS = 0.1).<br><br>Multiplier $= 1/(1-0.9) = 10$.</p>
+  </div>
+  <div class="info-card">
+    <div class="card-title">Example: c = 0.8</div>
+    <p style="font-size:.9rem">MPC = 0.8 → 80¢ consumed, 20¢ saved (MPS = 0.2).<br><br>Multiplier $= 1/(1-0.8) = 5$.</p>
+  </div>
+</div>
+
+<h3 id="savings-fn">2.2 Savings Function</h3>
+
+<p>Since $S = Y - C$ (budget constraint), substituting the consumption function:</p>
+
+<div class="eq-block">
+  $$S = -\bar{C} + (1-c)Y = -\bar{C} + sY$$
+  <div class="eq-label">Equation (6) — Savings Function</div>
+</div>
+
+<p>Saving is an increasing function of income. Note the symmetry: any theory of consumption is simultaneously a theory of saving.</p>
+
+<!-- ════════════════════════════════════════════════════ -->
+<h2 id="autonomous-spending">3 · Autonomous Spending and Aggregate Demand</h2>
+
+<p>Adding government ($G$, $TA = \bar{TA}$, $TR = \overline{TR}$) and net exports ($\overline{NX}$), all assumed <em>autonomous</em> (exogenous) for now. Disposable income:</p>
+
+<div class="eq-block">
+  $$Y_D = Y + TR - TA$$
+</div>
+
+<p>Consumption now depends on $Y_D$:</p>
+
+<div class="eq-block">
+  $$C = \bar{C} + c(Y + \overline{TR} - \overline{TA})$$
+</div>
+
+<p>Aggregate demand becomes:</p>
+
+<div class="eq-block">
+  $$AD = \underbrace{\bigl[\bar{C} + c(\overline{TR} - \overline{TA}) + \bar{I} + G + \overline{NX}\bigr]}_{\bar{A}\,=\,\text{autonomous spending}} + cY$$
+  <div class="eq-label">Equation (9) — Aggregate Demand Function</div>
+</div>
+
+<div class="graph-wrap">
+  <div class="graph-title">Fig 9.1 — 45° Diagram: Equilibrium Income</div>
+  <svg id="fig-45deg" width="100%" viewBox="0 0 480 320"></svg>
+  <div class="graph-caption">The AD schedule ($AD = \bar{A} + cY$) intersects the 45° line ($AD = Y$) at equilibrium $E$. Below $Y_0$: $AD > Y$ → inventories fall → firms expand. Above $Y_0$: $Y > AD$ → inventories pile up → firms cut back.</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<h2 id="equilibrium-formula">4 · Equilibrium Income</h2>
+
+<div class="derivation">
+  <div class="deriv-label">Algebraic Derivation of Equilibrium Income</div>
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">Equilibrium condition: $Y = AD = \bar{A} + cY$</div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">Collect $Y$ terms: $Y - cY = \bar{A}$ $\;\Rightarrow\;$ $Y(1-c) = \bar{A}$</div>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      $$Y_0 = \frac{1}{1-c}\,\bar{A} = \alpha\,\bar{A}$$
+      <div class="step-note">Equation (12). $\alpha = 1/(1-c)$ is the multiplier. Higher $c$ or higher $\bar{A}$ → higher equilibrium $Y$.</div>
+    </div>
+  </div>
+</div>
+
+<h3 id="saving-investment">4.1  Saving = Investment (Alternative Equilibrium Condition)</h3>
+
+<p>In the simplest model (no government, no trade), $Y = C + S$ and $Y = C + I$. Therefore:</p>
+
+<div class="eq-block">
+  $$S = I \quad \text{(equilibrium condition)}$$
+</div>
+
+<p>With government and trade, this generalises to:</p>
+
+<div class="eq-block">
+  $$I = S + \underbrace{(TA - TR - G)}_{\text{govt. surplus}} - \underbrace{NX}_{\text{net exports}}$$
+  <div class="eq-label">Equation (14) — Saving-Investment Identity</div>
+</div>
+
+<div class="examiner">
+  <div class="ex-label">Examiner Note</div>
+  The $S = I$ equilibrium condition appears in 2-mark questions constantly. Examiners expect you to derive it from national income accounting, not just state it. Write: $Y = C + I$ and $Y = C + S$, so $S = I$. In the general case include government surplus and net imports.
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<h2 id="multiplier">5 · The Multiplier</h2>
+
+<div class="def">
+  <div class="def-label">Definition</div>
+  <p><span class="def-term">Multiplier</span> $(\alpha)$ — the amount by which equilibrium output changes when autonomous spending rises by 1 unit:</p>
+  $$\alpha = \frac{\Delta Y_0}{\Delta \bar{A}} = \frac{1}{1-c}$$
+  <div class="eq-label">Equation (17)</div>
+</div>
+
+<p>Why is the multiplier greater than 1? A $1 increase in autonomous spending raises income by $1. Recipients spend $c$ of that, raising income again. And so on.</p>
+
+<h3 id="multiplier-derivation">5.1  Geometric Series Derivation</h3>
+
+<div class="derivation">
+  <div class="deriv-label">Derivation via Geometric Series (Eq. 15)</div>
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">Round 1: autonomous spending rises by $\Delta\bar{A}$. Production rises by $\Delta\bar{A}$ to meet demand.</div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">Round 2: that $\Delta\bar{A}$ of extra income induces $c\Delta\bar{A}$ of extra consumption.
+      <div class="step-note">Production rises by $c\Delta\bar{A}$.</div>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">Round 3: extra income of $c\Delta\bar{A}$ induces $c^2\Delta\bar{A}$ of consumption. And so on.</div>
+  </div>
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-body">Total change in output:
+      $$\Delta Y = \Delta\bar{A}(1 + c + c^2 + c^3 + \cdots) = \frac{\Delta\bar{A}}{1-c} = \alpha\,\Delta\bar{A}$$
+      <div class="step-note">Valid because $0 < c < 1$, so the geometric series converges.</div>
+    </div>
+  </div>
+</div>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr><th>Round</th><th>Extra Demand This Round</th><th>Cumulative $\Delta Y$</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>$\Delta\bar{A}$</td><td>$\Delta\bar{A}$</td></tr>
+      <tr><td>2</td><td>$c\,\Delta\bar{A}$</td><td>$(1+c)\,\Delta\bar{A}$</td></tr>
+      <tr><td>3</td><td>$c^2\Delta\bar{A}$</td><td>$(1+c+c^2)\,\Delta\bar{A}$</td></tr>
+      <tr><td>4</td><td>$c^3\Delta\bar{A}$</td><td>$(1+c+c^2+c^3)\,\Delta\bar{A}$</td></tr>
+      <tr><td>$\vdots$</td><td>$\vdots$</td><td>$\vdots$</td></tr>
+      <tr><td>$\infty$</td><td>$\to 0$</td><td>$\dfrac{\Delta\bar{A}}{1-c} = \alpha\,\Delta\bar{A}$</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h3 id="multiplier-diagram">5.2  Graphical Interpretation</h3>
+
+<div class="graph-wrap">
+  <div class="graph-title">Fig 9.2 — The Multiplier: Parallel AD Shift</div>
+  <svg id="fig-multiplier" width="100%" viewBox="0 0 480 300"></svg>
+  <div class="graph-caption">AD shifts up by $\Delta\bar{A}$ (a parallel shift). Equilibrium moves from $E$ to $E'$. The income increase $\Delta Y_0 = \alpha\,\Delta\bar{A}$ is larger than the original spending increase. The gap between the two equilibria along the 45° line measures the multiplier effect.</div>
+</div>
+
+<div class="trap">
+  <div class="trap-label">Common Mistake</div>
+  Do not say "a $\$1$ increase in government spending raises income by $\$1$." That misses the multiplier. The correct statement is $\Delta Y = \alpha \cdot \Delta G = \dfrac{1}{1-c}\Delta G$. For $c = 0.8$, a $\$1$ increase in $G$ raises $Y$ by $\$5$.
+</div>
+
+<div class="examiner">
+  <div class="ex-label">Examiner Note — Real-World Multiplier</div>
+  Dornbusch cites Robert Hall's empirical estimate of the US fiscal multiplier at approximately <strong>1.7</strong> (Brookings, 2009), well below the simple formula's prediction. This is because the simple model ignores interest rate effects (crowding out) and import leakages. Examiners in open-economy questions expect you to note that $\alpha < 1/(1-c)$ in practice.
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<h2 id="government">6 · The Government Sector</h2>
+
+<p>Government introduces three instruments: purchases $G$, transfers $\overline{TR}$, and a proportional income tax at rate $t$ (so $TA = tY$). Disposable income becomes $Y_D = Y + \overline{TR} - tY = \overline{TR} + (1-t)Y$.</p>
+
+<p>Consumption with taxes:</p>
+<div class="eq-block">
+  $$C = \bar{C} + c\,\overline{TR} + c(1-t)Y$$
+  <div class="eq-label">Equation (19)</div>
+</div>
+
+<p>Full AD:</p>
+<div class="eq-block">
+  $$AD = \underbrace{(\bar{C} + c\,\overline{TR} + \bar{I} + G + \overline{NX})}_{\bar{A}} + c(1-t)Y$$
+  <div class="eq-label">Equation (20)</div>
+</div>
+
+<p>Note the slope is now $c(1-t)$ — flatter than without taxes because households keep only $(1-t)$ of each income dollar.</p>
+
+<h3 id="taxes-multiplier">6.1  Equilibrium and the Tax-Adjusted Multiplier</h3>
+
+<div class="derivation">
+  <div class="deriv-label">Equilibrium with Government</div>
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">$Y = \bar{A} + c(1-t)Y$</div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">$Y[1 - c(1-t)] = \bar{A}$</div>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      $$Y_0 = \frac{\bar{A}}{1-c(1-t)} = \alpha_G\,\bar{A}$$
+      <div class="eq-label">Equation (21)</div>
+    </div>
+  </div>
+</div>
+
+<div class="eq-block">
+  $$\boxed{\alpha_G = \frac{1}{1-c(1-t)}}$$
+  <div class="eq-label">Tax-adjusted multiplier (Equation 23)</div>
+</div>
+
+<div class="two-col">
+  <div class="info-card">
+    <div class="card-title">No tax (t = 0)</div>
+    <p style="font-size:.9rem">$\alpha = \dfrac{1}{1-c}$</p>
+    <p style="font-size:.9rem">For $c=0.8$: $\alpha = 5$</p>
+  </div>
+  <div class="info-card">
+    <div class="card-title">Tax rate t = 0.25</div>
+    <p style="font-size:.9rem">$\alpha_G = \dfrac{1}{1-0.8(0.75)} = \dfrac{1}{0.4} = 2.5$</p>
+    <p style="font-size:.9rem">Halved by a 25% tax rate!</p>
+  </div>
+</div>
+
+<h3 id="auto-stabilizers">6.2  Income Taxes as Automatic Stabilisers</h3>
+
+<div class="def">
+  <div class="def-label">Definition</div>
+  <p><span class="def-term">Automatic stabiliser</span> — any mechanism that reduces the change in output in response to a shock in autonomous demand, without discretionary government action.</p>
+</div>
+
+<p>A proportional income tax is an automatic stabiliser because it lowers the multiplier: adverse investment shocks cause smaller output falls when taxes are in place. Other automatic stabilisers:</p>
+<ul style="margin-bottom:16px; padding-left:20px;">
+  <li><strong>Unemployment benefits:</strong> $TR$ rises automatically when $Y$ falls, sustaining consumption. Reduces the demand contraction.</li>
+  <li><strong>Progressive taxation:</strong> Tax burden falls faster in downturns, leaving more disposable income.</li>
+</ul>
+
+<div class="examiner">
+  <div class="ex-label">Examiner Note</div>
+  Post-WWII business cycles are less volatile than pre-WWII cycles. Dornbusch attributes this partly to stronger automatic stabilisers (higher income tax rates, unemployment insurance). A 5-mark question may ask you to explain this mechanism — describe how higher $t$ reduces $\alpha_G$ and therefore dampens the income effect of any demand shock.
+</div>
+
+<h3 id="fiscal-effects">6.3  Effects of Fiscal Policy Changes</h3>
+
+<p><strong>Government spending multiplier:</strong></p>
+<div class="eq-block">
+  $$\Delta Y_0 = \alpha_G \cdot \Delta G = \frac{\Delta G}{1-c(1-t)}$$
+  <div class="eq-label">Equation (22)</div>
+</div>
+
+<p><strong>Transfer payment multiplier:</strong> smaller by factor $c$ (part of transfer is saved):</p>
+<div class="eq-block">
+  $$\Delta Y_0 = \alpha_G \cdot c \cdot \Delta\overline{TR}$$
+</div>
+
+<p><strong>Balanced budget multiplier:</strong> If $G$ and $TA$ both rise by the same amount $\Delta G$, the multiplier equals exactly <strong>1</strong> — output rises by $\Delta G$ and no more.</p>
+
+<div class="trap">
+  <div class="trap-label">Trap — Transfer vs. Spending Multiplier</div>
+  Government spending on goods and services ($G$) has a larger multiplier than transfer payments ($TR$). Reason: spending enters AD directly as $\Delta G$. Transfers are first received as income and only a fraction $c$ is spent. Always distinguish these two in exam answers.
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<h2 id="budget">7 · The Budget Surplus and Deficit</h2>
+
+<div class="eq-block">
+  $$BS = TA - G - \overline{TR} = tY - G - \overline{TR}$$
+  <div class="eq-label">Equation (24a) — Budget Surplus</div>
+</div>
+
+<div class="graph-wrap">
+  <div class="graph-title">Fig 9.3 — Budget Surplus as a Function of Income</div>
+  <svg id="fig-budget" width="100%" viewBox="0 0 420 220"></svg>
+  <div class="graph-caption">The budget surplus is an increasing function of income (slope = $t$). At low incomes, $G + \overline{TR}$ exceeds tax revenue → deficit. At high incomes, tax revenue exceeds spending → surplus. Automatic component: even without policy changes, the deficit rises in recessions.</div>
+</div>
+
+<p>Key result: an increase in $G$ by $\$1$ raises income by $\alpha_G$ dollars, hence tax revenues by $t \cdot \alpha_G$ dollars. The change in the budget surplus is:</p>
+
+<div class="eq-block">
+  $$\Delta BS = \underbrace{t\,\alpha_G}_{\Delta TA} - \underbrace{1}_{\Delta G} = \frac{t}{1-c(1-t)} - 1 = \frac{-(1-c)(1-t)}{1-c(1-t)} < 0$$
+  <div class="eq-label">Equation (25) — Government spending always worsens the surplus</div>
+</div>
+
+<p>For $c=0.8$, $t=0.25$: a $\$1$ increase in $G$ reduces the surplus by $\$0.375$ — <em>not</em> by $\$1$, because multiplied income raises tax collections.</p>
+
+<h3 id="fe-surplus">7.1  Full-Employment Budget Surplus</h3>
+
+<div class="def">
+  <div class="def-label">Definition</div>
+  <p><span class="def-term">Full-employment (structural) budget surplus</span> $BS^*$ — the budget surplus that would prevail if output were at potential $Y^*$:</p>
+  $$BS^* = tY^* - G - \overline{TR}$$
+  <div class="eq-label">Equation (26)</div>
+</div>
+
+<p>The difference between actual and full-employment surplus:</p>
+<div class="eq-block">
+  $$BS^* - BS = t(Y^* - Y)$$
+  <div class="eq-label">Equation (27) — Cyclical component of the deficit</div>
+</div>
+
+<p>In a recession ($Y < Y^*$): actual deficit > full-employment deficit. The excess is the <strong>cyclical deficit</strong> — it vanishes automatically as the economy recovers. The full-employment surplus measures the <em>discretionary</em> stance of fiscal policy, independent of where the economy sits in the cycle.</p>
+
+<div class="examiner">
+  <div class="ex-label">Examiner Note</div>
+  "The government ran a deficit during the 2009 recession — does this mean fiscal policy was expansionary?" Use the full-employment surplus to answer: the <em>cyclical</em> part of a deficit is automatic, not discretionary. Only an increase in the <em>structural</em> (full-employment) deficit indicates a deliberate fiscal expansion. This distinction is frequently tested.
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<h2 id="formulas">Formula &amp; Concept Summary</h2>
+
+<div class="formula-sheet">
+  <h3>Quick Reference</h3>
+  <div class="formula-row">
+    <div class="fr-eq">$C = \bar{C} + cY$</div>
+    <div class="fr-desc">Consumption function. $c$ = MPC, $\bar{C}$ = autonomous consumption.</div>
+  </div>
+  <div class="formula-row">
+    <div class="fr-eq">$s = 1 - c$</div>
+    <div class="fr-desc">MPS. MPC + MPS = 1 always.</div>
+  </div>
+  <div class="formula-row">
+    <div class="fr-eq">$AD = \bar{A} + cY$</div>
+    <div class="fr-desc">Aggregate demand. $\bar{A}$ = autonomous spending ($\bar{C}+\bar{I}+G+\overline{NX}+c\cdot\overline{TR}-c\cdot\overline{TA}$).</div>
+  </div>
+  <div class="formula-row">
+    <div class="fr-eq">$Y_0 = \dfrac{\bar{A}}{1-c}$</div>
+    <div class="fr-desc">Equilibrium income (no taxes).</div>
+  </div>
+  <div class="formula-row">
+    <div class="fr-eq">$\alpha = \dfrac{1}{1-c}$</div>
+    <div class="fr-desc">Simple multiplier (no taxes).</div>
+  </div>
+  <div class="formula-row">
+    <div class="fr-eq">$Y_0 = \dfrac{\bar{A}}{1-c(1-t)}$</div>
+    <div class="fr-desc">Equilibrium income with proportional income tax.</div>
+  </div>
+  <div class="formula-row">
+    <div class="fr-eq">$\alpha_G = \dfrac{1}{1-c(1-t)}$</div>
+    <div class="fr-desc">Government multiplier (with taxes). $\alpha_G < \alpha$ always.</div>
+  </div>
+  <div class="formula-row">
+    <div class="fr-eq">$BS = tY - G - \overline{TR}$</div>
+    <div class="fr-desc">Budget surplus. Negative = deficit.</div>
+  </div>
+  <div class="formula-row">
+    <div class="fr-eq">$BS^* = tY^* - G - \overline{TR}$</div>
+    <div class="fr-desc">Full-employment (structural) surplus.</div>
+  </div>
+  <div class="formula-row">
+    <div class="fr-eq">$BS^* - BS = t(Y^* - Y)$</div>
+    <div class="fr-desc">Cyclical component of the deficit.</div>
+  </div>
+</div>
+
+<div class="revision">
+  <h3>Revision — Key Distinctions</h3>
+  <ul>
+    <li><strong>MPC vs. MPS:</strong> $c + s = 1$. Not the same thing. A question asking "what is the MPC if the multiplier is 4?" requires $1/(1-c) = 4 \Rightarrow c = 0.75$.</li>
+    <li><strong>Multiplier with taxes:</strong> $1/(1-c)$ is the <em>no-tax</em> multiplier. With proportional tax $t$: $\alpha_G = 1/(1-c(1-t))$. Always smaller.</li>
+    <li><strong>$G$ vs. $TR$ multiplier:</strong> Government spending enters AD dollar-for-dollar. Transfers are received as income and only fraction $c$ is spent. Transfer multiplier $= c \cdot \alpha_G$.</li>
+    <li><strong>Balanced budget multiplier = 1:</strong> Equal increases in $G$ and $TA$ raise income by exactly $\Delta G$.</li>
+    <li><strong>Cyclical vs. structural deficit:</strong> Actual deficit = structural deficit + cyclical deficit. Cyclical disappears at $Y^*$.</li>
+    <li><strong>Automatic stabilisers:</strong> They work by reducing $\alpha_G$, not by shifting AD. Mechanism: each unit of demand shock generates less income through the multiplier.</li>
+  </ul>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<h2 id="questions">Practice Questions</h2>
+<div class="questions">
+
+  <div class="q-item">
+    <div class="q-meta"><span class="q-badge marks-2">2 Marks</span><span class="q-badge type">Conceptual</span></div>
+    <p>Define the marginal propensity to consume and explain why it must lie strictly between 0 and 1 for the multiplier to be well-defined and greater than 1.</p>
+  </div>
+
+  <div class="q-item">
+    <div class="q-meta"><span class="q-badge marks-2">2 Marks</span><span class="q-badge type">Numerical</span></div>
+    <p>If $c = 0.75$ and the income tax rate $t = 0.20$, compute (a) the simple multiplier $\alpha$ and (b) the tax-adjusted multiplier $\alpha_G$. How much does a $\$10$ billion increase in government spending raise equilibrium income?</p>
+  </div>
+
+  <div class="q-item">
+    <div class="q-meta"><span class="q-badge marks-5">5 Marks</span><span class="q-badge type">Derivation</span></div>
+    <p>Derive the multiplier formula $\alpha = 1/(1-c)$ using (a) the geometric series method and (b) the algebraic equilibrium condition $Y = \bar{A} + cY$. Interpret the result economically: why is a round-by-round spending process equivalent to the formula?</p>
+  </div>
+
+  <div class="q-item">
+    <div class="q-meta"><span class="q-badge marks-5">5 Marks</span><span class="q-badge type">Diagram + Analysis</span></div>
+    <p>Using the 45° diagram, illustrate and explain the effect of an increase in autonomous investment on equilibrium income. Mark clearly: the initial equilibrium, the new equilibrium, the upward shift of AD, and the multiplied income change. Why is the income increase larger than the investment increase?</p>
+  </div>
+
+  <div class="q-item">
+    <div class="q-meta"><span class="q-badge marks-5">5 Marks</span><span class="q-badge type">Analysis</span></div>
+    <p>Explain why proportional income taxes are automatic stabilisers. In your answer: (a) define automatic stabilisers; (b) show mathematically how a tax rate $t$ reduces the multiplier from $\alpha$ to $\alpha_G$; (c) explain the policy implication for business cycle volatility.</p>
+  </div>
+
+  <div class="q-item">
+    <div class="q-meta"><span class="q-badge marks-10">10 Marks</span><span class="q-badge type">Long-form Analytical</span></div>
+    <p>"In the Keynesian income-expenditure model, fiscal policy is always effective but never fully efficient." Evaluate this statement with reference to: (a) the multiplier mechanism; (b) the difference between $G$ and $TR$ multipliers; (c) the effect of income taxes on the multiplier; (d) the balanced budget multiplier; (e) the impact of government spending on the budget surplus. Use algebra and diagrams to support your arguments.</p>
+  </div>
+
+  <div class="q-item">
+    <div class="q-meta"><span class="q-badge marks-10">10 Marks</span><span class="q-badge type">Long-form Analytical</span></div>
+    <p>A government is in recession ($Y < Y^*$) and observes a large budget deficit. A politician argues: "The deficit proves we need to cut spending." Critically evaluate this claim using the concept of the full-employment budget surplus. Distinguish between the cyclical and structural components of the deficit. What would a reduction in $G$ do to equilibrium income and to the full-employment surplus?</p>
+  </div>
+
+</div>
+</main>
+
+<!-- ═══════════ D3 GRAPHS ═══════════ -->
+<script>
+const C={accent:"#5b8dee",green:"#3ecf8e",yellow:"#f4c542",red:"#e05c5c",muted:"#7a80a0",text:"#d4d8f0",heading:"#eef0ff",surface:"#1a1d27",border:"#2e3348"};
+
+/* ── Fig 1: 45° diagram ── */
+(function(){
+  const svg=d3.select("#fig-45deg");
+  const W=480,H=320,ml=60,mr=24,mt=20,mb=52;
+  const iw=W-ml-mr,ih=H-mt-mb;
+  const g=svg.append("g").attr("transform",`translate(${ml},${mt})`);
+
+  // axes
+  g.append("line").attr("x1",0).attr("y1",ih).attr("x2",iw).attr("y2",ih).attr("stroke",C.muted).attr("stroke-width",1.5);
+  g.append("line").attr("x1",0).attr("y1",0).attr("x2",0).attr("y2",ih).attr("stroke",C.muted).attr("stroke-width",1.5);
+  g.append("polygon").attr("points",`${iw},${ih-5} ${iw+7},${ih} ${iw},${ih+5}`).attr("fill",C.muted);
+  g.append("polygon").attr("points",`-5,0 0,-7 5,0`).attr("fill",C.muted);
+  g.append("text").attr("x",iw/2).attr("y",ih+38).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",13).text("Income / Output  Y");
+  g.append("text").attr("transform",`translate(-42,${ih/2}) rotate(-90)`).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",13).text("Aggregate Demand  AD");
+
+  // 45° line
+  g.append("line").attr("x1",0).attr("y1",ih).attr("x2",iw).attr("y2",0).attr("stroke",C.muted).attr("stroke-width",1.5).attr("stroke-dasharray","5,4");
+  g.append("text").attr("x",iw-4).attr("y",12).attr("fill",C.muted).attr("font-size",12).attr("text-anchor","end").text("AD = Y (45°)");
+
+  // AD = Ā + cY  — intercept at 35% of ih from bottom, slope c=0.6
+  const c=0.6, Abar=ih*0.25;  // intercept in pixel coords (distance from top)
+  const adY0=ih-Abar; // y-coord of intercept
+  const adSlope=-c; // in pixel space (y decreases as x increases)
+  const adX2=iw, adY2=adY0+adSlope*iw;
+
+  // clamp to axes
+  const ax1=0,ay1=adY0;
+  const ax2=iw,ay2=adY0-c*iw;
+
+  g.append("line").attr("x1",ax1).attr("y1",ay1).attr("x2",ax2).attr("y2",Math.max(0,ay2)).attr("stroke",C.green).attr("stroke-width",2.5);
+  g.append("text").attr("x",ax2-4).attr("y",Math.max(6,ay2)-8).attr("fill",C.green).attr("font-size",12).attr("text-anchor","end").text("AD = Ā + cY");
+
+  // C = C̄ + cY (below AD)
+  const Cbar=ih*0.45;
+  const cy1=ih-Cbar;
+  g.append("line").attr("x1",0).attr("y1",cy1).attr("x2",iw*0.7).attr("y2",cy1-c*iw*0.7).attr("stroke",C.accent).attr("stroke-width",1.5).attr("stroke-dasharray","4,3");
+  g.append("text").attr("x",iw*0.55).attr("y",cy1-c*iw*0.55+14).attr("fill",C.accent).attr("font-size",11).text("C = C̄ + cY");
+
+  // Equilibrium: where AD=Y, i.e. Ā + c*x = x => x = Ā/(1-c) in pixel space
+  // In pixel coords: adY0 - c*x = ih - x => x(1-c) = ih - adY0 = Abar => x = Abar/(1-c)
+  const eqX = Abar/(1-c);
+  const eqY = ih - eqX; // on 45° line
+
+  g.append("circle").attr("cx",eqX).attr("cy",eqY).attr("r",5).attr("fill",C.yellow);
+  g.append("text").attr("x",eqX+8).attr("y",eqY-8).attr("fill",C.yellow).attr("font-size",13).text("E");
+
+  // dashed to axes
+  g.append("line").attr("x1",eqX).attr("y1",ih).attr("x2",eqX).attr("y2",eqY).attr("stroke",C.muted).attr("stroke-dasharray","3,3").attr("stroke-width",1);
+  g.append("line").attr("x1",0).attr("y1",eqY).attr("x2",eqX).attr("y2",eqY).attr("stroke",C.muted).attr("stroke-dasharray","3,3").attr("stroke-width",1);
+  g.append("text").attr("x",eqX).attr("y",ih+16).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",12).text("Y₀");
+  g.append("text").attr("x",-6).attr("y",eqY+4).attr("text-anchor","end").attr("fill",C.muted).attr("font-size",12).text("AD₀");
+
+  // Mark Ā on y-axis
+  g.append("text").attr("x",-6).attr("y",adY0+4).attr("text-anchor","end").attr("fill",C.green).attr("font-size",11).text("Ā");
+  g.append("circle").attr("cx",0).attr("cy",adY0).attr("r",3).attr("fill",C.green);
+
+  // IU arrows
+  const xL=eqX*0.48,xR=eqX*1.45;
+  g.append("text").attr("x",xL).attr("y",ih-xL+22).attr("fill",C.red).attr("font-size",10).attr("text-anchor","middle").text("IU < 0 → Y↑");
+  g.append("text").attr("x",xR).attr("y",ih-xR-14).attr("fill",C.red).attr("font-size",10).attr("text-anchor","middle").text("IU > 0 → Y↓");
+})();
+
+/* ── Fig 2: Multiplier diagram ── */
+(function(){
+  const svg=d3.select("#fig-multiplier");
+  const W=480,H=300,ml=60,mr=24,mt=20,mb=52;
+  const iw=W-ml-mr,ih=H-mt-mb;
+  const g=svg.append("g").attr("transform",`translate(${ml},${mt})`);
+
+  g.append("line").attr("x1",0).attr("y1",ih).attr("x2",iw).attr("y2",ih).attr("stroke",C.muted).attr("stroke-width",1.5);
+  g.append("line").attr("x1",0).attr("y1",0).attr("x2",0).attr("y2",ih).attr("stroke",C.muted).attr("stroke-width",1.5);
+  g.append("polygon").attr("points",`${iw},${ih-5} ${iw+7},${ih} ${iw},${ih+5}`).attr("fill",C.muted);
+  g.append("polygon").attr("points",`-5,0 0,-7 5,0`).attr("fill",C.muted);
+  g.append("text").attr("x",iw/2).attr("y",ih+38).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",13).text("Income / Output  Y");
+  g.append("text").attr("transform",`translate(-42,${ih/2}) rotate(-90)`).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",13).text("Aggregate Demand  AD");
+
+  // 45° line
+  g.append("line").attr("x1",0).attr("y1",ih).attr("x2",iw).attr("y2",0).attr("stroke",C.muted).attr("stroke-width",1.5).attr("stroke-dasharray","5,4");
+
+  const c=0.65;
+  function adLine(Abar,col,lbl){
+    const y0=ih-Abar;
+    const x2=iw,y2=y0-c*iw;
+    g.append("line").attr("x1",0).attr("y1",y0).attr("x2",x2).attr("y2",Math.max(0,y2)).attr("stroke",col).attr("stroke-width",2.2);
+    g.append("text").attr("x",x2-4).attr("y",Math.max(6,y2)-8).attr("fill",col).attr("font-size",12).attr("text-anchor","end").text(lbl);
+    const eqX=Abar/(1-c);
+    const eqY=ih-eqX;
+    return {y0,eqX,eqY};
+  }
+
+  const Abar1=ih*0.22, Abar2=ih*0.31;
+  const ad0=adLine(Abar1,C.green,"AD = Ā + cY");
+  const ad1=adLine(Abar2,C.yellow,"AD' = Ā' + cY");
+
+  [[ad0,"E",C.green],[ad1,"E'",C.yellow]].forEach(([ad,lbl,col])=>{
+    g.append("circle").attr("cx",ad.eqX).attr("cy",ad.eqY).attr("r",5).attr("fill",col);
+    g.append("text").attr("x",ad.eqX+8).attr("y",ad.eqY-8).attr("fill",col).attr("font-size",12).text(lbl);
+    g.append("line").attr("x1",ad.eqX).attr("y1",ih).attr("x2",ad.eqX).attr("y2",ad.eqY).attr("stroke",C.muted).attr("stroke-dasharray","3,3").attr("stroke-width",1);
+  });
+
+  g.append("text").attr("x",ad0.eqX).attr("y",ih+16).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",11).text("Y₀");
+  g.append("text").attr("x",ad1.eqX).attr("y",ih+16).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",11).text("Y₀'");
+
+  // ΔA brace on y-axis
+  const brX=-22;
+  g.append("line").attr("x1",brX).attr("y1",ih-Abar1).attr("x2",brX).attr("y2",ih-Abar2).attr("stroke",C.yellow).attr("stroke-width",2);
+  g.append("text").attr("x",brX-4).attr("y",(ih-Abar1+ih-Abar2)/2+4).attr("text-anchor","end").attr("fill",C.yellow).attr("font-size",11).text("ΔĀ");
+
+  // ΔY brace on x-axis
+  const brY=ih+30;
+  g.append("line").attr("x1",ad0.eqX).attr("y1",brY).attr("x2",ad1.eqX).attr("y2",brY).attr("stroke",C.yellow).attr("stroke-width",2);
+  g.append("text").attr("x",(ad0.eqX+ad1.eqX)/2).attr("y",brY+14).attr("text-anchor","middle").attr("fill",C.yellow).attr("font-size",11).text("ΔY = α·ΔĀ > ΔĀ");
+})();
+
+/* ── Fig 3: Budget surplus ── */
+(function(){
+  const svg=d3.select("#fig-budget");
+  const W=420,H=220,ml=60,mr=24,mt=20,mb=52;
+  const iw=W-ml-mr,ih=H-mt-mb;
+  const g=svg.append("g").attr("transform",`translate(${ml},${mt})`);
+
+  // x-axis in centre (surplus can be negative)
+  const midY=ih*0.5;
+  g.append("line").attr("x1",0).attr("y1",midY).attr("x2",iw).attr("y2",midY).attr("stroke",C.muted).attr("stroke-width",1.5);
+  g.append("line").attr("x1",0).attr("y1",0).attr("x2",0).attr("y2",ih).attr("stroke",C.muted).attr("stroke-width",1.5);
+  g.append("polygon").attr("points",`${iw},${midY-5} ${iw+7},${midY} ${iw},${midY+5}`).attr("fill",C.muted);
+  g.append("polygon").attr("points",`-5,0 0,-7 5,0`).attr("fill",C.muted);
+  g.append("text").attr("x",iw/2).attr("y",ih+38).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",12).text("Income  Y");
+  g.append("text").attr("transform",`translate(-42,${ih/2}) rotate(-90)`).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",12).text("Budget Surplus  BS");
+
+  // BS = tY - G - TR — upward sloping line through x-axis at some Y_break
+  const yBreak=iw*0.38;  // in pixels, x-coordinate where BS=0
+  const slope=-ih/(iw*1.1); // negative because y decreases as x increases (surplus rises)
+
+  g.append("line").attr("x1",0).attr("y1",midY-slope*0 + yBreak*slope).attr("x2",iw).attr("y2",midY-slope*iw + yBreak*slope)
+    // BS(x) = midY + slope*(x - yBreak)
+    .attr("stroke",C.green).attr("stroke-width",2.5);
+  // redraw
+  g.selectAll(".bs-line").remove();
+  const bsLine=g.append("line").attr("class","bs-line");
+  // at x=0: BS = midY + slope*(0-yBreak) = midY - slope*yBreak
+  const bsY0=midY-(-0.9)*(0-yBreak); // using slope -0.9
+  const bsY1=midY-(-0.9)*(iw-yBreak);
+  g.append("line").attr("x1",0).attr("y1",bsY0).attr("x2",iw).attr("y2",bsY1).attr("stroke",C.green).attr("stroke-width",2.5);
+  g.append("text").attr("x",iw-4).attr("y",bsY1-8).attr("fill",C.green).attr("font-size",11).attr("text-anchor","end").text("BS = tY − G − TR");
+
+  // Mark breakeven
+  g.append("line").attr("x1",yBreak).attr("y1",midY+8).attr("x2",yBreak).attr("y2",midY-8).attr("stroke",C.yellow).attr("stroke-width",1.5);
+  g.append("text").attr("x",yBreak).attr("y",midY+22).attr("text-anchor","middle").attr("fill",C.yellow).attr("font-size",11).text("Y_BE");
+
+  // Labels
+  g.append("text").attr("x",yBreak/2).attr("y",midY+36).attr("text-anchor","middle").attr("fill",C.red).attr("font-size",10.5).text("Deficit zone");
+  g.append("text").attr("x",(yBreak+iw)/2).attr("y",midY-28).attr("text-anchor","middle").attr("fill",C.green).attr("font-size",10.5).text("Surplus zone");
+
+  // Zero line label
+  g.append("text").attr("x",-6).attr("y",midY+4).attr("text-anchor","end").attr("fill",C.muted).attr("font-size",11).text("0");
+  g.append("text").attr("x",-6).attr("y",bsY0+4).attr("text-anchor","end").attr("fill",C.red).attr("font-size",10.5).text("−(G+TR)");
+})();
+</script>
+</body>
+</html>
