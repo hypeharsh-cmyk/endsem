@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Ch. 11 — Monetary &amp; Fiscal Policy | Macroeconomics</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"/>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}]})"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<style>
+:root{
+  --bg:#0f1117;--surface:#1a1d27;--card:#21253a;--border:#2e3352;
+  --text:#e8eaf0;--muted:#8b91b0;--accent:#6c8eff;--accent2:#50e3c2;
+  --accent3:#f9a825;--red:#ff5c5c;--green:#4caf50;
+  --sidebar-w:270px;--font:'Inter',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:15px;line-height:1.75}
+a{color:var(--accent);text-decoration:none}
+/* layout */
+.layout{display:flex;min-height:100vh}
+aside{width:var(--sidebar-w);background:var(--surface);border-right:1px solid var(--border);
+  position:sticky;top:0;height:100vh;overflow-y:auto;flex-shrink:0;padding:1.5rem 1rem}
+aside h2{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.75rem}
+aside ul{list-style:none}
+aside ul li{margin:.3rem 0}
+aside ul li a{color:var(--muted);font-size:.82rem;display:block;padding:.2rem .5rem;border-radius:4px;transition:all .15s}
+aside ul li a:hover,aside ul li a.active{color:var(--text);background:var(--card)}
+.chapter-badge{display:inline-block;background:var(--accent);color:#fff;font-size:.7rem;
+  font-weight:700;padding:.2rem .6rem;border-radius:999px;margin-bottom:1rem}
+main{flex:1;max-width:900px;margin:0 auto;padding:2.5rem 2rem}
+/* headings */
+h1{font-size:2rem;font-weight:800;line-height:1.2;margin-bottom:.5rem}
+h2{font-size:1.35rem;font-weight:700;margin:2.5rem 0 1rem;color:var(--accent);padding-bottom:.4rem;border-bottom:1px solid var(--border)}
+h3{font-size:1.05rem;font-weight:600;margin:1.8rem 0 .7rem;color:var(--accent2)}
+h4{font-size:.9rem;font-weight:600;margin:1.2rem 0 .5rem;color:var(--accent3)}
+p{margin-bottom:1rem}
+/* cards */
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.5rem;margin:1.2rem 0}
+.card.blue{border-left:3px solid var(--accent)}
+.card.green{border-left:3px solid var(--green)}
+.card.amber{border-left:3px solid var(--accent3)}
+.card.red{border-left:3px solid var(--red)}
+.card.teal{border-left:3px solid var(--accent2)}
+.label{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem}
+.label.blue{color:var(--accent)}
+.label.green{color:var(--green)}
+.label.amber{color:var(--accent3)}
+.label.red{color:var(--red)}
+.label.teal{color:var(--accent2)}
+/* derivation steps */
+.deriv{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.2rem 1.5rem;margin:1rem 0;overflow-x:auto}
+.deriv-step{display:flex;align-items:flex-start;gap:1rem;padding:.6rem 0;border-bottom:1px solid var(--border)}
+.deriv-step:last-child{border-bottom:none}
+.step-num{background:var(--accent);color:#fff;font-size:.7rem;font-weight:700;
+  width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem}
+.step-eq{font-size:.95rem;flex:1}
+.step-note{color:var(--muted);font-size:.8rem;margin-top:.25rem}
+/* table */
+table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.88rem}
+th{background:var(--surface);color:var(--muted);font-weight:600;text-align:left;padding:.6rem .9rem;border:1px solid var(--border)}
+td{padding:.55rem .9rem;border:1px solid var(--border)}
+tr:nth-child(even) td{background:var(--surface)}
+/* graphs */
+.graph-wrap{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1rem;margin:1.2rem 0}
+.graph-title{font-size:.78rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.75rem;text-align:center}
+svg text{font-family:var(--font);fill:var(--text)}
+.grid line{stroke:var(--border);stroke-opacity:.5}
+/* pill tags */
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin:.75rem 0}
+.tag{background:var(--surface);border:1px solid var(--border);border-radius:999px;
+  font-size:.72rem;padding:.2rem .65rem;color:var(--muted)}
+/* exam alert */
+.exam-alert{background:rgba(249,168,37,.08);border:1px solid rgba(249,168,37,.3);
+  border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;font-size:.88rem}
+.exam-alert strong{color:var(--accent3)}
+/* policy table highlight */
+.up{color:var(--green);font-weight:700}
+.down{color:var(--red);font-weight:700}
+/* formula sheet */
+.formula-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.75rem;margin-top:.75rem}
+.formula-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.9rem 1rem}
+.formula-card .fc-name{font-size:.72rem;color:var(--muted);margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.07em}
+.formula-card .fc-eq{font-size:.9rem}
+/* question bank */
+.q-block{background:var(--surface);border-left:3px solid var(--accent2);border-radius:6px;padding:.9rem 1.1rem;margin:.7rem 0}
+.q-marks{font-size:.72rem;color:var(--accent3);font-weight:700;margin-bottom:.3rem}
+/* meta */
+.meta{display:flex;gap:1rem;flex-wrap:wrap;margin:.75rem 0 1.5rem;font-size:.8rem;color:var(--muted)}
+.meta span{display:flex;align-items:center;gap:.3rem}
+/* print */
+@media print{aside{display:none}main{max-width:100%;padding:1rem}body{background:#fff;color:#000}}
+/* scrollbar */
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:var(--surface)}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- SIDEBAR -->
+<aside>
+  <div class="chapter-badge">Chapter 11</div>
+  <h2>Contents</h2>
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#monetary">Monetary Policy</a></li>
+    <li><a href="#transmission">Transmission Mechanism</a></li>
+    <li><a href="#liquidity-trap">Liquidity Trap</a></li>
+    <li><a href="#classical-case">Classical Case</a></li>
+    <li><a href="#fiscal">Fiscal Policy &amp; Crowding Out</a></li>
+    <li><a href="#fiscal-diagrams">Crowding Out Diagrams</a></li>
+    <li><a href="#extreme-cases">Extreme Cases</a></li>
+    <li><a href="#accommodation">Monetary Accommodation</a></li>
+    <li><a href="#composition">Composition of Output</a></li>
+    <li><a href="#investment-subsidy">Investment Subsidy</a></li>
+    <li><a href="#policy-mix">Policy Mix</a></li>
+    <li><a href="#policy-history">Policy Mix in History</a></li>
+    <li><a href="#formula-sheet">Formula Sheet</a></li>
+    <li><a href="#questions">Practice Questions</a></li>
+  </ul>
+</aside>
+
+<!-- MAIN -->
+<main>
+  <p style="color:var(--muted);font-size:.82rem">Macroeconomics · Dornbusch, Fischer &amp; Startz 11e</p>
+  <h1>Monetary &amp; Fiscal Policy</h1>
+  <div class="meta">
+    <span>📖 Chapter 11</span>
+    <span>🎯 Exam weight: High</span>
+    <span>🔑 IS-LM · Crowding out · Policy mix</span>
+  </div>
+  <div class="tags">
+    <span class="tag">monetary-policy</span>
+    <span class="tag">fiscal-policy</span>
+    <span class="tag">crowding-out</span>
+    <span class="tag">liquidity-trap</span>
+    <span class="tag">classical-case</span>
+    <span class="tag">policy-mix</span>
+    <span class="tag">transmission-mechanism</span>
+  </div>
+
+  <!-- OVERVIEW -->
+  <section id="overview">
+    <h2>Overview</h2>
+    <div class="card blue">
+      <div class="label blue">Chapter Highlights</div>
+      <ul style="padding-left:1.2rem;line-height:2">
+        <li>Both fiscal and monetary policy shift the IS-LM equilibrium and stabilise the economy</li>
+        <li><strong>Crowding out:</strong> fiscal expansion → higher $i$ → lower private investment → partially offsets the expansion</li>
+        <li><strong>Liquidity trap</strong> (horizontal LM): fiscal policy maximally effective; monetary policy powerless</li>
+        <li><strong>Classical case</strong> (vertical LM): monetary policy maximally effective; fiscal policy has <em>no</em> effect</li>
+        <li>Policy mix determines the <em>composition</em> of output, not just the level</li>
+      </ul>
+    </div>
+    <p>The IS-LM model from Chapter 10 is here used to derive policy multipliers and to analyse real-world episodes including the 2008–09 Great Recession, when the Fed drove the federal funds rate to the zero lower bound.</p>
+    <div class="card teal">
+      <div class="label teal">Quick Reference: Policy Directions</div>
+      <table>
+        <thead><tr><th>Policy action</th><th>Curve shifts</th><th>Output $Y$</th><th>Interest rate $i$</th></tr></thead>
+        <tbody>
+          <tr><td>Monetary expansion (↑$M$)</td><td>LM → right</td><td class="up">↑</td><td class="down">↓</td></tr>
+          <tr><td>Monetary contraction (↓$M$)</td><td>LM → left</td><td class="down">↓</td><td class="up">↑</td></tr>
+          <tr><td>Fiscal expansion (↑$G$ or ↓$T$)</td><td>IS → right</td><td class="up">↑</td><td class="up">↑</td></tr>
+          <tr><td>Fiscal contraction (↓$G$ or ↑$T$)</td><td>IS → left</td><td class="down">↓</td><td class="down">↓</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- MONETARY POLICY -->
+  <section id="monetary">
+    <h2>Monetary Policy</h2>
+    <p>In the US the Federal Reserve conducts monetary policy mainly through <strong>open market operations</strong>: buying bonds injects money (LM shifts right); selling bonds withdraws money (LM shifts left).</p>
+
+    <h3>Mechanism of an Open-Market Purchase</h3>
+    <div class="deriv">
+      <div class="deriv-step">
+        <div class="step-num">1</div>
+        <div class="step-eq">
+          <div>Fed buys bonds → nominal $M$ rises → real money supply $\overline{M}/P$ rises</div>
+          <div class="step-note">Price level is fixed in the short run, so real balances increase proportionally</div>
+        </div>
+      </div>
+      <div class="deriv-step">
+        <div class="step-num">2</div>
+        <div class="step-eq">
+          <div>Excess supply of money → public buys bonds → bond prices rise → yields (interest rates) fall</div>
+          <div class="step-note">Money and asset markets adjust rapidly — immediate jump to LM' in the diagram</div>
+        </div>
+      </div>
+      <div class="deriv-step">
+        <div class="step-num">3</div>
+        <div class="step-eq">
+          <div>Lower $i$ → investment spending rises → aggregate demand rises → output expands</div>
+          <div class="step-note">Economy slides up along LM'; rising $Y$ raises money demand, pushing $i$ back up slightly</div>
+        </div>
+      </div>
+      <div class="deriv-step">
+        <div class="step-num">4</div>
+        <div class="step-eq">
+          <div>New equilibrium $E'$: $Y' > Y_0$, $i' < i_0$</div>
+          <div class="step-note">Both goods and money markets clear simultaneously</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Monetary Policy Graph -->
+    <div class="graph-wrap">
+      <div class="graph-title">Fig 11-1 — Monetary Policy: LM Shifts Right</div>
+      <svg id="g-monetary" width="100%" viewBox="0 0 500 320"></svg>
+    </div>
+
+    <div class="card amber">
+      <div class="label amber">Monetary Policy Multiplier</div>
+      <p>From IS-LM algebra:</p>
+      $$\frac{\Delta Y}{\Delta(M/P)} = \frac{b \alpha_G}{h + kb\alpha_G}$$
+      <p style="margin-top:.5rem;font-size:.85rem;color:var(--muted)">Larger effect when: $h$ small (steep LM), $b$ large (flat IS), $\alpha_G$ large (big multiplier), $k$ small (low income sensitivity of money demand)</p>
+    </div>
+
+    <h3>What Determines the Size of the Monetary Multiplier?</h3>
+    <table>
+      <thead><tr><th>Condition</th><th>Effect on $\Delta Y$</th><th>Economic reason</th></tr></thead>
+      <tbody>
+        <tr><td>LM steeper (low $h$)</td><td class="up">Larger</td><td>Same ΔM causes bigger Δi → bigger ΔI</td></tr>
+        <tr><td>LM flatter (high $h$)</td><td class="down">Smaller</td><td>ΔM absorbed with tiny Δi → small ΔI</td></tr>
+        <tr><td>IS steeper (low $b$)</td><td class="down">Smaller</td><td>Investment less responsive to lower $i$</td></tr>
+        <tr><td>IS flatter (high $b$)</td><td class="up">Larger</td><td>Sensitive investment → big demand response</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- TRANSMISSION MECHANISM -->
+  <section id="transmission">
+    <h2>Transmission Mechanism</h2>
+    <p>The <strong>transmission mechanism</strong> is the process by which changes in monetary policy affect aggregate demand. Two critical links:</p>
+    <div class="card blue">
+      <div class="label blue">Three-Stage Chain</div>
+      <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-top:.5rem">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:.6rem .9rem;font-size:.85rem;text-align:center">
+          <div style="color:var(--accent3);font-weight:700;font-size:.72rem;margin-bottom:.2rem">STAGE 1</div>
+          Change in<br>real balances<br>$\Delta(M/P)$
+        </div>
+        <div style="color:var(--muted)">→</div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:.6rem .9rem;font-size:.85rem;text-align:center">
+          <div style="color:var(--accent3);font-weight:700;font-size:.72rem;margin-bottom:.2rem">STAGE 2</div>
+          Portfolio<br>disequilibrium<br>→ Δ asset prices → Δ$i$
+        </div>
+        <div style="color:var(--muted)">→</div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:.6rem .9rem;font-size:.85rem;text-align:center">
+          <div style="color:var(--accent3);font-weight:700;font-size:.72rem;margin-bottom:.2rem">STAGE 3</div>
+          Δ$i$ → Δ aggregate<br>demand → Δ$Y$
+        </div>
+      </div>
+    </div>
+    <p>If either link breaks, monetary policy loses its effectiveness:</p>
+    <ul style="padding-left:1.2rem;line-height:2">
+      <li><strong>Link 1 breaks:</strong> portfolio imbalances don't change interest rates (liquidity trap)</li>
+      <li><strong>Link 2 breaks:</strong> spending doesn't respond to interest rates (inelastic investment)</li>
+    </ul>
+    <div class="exam-alert">
+      <strong>Examiner Insight:</strong> The 1991 credit crunch illustrates a broken link 2 — banks refused to lend despite lower rates, severing the transmission from Fed policy to investment spending.
+    </div>
+  </section>
+
+  <!-- LIQUIDITY TRAP -->
+  <section id="liquidity-trap">
+    <h2>The Liquidity Trap</h2>
+    <div class="card red">
+      <div class="label red">Definition</div>
+      <p>A situation where the public is willing to hold any amount of money at the prevailing interest rate — the LM curve is <strong>horizontal</strong>. Money supply changes cannot alter the interest rate.</p>
+    </div>
+
+    <h3>Conditions and Implications</h3>
+    <table>
+      <thead><tr><th>Parameter</th><th>Value</th><th>Implication</th></tr></thead>
+      <tbody>
+        <tr><td>Interest sensitivity of money demand $h$</td><td>$h \to \infty$</td><td>LM is horizontal</td></tr>
+        <tr><td>Monetary policy multiplier</td><td>$\to 0$</td><td>ΔM has no effect on $Y$</td></tr>
+        <tr><td>Fiscal policy multiplier</td><td>$\gamma_F = \alpha_G$</td><td>Full multiplier — no crowding out</td></tr>
+      </tbody>
+    </table>
+
+    <!-- Liquidity Trap Graph -->
+    <div class="graph-wrap">
+      <div class="graph-title">Fig 11-2 — Liquidity Trap: Horizontal LM</div>
+      <svg id="g-liquidity" width="100%" viewBox="0 0 500 300"></svg>
+    </div>
+
+    <h3>Real-World Episodes</h3>
+    <div class="card green">
+      <div class="label green">Japan 1990s–2000s</div>
+      <p>Interest rates fell to ~0.5% and then effectively zero. Conventional monetary policy exhausted. Fiscal policy became the dominant stabilisation tool.</p>
+    </div>
+    <div class="card green">
+      <div class="label green">United States 2008–09</div>
+      <p>Fed drove the federal funds rate from 5% (Aug 2007) → 0.16% (Dec 2008). Conventional policy exhausted → Fed turned to <strong>quantitative easing</strong>: buying long-term Treasuries, agency debt, and mortgage-backed securities to reduce long-term rates.</p>
+    </div>
+
+    <h3>Zero Lower Bound Logic</h3>
+    <div class="card blue">
+      <div class="label blue">Why the Nominal Rate Can't Go Below Zero</div>
+      <p>If $i < 0$: borrow $100 today, keep as cash, repay $95 in a year — riskless profit. This implies infinite money demand, preventing negative nominal rates. Deflation pushes the real economy toward this bound.</p>
+      $$i_{\text{nominal}} = r + \pi^e \quad \xrightarrow{\pi^e < 0} \quad i_{\text{nom}} \to 0$$
+    </div>
+  </section>
+
+  <!-- CLASSICAL CASE -->
+  <section id="classical-case">
+    <h2>The Classical Case</h2>
+    <div class="card amber">
+      <div class="label amber">Definition</div>
+      <p>The LM curve is <strong>vertical</strong> when the demand for money is completely insensitive to the interest rate ($h = 0$). The money market equation collapses to:</p>
+      $$\frac{\bar{M}}{P} = kY \quad\Rightarrow\quad M = k \cdot PY$$
+      <p style="margin-top:.5rem;font-size:.88rem">This is the classical <strong>quantity theory of money</strong>: nominal GDP ($PY$) depends only on the quantity of money.</p>
+    </div>
+
+    <!-- Classical Case Graph -->
+    <div class="graph-wrap">
+      <div class="graph-title">Fig 11-3 — Classical Case: Vertical LM</div>
+      <svg id="g-classical" width="100%" viewBox="0 0 500 300"></svg>
+    </div>
+
+    <h3>Policy Implications — Classical Case</h3>
+    <table>
+      <thead><tr><th>Policy</th><th>Effect on $Y$</th><th>Effect on $i$</th><th>Reason</th></tr></thead>
+      <tbody>
+        <tr><td>Monetary expansion</td><td class="up">Maximum ↑</td><td class="down">↓</td><td>LM shifts right; unique $Y$ determined by $M$</td></tr>
+        <tr><td>Fiscal expansion</td><td>0</td><td class="up">↑↑</td><td>$Y$ fixed by $M/P$; IS shift only raises $i$</td></tr>
+      </tbody>
+    </table>
+
+    <div class="exam-alert">
+      <strong>Full Crowding Out:</strong> With vertical LM, $\Delta G$ raises $i$ until $\Delta I = -\Delta G$ exactly. Government spending displaces private investment dollar-for-dollar. Output is unchanged.
+    </div>
+  </section>
+
+  <!-- FISCAL POLICY & CROWDING OUT -->
+  <section id="fiscal">
+    <h2>Fiscal Policy &amp; Crowding Out</h2>
+    <p>The IS curve equation (from Ch. 10):</p>
+    $$Y = \alpha_G(\bar{A} - bi), \quad \alpha_G = \frac{1}{1-c(1-t)}$$
+    <p>Government spending $G$ and transfers $TR$ enter through autonomous spending $\bar{A}$; the tax rate $t$ enters through the multiplier $\alpha_G$.</p>
+
+    <h3>Effect of an Increase in Government Spending</h3>
+    <div class="deriv">
+      <div class="deriv-step">
+        <div class="step-num">1</div>
+        <div class="step-eq">
+          <div>↑$G$ → autonomous spending $\bar{A}$ rises → IS shifts right by $\alpha_G \Delta G$</div>
+          <div class="step-note">Horizontal distance of the shift equals the goods-market multiplier times $\Delta G$</div>
+        </div>
+      </div>
+      <div class="deriv-step">
+        <div class="step-num">2</div>
+        <div class="step-eq">
+          <div>At fixed $i$, economy moves to $E'$: $\Delta Y = \alpha_G \Delta G$ (Chapter 9 result)</div>
+          <div class="step-note">But the money market is now out of equilibrium — excess demand for money</div>
+        </div>
+      </div>
+      <div class="deriv-step">
+        <div class="step-num">3</div>
+        <div class="step-eq">
+          <div>Excess money demand → $i$ rises → investment spending falls (crowding out)</div>
+          <div class="step-note">Firms reduce capital expenditure as borrowing becomes more expensive</div>
+        </div>
+      </div>
+      <div class="deriv-step">
+        <div class="step-num">4</div>
+        <div class="step-eq">
+          <div>New equilibrium $E''$: $Y'' < Y'$ and $i'' > i_0$</div>
+          <div class="step-note">IS and LM intersect at a higher $i$ and lower $Y$ than the naive multiplier predicts</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card red">
+      <div class="label red">Crowding Out — Definition</div>
+      <p>The rise in the interest rate that accompanies a fiscal expansion <strong>crowds out</strong> private investment spending. Output rises by less than $\alpha_G \Delta G$.</p>
+      $$\Delta Y_{\text{actual}} = \gamma_F \cdot \Delta G, \quad \gamma_F = \frac{h \alpha_G}{h + kb\alpha_G} < \alpha_G$$
+    </div>
+  </section>
+
+  <!-- CROWDING OUT DIAGRAMS -->
+  <section id="fiscal-diagrams">
+    <h2>Crowding Out — Diagrams</h2>
+    <div class="graph-wrap">
+      <div class="graph-title">Fig 11-4 — Fiscal Expansion &amp; Crowding Out</div>
+      <svg id="g-fiscal" width="100%" viewBox="0 0 500 320"></svg>
+    </div>
+
+    <h3>Factors that Determine Degree of Crowding Out</h3>
+    <table>
+      <thead><tr><th>Condition</th><th>Crowding out</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td>Flatter LM (high $h$)</td><td class="down">Less</td><td>$i$ barely rises; investment not much reduced</td></tr>
+        <tr><td>Steeper LM (low $h$)</td><td class="up">More</td><td>$i$ spikes sharply; large fall in investment</td></tr>
+        <tr><td>Flatter IS (high $b$)</td><td class="down">Less in income rise, less in $i$ rise</td><td>Investment very sensitive; balanced effect</td></tr>
+        <tr><td>Steeper IS (low $b$)</td><td class="up">More</td><td>Investment barely responds; $i$ rises a lot, income rises less</td></tr>
+        <tr><td>Larger $\alpha_G$</td><td class="up">More income &amp; rate rise</td><td>Bigger IS shift → bigger money demand shock</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- EXTREME CASES -->
+  <section id="extreme-cases">
+    <h2>Extreme Cases Summary</h2>
+    <div class="graph-wrap">
+      <div class="graph-title">Fig 11-5 — Extreme Cases Side-by-Side</div>
+      <svg id="g-extreme" width="100%" viewBox="0 0 560 300"></svg>
+    </div>
+
+    <table>
+      <thead><tr><th>Case</th><th>LM shape</th><th>Fiscal policy</th><th>Monetary policy</th><th>Real-world relevance</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Liquidity trap</strong></td><td>Horizontal</td><td class="up">Maximum $\gamma_F = \alpha_G$</td><td class="down">Zero effect</td><td>Japan 1990s, US 2009</td></tr>
+        <tr><td><strong>Normal case</strong></td><td>Upward sloping</td><td>Partial ($\gamma_F < \alpha_G$)</td><td>Positive</td><td>Most economies, most times</td></tr>
+        <tr><td><strong>Classical case</strong></td><td>Vertical</td><td class="down">Zero (full crowding out)</td><td class="up">Maximum</td><td>Long-run; monetarist view</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- MONETARY ACCOMMODATION -->
+  <section id="accommodation">
+    <h2>Monetary Accommodation</h2>
+    <p><strong>Monetary accommodation</strong> (also called <em>monetising the deficit</em>) occurs when the central bank expands the money supply during a fiscal expansion to prevent interest rates from rising.</p>
+
+    <div class="card blue">
+      <div class="label blue">Mechanism</div>
+      <p>IS shifts right (fiscal expansion) AND LM shifts right simultaneously (Fed buys bonds to prevent $i$ rising).</p>
+      $$\text{Result: } Y \uparrow\uparrow, \quad i \approx i_0 \text{ (unchanged or rises less)}$$
+    </div>
+
+    <!-- Accommodation Graph -->
+    <div class="graph-wrap">
+      <div class="graph-title">Fig 11-6 — Monetary Accommodation of Fiscal Expansion</div>
+      <svg id="g-accommodation" width="100%" viewBox="0 0 500 320"></svg>
+    </div>
+
+    <h3>Conditions for Accommodation</h3>
+    <ul style="padding-left:1.2rem;line-height:2">
+      <li>Central bank must be willing to expand $M$ in response to government deficits</li>
+      <li>Removes crowding out entirely — investment need not fall</li>
+      <li>Risk: if economy is at full employment, accommodation causes inflation (supply-side constraint)</li>
+    </ul>
+
+    <div class="exam-alert">
+      <strong>Examiner Trap:</strong> Accommodation eliminates the rise in $i$, so investment is NOT crowded out. This means $\Delta Y$ is larger than with unaccommodated fiscal policy but the composition of output is different (more government, more consumption — but also sustained investment).
+    </div>
+  </section>
+
+  <!-- COMPOSITION OF OUTPUT -->
+  <section id="composition">
+    <h2>Composition of Output &amp; Policy Effects</h2>
+    <p>Different policies reach the same $Y$ but via different output compositions — a crucial insight for the policy mix debate.</p>
+
+    <table>
+      <thead><tr><th>Policy</th><th>Effect on $Y$</th><th>Effect on $i$</th><th>Effect on $I$</th><th>Effect on $C$</th><th>Effect on $G$</th></tr></thead>
+      <tbody>
+        <tr><td>Monetary expansion</td><td class="up">↑</td><td class="down">↓</td><td class="up">↑↑</td><td class="up">↑</td><td>—</td></tr>
+        <tr><td>Income tax cut</td><td class="up">↑</td><td class="up">↑</td><td class="down">↓</td><td class="up">↑↑</td><td>—</td></tr>
+        <tr><td>Gov't spending ↑</td><td class="up">↑</td><td class="up">↑</td><td class="down">↓</td><td class="up">↑</td><td class="up">↑↑</td></tr>
+        <tr><td>Investment subsidy</td><td class="up">↑</td><td class="up">↑</td><td class="up">↑↑</td><td class="up">↑</td><td>—</td></tr>
+      </tbody>
+    </table>
+
+    <div class="card teal">
+      <div class="label teal">Key Insight</div>
+      <p>Monetary expansion is the only policy that <em>simultaneously</em> raises output and private investment. Fiscal expansion (without accommodation) always crowds out some investment.</p>
+    </div>
+  </section>
+
+  <!-- INVESTMENT SUBSIDY -->
+  <section id="investment-subsidy">
+    <h2>Investment Subsidy</h2>
+    <p>An <strong>investment tax credit</strong> directly subsidises capital spending. The investment function shifts:</p>
+    $$I = \bar{I} - bi \quad\longrightarrow\quad I = \bar{I} + \Delta I - bi$$
+
+    <div class="deriv">
+      <div class="deriv-step">
+        <div class="step-num">1</div>
+        <div class="step-eq">
+          <div>Subsidy shifts autonomous investment up by $\Delta I$</div>
+          <div class="step-note">At every interest rate, firms invest more</div>
+        </div>
+      </div>
+      <div class="deriv-step">
+        <div class="step-num">2</div>
+        <div class="step-eq">
+          <div>IS shifts right by $\alpha_G \Delta I$</div>
+          <div class="step-note">Same mechanism as a government spending increase</div>
+        </div>
+      </div>
+      <div class="deriv-step">
+        <div class="step-num">3</div>
+        <div class="step-eq">
+          <div>$i$ rises (due to LM constraint), but $I$ is still <em>higher</em> net</div>
+          <div class="step-note">Unlike regular G increase, investment goes UP despite higher $i$ — subsidy effect dominates</div>
+        </div>
+      </div>
+      <div class="deriv-step">
+        <div class="step-num">4</div>
+        <div class="step-eq">
+          <div>Result: $Y \uparrow$, $i \uparrow$, $I \uparrow$, $C \uparrow$ (induced by higher $Y$)</div>
+          <div class="step-note">Both consumption AND investment rise — unlike tax cut or G increase</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exam-alert">
+      <strong>Unique Feature of Investment Subsidy:</strong> It is the only fiscal policy where investment rises even though interest rates go up. All other fiscal expansions reduce investment (crowding out).
+    </div>
+  </section>
+
+  <!-- POLICY MIX -->
+  <section id="policy-mix">
+    <h2>The Policy Mix</h2>
+    <p>To reach full-employment output $Y^*$ from a recessionary equilibrium $E$, policymakers can use different combinations of monetary and fiscal policy.</p>
+
+    <!-- Policy Mix Graph -->
+    <div class="graph-wrap">
+      <div class="graph-title">Fig 11-7 — Policy Mix: Alternative Paths to Full Employment</div>
+      <svg id="g-policymix" width="100%" viewBox="0 0 500 320"></svg>
+    </div>
+
+    <table>
+      <thead><tr><th>Policy choice</th><th>Path to $Y^*$</th><th>Output composition</th><th>Political alignment</th></tr></thead>
+      <tbody>
+        <tr><td>Fiscal expansion only</td><td>IS shifts right → $E_1$ (high $i$)</td><td>↑$G$ or ↑$C$, ↓$I$</td><td>Left/Keynesian</td></tr>
+        <tr><td>Monetary expansion only</td><td>LM shifts right → $E_2$ (low $i$)</td><td>↑$I$, ↑$C$, same $G$</td><td>Monetarist/conservative</td></tr>
+        <tr><td>Mixed policy</td><td>Both shift → intermediate $E^*$</td><td>Balanced composition</td><td>Technocratic centrist</td></tr>
+      </tbody>
+    </table>
+
+    <div class="card amber">
+      <div class="label amber">Political Economy of the Policy Mix</div>
+      <ul style="padding-left:1.2rem;line-height:2">
+        <li><strong>Conservatives:</strong> tax cuts + spending cuts → shrink government over cycles</li>
+        <li><strong>Progressives:</strong> expand government spending on education, environment, job training</li>
+        <li><strong>Growth advocates:</strong> low interest rates / investment subsidies → capital accumulation</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- POLICY MIX IN HISTORY -->
+  <section id="policy-history">
+    <h2>Policy Mix in Historical Context</h2>
+
+    <h3>1981–83: Tight Money + Loose Fiscal Policy</h3>
+    <div class="card red">
+      <div class="label red">The 1980s Policy Mix</div>
+      <p>Reagan's tax cuts expanded the deficit (IS shifted right). Fed under Volcker tightened money aggressively to break inflation (LM shifted left). Result: very high real interest rates, severe recession in 1981–82, then rapid recovery as inflation fell. Investment and net exports were heavily crowded out.</p>
+    </div>
+
+    <h3>2008–09: Zero Lower Bound &amp; Fiscal Stimulus</h3>
+    <div class="card blue">
+      <div class="label blue">Great Recession Policy Mix</div>
+      <p>Fed drove federal funds rate from 5% (Aug 2007) to 0.16% (Dec 2008). Once at zero lower bound, conventional monetary policy exhausted. Congress enacted the American Recovery and Reinvestment Act (2009): ~$787 billion stimulus. Fed used quantitative easing as unorthodox substitute for rate cuts.</p>
+      $$i \to 0 \Rightarrow \text{monetary policy impotent} \Rightarrow \text{fiscal policy maximally effective (liquidity trap logic)}$$
+    </div>
+
+    <h3>Germany 1990s: Reunification Shock</h3>
+    <div class="card green">
+      <div class="label green">German Reunification</div>
+      <p>Massive fiscal transfers to East Germany → IS shifted right sharply. Bundesbank tightened money to fight inflation → LM shifted left. Result: very high European interest rates, contributing to the 1992 ERM crisis and recessions in UK and other European countries.</p>
+    </div>
+
+    <div class="exam-alert">
+      <strong>Exam Application:</strong> The 1991 recession shows declining output AND declining interest rates — consistent with a leftward IS shift (demand shock), NOT a monetary contraction (which would shift LM left and raise rates).
+    </div>
+  </section>
+
+  <!-- FORMULA SHEET -->
+  <section id="formula-sheet">
+    <h2>Formula Sheet</h2>
+    <div class="formula-grid">
+      <div class="formula-card">
+        <div class="fc-name">IS Curve</div>
+        <div class="fc-eq">$$Y = \alpha_G(\bar{A} - bi)$$</div>
+      </div>
+      <div class="formula-card">
+        <div class="fc-name">LM Curve</div>
+        <div class="fc-eq">$$i = \frac{k}{h}Y - \frac{1}{h}\frac{\bar{M}}{P}$$</div>
+      </div>
+      <div class="formula-card">
+        <div class="fc-name">Goods Multiplier</div>
+        <div class="fc-eq">$$\alpha_G = \frac{1}{1-c(1-t)}$$</div>
+      </div>
+      <div class="formula-card">
+        <div class="fc-name">Fiscal Multiplier (IS-LM)</div>
+        <div class="fc-eq">$$\gamma_F = \frac{h\alpha_G}{h + kb\alpha_G}$$</div>
+      </div>
+      <div class="formula-card">
+        <div class="fc-name">Monetary Multiplier (IS-LM)</div>
+        <div class="fc-eq">$$\frac{\Delta Y}{\Delta(M/P)} = \frac{b\alpha_G}{h + kb\alpha_G}$$</div>
+      </div>
+      <div class="formula-card">
+        <div class="fc-name">Equilibrium Output</div>
+        <div class="fc-eq">$$Y^* = \frac{h\alpha_G \bar{A} + b(\bar{M}/P)}{h + kb\alpha_G}$$</div>
+      </div>
+      <div class="formula-card">
+        <div class="fc-name">Liquidity Trap ($h\to\infty$)</div>
+        <div class="fc-eq">$$\gamma_F \to \alpha_G, \quad \Delta Y/\Delta M \to 0$$</div>
+      </div>
+      <div class="formula-card">
+        <div class="fc-name">Classical Case ($h=0$)</div>
+        <div class="fc-eq">$$M = k \cdot PY, \quad \gamma_F = 0$$</div>
+      </div>
+      <div class="formula-card">
+        <div class="fc-name">Quantity Theory</div>
+        <div class="fc-eq">$$MV = PY, \quad V = 1/k$$</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRACTICE QUESTIONS -->
+  <section id="questions">
+    <h2>Practice Questions</h2>
+
+    <h3>2-Mark Questions</h3>
+    <div class="q-block">
+      <div class="q-marks">2 MARKS</div>
+      <p>Define "crowding out" and state the condition under which it is complete.</p>
+    </div>
+    <div class="q-block">
+      <div class="q-marks">2 MARKS</div>
+      <p>Why is monetary policy said to be ineffective in the liquidity trap? Use the LM curve to explain.</p>
+    </div>
+    <div class="q-block">
+      <div class="q-marks">2 MARKS</div>
+      <p>State the classical quantity theory of money and its relationship to the vertical LM curve.</p>
+    </div>
+
+    <h3>5-Mark Questions</h3>
+    <div class="q-block">
+      <div class="q-marks">5 MARKS</div>
+      <p>Using IS-LM diagrams, explain why an increase in government spending raises output but by less than the simple Keynesian multiplier predicts. What is the role of the interest rate in this process?</p>
+    </div>
+    <div class="q-block">
+      <div class="q-marks">5 MARKS</div>
+      <p>Explain the transmission mechanism of monetary policy. What are the two critical links, and how can each be broken?</p>
+    </div>
+    <div class="q-block">
+      <div class="q-marks">5 MARKS</div>
+      <p>Compare the effects of (a) an income tax cut, (b) an increase in government spending, and (c) an investment subsidy on the composition of output. Use IS-LM analysis.</p>
+    </div>
+
+    <h3>10-Mark Questions</h3>
+    <div class="q-block">
+      <div class="q-marks">10 MARKS</div>
+      <p>An economy is operating below full employment. The government is debating between monetary expansion, fiscal expansion, and monetary accommodation of fiscal expansion. Using IS-LM analysis, compare the three policies in terms of: (i) the magnitude of the output expansion, (ii) the change in the interest rate, (iii) the change in investment, and (iv) the change in government spending. Which policy would you recommend and why?</p>
+    </div>
+    <div class="q-block">
+      <div class="q-marks">10 MARKS</div>
+      <p>The United States experienced a severe recession in 2008–09. (a) Explain why the Federal Reserve's conventional monetary policy was ineffective by late 2008. (b) What is quantitative easing and how does it attempt to restore monetary transmission? (c) Using IS-LM analysis, show how the combination of fiscal stimulus and quantitative easing operated to stabilise output. What are the risks of this approach?</p>
+    </div>
+    <div class="q-block">
+      <div class="q-marks">10 MARKS</div>
+      <p>Critically evaluate the statement: "In practice, policymakers can always achieve any desired level of output using either monetary or fiscal policy alone." Consider both the extreme cases (liquidity trap and classical case) and the normal intermediate case in your answer.</p>
+    </div>
+  </section>
+
+</main>
+</div>
+
+<!-- D3 GRAPHS -->
+<script>
+const C = {
+  bg: '#21253a', surface: '#1a1d27', border: '#2e3352',
+  text: '#e8eaf0', muted: '#8b91b0',
+  blue: '#6c8eff', teal: '#50e3c2', amber: '#f9a825',
+  red: '#ff5c5c', green: '#4caf50'
+};
+
+function baseAxes(svgId, W, H, ml, mr, mt, mb, xl, yl) {
+  const svg = d3.select('#' + svgId);
+  const el = svg.node();
+  const totalW = el.viewBox.baseVal.width;
+  const totalH = el.viewBox.baseVal.height;
+  const iw = totalW - ml - mr;
+  const ih = totalH - mt - mb;
+  const g = svg.append('g').attr('transform', `translate(${ml},${mt})`);
+  // axes
+  g.append('line').attr('x1',0).attr('y1',ih).attr('x2',iw+8).attr('y2',ih)
+    .attr('stroke',C.text).attr('stroke-width',1.5).attr('marker-end','url(#arr)');
+  g.append('line').attr('x1',0).attr('y1',ih).attr('x2',0).attr('y2',-8)
+    .attr('stroke',C.text).attr('stroke-width',1.5).attr('marker-end','url(#arr)');
+  // labels
+  g.append('text').attr('x',iw+16).attr('y',ih+4).text(xl)
+    .attr('font-size',11).attr('fill',C.text);
+  g.append('text').attr('x',-12).attr('y',-14).text(yl)
+    .attr('font-size',11).attr('fill',C.text);
+  return {g, iw, ih};
+}
+
+function ensureArrow(svgId) {
+  const svg = d3.select('#' + svgId);
+  let defs = svg.select('defs');
+  if (defs.empty()) defs = svg.append('defs');
+  if (defs.select('#arr').empty()) {
+    defs.append('marker').attr('id','arr').attr('markerWidth',8).attr('markerHeight',8)
+      .attr('refX',6).attr('refY',3).attr('orient','auto')
+      .append('path').attr('d','M0,0 L0,6 L8,3 z').attr('fill',C.text);
+  }
+}
+
+function lineEq(x1, y1, x2, y2) {
+  const m = (y2 - y1) / (x2 - x1);
+  const b = y1 - m * x1;
+  return {m, b, y: x => m * x + b};
+}
+
+function intersect(is, lm) {
+  // is: y = m1*x+b1, lm: y = m2*x+b2
+  const x = (lm.b - is.b) / (is.m - lm.m);
+  return {x, y: is.y(x)};
+}
+
+// ─── MONETARY POLICY GRAPH ───
+(function() {
+  const id = 'g-monetary';
+  ensureArrow(id);
+  const {g, iw, ih} = baseAxes(id, 500, 320, 50, 30, 20, 40, 'Y', 'i');
+
+  // IS line
+  const isL = lineEq(0.1*iw, 0.25*ih, 0.85*iw, 0.85*ih);
+  // LM original
+  const lm1 = lineEq(0.15*iw, 0.8*ih, 0.8*iw, 0.2*ih);
+  // LM shifted right
+  const lm2 = lineEq(0.35*iw, 0.8*ih, 0.95*iw, 0.2*ih);
+
+  const E = intersect(isL, lm1);
+  const E2 = intersect(isL, lm2);
+
+  // draw IS
+  g.append('line').attr('x1', 0.1*iw).attr('y1', isL.y(0.1*iw))
+    .attr('x2', 0.85*iw).attr('y2', isL.y(0.85*iw))
+    .attr('stroke', C.blue).attr('stroke-width', 2.5);
+  g.append('text').attr('x', 0.87*iw).attr('y', isL.y(0.85*iw))
+    .text('IS').attr('fill', C.blue).attr('font-size', 12).attr('font-weight','bold');
+
+  // draw LM original
+  g.append('line').attr('x1', 0.15*iw).attr('y1', lm1.y(0.15*iw))
+    .attr('x2', 0.8*iw).attr('y2', lm1.y(0.8*iw))
+    .attr('stroke', C.amber).attr('stroke-width', 2.5);
+  g.append('text').attr('x', 0.82*iw).attr('y', lm1.y(0.8*iw))
+    .text('LM').attr('fill', C.amber).attr('font-size', 12).attr('font-weight','bold');
+
+  // draw LM shifted
+  g.append('line').attr('x1', 0.35*iw).attr('y1', lm2.y(0.35*iw))
+    .attr('x2', 0.95*iw).attr('y2', lm2.y(0.95*iw))
+    .attr('stroke', C.teal).attr('stroke-width', 2).attr('stroke-dasharray','5,3');
+  g.append('text').attr('x', 0.97*iw).attr('y', lm2.y(0.95*iw))
+    .text("LM'").attr('fill', C.teal).attr('font-size', 12).attr('font-weight','bold');
+
+  // dashed reference lines
+  const dsh = s => s.attr('stroke', C.muted).attr('stroke-width', 1).attr('stroke-dasharray','4,3');
+  dsh(g.append('line').attr('x1',E.x).attr('y1',E.y).attr('x2',E.x).attr('y2',ih));
+  dsh(g.append('line').attr('x1',0).attr('y1',E.y).attr('x2',E.x).attr('y2',E.y));
+  dsh(g.append('line').attr('x1',E2.x).attr('y1',E2.y).attr('x2',E2.x).attr('y2',ih));
+  dsh(g.append('line').attr('x1',0).attr('y1',E2.y).attr('x2',E2.x).attr('y2',E2.y));
+
+  // equilibrium points
+  [[E,'E',C.amber],[E2,"E'"+ '',C.teal]].forEach(([pt,lbl,col]) => {
+    g.append('circle').attr('cx',pt.x).attr('cy',pt.y).attr('r',5)
+      .attr('fill',col).attr('stroke',C.bg).attr('stroke-width',2);
+    g.append('text').attr('x',pt.x+7).attr('y',pt.y-7).text(lbl)
+      .attr('fill',col).attr('font-size',12).attr('font-weight','bold');
+  });
+
+  // axis tick labels
+  g.append('text').attr('x',E.x-4).attr('y',ih+14).text('Y₀').attr('fill',C.muted).attr('font-size',10).attr('text-anchor','middle');
+  g.append('text').attr('x',E2.x-4).attr('y',ih+14).text("Y'").attr('fill',C.muted).attr('font-size',10).attr('text-anchor','middle');
+  g.append('text').attr('x',-8).attr('y',E.y+4).text('i₀').attr('fill',C.muted).attr('font-size',10).attr('text-anchor','end');
+  g.append('text').attr('x',-8).attr('y',E2.y+4).text("i'").attr('fill',C.muted).attr('font-size',10).attr('text-anchor','end');
+
+  // arrow showing LM shift
+  g.append('text').attr('x',0.58*iw).attr('y',0.42*ih).text('↓i, ↑Y')
+    .attr('fill',C.teal).attr('font-size',10).attr('font-style','italic');
+})();
+
+// ─── LIQUIDITY TRAP GRAPH ───
+(function() {
+  const id = 'g-liquidity';
+  ensureArrow(id);
+  const {g, iw, ih} = baseAxes(id, 500, 300, 50, 30, 20, 40, 'Y', 'i');
+
+  const iFloor = 0.75 * ih; // horizontal LM level
+
+  // Horizontal LM
+  g.append('line').attr('x1', 0.05*iw).attr('y1', iFloor)
+    .attr('x2', 0.92*iw).attr('y2', iFloor)
+    .attr('stroke', C.amber).attr('stroke-width', 2.5);
+  g.append('text').attr('x', 0.93*iw).attr('y', iFloor).text('LM (flat)')
+    .attr('fill', C.amber).attr('font-size', 11).attr('font-weight','bold');
+
+  // IS original
+  const isL = lineEq(0.1*iw, 0.2*ih, 0.7*iw, 0.9*ih);
+  g.append('line').attr('x1', 0.1*iw).attr('y1', isL.y(0.1*iw))
+    .attr('x2', 0.7*iw).attr('y2', isL.y(0.7*iw))
+    .attr('stroke', C.blue).attr('stroke-width', 2.5);
+  g.append('text').attr('x', 0.72*iw).attr('y', isL.y(0.7*iw)).text('IS')
+    .attr('fill', C.blue).attr('font-size', 12).attr('font-weight','bold');
+
+  // IS shifted (fiscal expansion)
+  const isR = lineEq(0.3*iw, 0.2*ih, 0.9*iw, 0.9*ih);
+  g.append('line').attr('x1', 0.3*iw).attr('y1', isR.y(0.3*iw))
+    .attr('x2', 0.9*iw).attr('y2', isR.y(0.9*iw))
+    .attr('stroke', C.green).attr('stroke-width', 2).attr('stroke-dasharray','5,3');
+  g.append('text').attr('x', 0.92*iw).attr('y', isR.y(0.9*iw)).text("IS'")
+    .attr('fill', C.green).attr('font-size', 12).attr('font-weight','bold');
+
+  // Equilibrium points (both on horizontal LM)
+  const Ex = { x: ((iFloor - isL.b) / isL.m), y: iFloor };
+  const Ex2 = { x: ((iFloor - isR.b) / isR.m), y: iFloor };
+
+  [[Ex,'E',C.amber],[Ex2,"E'",C.green]].forEach(([pt,lbl,col]) => {
+    g.append('circle').attr('cx',pt.x).attr('cy',pt.y).attr('r',5)
+      .attr('fill',col).attr('stroke',C.bg).attr('stroke-width',2);
+    g.append('text').attr('x',pt.x+7).attr('y',pt.y-8).text(lbl)
+      .attr('fill',col).attr('font-size',12).attr('font-weight','bold');
+  });
+
+  g.append('text').attr('x',Ex.x-4).attr('y',ih+14).text('Y₀').attr('fill',C.muted).attr('font-size',10).attr('text-anchor','middle');
+  g.append('text').attr('x',Ex2.x-4).attr('y',ih+14).text("Y'").attr('fill',C.muted).attr('font-size',10).attr('text-anchor','middle');
+  g.append('text').attr('x',-8).attr('y',iFloor+4).text('iₘᵢₙ').attr('fill',C.muted).attr('font-size',10).attr('text-anchor','end');
+
+  g.append('text').attr('x',0.5*iw).attr('y',iFloor-12).text('Fiscal policy fully effective — no crowding out')
+    .attr('fill',C.teal).attr('font-size',9).attr('text-anchor','middle');
+})();
+
+// ─── CLASSICAL CASE GRAPH ───
+(function() {
+  const id = 'g-classical';
+  ensureArrow(id);
+  const {g, iw, ih} = baseAxes(id, 500, 300, 50, 30, 20, 40, 'Y', 'i');
+
+  const xFixed = 0.6 * iw; // vertical LM
+
+  // Vertical LM
+  g.append('line').attr('x1', xFixed).attr('y1', 0.05*ih)
+    .attr('x2', xFixed).attr('y2', 0.95*ih)
+    .attr('stroke', C.amber).attr('stroke-width', 2.5);
+  g.append('text').attr('x', xFixed+6).attr('y', 0.1*ih).text('LM (vertical)')
+    .attr('fill', C.amber).attr('font-size', 11).attr('font-weight','bold');
+
+  // IS original
+  const isL = lineEq(0.1*iw, 0.2*ih, 0.8*iw, 0.85*ih);
+  g.append('line').attr('x1', 0.1*iw).attr('y1', isL.y(0.1*iw))
+    .attr('x2', 0.8*iw).attr('y2', isL.y(0.8*iw))
+    .attr('stroke', C.blue).attr('stroke-width', 2.5);
+  g.append('text').attr('x', 0.82*iw).attr('y', isL.y(0.8*iw)).text('IS')
+    .attr('fill', C.blue).attr('font-size', 12).attr('font-weight','bold');
+
+  // IS shifted right (fiscal expansion — no income change)
+  const isR = lineEq(0.25*iw, 0.2*ih, 0.95*iw, 0.85*ih);
+  g.append('line').attr('x1', 0.25*iw).attr('y1', isR.y(0.25*iw))
+    .attr('x2', 0.95*iw).attr('y2', isR.y(0.95*iw))
+    .attr('stroke', C.green).attr('stroke-width', 2).attr('stroke-dasharray','5,3');
+  g.append('text').attr('x', 0.97*iw).attr('y', isR.y(0.95*iw)).text("IS'")
+    .attr('fill', C.green).attr('font-size', 12).attr('font-weight','bold');
+
+  // Equilibrium: both on vertical LM at x=xFixed
+  const E1y = isL.y(xFixed);
+  const E2y = isR.y(xFixed);
+
+  [[xFixed,E1y,'E',C.blue],[xFixed,E2y,"E'",C.green]].forEach(([x,y,lbl,col]) => {
+    g.append('circle').attr('cx',x).attr('cy',y).attr('r',5)
+      .attr('fill',col).attr('stroke',C.bg).attr('stroke-width',2);
+    g.append('text').attr('x',x+8).attr('y',y-5).text(lbl)
+      .attr('fill',col).attr('font-size',12).attr('font-weight','bold');
+  });
+  g.append('text').attr('x',xFixed-4).attr('y',ih+14).text('Y₀=Y\'').attr('fill',C.muted).attr('font-size',10).attr('text-anchor','middle');
+  g.append('text').attr('x',-8).attr('y',E1y+4).text('i₀').attr('fill',C.muted).attr('font-size',10).attr('text-anchor','end');
+  g.append('text').attr('x',-8).attr('y',E2y+4).text("i'").attr('fill',C.muted).attr('font-size',10).attr('text-anchor','end');
+  g.append('text').attr('x',0.3*iw).attr('y',0.35*ih).text('ΔY = 0 (full crowding out)')
+    .attr('fill',C.red).attr('font-size',10);
+})();
+
+// ─── FISCAL EXPANSION / CROWDING OUT GRAPH ───
+(function() {
+  const id = 'g-fiscal';
+  ensureArrow(id);
+  const {g, iw, ih} = baseAxes(id, 500, 320, 50, 30, 20, 40, 'Y', 'i');
+
+  const lmL = lineEq(0.1*iw, 0.85*ih, 0.85*iw, 0.15*ih);
+  const is1 = lineEq(0.05*iw, 0.2*ih, 0.75*iw, 0.9*ih);
+  const is2 = lineEq(0.25*iw, 0.2*ih, 0.92*iw, 0.9*ih);
+
+  const E  = intersect(is1, lmL);
+  const Ep = {x: ((0.4*ih - is1.b) / is1.m), y: 0.4*ih}; // fixed i, IS2 point
+  const Epp = intersect(is2, lmL);
+
+  // LM
+  g.append('line').attr('x1',0.1*iw).attr('y1',lmL.y(0.1*iw))
+    .attr('x2',0.85*iw).attr('y2',lmL.y(0.85*iw))
+    .attr('stroke',C.amber).attr('stroke-width',2.5);
+  g.append('text').attr('x',0.87*iw).attr('y',lmL.y(0.85*iw)).text('LM')
+    .attr('fill',C.amber).attr('font-size',12).attr('font-weight','bold');
+
+  // IS original
+  g.append('line').attr('x1',0.05*iw).attr('y1',is1.y(0.05*iw))
+    .attr('x2',0.75*iw).attr('y2',is1.y(0.75*iw))
+    .attr('stroke',C.blue).attr('stroke-width',2.5);
+  g.append('text').attr('x',0.77*iw).attr('y',is1.y(0.75*iw)).text('IS')
+    .attr('fill',C.blue).attr('font-size',12).attr('font-weight','bold');
+
+  // IS shifted
+  g.append('line').attr('x1',0.25*iw).attr('y1',is2.y(0.25*iw))
+    .attr('x2',0.92*iw).attr('y2',is2.y(0.92*iw))
+    .attr('stroke',C.green).attr('stroke-width',2).attr('stroke-dasharray','5,3');
+  g.append('text').attr('x',0.93*iw).attr('y',is2.y(0.92*iw)).text("IS'")
+    .attr('fill',C.green).attr('font-size',12).attr('font-weight','bold');
+
+  // bracket showing αG·ΔG
+  const Ypp = Epp.x; const Yp = E.x + (Epp.x - E.x) * 1.5;
+  g.append('line').attr('x1',E.x).attr('y1',ih+5).attr('x2',Epp.x).attr('y2',ih+5)
+    .attr('stroke',C.muted).attr('stroke-width',1);
+  g.append('text').attr('x',(E.x+Epp.x)/2).attr('y',ih+18).text('αG·ΔG')
+    .attr('fill',C.muted).attr('font-size',9).attr('text-anchor','middle');
+
+  // dashed references
+  const dsh = s => s.attr('stroke',C.muted).attr('stroke-width',1).attr('stroke-dasharray','4,3');
+  dsh(g.append('line').attr('x1',E.x).attr('y1',E.y).attr('x2',E.x).attr('y2',ih));
+  dsh(g.append('line').attr('x1',0).attr('y1',E.y).attr('x2',E.x).attr('y2',E.y));
+  dsh(g.append('line').attr('x1',Epp.x).attr('y1',Epp.y).attr('x2',Epp.x).attr('y2',ih));
+  dsh(g.append('line').attr('x1',0).attr('y1',Epp.y).attr('x2',Epp.x).attr('y2',Epp.y));
+
+  // equilibrium points
+  [[E,'E',C.blue],[Epp,"E''",C.green]].forEach(([pt,lbl,col]) => {
+    g.append('circle').attr('cx',pt.x).attr('cy',pt.y).attr('r',5)
+      .attr('fill',col).attr('stroke',C.bg).attr('stroke-width',2);
+    g.append('text').attr('x',pt.x+7).attr('y',pt.y-7).text(lbl)
+      .attr('fill',col).attr('font-size',12).attr('font-weight','bold');
+  });
+
+  // tick labels
+  g.append('text').attr('x',E.x-4).attr('y',ih+14).text('Y₀').attr('fill',C.muted).attr('font-size',10).attr('text-anchor','middle');
+  g.append('text').attr('x',Epp.x-4).attr('y',ih+14).text("Y''").attr('fill',C.muted).attr('font-size',10).attr('text-anchor','middle');
+  g.append('text').attr('x',-8).attr('y',E.y+4).text('i₀').attr('fill',C.muted).attr('font-size',10).attr('text-anchor','end');
+  g.append('text').attr('x',-8).attr('y',Epp.y+4).text("i'").attr('fill',C.muted).attr('font-size',10).attr('text-anchor','end');
+
+  // crowding out annotation
+  g.append('text').attr('x',0.6*iw).attr('y',0.3*ih).text('Crowding out: Δi crowds ΔI')
+    .attr('fill',C.red).attr('font-size',9);
+})();
+
+// ─── EXTREME CASES SIDE-BY-SIDE ───
+(function() {
+  const id = 'g-extreme';
+  const svg = d3.select('#' + id);
+  const defs = svg.append('defs');
+  defs.append('marker').attr('id','arr2').attr('markerWidth',8).attr('markerHeight',8)
+    .attr('refX',6).attr('refY',3).attr('orient','auto')
+    .append('path').attr('d','M0,0 L0,6 L8,3 z').attr('fill',C.text);
+
+  const panels = [
+    {x:20, title:'Liquidity Trap (horizontal LM)', lmColor:C.amber, type:'flat'},
+    {x:300, title:'Classical Case (vertical LM)', lmColor:C.amber, type:'vert'},
+  ];
+
+  panels.forEach(({x, title, lmColor, type}) => {
+    const g = svg.append('g').attr('transform', `translate(${x},20)`);
+    const iw = 220, ih = 240, ml=40, mb=30;
+    // axes
+    g.append('line').attr('x1',ml).attr('y1',ih).attr('x2',ml+iw+5).attr('y2',ih)
+      .attr('stroke',C.text).attr('stroke-width',1.2).attr('marker-end','url(#arr2)');
+    g.append('line').attr('x1',ml).attr('y1',ih).attr('x2',ml).attr('y2',-5)
+      .attr('stroke',C.text).attr('stroke-width',1.2).attr('marker-end','url(#arr2)');
+    g.append('text').attr('x',ml+iw+10).attr('y',ih+4).text('Y').attr('fill',C.text).attr('font-size',10);
+    g.append('text').attr('x',ml-6).attr('y',-10).text('i').attr('fill',C.text).attr('font-size',10);
+    g.append('text').attr('x',ml+iw/2).attr('y',-4).text(title)
+      .attr('fill',C.muted).attr('font-size',8.5).attr('text-anchor','middle');
+
+    const is1 = lineEq(ml+0.05*iw, 0.15*ih, ml+0.75*iw, 0.85*ih);
+    const is2 = lineEq(ml+0.25*iw, 0.15*ih, ml+0.95*iw, 0.85*ih);
+
+    // IS original
+    g.append('line').attr('x1',ml+0.05*iw).attr('y1',is1.y(ml+0.05*iw))
+      .attr('x2',ml+0.75*iw).attr('y2',is1.y(ml+0.75*iw))
+      .attr('stroke',C.blue).attr('stroke-width',2);
+    g.append('text').attr('x',ml+0.77*iw).attr('y',is1.y(ml+0.75*iw)).text('IS')
+      .attr('fill',C.blue).attr('font-size',10).attr('font-weight','bold');
+
+    // IS shifted
+    g.append('line').attr('x1',ml+0.25*iw).attr('y1',is2.y(ml+0.25*iw))
+      .attr('x2',ml+0.9*iw).attr('y2',is2.y(ml+0.9*iw))
+      .attr('stroke',C.green).attr('stroke-width',1.8).attr('stroke-dasharray','4,3');
+    g.append('text').attr('x',ml+0.92*iw).attr('y',is2.y(ml+0.9*iw)).text("IS'")
+      .attr('fill',C.green).attr('font-size',10).attr('font-weight','bold');
+
+    if (type === 'flat') {
+      const yLM = 0.7*ih;
+      g.append('line').attr('x1',ml).attr('y1',yLM).attr('x2',ml+iw).attr('y2',yLM)
+        .attr('stroke',lmColor).attr('stroke-width',2.2);
+      g.append('text').attr('x',ml+iw+4).attr('y',yLM).text('LM').attr('fill',lmColor).attr('font-size',10).attr('font-weight','bold');
+      const e1x = (yLM - is1.b)/is1.m, e2x = (yLM - is2.b)/is2.m;
+      [[e1x,yLM,'E',C.blue],[e2x,yLM,"E'",C.green]].forEach(([cx,cy,lbl,col]) => {
+        g.append('circle').attr('cx',cx).attr('cy',cy).attr('r',4).attr('fill',col).attr('stroke',C.bg).attr('stroke-width',1.5);
+        g.append('text').attr('x',cx+5).attr('y',cy-6).text(lbl).attr('fill',col).attr('font-size',10).attr('font-weight','bold');
+      });
+    } else {
+      const xLM = ml+0.6*iw;
+      g.append('line').attr('x1',xLM).attr('y1',0.05*ih).attr('x2',xLM).attr('y2',0.95*ih)
+        .attr('stroke',lmColor).attr('stroke-width',2.2);
+      g.append('text').attr('x',xLM+4).attr('y',0.1*ih).text('LM').attr('fill',lmColor).attr('font-size',10).attr('font-weight','bold');
+      const e1y = is1.y(xLM), e2y = is2.y(xLM);
+      [[xLM,e1y,'E',C.blue],[xLM,e2y,"E'",C.green]].forEach(([cx,cy,lbl,col]) => {
+        g.append('circle').attr('cx',cx).attr('cy',cy).attr('r',4).attr('fill',col).attr('stroke',C.bg).attr('stroke-width',1.5);
+        g.append('text').attr('x',cx+5).attr('y',cy-6).text(lbl).attr('fill',col).attr('font-size',10).attr('font-weight','bold');
+      });
+    }
+  });
+})();
+
+// ─── MONETARY ACCOMMODATION GRAPH ───
+(function() {
+  const id = 'g-accommodation';
+  ensureArrow(id);
+  const {g, iw, ih} = baseAxes(id, 500, 320, 50, 30, 20, 40, 'Y', 'i');
+
+  const lm1 = lineEq(0.1*iw, 0.85*ih, 0.75*iw, 0.15*ih);
+  const lm2 = lineEq(0.35*iw, 0.85*ih, 0.98*iw, 0.15*ih);
+  const is1 = lineEq(0.05*iw, 0.2*ih, 0.7*iw, 0.9*ih);
+  const is2 = lineEq(0.3*iw, 0.2*ih, 0.92*iw, 0.9*ih);
+
+  const E   = intersect(is1, lm1);
+  const Ep  = intersect(is2, lm1); // fiscal only
+  const Epp = intersect(is2, lm2); // accommodated
+
+  // draw curves
+  const curves = [
+    [lm1, 0.1, 0.75, C.amber, 'LM'],
+    [lm2, 0.35, 0.95, C.teal, "LM'"],
+    [is1, 0.05, 0.7, C.blue, 'IS'],
+    [is2, 0.3, 0.9, C.green, "IS'"],
+  ];
+  curves.forEach(([eq, x1, x2, col, lbl]) => {
+    const dashed = lbl.includes("'");
+    g.append('line')
+      .attr('x1',x1*iw).attr('y1',eq.y(x1*iw))
+      .attr('x2',x2*iw).attr('y2',eq.y(x2*iw))
+      .attr('stroke',col).attr('stroke-width',2.2)
+      .attr('stroke-dasharray', dashed ? '5,3' : null);
+    g.append('text').attr('x',x2*iw+5).attr('y',eq.y(x2*iw)).text(lbl)
+      .attr('fill',col).attr('font-size',11).attr('font-weight','bold');
+  });
+
+  // dashed vertical for each equilibrium
+  const dsh = s => s.attr('stroke',C.muted).attr('stroke-width',1).attr('stroke-dasharray','4,3');
+  [E, Ep, Epp].forEach(pt => {
+    dsh(g.append('line').attr('x1',pt.x).attr('y1',pt.y).attr('x2',pt.x).attr('y2',ih));
+    dsh(g.append('line').attr('x1',0).attr('y1',pt.y).attr('x2',pt.x).attr('y2',pt.y));
+  });
+
+  // points
+  [[E,'E',C.blue],[Ep,"E'",C.amber],[Epp,"E''",C.teal]].forEach(([pt,lbl,col]) => {
+    g.append('circle').attr('cx',pt.x).attr('cy',pt.y).attr('r',5)
+      .attr('fill',col).attr('stroke',C.bg).attr('stroke-width',2);
+    g.append('text').attr('x',pt.x+7).attr('y',pt.y-7).text(lbl)
+      .attr('fill',col).attr('font-size',12).attr('font-weight','bold');
+  });
+
+  g.append('text').attr('x',E.x-4).attr('y',ih+14).text('Y₀').attr('fill',C.muted).attr('font-size',10).attr('text-anchor','middle');
+  g.append('text').attr('x',Ep.x-4).attr('y',ih+14).text("Y'").attr('fill',C.muted).attr('font-size',10).attr('text-anchor','middle');
+  g.append('text').attr('x',Epp.x-4).attr('y',ih+14).text("Y''").attr('fill',C.muted).attr('font-size',10).attr('text-anchor','middle');
+  g.append('text').attr('x',-8).attr('y',E.y+4).text('i₀').attr('fill',C.muted).attr('font-size',10).attr('text-anchor','end');
+  g.append('text').attr('x',-8).attr('y',Ep.y+4).text("i'").attr('fill',C.muted).attr('font-size',10).attr('text-anchor','end');
+  g.append('text').attr('x',-8).attr('y',Epp.y+4).text("i''").attr('fill',C.muted).attr('font-size',10).attr('text-anchor','end');
+
+  // annotation
+  g.append('text').attr('x',0.55*iw).attr('y',0.82*ih).text('Both IS & LM shift → maximum ΔY')
+    .attr('fill',C.teal).attr('font-size',9);
+})();
+
+// ─── POLICY MIX GRAPH ───
+(function() {
+  const id = 'g-policymix';
+  ensureArrow(id);
+  const {g, iw, ih} = baseAxes(id, 500, 320, 55, 30, 20, 40, 'Y', 'i');
+
+  const lm1 = lineEq(0.1*iw, 0.85*ih, 0.72*iw, 0.1*ih);
+  const lm2 = lineEq(0.38*iw, 0.85*ih, 0.98*iw, 0.1*ih);
+  const is1 = lineEq(0.05*iw, 0.15*ih, 0.68*iw, 0.9*ih);
+  const is2 = lineEq(0.28*iw, 0.15*ih, 0.9*iw, 0.9*ih);
+
+  const E  = intersect(is1, lm1);
+  const E1 = intersect(is2, lm1); // fiscal expansion only
+  const E2 = intersect(is1, lm2); // monetary expansion only
+  const Em = intersect(is2, lm2); // both (accommodation-like midpoint)
+
+  // determine Y* as max of E1 and E2 x values
+  const Ystar = Math.max(E1.x, E2.x);
+
+  // draw curves
+  [[lm1,0.1,0.72,C.amber,'LM'],[lm2,0.38,0.95,C.teal,"LM'"],[is1,0.05,0.68,C.blue,'IS'],[is2,0.28,0.88,C.green,"IS'"]].forEach(([eq,x1,x2,col,lbl]) => {
+    const dashed = lbl.includes("'");
+    g.append('line').attr('x1',x1*iw).attr('y1',eq.y(x1*iw))
+      .attr('x2',x2*iw).attr('y2',eq.y(x2*iw))
+      .attr('stroke',col).attr('stroke-width',2.2)
+      .attr('stroke-dasharray', dashed ? '5,3' : null);
+    g.append('text').attr('x',x2*iw+5).attr('y',eq.y(x2*iw)).text(lbl)
+      .attr('fill',col).attr('font-size',11).attr('font-weight','bold');
+  });
+
+  // Y* vertical line
+  g.append('line').attr('x1',Ystar).attr('y1',0.05*ih).attr('x2',Ystar).attr('y2',ih)
+    .attr('stroke',C.red).attr('stroke-width',1.5).attr('stroke-dasharray','6,3');
+  g.append('text').attr('x',Ystar+4).attr('y',0.1*ih).text('Y*')
+    .attr('fill',C.red).attr('font-size',11).attr('font-weight','bold');
+
+  // equilibrium points
+  [[E,'E',C.blue],[E1,"E₁",C.green],[E2,"E₂",C.teal]].forEach(([pt,lbl,col]) => {
+    g.append('circle').attr('cx',pt.x).attr('cy',pt.y).attr('r',5)
+      .attr('fill',col).attr('stroke',C.bg).attr('stroke-width',2);
+    g.append('text').attr('x',pt.x+7).attr('y',pt.y-7).text(lbl)
+      .attr('fill',col).attr('font-size',12).attr('font-weight','bold');
+  });
+
+  g.append('text').attr('x',E.x-4).attr('y',ih+14).text('Y₀').attr('fill',C.muted).attr('font-size',10).attr('text-anchor','middle');
+  g.append('text').attr('x',-8).attr('y',E.y+4).text('i₀').attr('fill',C.muted).attr('font-size',10).attr('text-anchor','end');
+
+  // annotations
+  g.append('text').attr('x',E1.x+7).attr('y',E1.y+14).text('(fiscal)')
+    .attr('fill',C.green).attr('font-size',9);
+  g.append('text').attr('x',E2.x+7).attr('y',E2.y+14).text('(monetary)')
+    .attr('fill',C.teal).attr('font-size',9);
+})();
+
+// sidebar active section highlight
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      document.querySelectorAll('aside a').forEach(a => a.classList.remove('active'));
+      const id = e.target.id;
+      const link = document.querySelector(`aside a[href="#${id}"]`);
+      if (link) link.classList.add('active');
+    }
+  });
+}, {threshold: 0.3});
+document.querySelectorAll('section[id]').forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

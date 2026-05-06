@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Ch. 6 — Phillips Curve &amp; Aggregate Supply | Macroeconomics</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"/>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}]})"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<style>
+:root{
+  --bg:#0f1117;--surface:#1a1d27;--card:#21253a;--border:#2e3352;
+  --text:#e8eaf0;--muted:#8b91b0;--accent:#6c8eff;--accent2:#50e3c2;
+  --accent3:#f9a825;--red:#ff5c5c;--green:#4caf50;--purple:#c084fc;
+  --sidebar-w:270px;--font:'Inter',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:15px;line-height:1.75}
+a{color:var(--accent);text-decoration:none}
+.layout{display:flex;min-height:100vh}
+aside{width:var(--sidebar-w);background:var(--surface);border-right:1px solid var(--border);
+  position:sticky;top:0;height:100vh;overflow-y:auto;flex-shrink:0;padding:1.5rem 1rem}
+aside h2{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.75rem}
+aside ul{list-style:none}
+aside ul li{margin:.3rem 0}
+aside ul li a{color:var(--muted);font-size:.82rem;display:block;padding:.2rem .5rem;border-radius:4px;transition:all .15s}
+aside ul li a:hover,aside ul li a.active{color:var(--text);background:var(--card)}
+.chapter-badge{display:inline-block;background:var(--purple);color:#fff;font-size:.7rem;
+  font-weight:700;padding:.2rem .6rem;border-radius:999px;margin-bottom:1rem}
+main{flex:1;max-width:900px;margin:0 auto;padding:2.5rem 2rem}
+h1{font-size:2rem;font-weight:800;line-height:1.2;margin-bottom:.5rem}
+h2{font-size:1.35rem;font-weight:700;margin:2.5rem 0 1rem;color:var(--accent);padding-bottom:.4rem;border-bottom:1px solid var(--border)}
+h3{font-size:1.05rem;font-weight:600;margin:1.8rem 0 .7rem;color:var(--accent2)}
+h4{font-size:.9rem;font-weight:600;margin:1.2rem 0 .5rem;color:var(--accent3)}
+p{margin-bottom:1rem}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.5rem;margin:1.2rem 0}
+.card.blue{border-left:3px solid var(--accent)}
+.card.green{border-left:3px solid var(--green)}
+.card.amber{border-left:3px solid var(--accent3)}
+.card.red{border-left:3px solid var(--red)}
+.card.teal{border-left:3px solid var(--accent2)}
+.card.purple{border-left:3px solid var(--purple)}
+.label{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem}
+.label.blue{color:var(--accent)} .label.green{color:var(--green)} .label.amber{color:var(--accent3)}
+.label.red{color:var(--red)} .label.teal{color:var(--accent2)} .label.purple{color:var(--purple)}
+.deriv{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.2rem 1.5rem;margin:1rem 0;overflow-x:auto}
+.deriv-step{display:flex;align-items:flex-start;gap:1rem;padding:.6rem 0;border-bottom:1px solid var(--border)}
+.deriv-step:last-child{border-bottom:none}
+.step-num{background:var(--purple);color:#fff;font-size:.7rem;font-weight:700;
+  width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem}
+.step-eq{font-size:.95rem;flex:1}
+.step-note{color:var(--muted);font-size:.8rem;margin-top:.25rem}
+table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.88rem}
+th{background:var(--surface);color:var(--muted);font-weight:600;text-align:left;padding:.6rem .9rem;border:1px solid var(--border)}
+td{padding:.55rem .9rem;border:1px solid var(--border)}
+tr:nth-child(even) td{background:var(--surface)}
+.graph-wrap{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1rem;margin:1.2rem 0}
+.graph-title{font-size:.78rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.75rem;text-align:center}
+svg text{font-family:var(--font);fill:var(--text)}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin:.75rem 0}
+.tag{background:var(--surface);border:1px solid var(--border);border-radius:999px;font-size:.72rem;padding:.2rem .65rem;color:var(--muted)}
+.exam-alert{background:rgba(249,168,37,.08);border:1px solid rgba(249,168,37,.3);border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;font-size:.88rem}
+.exam-alert strong{color:var(--accent3)}
+.up{color:var(--green);font-weight:700} .down{color:var(--red);font-weight:700}
+.formula-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.75rem;margin-top:.75rem}
+.formula-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.9rem 1rem}
+.formula-card .fc-name{font-size:.72rem;color:var(--muted);margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.07em}
+.q-block{background:var(--surface);border-left:3px solid var(--accent2);border-radius:6px;padding:.9rem 1.1rem;margin:.7rem 0}
+.q-marks{font-size:.72rem;color:var(--accent3);font-weight:700;margin-bottom:.3rem}
+.meta{display:flex;gap:1rem;flex-wrap:wrap;margin:.75rem 0 1.5rem;font-size:.8rem;color:var(--muted)}
+@media print{aside{display:none}main{max-width:100%;padding:1rem}body{background:#fff;color:#000}}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:var(--surface)}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<aside>
+  <div class="chapter-badge">Chapter 6</div>
+  <h2>Contents</h2>
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#original-phillips">Original Phillips Curve</a></li>
+    <li><a href="#augmented">Expectations-Augmented PC</a></li>
+    <li><a href="#stagflation">Stagflation</a></li>
+    <li><a href="#rational-expectations">Rational Expectations</a></li>
+    <li><a href="#wage-stickiness">Wage Stickiness</a></li>
+    <li><a href="#contracts">Contracts &amp; Staggering</a></li>
+    <li><a href="#as-derivation">Phillips Curve → AS Curve</a></li>
+    <li><a href="#okuns-law">Okun's Law</a></li>
+    <li><a href="#supply-shocks">Supply Shocks</a></li>
+    <li><a href="#accommodation">Accommodating Policy</a></li>
+    <li><a href="#formula-sheet">Formula Sheet</a></li>
+    <li><a href="#questions">Practice Questions</a></li>
+  </ul>
+</aside>
+
+<main>
+  <p style="color:var(--muted);font-size:.82rem">Macroeconomics · Dornbusch, Fischer &amp; Startz 11e</p>
+  <h1>Aggregate Supply: The Phillips Curve</h1>
+  <div class="meta">
+    <span>📖 Chapter 6</span>
+    <span>🎯 Exam weight: High</span>
+    <span>🔑 Phillips curve · NAIRU · Stagflation · Expectations</span>
+  </div>
+  <div class="tags">
+    <span class="tag">Phillips-curve</span>
+    <span class="tag">inflation</span>
+    <span class="tag">unemployment</span>
+    <span class="tag">NAIRU</span>
+    <span class="tag">expectations</span>
+    <span class="tag">stagflation</span>
+    <span class="tag">wage-stickiness</span>
+    <span class="tag">supply-shocks</span>
+  </div>
+
+  <!-- OVERVIEW -->
+  <section id="overview">
+    <h2>Overview</h2>
+    <div class="card purple">
+      <div class="label purple">Chapter Highlights</div>
+      <ul style="padding-left:1.2rem;line-height:2">
+        <li>The <strong>Phillips curve</strong> and the <strong>aggregate supply curve</strong> are two ways to look at the same phenomena</li>
+        <li>The <em>simple</em> Phillips curve: inverse relation between unemployment and wage/price inflation</li>
+        <li>The <em>modern</em> (expectations-augmented) Phillips curve: $\pi = \pi^e - \varepsilon(u - u^*)$</li>
+        <li>Expected inflation passes <em>one-for-one</em> into actual inflation</li>
+        <li>Unemployment equals natural rate when $\pi = \pi^e$ (long-run vertical)</li>
+        <li><strong>Stagflation</strong> = recession on a high-$\pi^e$ short-run curve</li>
+        <li>Short-run AS is <em>flat</em>; long-run AS is <em>vertical</em></li>
+      </ul>
+    </div>
+    <div class="card teal">
+      <div class="label teal">Translation Key</div>
+      <table>
+        <thead><tr><th>Aggregate supply side</th><th>Phillips curve side</th></tr></thead>
+        <tbody>
+          <tr><td>Price level $P$</td><td>Inflation rate $\pi$</td></tr>
+          <tr><td>Output $Y$</td><td>Unemployment $u$</td></tr>
+          <tr><td>Potential output $Y^*$</td><td>Natural rate $u^*$ (NAIRU)</td></tr>
+          <tr><td>AS curve shifts up</td><td>Phillips curve shifts up (higher $\pi^e$)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ORIGINAL PHILLIPS CURVE -->
+  <section id="original-phillips">
+    <h2>The Original Phillips Curve</h2>
+    <p>In 1958, A. W. Phillips studied UK wage data for 1861–1957. Key finding: an <strong>inverse relationship between unemployment and the rate of wage inflation</strong>.</p>
+
+    <h3>Simple Phillips Curve Equation</h3>
+    <div class="card blue">
+      <div class="label blue">Definition</div>
+      <p><strong>Rate of wage inflation:</strong></p>
+      $$g_w = \frac{W_{t+1} - W_t}{W_t}$$
+      <p style="margin-top:.8rem"><strong>Simple Phillips curve:</strong></p>
+      $$g_w = -\varepsilon(u - u^*)$$
+      <p style="margin-top:.5rem;font-size:.88rem">where $\varepsilon > 0$ measures wage sensitivity to unemployment, $u^*$ = natural rate (NAIRU)</p>
+    </div>
+
+    <h3>Interpretation</h3>
+    <table>
+      <thead><tr><th>Condition</th><th>Result</th><th>Intuition</th></tr></thead>
+      <tbody>
+        <tr><td>$u > u^*$</td><td class="down">$g_w < 0$, wages falling</td><td>Labour market slack; workers accept lower wages</td></tr>
+        <tr><td>$u = u^*$</td><td>$g_w = 0$, wages stable</td><td>Full employment — no upward or downward pressure</td></tr>
+        <tr><td>$u < u^*$</td><td class="up">$g_w > 0$, wages rising</td><td>Labour market tight; workers bargain for higher wages</td></tr>
+      </tbody>
+    </table>
+
+    <p>Equivalently, wages next period:</p>
+    $$W_{t+1} = W_t[1 - \varepsilon(u - u^*)]$$
+
+    <!-- Original Phillips Curve Graph -->
+    <div class="graph-wrap">
+      <div class="graph-title">Fig 6-1 — Original Phillips Curve (Downward Sloping)</div>
+      <svg id="g-phillips-orig" width="100%" viewBox="0 0 500 300"></svg>
+    </div>
+
+    <div class="card amber">
+      <div class="label amber">Policy Tradeoff (1960s View)</div>
+      <p>Policymakers thought they faced a <em>permanent menu</em> of choices along the Phillips curve: accept higher inflation for lower unemployment, or accept higher unemployment to keep inflation low. The 1960s US data appeared to confirm this.</p>
+    </div>
+  </section>
+
+  <!-- EXPECTATIONS-AUGMENTED PHILLIPS CURVE -->
+  <section id="augmented">
+    <h2>The Expectations-Augmented Phillips Curve</h2>
+    <p>The simple Phillips curve collapsed in the 1970s as stagflation appeared. The missing ingredient: <strong>expected inflation</strong>.</p>
+
+    <div class="card blue">
+      <div class="label blue">Intuition</div>
+      <p>Workers and firms negotiate over <em>real wages</em>. If inflation is expected to be 10%, a 3% nominal raise is actually a 7% real wage cut. What matters is excess of wage growth over expected inflation.</p>
+    </div>
+
+    <h3>Deriving the Modern Phillips Curve</h3>
+    <div class="deriv">
+      <div class="deriv-step">
+        <div class="step-num">1</div>
+        <div class="step-eq">
+          <div>Original wage-inflation PC:</div>
+          <div>$$g_w = -\varepsilon(u - u^*)$$</div>
+          <div class="step-note">Workers care about wage growth <em>relative to expected inflation</em></div>
+        </div>
+      </div>
+      <div class="deriv-step">
+        <div class="step-num">2</div>
+        <div class="step-eq">
+          <div>Augment with expected inflation $\pi^e$:</div>
+          <div>$$(g_w - \pi^e) = -\varepsilon(u - u^*)$$</div>
+          <div class="step-note">Excess of wage inflation over expected inflation drives unemployment effects</div>
+        </div>
+      </div>
+      <div class="deriv-step">
+        <div class="step-num">3</div>
+        <div class="step-eq">
+          <div>Assuming constant real wage: $\pi = g_w$, so:</div>
+          <div>$$\boxed{\pi = \pi^e - \varepsilon(u - u^*)}$$</div>
+          <div class="step-note">Modern (expectations-augmented) Phillips curve — the workhorse of AS theory</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Augmented PC Graph -->
+    <div class="graph-wrap">
+      <div class="graph-title">Fig 6-2 — Expectations-Augmented Phillips Curve (Short-Run Shifts with π<sup>e</sup>)</div>
+      <svg id="g-augmented" width="100%" viewBox="0 0 500 310"></svg>
+    </div>
+
+    <div class="card teal">
+      <div class="label teal">Two Critical Properties</div>
+      <ul style="padding-left:1.2rem;line-height:2.2">
+        <li><strong>Expected inflation passes one-for-one into actual inflation:</strong> if $\pi^e$ rises by 1%, the whole short-run PC shifts up by 1%</li>
+        <li><strong>At $u = u^*$: $\pi = \pi^e$</strong> — unemployment is at the natural rate when actual inflation equals expected inflation</li>
+      </ul>
+    </div>
+
+    <h3>Adaptive Expectations: Testing the Model</h3>
+    <p>Assuming people expect this year's inflation to equal last year's: $\pi^e_t = \pi_{t-1}$, the Phillips curve becomes:</p>
+    $$\pi_t - \pi_{t-1} = -\varepsilon(u - u^*)$$
+    <p>Empirical slope estimate: $\varepsilon \approx 0.5$ — one extra point of unemployment reduces inflation by only about half a point. This confirms the <strong>short-run Phillips curve is quite flat</strong>.</p>
+  </section>
+
+  <!-- STAGFLATION -->
+  <section id="stagflation">
+    <h2>Stagflation</h2>
+    <div class="card red">
+      <div class="label red">Definition</div>
+      <p><strong>Stagflation</strong> = simultaneous high unemployment (stagnation) and high inflation. Example: 1982, US had 9% unemployment and 6% inflation.</p>
+    </div>
+
+    <h3>How Stagflation Occurs</h3>
+    <div class="deriv">
+      <div class="deriv-step">
+        <div class="step-num">1</div>
+        <div class="step-eq">
+          <div>Economy experienced high inflation in the 1970s → $\pi^e$ rises to ~7%</div>
+          <div class="step-note">Short-run Phillips curve shifts up — now intersects $u^*$ at 7% inflation</div>
+        </div>
+      </div>
+      <div class="deriv-step">
+        <div class="step-num">2</div>
+        <div class="step-eq">
+          <div>Recession hits → $u > u^*$ → $\pi$ falls, but only partially</div>
+          <div class="step-note">Move right along the <em>high-$\pi^e$</em> curve — $\pi$ falls below $\pi^e$ but stays well above zero</div>
+        </div>
+      </div>
+      <div class="deriv-step">
+        <div class="step-num">3</div>
+        <div class="step-eq">
+          <div>Result: high unemployment AND high inflation simultaneously</div>
+          <div class="step-note">Cannot be explained by simple Phillips curve; requires expectations</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stagflation Graph -->
+    <div class="graph-wrap">
+      <div class="graph-title">Fig 6-3 — Stagflation: High π<sup>e</sup> + Recession</div>
+      <svg id="g-stagflation" width="100%" viewBox="0 0 500 310"></svg>
+    </div>
+
+    <div class="exam-alert">
+      <strong>Examiner Note:</strong> Stagflation is <em>not</em> a mystery once you understand expectations. It is simply a recession on a short-run Phillips curve that has shifted up due to prior high inflation. The 1982 situation (point S in Fig 6-3) is the canonical exam example.
+    </div>
+  </section>
+
+  <!-- RATIONAL EXPECTATIONS -->
+  <section id="rational-expectations">
+    <h2>Rational Expectations</h2>
+    <div class="card purple">
+      <div class="label purple">The Rational Expectations Revolution</div>
+      <p>Robert Lucas (1973): if people form expectations <em>rationally</em> (using all available information), then <em>predictable</em> changes in monetary policy should not affect output — only surprise changes can move $u$ away from $u^*$.</p>
+    </div>
+
+    <h3>The Logic</h3>
+    <p>The modern Phillips curve: $\pi = \pi^e - \varepsilon(u - u^*)$</p>
+    <p>If agents rationally set $\pi^e = E[\pi]$ = model's predicted $\pi$, then substituting back implies $u = u^*$ always. Systematic monetary policy just changes $\pi^e$ instantly, leaving output unchanged.</p>
+
+    <div class="card amber">
+      <div class="label amber">Rational vs. Adaptive Expectations</div>
+      <table>
+        <thead><tr><th>Aspect</th><th>Adaptive expectations</th><th>Rational expectations</th></tr></thead>
+        <tbody>
+          <tr><td>How $\pi^e$ is formed</td><td>$\pi^e_t = \pi_{t-1}$ (backward-looking)</td><td>$\pi^e_t = E_t[\pi_t]$ (model-consistent)</td></tr>
+          <tr><td>PC shifts in response to policy</td><td>Gradually (only after inflation is observed)</td><td>Immediately (when policy announced)</td></tr>
+          <tr><td>Effect of announced ΔM</td><td>Real effects for extended period</td><td>Only $\pi$ changes, $u$ unchanged</td></tr>
+          <tr><td>Implication</td><td>Slow adjustment; prolonged recessions</td><td>Policy ineffective unless surprising</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Why Rational Expectations Doesn't Fully Explain the World</h3>
+    <ul style="padding-left:1.2rem;line-height:2">
+      <li><strong>Long-term contracts:</strong> wages fixed for 2–3 years; cannot adjust even if expectations are rational</li>
+      <li><strong>Slow learning:</strong> even rational agents need time to update models</li>
+      <li><strong>Menu costs:</strong> cost of changing prices can outweigh benefit of getting price exactly right</li>
+      <li><strong>Empirical evidence:</strong> monetary policy demonstrably has real effects for significant periods</li>
+    </ul>
+  </section>
+
+  <!-- WAGE STICKINESS -->
+  <section id="wage-stickiness">
+    <h2>Why Are Wages Sticky?</h2>
+    <p>The Phillips curve requires slow wage adjustment. Multiple theories explain why nominal wages adjust sluggishly:</p>
+
+    <table>
+      <thead><tr><th>Theory</th><th>Mechanism</th><th>Implication</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Imperfect Information</strong><br><small>(Friedman-Phelps)</small></td>
+          <td>Workers mistake nominal for real wage increases; supply more labour temporarily</td>
+          <td>Short-run AS upward sloping; disappears when expectations correct</td>
+        </tr>
+        <tr>
+          <td><strong>Coordination failure</strong></td>
+          <td>No firm raises price first (loses business); no firm cuts wage first (loses workers)</td>
+          <td>Prices &amp; wages move slowly even without individual irrationality</td>
+        </tr>
+        <tr>
+          <td><strong>Efficiency wages</strong></td>
+          <td>Wages above market-clearing motivate workers; firms won't cut</td>
+          <td>Wages are downward rigid; unemployment can persist</td>
+        </tr>
+        <tr>
+          <td><strong>Insider-outsider</strong><br><small>(Lindbeck-Snower)</small></td>
+          <td>Employed insiders bargain wages; unemployed outsiders excluded from table</td>
+          <td>Wages don't fall much with unemployment; recovery is slow</td>
+        </tr>
+        <tr>
+          <td><strong>Long-term contracts</strong></td>
+          <td>Wages set for 2–3 years; staggered across firms and industries</td>
+          <td>Aggregate wage adjustment slow even if each contract is rational</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- CONTRACTS & STAGGERING -->
+  <section id="contracts">
+    <h2>Contracts &amp; Staggered Wage Setting</h2>
+    <p>The wage-employment relationship (derived from PC):</p>
+    $$g_w = \pi^e + \frac{W_{t+1} - W_t}{W_t} = \pi^e - \varepsilon\frac{N^* - N}{N^*} \tag{WN}$$
+
+    <h3>The January–July Example</h3>
+    <div class="card blue">
+      <div class="label blue">How Staggering Slows Adjustment</div>
+      <ul style="padding-left:1.2rem;line-height:2">
+        <li>Half the workforce renegotiates in January; half in July</li>
+        <li>Money stock rises in September</li>
+        <li>No wage adjustment until January (3-month delay minimum)</li>
+        <li>January workers don't fully adjust because July wages won't change for 6 more months — over-adjusting would price themselves out of jobs</li>
+        <li>July workers similarly can't fully adjust because January wages are already fixed</li>
+        <li>Wages leapfrog each other, rising only partway toward equilibrium each period</li>
+        <li>Full adjustment takes <em>multiple rounds</em> of renegotiation</li>
+      </ul>
+    </div>
+
+    <div class="exam-alert">
+      <strong>Key Insight:</strong> Staggered contracts explain why the aggregate supply curve shifts up gradually even if every individual contract is perfectly rational. The position of the AS curve in any period depends on where it was last period.
+    </div>
+  </section>
+
+  <!-- AS CURVE DERIVATION -->
+  <section id="as-derivation">
+    <h2>From Phillips Curve to Aggregate Supply Curve</h2>
+    <p>Four-step derivation linking employment, wages, prices, and output.</p>
+
+    <div class="deriv">
+      <div class="deriv-step">
+        <div class="step-num">1</div>
+        <div class="step-eq">
+          <div><strong>Okun's Law:</strong> translate output gap to unemployment gap</div>
+          <div>$$\frac{Y - Y^*}{Y^*} = -\omega(u - u^*), \quad \omega \approx 2$$</div>
+          <div class="step-note">1 extra point of unemployment costs about 2% of GDP</div>
+        </div>
+      </div>
+      <div class="deriv-step">
+        <div class="step-num">2</div>
+        <div class="step-eq">
+          <div><strong>Price–cost markup:</strong> firms price at markup over unit labour cost</div>
+          <div>$$P = (1+z)\frac{W}{a}$$</div>
+          <div class="step-note">$z$ = markup, $a$ = labour productivity (output per worker), $W/a$ = unit labour cost</div>
+        </div>
+      </div>
+      <div class="deriv-step">
+        <div class="step-num">3</div>
+        <div class="step-eq">
+          <div><strong>Phillips curve:</strong> wage growth depends on employment gap and expected inflation</div>
+          <div>$$g_w = \pi^e - \varepsilon\frac{N^* - N}{N^*}$$</div>
+          <div class="step-note">This drives price inflation because $P \propto W$ (from markup equation)</div>
+        </div>
+      </div>
+      <div class="deriv-step">
+        <div class="step-num">4</div>
+        <div class="step-eq">
+          <div><strong>Combining all three → AS curve:</strong></div>
+          <div>$$P_{t+1} = P^e_{t+1}\left[1 + \lambda\left(\frac{Y - Y^*}{Y^*}\right)\right]$$</div>
+          <div class="step-note">Aggregate supply curve: next period's price rises with expected price and output gap</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AS Curve Graph -->
+    <div class="graph-wrap">
+      <div class="graph-title">Fig 6-4 — Aggregate Supply Curve with Shifting PC</div>
+      <svg id="g-as-curve" width="100%" viewBox="0 0 500 310"></svg>
+    </div>
+
+    <div class="card teal">
+      <div class="label teal">Key Property of the AS Curve</div>
+      <p>The AS curve shifts over time as expected inflation changes:</p>
+      <ul style="padding-left:1.2rem;line-height:2;margin-top:.5rem">
+        <li>$Y > Y^*$ this period → $P^e$ rises next period → AS shifts <em>up</em></li>
+        <li>$Y < Y^*$ this period → $P^e$ falls next period → AS shifts <em>down</em></li>
+        <li>Long-run AS is vertical at $Y^*$ (automatic adjustment mechanism)</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- OKUN'S LAW -->
+  <section id="okuns-law">
+    <h2>Okun's Law</h2>
+    <div class="card amber">
+      <div class="label amber">Definition</div>
+      $$\frac{Y - Y^*}{Y^*} = -\omega(u - u^*), \quad \omega \approx 2$$
+      <p style="margin-top:.7rem">One extra percentage point of unemployment is associated with approximately <strong>2 percentage points</strong> of lost GDP relative to potential.</p>
+    </div>
+    <table>
+      <thead><tr><th>$u - u^*$</th><th>Output gap $(Y-Y^*)/Y^*$</th><th>Interpretation</th></tr></thead>
+      <tbody>
+        <tr><td>+1%</td><td>-2%</td><td>1 point above NAIRU → lose 2% of GDP</td></tr>
+        <tr><td>0</td><td>0</td><td>Unemployment at natural rate; output at potential</td></tr>
+        <tr><td>-1%</td><td>+2%</td><td>1 point below NAIRU → output 2% above potential (overheating)</td></tr>
+      </tbody>
+    </table>
+    <div class="exam-alert">
+      <strong>Why ω ≈ 2 not 1?</strong> When unemployment falls 1%, firms hire workers who were marginally employed before, work longer hours, and productivity rises cyclically — so output increases by more than 1%.
+    </div>
+  </section>
+
+  <!-- SUPPLY SHOCKS -->
+  <section id="supply-shocks">
+    <h2>Supply Shocks</h2>
+    <div class="card red">
+      <div class="label red">Definition</div>
+      <p>A <strong>supply shock</strong> is a disturbance whose first impact is a shift in the AS curve, not the AD curve.</p>
+    </div>
+
+    <h3>Adverse Supply Shock (e.g., OPEC Oil Embargo 1973)</h3>
+    <div class="deriv">
+      <div class="deriv-step">
+        <div class="step-num">1</div>
+        <div class="step-eq">
+          <div>Oil price spike → unit production costs rise → firms supply less at every price</div>
+          <div class="step-note">AS curve shifts up: same output now requires higher price</div>
+        </div>
+      </div>
+      <div class="deriv-step">
+        <div class="step-num">2</div>
+        <div class="step-eq">
+          <div>Economy moves from $E$ to $E'$: $P$ rises, $Y$ falls</div>
+          <div class="step-note">Double blow: higher prices AND lower output — the supply-shock recession</div>
+        </div>
+      </div>
+      <div class="deriv-step">
+        <div class="step-num">3</div>
+        <div class="step-eq">
+          <div>Without policy response: $Y < Y^*$ → wages gradually fall → AS shifts back down → slow recovery to $E$</div>
+          <div class="step-note">Real wage falls as nominal wage is dragged down by unemployment</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Supply Shock Graph -->
+    <div class="graph-wrap">
+      <div class="graph-title">Fig 6-5 — Adverse Supply Shock: AS Shifts Up</div>
+      <svg id="g-supply-shock" width="100%" viewBox="0 0 500 320"></svg>
+    </div>
+
+    <h3>Accommodating vs. Non-Accommodating Policy</h3>
+    <table>
+      <thead><tr><th>Policy response</th><th>AD moves to</th><th>Output</th><th>Price level</th><th>Real wage</th></tr></thead>
+      <tbody>
+        <tr><td>No accommodation (passive)</td><td>Stays at AD</td><td class="down">↓ to $Y'$</td><td class="up">↑ to $P'$</td><td>Eventually ↓ as wages fall</td></tr>
+        <tr><td>Accommodate (expand AD)</td><td>AD shifts to AD'</td><td>Stays at $Y^*$</td><td class="up">↑ fully (more inflation)</td><td class="down">↓ immediately via higher P</td></tr>
+      </tbody>
+    </table>
+
+    <div class="card amber">
+      <div class="label amber">The Accommodation Dilemma</div>
+      <p>Accommodating policy avoids the output recession but validates the full price increase. Non-accommodating policy causes a recession but eventually returns the economy to the original price level. Policymakers face a tradeoff: <em>accept more inflation now, or more unemployment now</em>.</p>
+    </div>
+  </section>
+
+  <!-- ACCOMMODATION -->
+  <section id="accommodation">
+    <h2>Accommodating Supply Shocks</h2>
+    <p>After an adverse shock, AD can be expanded to maintain $Y^*$, but at the cost of higher prices:</p>
+    $$P^* > P' > P \quad \text{(fully accommodated price rise)}$$
+    <p>The requirement for accommodation: the real wage must fall. Accommodation achieves the real wage cut via higher prices rather than lower nominal wages — a faster but more inflationary path.</p>
+
+    <div class="exam-alert">
+      <strong>Historical Context:</strong> 1973 OPEC shock — neither fiscal nor monetary policy responded. Unemployment hit 8%+ by late 1974. Then in 1975–76, policy turned stimulatory, accelerating the recovery. The 1979 shock was accommodated less, leading to the 1980–82 recession but ultimately breaking the inflation spiral.
+    </div>
+  </section>
+
+  <!-- FORMULA SHEET -->
+  <section id="formula-sheet">
+    <h2>Formula Sheet</h2>
+    <div class="formula-grid">
+      <div class="formula-card">
+        <div class="fc-name">Rate of Wage Inflation</div>
+        <div>$$g_w = \frac{W_{t+1} - W_t}{W_t}$$</div>
+      </div>
+      <div class="formula-card">
+        <div class="fc-name">Simple Phillips Curve</div>
+        <div>$$g_w = -\varepsilon(u - u^*)$$</div>
+      </div>
+      <div class="formula-card">
+        <div class="fc-name">Expectations-Augmented PC</div>
+        <div>$$\pi = \pi^e - \varepsilon(u - u^*)$$</div>
+      </div>
+      <div class="formula-card">
+        <div class="fc-name">Adaptive Expectations</div>
+        <div>$$\pi^e_t = \pi_{t-1}$$</div>
+      </div>
+      <div class="formula-card">
+        <div class="fc-name">Change-in-Inflation Form</div>
+        <div>$$\pi_t - \pi_{t-1} = -\varepsilon(u - u^*)$$</div>
+      </div>
+      <div class="formula-card">
+        <div class="fc-name">Okun's Law</div>
+        <div>$$\frac{Y-Y^*}{Y^*} = -\omega(u-u^*), \; \omega\approx 2$$</div>
+      </div>
+      <div class="formula-card">
+        <div class="fc-name">Markup Pricing</div>
+        <div>$$P = (1+z)\frac{W}{a}$$</div>
+      </div>
+      <div class="formula-card">
+        <div class="fc-name">Aggregate Supply Curve</div>
+        <div>$$P_{t+1} = P^e_{t+1}\!\left[1+\lambda\!\left(\frac{Y-Y^*}{Y^*}\right)\right]$$</div>
+      </div>
+      <div class="formula-card">
+        <div class="fc-name">Unemployment Gap</div>
+        <div>$$u - u^* = \frac{N^* - N}{N^*}$$</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRACTICE QUESTIONS -->
+  <section id="questions">
+    <h2>Practice Questions</h2>
+
+    <h3>2-Mark Questions</h3>
+    <div class="q-block">
+      <div class="q-marks">2 MARKS</div>
+      <p>State the expectations-augmented Phillips curve and explain the significance of the term $\pi^e$.</p>
+    </div>
+    <div class="q-block">
+      <div class="q-marks">2 MARKS</div>
+      <p>Define the NAIRU and explain its role in the long-run Phillips curve.</p>
+    </div>
+    <div class="q-block">
+      <div class="q-marks">2 MARKS</div>
+      <p>What is stagflation? Use the Phillips curve diagram to explain how it occurs.</p>
+    </div>
+
+    <h3>5-Mark Questions</h3>
+    <div class="q-block">
+      <div class="q-marks">5 MARKS</div>
+      <p>Explain why the simple Phillips curve collapsed in the 1970s. How does the expectations-augmented version of the Phillips curve resolve this failure? Illustrate with reference to the 1970s stagflation experience.</p>
+    </div>
+    <div class="q-block">
+      <div class="q-marks">5 MARKS</div>
+      <p>Using the markup pricing equation and Okun's law, derive the aggregate supply curve from the expectations-augmented Phillips curve. What does this derivation reveal about the source of price stickiness?</p>
+    </div>
+    <div class="q-block">
+      <div class="q-marks">5 MARKS</div>
+      <p>Explain four theories of wage stickiness. Which do you find most convincing and why?</p>
+    </div>
+
+    <h3>10-Mark Questions</h3>
+    <div class="q-block">
+      <div class="q-marks">10 MARKS</div>
+      <p>"In the short run, there is a tradeoff between inflation and unemployment. In the long run, there is none." Critically evaluate this statement using (a) the simple Phillips curve, (b) the expectations-augmented Phillips curve, and (c) the rational expectations modification. What does the empirical evidence suggest about the slope of the short-run Phillips curve?</p>
+    </div>
+    <div class="q-block">
+      <div class="q-marks">10 MARKS</div>
+      <p>In 1973, the OPEC oil embargo raised oil prices sharply. (a) Using an AS-AD diagram, show the immediate impact of an adverse supply shock on output and the price level. (b) Explain the adjustment process back to full employment in the absence of policy intervention. (c) Should policymakers have accommodated the shock with expansionary policy? Discuss the tradeoffs involved, with reference to the 1973–75 experience.</p>
+    </div>
+  </section>
+
+</main>
+</div>
+
+<script>
+const C = {bg:'#21253a',surface:'#1a1d27',border:'#2e3352',text:'#e8eaf0',muted:'#8b91b0',
+  blue:'#6c8eff',teal:'#50e3c2',amber:'#f9a825',red:'#ff5c5c',green:'#4caf50',purple:'#c084fc'};
+
+function mkSvg(id) {
+  const svg = d3.select('#'+id);
+  const el = svg.node();
+  const tw = el.viewBox.baseVal.width, th = el.viewBox.baseVal.height;
+  const ml=55,mr=25,mt=20,mb=40;
+  const iw = tw-ml-mr, ih = th-mt-mb;
+  let defs = svg.select('defs');
+  if(defs.empty()) defs = svg.append('defs');
+  if(defs.select('#a'+id).empty()) {
+    defs.append('marker').attr('id','a'+id).attr('markerWidth',7).attr('markerHeight',7)
+      .attr('refX',5).attr('refY',3).attr('orient','auto')
+      .append('path').attr('d','M0,0 L0,6 L7,3 z').attr('fill',C.text);
+  }
+  const g = svg.append('g').attr('transform',`translate(${ml},${mt})`);
+  g.append('line').attr('x1',0).attr('y1',ih).attr('x2',iw+5).attr('y2',ih)
+    .attr('stroke',C.text).attr('stroke-width',1.5).attr('marker-end',`url(#a${id})`);
+  g.append('line').attr('x1',0).attr('y1',ih).attr('x2',0).attr('y2',-5)
+    .attr('stroke',C.text).attr('stroke-width',1.5).attr('marker-end',`url(#a${id})`);
+  return {g,iw,ih,id};
+}
+
+function addLabel(g,x,y,text,color,anchor='start') {
+  g.append('text').attr('x',x).attr('y',y).text(text).attr('fill',color||C.text)
+    .attr('font-size',11).attr('text-anchor',anchor);
+}
+
+// ─── ORIGINAL PHILLIPS CURVE ───
+(function(){
+  const {g,iw,ih} = mkSvg('g-phillips-orig');
+  addLabel(g, iw+8, ih+4, 'u (%)', C.text);
+  addLabel(g, -12, -10, 'π, gw (%)', C.text, 'end');
+
+  // Downward sloping curve (smooth)
+  const pts = [];
+  for(let x=0.05*iw; x<=0.92*iw; x+=5) {
+    const u = x/iw * 12 + 1; // u from 1% to 13%
+    const gw = 10 * Math.exp(-0.35*u); // exponential Phillips curve
+    const y = ih - (gw/12)*ih;
+    pts.push([x,y]);
+  }
+  const line = d3.line().x(d=>d[0]).y(d=>d[1]).curve(d3.curveBasis);
+  g.append('path').datum(pts).attr('d',line).attr('fill','none')
+    .attr('stroke',C.purple).attr('stroke-width',2.5);
+  addLabel(g, 0.93*iw, pts[pts.length-1][1]+2, 'PC', C.purple);
+
+  // Natural rate marker
+  const ustar_x = 0.4*iw;
+  g.append('line').attr('x1',ustar_x).attr('y1',0).attr('x2',ustar_x).attr('y2',ih)
+    .attr('stroke',C.muted).attr('stroke-width',1).attr('stroke-dasharray','4,3');
+  addLabel(g, ustar_x+3, 0.2*ih, 'u*', C.amber);
+  addLabel(g, ustar_x-5, ih+15, 'u*', C.amber, 'middle');
+  addLabel(g, 0, ih+15, '0', C.muted, 'middle');
+
+  // Zero inflation line
+  const zero_y = ih * 0.5;
+  g.append('line').attr('x1',0).attr('y1',zero_y).attr('x2',iw).attr('y2',zero_y)
+    .attr('stroke',C.muted).attr('stroke-width',1).attr('stroke-dasharray','3,3');
+  addLabel(g,-12,zero_y+4,'0',C.muted,'end');
+
+  addLabel(g,0.1*iw, 0.15*ih, 'Low u → High wage inflation', C.green,undefined);
+  addLabel(g,0.55*iw, 0.82*ih, 'High u → Low/negative inflation', C.red,undefined);
+})();
+
+// ─── AUGMENTED PC (short-run shifts) ───
+(function(){
+  const {g,iw,ih} = mkSvg('g-augmented');
+  addLabel(g, iw+8, ih+4, 'u (%)', C.text);
+  addLabel(g, -14, -10, 'π (%)', C.text, 'end');
+
+  const drawPC = (pie, color, lbl) => {
+    const pts = [];
+    for(let x=0.05*iw; x<=0.92*iw; x+=4) {
+      const u = x/iw * 12 + 1;
+      const ustar = 6;
+      const pi_val = pie - 0.5*(u-ustar);
+      const y = ih - ((pi_val+2)/(14+2))*ih;
+      if(y >= 0 && y <= ih) pts.push([x,y]);
+    }
+    const line = d3.line().x(d=>d[0]).y(d=>d[1]).curve(d3.curveCatmullRom);
+    g.append('path').datum(pts).attr('d',line).attr('fill','none').attr('stroke',color).attr('stroke-width',2.2);
+    if(pts.length) addLabel(g,pts[pts.length-1][0]+5,pts[pts.length-1][1],lbl,color);
+  };
+
+  drawPC(2, C.teal, 'PC (π⁰=2%)');
+  drawPC(7, C.red, 'PC (π⁰=7%)');
+
+  // NAIRU vertical
+  const ustar_x = ((6-1)/12)*iw + 0.05*iw;
+  g.append('line').attr('x1',ustar_x).attr('y1',0).attr('x2',ustar_x).attr('y2',ih)
+    .attr('stroke',C.muted).attr('stroke-width',1).attr('stroke-dasharray','4,3');
+  addLabel(g,ustar_x+3,-5,'u* (NAIRU)',C.amber);
+
+  // Long-run PC vertical
+  g.append('line').attr('x1',ustar_x).attr('y1',0.05*ih).attr('x2',ustar_x).attr('y2',ih)
+    .attr('stroke',C.amber).attr('stroke-width',2);
+  addLabel(g,ustar_x+3,0.12*ih,'LRPC',C.amber);
+
+  // Stagflation point S
+  const Sx = ((8-1)/12)*iw + 0.05*iw;
+  const Sy = ih - ((7-0.5*(8-6)+2)/16)*ih;
+  g.append('circle').attr('cx',Sx).attr('cy',Sy).attr('r',5).attr('fill',C.red);
+  addLabel(g,Sx+7,Sy-6,'S (Stagflation)',C.red);
+
+  addLabel(g,0.03*iw,ih+15,'Low u',C.muted);
+  addLabel(g,0.8*iw,ih+15,'High u',C.muted);
+  addLabel(g,-14,ih*0.5,'0',C.muted,'end');
+})();
+
+// ─── STAGFLATION GRAPH ───
+(function(){
+  const {g,iw,ih} = mkSvg('g-stagflation');
+  addLabel(g, iw+8, ih+4, 'u (%)', C.text);
+  addLabel(g, -14, -10, 'π (%)', C.text, 'end');
+
+  // Short-run PC (high expectations ~7%)
+  const drawPC = (pie, color, lbl, dash) => {
+    const pts = [];
+    for(let x=0.05*iw; x<=0.9*iw; x+=4) {
+      const u = x/iw * 12 + 1;
+      const pi_val = pie - 0.5*(u-5.5);
+      const y = ih - ((pi_val+1)/(13+1))*ih;
+      if(y>=0&&y<=ih) pts.push([x,y]);
+    }
+    const line = d3.line().x(d=>d[0]).y(d=>d[1]).curve(d3.curveCatmullRom);
+    g.append('path').datum(pts).attr('d',line).attr('fill','none').attr('stroke',color)
+      .attr('stroke-width',2.2).attr('stroke-dasharray',dash||null);
+    if(pts.length) addLabel(g,pts[pts.length-1][0]+5,pts[pts.length-1][1],lbl,color);
+  };
+  drawPC(2.5, C.teal, 'Early 2000s PC (π⁰≈2%)', null);
+  drawPC(7,   C.red,  'Early 1980s PC (π⁰≈7%)', null);
+
+  // NAIRU
+  const ustar_x = ((5.5-1)/12)*iw + 0.05*iw;
+  g.append('line').attr('x1',ustar_x).attr('y1',0).attr('x2',ustar_x).attr('y2',ih)
+    .attr('stroke',C.muted).attr('stroke-width',1).attr('stroke-dasharray','4,3');
+  addLabel(g,ustar_x+3,-5,'u*',C.amber);
+
+  // Stagflation point S (high u, high π)
+  const Sx = ((9-1)/12)*iw + 0.05*iw;
+  const Sy = ih - ((6+1)/(14))*ih;
+  g.append('circle').attr('cx',Sx).attr('cy',Sy).attr('r',6).attr('fill',C.red).attr('stroke',C.bg).attr('stroke-width',2);
+  addLabel(g,Sx+8,Sy-8,'S: 1982\n(9% u, 6% π)',C.red);
+
+  g.append('line').attr('x1',0).attr('y1',ih*0.5).attr('x2',iw).attr('y2',ih*0.5)
+    .attr('stroke',C.muted).attr('stroke-width',1).attr('stroke-dasharray','3,3');
+  addLabel(g,-14,ih*0.5+4,'0%',C.muted,'end');
+})();
+
+// ─── AS CURVE GRAPH ───
+(function(){
+  const {g,iw,ih} = mkSvg('g-as-curve');
+  addLabel(g, iw+8, ih+4, 'Y', C.text);
+  addLabel(g, -12, -10, 'P', C.text, 'end');
+
+  // Three AS curves
+  [[C.blue, 0.3*ih, 'AS (P⁰=low)'],[C.amber, 0.5*ih, 'AS'],[C.red, 0.7*ih, "AS'"]].forEach(([col,base,lbl]) => {
+    const pts = [];
+    for(let x=0.05*iw; x<=0.9*iw; x+=4) {
+      const y = base - (x - 0.1*iw)*0.35;
+      if(y>=0&&y<=ih) pts.push([x,y]);
+    }
+    const line = d3.line().x(d=>d[0]).y(d=>d[1]).curve(d3.curveCatmullRom);
+    g.append('path').datum(pts).attr('d',line).attr('fill','none').attr('stroke',col).attr('stroke-width',2.2);
+    if(pts.length) addLabel(g,pts[pts.length-1][0]+4,pts[pts.length-1][1],lbl,col);
+  });
+
+  // Y* vertical
+  const ys_x = 0.6*iw;
+  g.append('line').attr('x1',ys_x).attr('y1',0.05*ih).attr('x2',ys_x).attr('y2',ih)
+    .attr('stroke',C.muted).attr('stroke-width',1.5).attr('stroke-dasharray','5,3');
+  addLabel(g,ys_x+3,-5,'Y*',C.muted);
+  addLabel(g,ys_x-4,ih+15,'Y*',C.muted,'middle');
+
+  addLabel(g,0.25*iw,0.08*ih,'AS shifts up if Y>Y*',C.red,undefined);
+  addLabel(g,0.25*iw,0.88*ih,'AS shifts down if Y<Y*',C.blue,undefined);
+})();
+
+// ─── SUPPLY SHOCK GRAPH ───
+(function(){
+  const {g,iw,ih} = mkSvg('g-supply-shock');
+  addLabel(g, iw+8, ih+4, 'Y', C.text);
+  addLabel(g, -12, -10, 'P', C.text, 'end');
+
+  const drawAS = (intercept, color, lbl) => {
+    const pts = [];
+    for(let x=0.05*iw; x<=0.85*iw; x+=4) {
+      const y = intercept - x*0.4;
+      if(y>=0&&y<=ih) pts.push([x,y]);
+    }
+    const line = d3.line().x(d=>d[0]).y(d=>d[1]).curve(d3.curveCatmullRom);
+    g.append('path').datum(pts).attr('d',line).attr('fill','none').attr('stroke',color).attr('stroke-width',2.2);
+    if(pts.length) addLabel(g,pts[pts.length-1][0]+4,pts[pts.length-1][1],lbl,color);
+  };
+
+  drawAS(0.72*ih, C.blue, 'AS');
+  drawAS(0.45*ih, C.red, "AS' (shock)");
+
+  // AD curve
+  const drawAD = (intercept, color, lbl) => {
+    const pts = [];
+    for(let x=0.1*iw; x<=0.9*iw; x+=4) {
+      const y = ih - intercept*ih + x*0.25;
+      if(y>=0&&y<=ih) pts.push([x,y]);
+    }
+    const line = d3.line().x(d=>d[0]).y(d=>d[1]).curve(d3.curveCatmullRom);
+    g.append('path').datum(pts).attr('d',line).attr('fill','none').attr('stroke',color).attr('stroke-width',2.2);
+    if(pts.length) addLabel(g,pts[pts.length-1][0]+4,pts[pts.length-1][1],lbl,color);
+  };
+
+  drawAD(0.42, C.teal, 'AD');
+  drawAD(0.28, C.green, "AD' (accommodate)");
+
+  // Y* vertical
+  const ys_x = 0.58*iw;
+  g.append('line').attr('x1',ys_x).attr('y1',0).attr('x2',ys_x).attr('y2',ih)
+    .attr('stroke',C.muted).attr('stroke-width',1).attr('stroke-dasharray','4,3');
+  addLabel(g,ys_x+3,-5,'Y*',C.muted);
+
+  // Equilibrium points (rough)
+  const pts_eq = [
+    {x:0.52*iw, y:0.5*ih, lbl:'E', col:C.blue},
+    {x:0.38*iw, y:0.38*ih, lbl:"E' (no policy)", col:C.red},
+    {x:ys_x, y:0.25*ih, lbl:"E* (accommodate)", col:C.green},
+  ];
+  pts_eq.forEach(({x,y,lbl,col}) => {
+    g.append('circle').attr('cx',x).attr('cy',y).attr('r',5).attr('fill',col).attr('stroke',C.bg).attr('stroke-width',2);
+    addLabel(g,x+7,y-6,lbl,col);
+  });
+})();
+
+// sidebar active section
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      document.querySelectorAll('aside a').forEach(a=>a.classList.remove('active'));
+      const link = document.querySelector(`aside a[href="#${e.target.id}"]`);
+      if(link) link.classList.add('active');
+    }
+  });
+},{threshold:0.3});
+document.querySelectorAll('section[id]').forEach(s=>obs.observe(s));
+</script>
+</body>
+</html>
