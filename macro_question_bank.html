@@ -1,0 +1,1718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Macroeconomics — Complete Question Bank | IIFT IPM 2024–28</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@400;600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f7f4ee;
+  --paper: #fffef9;
+  --ink: #1a1814;
+  --ink2: #3d3a34;
+  --ink3: #6b6760;
+  --rule: #d8d4cc;
+  --accent: #c0392b;
+  --accent2: #1a5276;
+  --accent3: #1e8449;
+  --highlight: #f9e4b7;
+  --mono: 'IBM Plex Mono', monospace;
+  --serif: 'Cormorant Garamond', serif;
+  --sans: 'Outfit', sans-serif;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background: var(--bg); font-family: var(--sans); font-size: 15px; color: var(--ink); line-height: 1.75; }
+
+/* HEADER */
+.exam-header { background: var(--ink); color: #f7f4ee; padding: 50px 60px 40px; position: relative; overflow: hidden; }
+.exam-header::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: repeating-linear-gradient(90deg, var(--accent) 0px, var(--accent) 30px, transparent 30px, transparent 36px); }
+.header-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; }
+.exam-inst { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; color: #aaa89e; text-transform: uppercase; margin-bottom: 10px; }
+.exam-title { font-family: var(--serif); font-size: clamp(26px, 4vw, 44px); font-weight: 700; line-height: 1.1; color: #f7f4ee; }
+.exam-title em { color: #e8b84b; font-style: italic; }
+.exam-meta { text-align: right; font-family: var(--mono); font-size: 11px; color: #888680; line-height: 2; }
+.exam-meta strong { color: #e8b84b; }
+.header-divider { border: none; border-top: 1px solid #333028; margin: 24px 0 20px; }
+.header-note { font-size: 13px; color: #888680; font-weight: 300; }
+
+/* CHAPTER NAV */
+.nav-bar { background: var(--paper); border-bottom: 2px solid var(--rule); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.nav-bar::-webkit-scrollbar { display: none; }
+.nav-bar a { text-decoration: none; color: var(--ink3); font-size: 11px; font-weight: 500; padding: 13px 14px; white-space: nowrap; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.2s; font-family: var(--mono); letter-spacing: 0.3px; }
+.nav-bar a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* MAIN */
+.main { max-width: 940px; margin: 0 auto; padding: 50px 40px 100px; }
+
+/* CHAPTER HEADER */
+.chapter-head { margin: 60px 0 30px; padding-bottom: 16px; border-bottom: 2px solid var(--ink); }
+.ch-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 3px; color: var(--accent); text-transform: uppercase; margin-bottom: 8px; }
+.ch-title { font-family: var(--serif); font-size: 32px; font-weight: 700; color: var(--ink); }
+.ch-ref { font-family: var(--mono); font-size: 10px; color: var(--ink3); margin-top: 6px; }
+
+/* SECTION DIVIDER */
+.section-label { font-family: var(--mono); font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--paper); background: var(--ink2); padding: 6px 16px; display: inline-block; border-radius: 2px; margin: 30px 0 18px; }
+.section-label.deriv { background: var(--accent2); }
+
+/* QUESTION BLOCK */
+.q-block { background: var(--paper); border: 1px solid var(--rule); border-radius: 3px; margin-bottom: 40px; overflow: hidden; scroll-margin-top: 70px; box-shadow: 0 2px 20px rgba(0,0,0,0.04); }
+.q-header { background: var(--ink); color: #f7f4ee; padding: 18px 28px; display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+.q-num { font-family: var(--mono); font-size: 10px; letter-spacing: 3px; color: #e8b84b; text-transform: uppercase; margin-bottom: 5px; }
+.q-text { font-family: var(--serif); font-size: 19px; font-weight: 600; line-height: 1.35; color: #f7f4ee; max-width: 700px; }
+.q-marks { background: var(--accent); color: white; font-family: var(--mono); font-size: 11px; font-weight: 600; padding: 7px 14px; border-radius: 2px; white-space: nowrap; flex-shrink: 0; }
+.q-body { padding: 28px; }
+
+/* ANS SECTIONS */
+.ans-section { margin-bottom: 22px; }
+.ans-label { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent2); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+.ans-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+p { color: var(--ink2); margin-bottom: 12px; font-weight: 300; }
+p strong { color: var(--ink); font-weight: 600; }
+ul, ol { padding-left: 22px; margin-bottom: 14px; }
+li { color: var(--ink2); margin-bottom: 6px; font-weight: 300; }
+li strong { color: var(--ink); font-weight: 600; }
+
+/* DEF BOX */
+.def-box { background: var(--highlight); border-left: 4px solid #e8b84b; border-radius: 0 4px 4px 0; padding: 16px 20px; margin: 14px 0; }
+.def-title { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #8a6c00; margin-bottom: 8px; }
+
+/* FORMULA */
+.formula { background: #f0f4fa; border: 1px solid #c0d0e8; border-radius: 4px; padding: 16px 20px; margin: 14px 0; font-family: var(--mono); }
+.ftitle { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent2); margin-bottom: 8px; }
+.feq { font-size: 15px; color: var(--ink); font-weight: 600; line-height: 1.8; }
+
+/* KEY POINT */
+.key-point { background: #fef0f0; border: 1px solid #f5b8b8; border-left: 4px solid var(--accent); padding: 14px 18px; border-radius: 0 4px 4px 0; margin: 14px 0; }
+.kp-title { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+
+/* GRAPH */
+.graph-box { background: #fafafa; border: 1px solid var(--rule); border-radius: 4px; padding: 20px; margin: 18px 0; }
+.graph-title { font-family: var(--mono); font-size: 11px; color: var(--ink3); margin-bottom: 14px; letter-spacing: 0.5px; }
+.graph-title span { color: var(--accent); font-weight: 600; }
+canvas { width: 100%; max-width: 680px; display: block; margin: 0 auto; }
+svg.econ-graph { width: 100%; max-width: 680px; display: block; margin: 0 auto; }
+.graph-legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 12px; justify-content: center; }
+.leg { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--ink3); }
+.leg-line { width: 22px; height: 3px; border-radius: 2px; }
+
+/* FLOW */
+.flow { display: flex; align-items: center; flex-wrap: wrap; gap: 0; margin: 14px 0; background: #f0f7f0; border: 1px solid #b8ddb8; border-radius: 4px; padding: 14px; }
+.flow-node { background: white; border: 1px solid #b8ddb8; border-radius: 4px; padding: 7px 12px; font-size: 12px; font-weight: 500; color: var(--ink); text-align: center; }
+.flow-arr { color: var(--accent3); font-size: 18px; font-weight: bold; padding: 0 6px; }
+
+/* CONCLUSION */
+.conclusion { background: #f0f4f0; border: 1px solid #c0d8c0; border-radius: 4px; padding: 14px 18px; margin-top: 18px; font-size: 14px; color: var(--ink2); }
+
+/* COMPARISON TABLE */
+.comp-table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 13px; }
+.comp-table th { background: var(--ink); color: #f7f4ee; padding: 10px 14px; font-family: var(--mono); font-size: 10px; letter-spacing: 1px; text-align: left; }
+.comp-table td { padding: 9px 14px; border-bottom: 1px solid var(--rule); color: var(--ink2); }
+.comp-table tr:nth-child(even) td { background: #f7f5f0; }
+
+/* SHIFT GRID */
+.shift-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 14px 0; }
+.shift-card { border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.shift-card-head { padding: 9px 14px; font-family: var(--mono); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
+.shift-card-head.right { background: #d4edda; color: #155724; }
+.shift-card-head.left { background: #f8d7da; color: #721c24; }
+.shift-card ul { padding: 12px 12px 12px 28px; background: var(--paper); }
+
+/* DERIV Q — styled differently */
+.q-block.deriv-q .q-header { background: var(--accent2); }
+.q-block.deriv-q .q-num { color: #90c8f0; }
+.q-block.deriv-q .q-text { color: #e8f2fc; }
+
+@media(max-width:600px){
+  .exam-header { padding: 30px 20px; }
+  .header-top { flex-direction: column; gap: 16px; }
+  .exam-meta { text-align: left; }
+  .main { padding: 30px 16px 80px; }
+  .q-header { flex-direction: column; }
+  .shift-grid { grid-template-columns: 1fr; }
+  .nav-bar { padding: 0 10px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ HEADER ═══════════════ -->
+<div class="exam-header">
+  <div class="header-top">
+    <div>
+      <div class="exam-inst">Indian Institute of Foreign Trade — IPM 2024–28</div>
+      <div class="exam-title">Macroeconomics<br><em>Complete Question Bank</em></div>
+    </div>
+    <div class="exam-meta">
+      <div>Subject <strong>Macro Economics</strong></div>
+      <div>Level <strong>Moderate / Easy</strong></div>
+      <div>Format <strong>10 Marks per Question</strong></div>
+      <div>Ref <strong>Dornbusch & Fischer · Mankiw</strong></div>
+    </div>
+  </div>
+  <hr class="header-divider">
+  <div class="header-note">Chapterwise expected questions + model answers + derivative/numerical questions. Graphs drawn inline.</div>
+</div>
+
+<!-- ═══════════════ NAV ═══════════════ -->
+<div class="nav-bar">
+  <a href="#ch1">CH1 Agg. Expenditure</a>
+  <a href="#ch2">CH2 Money</a>
+  <a href="#ch3">CH3 Central Banking</a>
+  <a href="#ch4">CH4 Inflation</a>
+  <a href="#ch5">CH5 Open Economy</a>
+  <a href="#ch6">CH6 Labour Market</a>
+  <a href="#ch7">CH7 AD–AS</a>
+  <a href="#ch8">CH8 Fiscal Policy</a>
+</div>
+
+<div class="main">
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- CHAPTER 1: AGGREGATE EXPENDITURE & EQUILIBRIUM OUTPUT -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="chapter-head" id="ch1">
+  <div class="ch-tag">Chapter 01</div>
+  <div class="ch-title">Aggregate Expenditure &amp; Equilibrium Output</div>
+  <div class="ch-ref">Reference: Dornbusch &amp; Fischer — Chapters on Income-Expenditure Model &amp; Multiplier</div>
+</div>
+
+<div class="section-label">Expected Questions (10 Marks Each)</div>
+
+<!-- Q1.1 -->
+<div class="q-block" id="q1_1">
+  <div class="q-header">
+    <div><div class="q-num">Question 1.1</div>
+    <div class="q-text">What is the consumption function? Explain the determinants of consumption with the help of the Keynesian consumption function.</div></div>
+    <div class="q-marks">10 Marks</div>
+  </div>
+  <div class="q-body">
+    <div class="ans-section">
+      <div class="ans-label">Definition</div>
+      <div class="def-box">
+        <div class="def-title">Consumption Function</div>
+        <p>The <strong>consumption function</strong> describes the relationship between household consumption (C) and disposable income (Y<sub>d</sub>). It shows how much of every additional rupee earned is spent on consumption.</p>
+      </div>
+      <div class="formula">
+        <div class="ftitle">Keynesian Consumption Function</div>
+        <div class="feq">C = a + b·Y<sub>d</sub><br><span style="font-size:11px;color:#6080a0">a = autonomous consumption (spending even at zero income) &nbsp;|&nbsp; b = MPC (0 &lt; b &lt; 1)</span></div>
+      </div>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Determinants of Consumption</div>
+      <ul>
+        <li><strong>Disposable Income (Y<sub>d</sub>):</strong> The primary determinant. As income rises, consumption rises — but by less than the rise in income (MPC &lt; 1).</li>
+        <li><strong>Autonomous Consumption (a):</strong> Consumption that happens regardless of income (e.g., using savings or borrowing). Determined by wealth, credit availability.</li>
+        <li><strong>Marginal Propensity to Consume (MPC):</strong> The fraction of each additional rupee of income that goes to consumption. A higher MPC means more consumption responsiveness.</li>
+        <li><strong>Wealth:</strong> Higher wealth (financial assets, property) encourages greater consumption — the "wealth effect."</li>
+        <li><strong>Consumer confidence &amp; expectations:</strong> Optimistic expectations raise current consumption.</li>
+        <li><strong>Interest rates:</strong> Higher interest rates discourage borrowing and encourage saving → lower consumption.</li>
+        <li><strong>Credit availability:</strong> Easy credit allows households to borrow and consume beyond current income.</li>
+      </ul>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Graph — Consumption Function</div>
+      <div class="graph-box">
+        <div class="graph-title"><span>Fig 1.1</span> — Keynesian Consumption Function: C = a + b·Y</div>
+        <svg class="econ-graph" viewBox="0 0 680 380" xmlns="http://www.w3.org/2000/svg">
+          <rect width="680" height="380" fill="#fafafa"/>
+          <!-- Axes -->
+          <line x1="70" y1="320" x2="620" y2="320" stroke="#333" stroke-width="2"/>
+          <line x1="70" y1="320" x2="70" y2="40" stroke="#333" stroke-width="2"/>
+          <!-- Arrowheads -->
+          <polygon points="620,320 608,314 608,326" fill="#333"/>
+          <polygon points="70,40 64,52 76,52" fill="#333"/>
+          <!-- 45-degree line (Y=C reference) -->
+          <line x1="70" y1="320" x2="570" y2="−180" stroke="#bbb" stroke-width="1.5" stroke-dasharray="6,4"
+                x2="570" y2="−180"/>
+          <line x1="70" y1="320" x2="560" y2="70" stroke="#bbb" stroke-width="1.5" stroke-dasharray="6,4"/>
+          <text x="555" y="65" fill="#999" font-size="12" font-family="monospace">45°</text>
+          <!-- Consumption line C = a + b*Y, a=80, slope~0.65 -->
+          <line x1="70" y1="240" x2="580" y2="73" stroke="#1a5276" stroke-width="2.5"/>
+          <!-- Autonomous consumption marking -->
+          <line x1="70" y1="240" x2="70" y2="240" stroke="none"/>
+          <line x1="50" y1="240" x2="80" y2="240" stroke="#e8b84b" stroke-width="1.5" stroke-dasharray="4,3"/>
+          <text x="30" y="244" fill="#8a6c00" font-size="12" font-family="serif" font-style="italic">a</text>
+          <!-- Label C line -->
+          <text x="585" y="78" fill="#1a5276" font-size="13" font-family="serif" font-weight="bold">C = a + bY</text>
+          <!-- Slope annotation -->
+          <line x1="280" y1="213" x2="400" y2="213" stroke="#888" stroke-width="1" stroke-dasharray="3,3"/>
+          <line x1="400" y1="213" x2="400" y2="174" stroke="#888" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="310" y="228" fill="#555" font-size="11" font-family="monospace">ΔY</text>
+          <text x="405" y="196" fill="#555" font-size="11" font-family="monospace">ΔC</text>
+          <text x="430" y="170" fill="#c0392b" font-size="12" font-family="monospace">slope = MPC = b</text>
+          <!-- Axis labels -->
+          <text x="330" y="350" fill="#555" font-size="13" font-family="serif">Income (Y)</text>
+          <text x="14" y="190" fill="#555" font-size="13" font-family="serif" transform="rotate(-90,14,190)">Consumption (C)</text>
+        </svg>
+        <div class="graph-legend">
+          <div class="leg"><div class="leg-line" style="background:#1a5276"></div>C = a + bY (Consumption line)</div>
+          <div class="leg"><div class="leg-line" style="background:#bbb;border-style:dashed"></div>45° reference line</div>
+          <div class="leg"><div class="leg-line" style="background:#e8b84b"></div>Autonomous consumption (a)</div>
+        </div>
+      </div>
+    </div>
+    <div class="conclusion"><strong>Conclusion:</strong> The Keynesian consumption function shows that consumption has two parts — autonomous (independent of income) and induced (dependent on income via MPC). A higher MPC means consumption is more responsive to income changes, which also implies a larger multiplier effect in the economy.</div>
+  </div>
+</div>
+
+<!-- Q1.2 -->
+<div class="q-block" id="q1_2">
+  <div class="q-header">
+    <div><div class="q-num">Question 1.2</div>
+    <div class="q-text">What is the output multiplier? Explain its working and how equilibrium is established in the goods market where real investment equals real savings.</div></div>
+    <div class="q-marks">10 Marks</div>
+  </div>
+  <div class="q-body">
+    <div class="ans-section">
+      <div class="ans-label">The Output Multiplier</div>
+      <div class="def-box">
+        <div class="def-title">Output / Expenditure Multiplier</div>
+        <p>The <strong>output multiplier</strong> (k) measures how much equilibrium output (Y) changes in response to a unit change in autonomous spending. Because each round of spending creates income for others, the total effect on output is a multiple of the initial spending shock.</p>
+      </div>
+      <div class="formula">
+        <div class="ftitle">Multiplier Formula</div>
+        <div class="feq">k = 1 / (1 − MPC) = 1 / MPS<br>
+        ΔY = k × ΔAutonomous Spending<br>
+        <span style="font-size:11px;color:#6080a0">MPS = Marginal Propensity to Save = 1 − MPC</span></div>
+      </div>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">How the Multiplier Works — Round-by-Round</div>
+      <p>Suppose autonomous investment rises by ₹100 crore and MPC = 0.8:</p>
+      <table class="comp-table">
+        <tr><th>Round</th><th>New Income Generated</th><th>New Consumption (MPC×Income)</th></tr>
+        <tr><td>Round 1</td><td>₹100 cr</td><td>₹80 cr</td></tr>
+        <tr><td>Round 2</td><td>₹80 cr</td><td>₹64 cr</td></tr>
+        <tr><td>Round 3</td><td>₹64 cr</td><td>₹51.2 cr</td></tr>
+        <tr><td>…</td><td>…</td><td>…</td></tr>
+        <tr><td><strong>Total ΔY</strong></td><td colspan="2"><strong>₹500 cr = ₹100 × 1/(1−0.8)</strong></td></tr>
+      </table>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Goods Market Equilibrium: I = S</div>
+      <p>Equilibrium output is where <strong>planned aggregate expenditure = output</strong>. Equivalently, in a simple economy:</p>
+      <div class="formula">
+        <div class="ftitle">Equilibrium Condition</div>
+        <div class="feq">Y = C + I &nbsp;→&nbsp; Y − C = I &nbsp;→&nbsp; <strong>S = I</strong><br>
+        <span style="font-size:11px;color:#6080a0">Planned investment = Planned savings ensures no unintended inventory changes</span></div>
+      </div>
+      <p>If planned I > S: output rises (positive multiplier effect). If planned I &lt; S: output falls. Equilibrium is restored when S = I.</p>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Graph — Keynesian Cross</div>
+      <div class="graph-box">
+        <div class="graph-title"><span>Fig 1.2</span> — Keynesian Cross: Equilibrium where AE = Y</div>
+        <svg class="econ-graph" viewBox="0 0 680 380" xmlns="http://www.w3.org/2000/svg">
+          <rect width="680" height="380" fill="#fafafa"/>
+          <line x1="70" y1="320" x2="620" y2="320" stroke="#333" stroke-width="2"/>
+          <line x1="70" y1="320" x2="70" y2="40" stroke="#333" stroke-width="2"/>
+          <polygon points="620,320 608,314 608,326" fill="#333"/>
+          <polygon points="70,40 64,52 76,52" fill="#333"/>
+          <!-- 45° line -->
+          <line x1="70" y1="320" x2="560" y2="70" stroke="#888" stroke-width="1.5" stroke-dasharray="5,4"/>
+          <text x="540" y="64" fill="#888" font-size="11" font-family="monospace">45°</text>
+          <!-- AE line: a=100, slope=0.7 → starts at y=220 at x=70, hits y= at x=520 -->
+          <line x1="70" y1="250" x2="560" y2="76" stroke="#1a5276" stroke-width="2.5"/>
+          <text x="565" y="80" fill="#1a5276" font-size="13" font-family="serif" font-weight="bold">AE = C+I</text>
+          <!-- Equilibrium E -->
+          <circle cx="355" cy="178" r="6" fill="#c0392b"/>
+          <text x="360" y="165" fill="#c0392b" font-size="13" font-family="serif" font-weight="bold">E*</text>
+          <!-- Drop lines -->
+          <line x1="355" y1="178" x2="355" y2="320" stroke="#c0392b" stroke-width="1" stroke-dasharray="4,3"/>
+          <line x1="355" y1="178" x2="70" y2="178" stroke="#c0392b" stroke-width="1" stroke-dasharray="4,3"/>
+          <text x="345" y="338" fill="#c0392b" font-size="12" font-family="serif">Y*</text>
+          <text x="38" y="182" fill="#c0392b" font-size="12" font-family="serif">AE*</text>
+          <!-- Unplanned inventory labels -->
+          <text x="400" y="250" fill="#1e8449" font-size="11" font-family="monospace">Inventories</text>
+          <text x="400" y="264" fill="#1e8449" font-size="11" font-family="monospace">↑ → Y falls</text>
+          <text x="130" y="155" fill="#e8a020" font-size="11" font-family="monospace">Inventories</text>
+          <text x="130" y="169" fill="#e8a020" font-size="11" font-family="monospace">↓ → Y rises</text>
+          <!-- Axis labels -->
+          <text x="330" y="350" fill="#555" font-size="13" font-family="serif">Output / Income (Y)</text>
+          <text x="14" y="190" fill="#555" font-size="13" font-family="serif" transform="rotate(-90,14,190)">Aggregate Expenditure (AE)</text>
+        </svg>
+      </div>
+    </div>
+    <div class="conclusion"><strong>Conclusion:</strong> The multiplier amplifies any autonomous spending change into a larger change in output. Equilibrium is reached at Y* where planned AE = Y, equivalently S = I. A higher MPC → higher multiplier → larger output response to any spending shock.</div>
+  </div>
+</div>
+
+<!-- Q1.3 -->
+<div class="q-block" id="q1_3">
+  <div class="q-header">
+    <div><div class="q-num">Question 1.3</div>
+    <div class="q-text">Explain the government spending multiplier. How does the inclusion of government change equilibrium output in the Keynesian model?</div></div>
+    <div class="q-marks">10 Marks</div>
+  </div>
+  <div class="q-body">
+    <div class="ans-section">
+      <div class="ans-label">Government in the Keynesian Model</div>
+      <p>When government is included, aggregate expenditure becomes:</p>
+      <div class="formula">
+        <div class="ftitle">Aggregate Expenditure with Government</div>
+        <div class="feq">AE = C + I + G<br>
+        C = a + b(Y − T) &nbsp;where T = taxes<br>
+        Equilibrium: &nbsp;Y = [a + bT_0 + I + G] × 1/(1−b)<br>
+        <span style="font-size:11px;color:#6080a0">b = MPC &nbsp;|&nbsp; T = lump-sum taxes &nbsp;|&nbsp; G = government spending</span></div>
+      </div>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Government Spending Multiplier vs Tax Multiplier</div>
+      <table class="comp-table">
+        <tr><th>Concept</th><th>Formula</th><th>Example (MPC = 0.8)</th></tr>
+        <tr><td>Spending Multiplier</td><td>1/(1−b)</td><td>1/(1−0.8) = <strong>5</strong></td></tr>
+        <tr><td>Tax Multiplier</td><td>−b/(1−b)</td><td>−0.8/0.2 = <strong>−4</strong></td></tr>
+        <tr><td>Balanced Budget Multiplier</td><td>1</td><td>ΔG = ΔT → ΔY = ΔG</td></tr>
+      </table>
+      <p>The spending multiplier is larger (in absolute value) than the tax multiplier because a ₹1 tax cut raises income by ₹1 but only MPC×₹1 goes to consumption. A ₹1 of G directly adds ₹1 to demand.</p>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Balanced Budget Multiplier — Key Result</div>
+      <div class="key-point">
+        <div class="kp-title">Balanced Budget Multiplier = 1</div>
+        <p>If government increases spending (ΔG) and taxes (ΔT) by equal amounts, the net effect on output is ΔY = ΔG. Even a balanced budget expansion raises output — because the spending multiplier (5) exceeds the tax multiplier (4) in absolute terms.</p>
+      </div>
+    </div>
+    <div class="conclusion"><strong>Conclusion:</strong> Government injects spending into the economy, which is amplified by the spending multiplier. The government multiplier (1/(1−MPC)) is always greater than the tax multiplier (−MPC/(1−MPC)) in absolute value. This is why fiscal stimulus (via G) is more potent than equivalent tax cuts.</div>
+  </div>
+</div>
+
+<!-- Q1.4 -->
+<div class="q-block" id="q1_4">
+  <div class="q-header">
+    <div><div class="q-num">Question 1.4</div>
+    <div class="q-text">What is planned vs. actual investment? How does the difference between planned and actual investment drive the economy toward equilibrium?</div></div>
+    <div class="q-marks">10 Marks</div>
+  </div>
+  <div class="q-body">
+    <div class="ans-section">
+      <div class="ans-label">Planned vs. Actual Investment</div>
+      <div class="shift-grid">
+        <div class="shift-card">
+          <div class="shift-card-head right">Planned Investment (I<sub>p</sub>)</div>
+          <ul><li>Investment firms intend to make</li><li>Determined by interest rates, expectations, capacity</li><li>Does NOT include unintended inventory changes</li></ul>
+        </div>
+        <div class="shift-card">
+          <div class="shift-card-head left">Actual Investment (I<sub>a</sub>)</div>
+          <ul><li>Investment that actually occurs</li><li>Includes planned investment PLUS unintended inventory change</li><li>Always equals actual saving (national accounts identity)</li></ul>
+        </div>
+      </div>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Adjustment Mechanism</div>
+      <div class="flow">
+        <div class="flow-node">Y &gt; AE<br>(excess supply)</div>
+        <div class="flow-arr">→</div>
+        <div class="flow-node">Unsold goods pile up<br>(unintended inventory ↑)</div>
+        <div class="flow-arr">→</div>
+        <div class="flow-node">Firms cut production</div>
+        <div class="flow-arr">→</div>
+        <div class="flow-node">Y falls toward Y*</div>
+      </div>
+      <div class="flow">
+        <div class="flow-node">Y &lt; AE<br>(excess demand)</div>
+        <div class="flow-arr">→</div>
+        <div class="flow-node">Inventories drawn down<br>(unintended inventory ↓)</div>
+        <div class="flow-arr">→</div>
+        <div class="flow-node">Firms expand production</div>
+        <div class="flow-arr">→</div>
+        <div class="flow-node">Y rises toward Y*</div>
+      </div>
+    </div>
+    <div class="conclusion"><strong>Conclusion:</strong> At equilibrium, planned investment = planned saving (no unintended inventory changes). Deviations from equilibrium are self-correcting through inventory adjustment — if output exceeds planned expenditure, unsold inventories signal firms to cut production, driving the economy back to Y*.</div>
+  </div>
+</div>
+
+<!-- Q1.5 Derivative -->
+<div class="section-label deriv">Derivative / Numerical Questions</div>
+
+<div class="q-block deriv-q" id="q1_d1">
+  <div class="q-header">
+    <div><div class="q-num">Derivative Q 1.D1</div>
+    <div class="q-text">Given: C = 200 + 0.75Y, I = 300, G = 400, T = 200. Find equilibrium output Y*, the multiplier, and the new equilibrium if G increases by 100.</div></div>
+    <div class="q-marks">10 Marks</div>
+  </div>
+  <div class="q-body">
+    <div class="ans-section">
+      <div class="ans-label">Step 1 — Equilibrium Output</div>
+      <div class="formula">
+        <div class="ftitle">Solve for Y*</div>
+        <div class="feq">
+          AE = C + I + G = [200 + 0.75(Y−200)] + 300 + 400<br>
+          AE = 200 + 0.75Y − 150 + 700 = 750 + 0.75Y<br>
+          Equilibrium: Y = AE → Y = 750 + 0.75Y<br>
+          0.25Y = 750 → <strong>Y* = 3000</strong>
+        </div>
+      </div>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Step 2 — Multiplier</div>
+      <div class="formula">
+        <div class="ftitle">Spending Multiplier</div>
+        <div class="feq">k = 1/(1−MPC) = 1/(1−0.75) = 1/0.25 = <strong>4</strong></div>
+      </div>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Step 3 — New Equilibrium after ΔG = 100</div>
+      <div class="formula">
+        <div class="ftitle">New Y*</div>
+        <div class="feq">ΔY = k × ΔG = 4 × 100 = 400<br>New Y* = 3000 + 400 = <strong>3400</strong></div>
+      </div>
+    </div>
+    <div class="conclusion"><strong>Answer:</strong> Y* = 3000, Multiplier = 4, New Y* after ΔG=100 is 3400.</div>
+  </div>
+</div>
+
+<div class="q-block deriv-q" id="q1_d2">
+  <div class="q-header">
+    <div><div class="q-num">Derivative Q 1.D2</div>
+    <div class="q-text">If MPC = 0.6, what is the spending multiplier? If government wants to raise output by ₹500 crore, by how much should it increase G? What if it wants to achieve the same via a tax cut?</div></div>
+    <div class="q-marks">10 Marks</div>
+  </div>
+  <div class="q-body">
+    <div class="ans-section">
+      <div class="ans-label">Solution</div>
+      <div class="formula">
+        <div class="ftitle">Multipliers</div>
+        <div class="feq">
+          Spending multiplier = 1/(1−0.6) = 1/0.4 = <strong>2.5</strong><br>
+          Tax multiplier = −MPC/(1−MPC) = −0.6/0.4 = <strong>−1.5</strong><br><br>
+          To raise Y by 500 via G: &nbsp;ΔG = 500/2.5 = <strong>₹200 crore</strong><br>
+          To raise Y by 500 via tax cut: &nbsp;|ΔT| = 500/1.5 = <strong>₹333.3 crore</strong>
+        </div>
+      </div>
+    </div>
+    <div class="conclusion"><strong>Key Insight:</strong> Government spending is more efficient — a smaller ΔG (₹200 cr) achieves the same output rise as a larger tax cut (₹333 cr). This is because every rupee of G directly enters demand, while a rupee of tax cut is only partially spent (MPC fraction).</div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- CHAPTER 2: MONEY DEMAND & SUPPLY -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="chapter-head" id="ch2">
+  <div class="ch-tag">Chapter 02</div>
+  <div class="ch-title">Money Demand &amp; Supply</div>
+  <div class="ch-ref">Reference: Dornbusch &amp; Fischer — Money, Banking &amp; the Money Multiplier</div>
+</div>
+
+<div class="section-label">Expected Questions (10 Marks Each)</div>
+
+<!-- Q2.1 -->
+<div class="q-block" id="q2_1">
+  <div class="q-header">
+    <div><div class="q-num">Question 2.1</div>
+    <div class="q-text">What is money? Explain its functions, types, and why a barter system is inefficient compared to a monetary economy.</div></div>
+    <div class="q-marks">10 Marks</div>
+  </div>
+  <div class="q-body">
+    <div class="ans-section">
+      <div class="ans-label">Barter System and Its Problems</div>
+      <div class="def-box">
+        <div class="def-title">Barter System</div>
+        <p>A <strong>barter system</strong> is a direct exchange of goods and services without a medium of exchange. It requires a <strong>"double coincidence of wants"</strong> — both parties must want exactly what the other offers.</p>
+      </div>
+      <p>Problems with barter: No common measure of value, indivisibility (you can't give half a cow), difficulty storing value, no deferred payment mechanism.</p>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Functions of Money</div>
+      <ul>
+        <li><strong>Medium of Exchange:</strong> Eliminates double coincidence of wants — facilitates transactions.</li>
+        <li><strong>Unit of Account:</strong> Common standard for measuring and comparing value of goods.</li>
+        <li><strong>Store of Value:</strong> Wealth can be held in money form and used in the future.</li>
+        <li><strong>Standard of Deferred Payment:</strong> Debts and contracts can be written in money terms.</li>
+      </ul>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Types of Money</div>
+      <table class="comp-table">
+        <tr><th>Type</th><th>Description</th><th>Example</th></tr>
+        <tr><td>Commodity Money</td><td>Intrinsic value = face value</td><td>Gold, silver coins</td></tr>
+        <tr><td>Fiat Money</td><td>Govt decree — no intrinsic value</td><td>Currency notes, coins</td></tr>
+        <tr><td>Credit Money</td><td>Promise to pay — bank liabilities</td><td>Cheques, bank deposits</td></tr>
+        <tr><td>Near Money</td><td>Highly liquid non-cash assets</td><td>FDs, T-bills</td></tr>
+      </table>
+    </div>
+    <div class="conclusion"><strong>Conclusion:</strong> Money solves all the inefficiencies of barter by providing a universally accepted medium of exchange, unit of account, and store of value. Its introduction dramatically reduces transaction costs and enables specialization and trade at scale.</div>
+  </div>
+</div>
+
+<!-- Q2.2 -->
+<div class="q-block" id="q2_2">
+  <div class="q-header">
+    <div><div class="q-num">Question 2.2</div>
+    <div class="q-text">Explain the demand for money. Discuss the alternative views on money demand — transactions, precautionary, and speculative motives.</div></div>
+    <div class="q-marks">10 Marks</div>
+  </div>
+  <div class="q-body">
+    <div class="ans-section">
+      <div class="ans-label">Three Motives for Holding Money (Keynes)</div>
+      <ul>
+        <li><strong>Transactions Motive:</strong> People hold money to finance day-to-day purchases. Increases with income (Y). This is the L<sub>1</sub>(Y) component of money demand.</li>
+        <li><strong>Precautionary Motive:</strong> Held as a buffer against unexpected expenses (medical emergencies, car repairs). Also increases with income.</li>
+        <li><strong>Speculative Motive:</strong> Held based on expectations about future interest rates. If interest rates are expected to rise (bond prices fall), people prefer to hold money rather than bonds. Inversely related to interest rate (i) — this is L<sub>2</sub>(i).</li>
+      </ul>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Money Demand Function</div>
+      <div class="formula">
+        <div class="ftitle">Liquidity Preference (Keynes)</div>
+        <div class="feq">L = L(Y, i) = kY − hi<br>
+        <span style="font-size:11px;color:#6080a0">k = income elasticity &nbsp;|&nbsp; h = interest elasticity &nbsp;|&nbsp; Both k,h &gt; 0</span></div>
+      </div>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Graph — Money Demand Curve</div>
+      <div class="graph-box">
+        <div class="graph-title"><span>Fig 2.1</span> — Money Demand: downward sloping in i, shifts with Y</div>
+        <svg class="econ-graph" viewBox="0 0 680 360" xmlns="http://www.w3.org/2000/svg">
+          <rect width="680" height="360" fill="#fafafa"/>
+          <line x1="70" y1="310" x2="620" y2="310" stroke="#333" stroke-width="2"/>
+          <line x1="70" y1="310" x2="70" y2="40" stroke="#333" stroke-width="2"/>
+          <polygon points="620,310 608,304 608,316" fill="#333"/>
+          <polygon points="70,40 64,52 76,52" fill="#333"/>
+          <!-- L1 curve -->
+          <path d="M 130,80 Q 220,120 350,200 Q 430,240 560,290" fill="none" stroke="#1a5276" stroke-width="2.5"/>
+          <text x="565" y="294" fill="#1a5276" font-size="13" font-family="serif" font-weight="bold">L(Y₁,i)</text>
+          <!-- L2 curve (shift right for higher Y) -->
+          <path d="M 190,80 Q 290,120 420,200 Q 500,240 600,278" fill="none" stroke="#c0392b" stroke-width="2.5" stroke-dasharray="8,4"/>
+          <text x="565" y="262" fill="#c0392b" font-size="13" font-family="serif" font-weight="bold">L(Y₂,i)</text>
+          <!-- Shift arrow -->
+          <path d="M 350,200 Q 385,193 415,200" fill="none" stroke="#e8b84b" stroke-width="2" marker-end="url(#arr)"/>
+          <text x="355" y="185" fill="#8a6c00" font-size="11" font-family="monospace">↑Y shifts right</text>
+          <!-- Axis labels -->
+          <text x="330" y="338" fill="#555" font-size="13" font-family="serif">Money Demand (L)</text>
+          <text x="14" y="185" fill="#555" font-size="13" font-family="serif" transform="rotate(-90,14,185)">Interest Rate (i)</text>
+          <!-- i level markers -->
+          <line x1="60" y1="130" x2="80" y2="130" stroke="#888" stroke-width="1"/>
+          <text x="40" y="134" fill="#888" font-size="11">i₂</text>
+          <line x1="60" y1="230" x2="80" y2="230" stroke="#888" stroke-width="1"/>
+          <text x="40" y="234" fill="#888" font-size="11">i₁</text>
+        </svg>
+        <div class="graph-legend">
+          <div class="leg"><div class="leg-line" style="background:#1a5276"></div>L(Y₁, i) — lower income</div>
+          <div class="leg"><div class="leg-line" style="background:#c0392b;height:2px"></div>L(Y₂, i) — higher income shifts demand right</div>
+        </div>
+      </div>
+    </div>
+    <div class="conclusion"><strong>Conclusion:</strong> Money demand is negatively related to interest rate (speculative motive) and positively related to income (transactions + precautionary). The Keynesian liquidity preference function L = kY − hi captures this two-way relationship, forming the basis of the LM curve in IS-LM analysis.</div>
+  </div>
+</div>
+
+<!-- Q2.3 -->
+<div class="q-block" id="q2_3">
+  <div class="q-header">
+    <div><div class="q-num">Question 2.3</div>
+    <div class="q-text">Explain how money is created in the banking system. What is the money multiplier? Explain the monetary base, reserve ratio, and currency-deposit ratio.</div></div>
+    <div class="q-marks">10 Marks</div>
+  </div>
+  <div class="q-body">
+    <div class="ans-section">
+      <div class="ans-label">Money Creation Process</div>
+      <p>Commercial banks create money through the <strong>credit multiplier process</strong>. When a bank receives a deposit, it keeps a fraction as reserve (reserve ratio = rr) and lends the rest. The borrower deposits this in another bank, which again lends (1−rr) of it, and so on.</p>
+      <div class="flow">
+        <div class="flow-node">Initial Deposit<br>₹1000</div>
+        <div class="flow-arr">→</div>
+        <div class="flow-node">Bank keeps 10%<br>Reserve = ₹100</div>
+        <div class="flow-arr">→</div>
+        <div class="flow-node">Lends ₹900<br>→ new deposit</div>
+        <div class="flow-arr">→</div>
+        <div class="flow-node">Process repeats<br>Total M = ₹10,000</div>
+      </div>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Key Concepts</div>
+      <div class="formula">
+        <div class="ftitle">Money Multiplier and Monetary Base</div>
+        <div class="feq">
+          Monetary Base (H) = Currency in circulation + Bank reserves<br>
+          M = H × Money Multiplier<br>
+          Money Multiplier = (cr + 1) / (cr + rr)<br>
+          <span style="font-size:11px;color:#6080a0">cr = currency-deposit ratio &nbsp;|&nbsp; rr = reserve-deposit ratio</span><br><br>
+          Simple case (no cash leakage): Multiplier = 1/rr<br>
+          e.g., rr = 10% → Multiplier = 10
+        </div>
+      </div>
+    </div>
+    <div class="conclusion"><strong>Conclusion:</strong> Banks create money by lending out a fraction of deposits repeatedly. The money multiplier shows how a given monetary base supports a larger money supply. A lower reserve ratio or currency-deposit ratio → higher multiplier → more money created per rupee of base money.</div>
+  </div>
+</div>
+
+<!-- Derivative Q Ch2 -->
+<div class="section-label deriv">Derivative / Numerical Questions</div>
+
+<div class="q-block deriv-q" id="q2_d1">
+  <div class="q-header">
+    <div><div class="q-num">Derivative Q 2.D1</div>
+    <div class="q-text">The reserve ratio is 20% and the currency-deposit ratio is 0.5. The monetary base is ₹5000 crore. Find the money multiplier and total money supply.</div></div>
+    <div class="q-marks">10 Marks</div>
+  </div>
+  <div class="q-body">
+    <div class="ans-section">
+      <div class="ans-label">Solution</div>
+      <div class="formula">
+        <div class="ftitle">Money Multiplier</div>
+        <div class="feq">
+          cr = 0.5 &nbsp;|&nbsp; rr = 0.20<br>
+          Multiplier = (cr + 1)/(cr + rr) = (0.5 + 1)/(0.5 + 0.20) = 1.5/0.70 ≈ <strong>2.14</strong><br><br>
+          Money Supply M = H × Multiplier = 5000 × 2.14 = <strong>₹10,714 crore</strong>
+        </div>
+      </div>
+    </div>
+    <div class="conclusion"><strong>Answer:</strong> Money Multiplier ≈ 2.14 &nbsp;|&nbsp; Money Supply ≈ ₹10,714 crore. Note: a higher currency-deposit ratio (people prefer cash) reduces the multiplier.</div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- CHAPTER 3: CENTRAL BANKING & MONETARY POLICY -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="chapter-head" id="ch3">
+  <div class="ch-tag">Chapter 03</div>
+  <div class="ch-title">Central Banking &amp; Monetary Policy</div>
+  <div class="ch-ref">Reference: Dornbusch &amp; Fischer — Central Bank &amp; Instruments of Monetary Policy</div>
+</div>
+
+<div class="section-label">Expected Questions (10 Marks Each)</div>
+
+<!-- Q3.1 -->
+<div class="q-block" id="q3_1">
+  <div class="q-header">
+    <div><div class="q-num">Question 3.1</div>
+    <div class="q-text">Explain the functions of a Central Bank (RBI). How does the central bank control money supply in the economy?</div></div>
+    <div class="q-marks">10 Marks</div>
+  </div>
+  <div class="q-body">
+    <div class="ans-section">
+      <div class="ans-label">Functions of RBI (Central Bank)</div>
+      <ul>
+        <li><strong>Banker to the Government:</strong> Manages government accounts, borrowing, and debt.</li>
+        <li><strong>Banker's Bank:</strong> Provides liquidity to commercial banks, acts as lender of last resort.</li>
+        <li><strong>Currency Issuance:</strong> Sole authority to issue notes in India (except ₹1 coin — Govt of India).</li>
+        <li><strong>Foreign Exchange Management:</strong> Manages India's forex reserves and exchange rate.</li>
+        <li><strong>Monetary Policy Authority:</strong> Sets policy rates to control inflation and support growth.</li>
+        <li><strong>Regulator of Financial System:</strong> Supervises commercial banks and NBFCs.</li>
+        <li><strong>Developmental Role:</strong> Promotes financial inclusion and banking infrastructure.</li>
+      </ul>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">How RBI Controls Money Supply</div>
+      <table class="comp-table">
+        <tr><th>Tool</th><th>How it Works</th><th>Effect</th></tr>
+        <tr><td>Repo Rate ↑</td><td>Raises cost of borrowing from RBI</td><td>Banks lend less → M↓</td></tr>
+        <tr><td>CRR ↑</td><td>Banks must keep more with RBI</td><td>Less funds to lend → M↓</td></tr>
+        <tr><td>SLR ↑</td><td>Banks must invest more in govt securities</td><td>Less lending → M↓</td></tr>
+        <tr><td>OMO — Sell Bonds</td><td>RBI sells securities to banks</td><td>Reserves drain → M↓</td></tr>
+        <tr><td>OMO — Buy Bonds</td><td>RBI buys securities from banks</td><td>Reserves increase → M↑</td></tr>
+      </table>
+    </div>
+    <div class="conclusion"><strong>Conclusion:</strong> The RBI controls money supply primarily through repo rate changes, reserve requirements (CRR/SLR), and open market operations. By raising rates and requirements, it contracts money supply to fight inflation; by lowering them, it expands supply to stimulate growth.</div>
+  </div>
+</div>
+
+<!-- Q3.2 -->
+<div class="q-block" id="q3_2">
+  <div class="q-header">
+    <div><div class="q-num">Question 3.2</div>
+    <div class="q-text">Distinguish between quantitative and qualitative instruments of monetary policy. Give examples of each.</div></div>
+    <div class="q-marks">10 Marks</div>
+  </div>
+  <div class="q-body">
+    <div class="ans-section">
+      <div class="ans-label">Quantitative vs Qualitative Tools</div>
+      <table class="comp-table">
+        <tr><th>Aspect</th><th>Quantitative Tools</th><th>Qualitative Tools</th></tr>
+        <tr><td>Definition</td><td>Affect overall volume of credit in economy</td><td>Affect direction/purpose of credit</td></tr>
+        <tr><td>Scope</td><td>Economy-wide, non-selective</td><td>Sector-specific, selective</td></tr>
+        <tr><td>Examples</td><td>Repo rate, CRR, SLR, OMO</td><td>Margin requirements, moral suasion, credit rationing</td></tr>
+        <tr><td>Repo Rate</td><td>Rate at which RBI lends to commercial banks</td><td>—</td></tr>
+        <tr><td>CRR</td><td>% of deposits banks must hold with RBI in cash</td><td>—</td></tr>
+        <tr><td>SLR</td><td>% of deposits invested in approved securities</td><td>—</td></tr>
+        <tr><td>Margin Req.</td><td>—</td><td>Limits borrowing against assets (e.g., stock)</td></tr>
+        <tr><td>Moral Suasion</td><td>—</td><td>RBI persuades banks to follow directives</td></tr>
+      </table>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Capital Adequacy &amp; Leverage</div>
+      <div class="def-box">
+        <div class="def-title">Capital Adequacy Ratio (CAR)</div>
+        <p>Minimum capital a bank must hold as a % of risk-weighted assets. In India, Basel III norms require CAR ≥ 11.5%. Higher CAR → safer banks → limits excessive lending (leverage). <strong>Leverage = Total Assets / Equity Capital</strong> — high leverage amplifies both returns and risk.</p>
+      </div>
+    </div>
+    <div class="conclusion"><strong>Conclusion:</strong> Quantitative tools work through the price and quantity of money and credit overall, while qualitative tools direct credit to or away from specific sectors. Both together form a comprehensive monetary policy toolkit for the RBI to manage inflation, growth, and financial stability.</div>
+  </div>
+</div>
+
+<div class="section-label deriv">Derivative Questions</div>
+<div class="q-block deriv-q" id="q3_d1">
+  <div class="q-header">
+    <div><div class="q-num">Derivative Q 3.D1</div>
+    <div class="q-text">If RBI raises the CRR from 4% to 5% on a deposit base of ₹80,000 crore, by how much does money creation capacity fall? What is the change in the money multiplier?</div></div>
+    <div class="q-marks">10 Marks</div>
+  </div>
+  <div class="q-body">
+    <div class="formula">
+      <div class="ftitle">Solution</div>
+      <div class="feq">
+        Old multiplier (rr=0.04): 1/0.04 = <strong>25</strong><br>
+        New multiplier (rr=0.05): 1/0.05 = <strong>20</strong><br><br>
+        Old max credit creation: 80,000 × 25 = ₹20,00,000 crore<br>
+        New max credit creation: 80,000 × 20 = ₹16,00,000 crore<br>
+        <strong>Reduction in money creation capacity = ₹4,00,000 crore</strong>
+      </div>
+    </div>
+    <div class="conclusion"><strong>Answer:</strong> Multiplier falls from 25 to 20. Money creation capacity drops by ₹4,00,000 crore — showing how even a 1% CRR hike is a powerful contractionary tool.</div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- CHAPTER 4: INFLATION -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="chapter-head" id="ch4">
+  <div class="ch-tag">Chapter 04</div>
+  <div class="ch-title">Inflation — Measurement, Causes &amp; Effects</div>
+  <div class="ch-ref">Reference: Dornbusch &amp; Fischer — Inflation Chapter</div>
+</div>
+
+<div class="section-label">Expected Questions (10 Marks Each)</div>
+
+<!-- Q4.1 -->
+<div class="q-block" id="q4_1">
+  <div class="q-header">
+    <div><div class="q-num">Question 4.1</div>
+    <div class="q-text">What is inflation? Explain its types, causes, and measures to control it. Discuss the trade-offs involved.</div></div>
+    <div class="q-marks">10 Marks</div>
+  </div>
+  <div class="q-body">
+    <div class="ans-section">
+      <div class="ans-label">Definition</div>
+      <div class="def-box">
+        <div class="def-title">Inflation</div>
+        <p><strong>Inflation</strong> is a sustained and general rise in the price level of goods and services, measured by the rate of change of a price index (CPI or WPI). It erodes the purchasing power of money.</p>
+      </div>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Types of Inflation</div>
+      <table class="comp-table">
+        <tr><th>Type</th><th>Description</th></tr>
+        <tr><td>Demand-Pull</td><td>"Too much money chasing too few goods" — excess AD over AS</td></tr>
+        <tr><td>Cost-Push</td><td>Rising input costs (oil, wages) push up prices from supply side</td></tr>
+        <tr><td>Built-in (Wage-Price Spiral)</td><td>Workers demand higher wages → firms raise prices → repeat</td></tr>
+        <tr><td>Hyperinflation</td><td>Extremely rapid inflation (e.g., Zimbabwe 2008)</td></tr>
+        <tr><td>Stagflation</td><td>High inflation + low growth + high unemployment together</td></tr>
+      </table>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Anticipated vs Unanticipated Inflation</div>
+      <div class="shift-grid">
+        <div class="shift-card">
+          <div class="shift-card-head right">Anticipated Inflation</div>
+          <ul><li>Fully expected by agents</li><li>Costs: menu costs, shoe-leather costs</li><li>Can be indexed — less distortionary</li></ul>
+        </div>
+        <div class="shift-card">
+          <div class="shift-card-head left">Unanticipated Inflation</div>
+          <ul><li>Not expected — catches people off guard</li><li>Redistributes wealth (borrowers gain, lenders lose)</li><li>Disrupts contracts, investment — more harmful</li></ul>
+        </div>
+      </div>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Measures to Control Inflation</div>
+      <ul>
+        <li><strong>Monetary Policy:</strong> RBI raises repo rate → credit contracts → demand falls → prices fall.</li>
+        <li><strong>Fiscal Policy:</strong> Government cuts spending or raises taxes → reduces aggregate demand.</li>
+        <li><strong>Supply-side measures:</strong> Boost production, reduce import duties on essential goods.</li>
+        <li><strong>Price controls:</strong> Fixing maximum prices — effective short-term but creates shortages.</li>
+      </ul>
+      <div class="key-point">
+        <div class="kp-title">The Trade-off</div>
+        <p>Controlling inflation via tight monetary/fiscal policy slows growth and raises unemployment (Phillips Curve trade-off in the short run). Policymakers must balance price stability against output and employment goals.</p>
+      </div>
+    </div>
+    <div class="conclusion"><strong>Conclusion:</strong> Inflation arises from demand or supply shocks and has real costs — especially when unanticipated. Control requires coordinated monetary and fiscal policy, but tightening comes at the cost of lower growth. This trade-off is the central challenge of macroeconomic stabilization policy.</div>
+  </div>
+</div>
+
+<!-- Q4.2 -->
+<div class="q-block" id="q4_2">
+  <div class="q-header">
+    <div><div class="q-num">Question 4.2</div>
+    <div class="q-text">How is inflation measured? Distinguish between CPI and WPI. If nominal GDP growth is 10% and the GDP deflator grows by 7%, what is the real GDP growth rate?</div></div>
+    <div class="q-marks">10 Marks</div>
+  </div>
+  <div class="q-body">
+    <div class="ans-section">
+      <div class="ans-label">Measurement of Inflation</div>
+      <table class="comp-table">
+        <tr><th>Index</th><th>Full Form</th><th>Measures</th><th>Used For</th></tr>
+        <tr><td>CPI</td><td>Consumer Price Index</td><td>Retail prices of a basket of goods for a typical household</td><td>Monetary policy, COLA adjustments</td></tr>
+        <tr><td>WPI</td><td>Wholesale Price Index</td><td>Prices at the wholesale/producer level</td><td>Business contracts, supply chain</td></tr>
+        <tr><td>GDP Deflator</td><td>—</td><td>Ratio of nominal to real GDP — broadest measure</td><td>National accounts, GDP comparison</td></tr>
+      </table>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Numerical: Nominal vs Real GDP</div>
+      <div class="formula">
+        <div class="ftitle">Real GDP Growth Calculation</div>
+        <div class="feq">
+          Nominal GDP Growth = 10%<br>
+          GDP Deflator Growth = 7%<br>
+          Real GDP Growth ≈ Nominal − Deflator = 10% − 7% = <strong>3%</strong><br><br>
+          Exact formula: Real GDP Growth = [(1 + 0.10)/(1 + 0.07)] − 1 = 1.028 − 1 ≈ <strong>2.8%</strong>
+        </div>
+      </div>
+    </div>
+    <div class="conclusion"><strong>Conclusion:</strong> CPI measures consumer-level inflation; WPI measures producer-level; GDP deflator is the broadest. In the numerical: with 10% nominal growth and 7% inflation (deflator), real GDP growth is approximately 3%, showing how inflation erodes real output gains.</div>
+  </div>
+</div>
+
+<div class="section-label deriv">Derivative Questions</div>
+<div class="q-block deriv-q" id="q4_d1">
+  <div class="q-header">
+    <div><div class="q-num">Derivative Q 4.D1</div>
+    <div class="q-text">Real GDP increased by 10%; GDP deflator declined by 10%. What will be the nominal GDP? Also, if the GDP deflator declined by 10%, what will be the nominal GDP?</div></div>
+    <div class="q-marks">10 Marks</div>
+  </div>
+  <div class="q-body">
+    <div class="formula">
+      <div class="ftitle">Solution</div>
+      <div class="feq">
+        Nominal GDP = Real GDP × (GDP Deflator / 100)<br><br>
+        Case 1: Real GDP ↑10%, Deflator ↑10%<br>
+        Nominal GDP growth ≈ 10% + 10% = <strong>~20%</strong> (exact: 1.10 × 1.10 = 1.21 → 21%)<br><br>
+        Case 2: Real GDP ↑10%, Deflator ↓10%<br>
+        Nominal GDP growth ≈ 1.10 × 0.90 = 0.99 → nominal GDP <strong>falls by ~1%</strong><br>
+        (A deflation wipes out the real growth in nominal terms)
+      </div>
+    </div>
+    <div class="conclusion"><strong>Key Insight:</strong> When deflator falls (deflation), nominal GDP can actually shrink even if real output rises. Japan's "Lost Decade" is a real-world example of this phenomenon.</div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- CHAPTER 5: OPEN ECONOMY -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="chapter-head" id="ch5">
+  <div class="ch-tag">Chapter 05</div>
+  <div class="ch-title">Open Economy Macroeconomics</div>
+  <div class="ch-ref">Reference: Mankiw — Open Economy Chapter &amp; Course PPT (Balance of Payments, Exchange Rates, Equilibrium Output)</div>
+</div>
+
+<div class="section-label">Expected Questions (10 Marks Each)</div>
+
+<!-- Q5.1 -->
+<div class="q-block" id="q5_1">
+  <div class="q-header">
+    <div><div class="q-num">Question 5.1</div>
+    <div class="q-text">What is the Balance of Payments? Explain its components — Current Account and Capital Account — with examples.</div></div>
+    <div class="q-marks">10 Marks</div>
+  </div>
+  <div class="q-body">
+    <div class="ans-section">
+      <div class="ans-label">Definition</div>
+      <div class="def-box">
+        <div class="def-title">Balance of Payments (BoP)</div>
+        <p>The <strong>Balance of Payments</strong> is a systematic record of all economic transactions between residents of a country and the rest of the world during a given period. It always balances (Current Account + Capital Account + Financial Account = 0), though individual components can be in surplus or deficit.</p>
+      </div>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Components</div>
+      <table class="comp-table">
+        <tr><th>Component</th><th>What It Records</th><th>India Example</th></tr>
+        <tr><td><strong>Current Account</strong></td><td>Trade in goods (visible) + services (invisible) + income + transfers</td><td>Exports of IT services, remittances from NRIs</td></tr>
+        <tr><td>Trade Balance</td><td>Exports − Imports of goods</td><td>India typically has trade deficit</td></tr>
+        <tr><td>Services Balance</td><td>Travel, IT, financial services</td><td>India has surplus in services</td></tr>
+        <tr><td>Remittances</td><td>Money sent home by workers abroad</td><td>India: world's largest recipient</td></tr>
+        <tr><td><strong>Capital Account</strong></td><td>Transfer of assets — FDI, FPI, loans</td><td>FDI inflows, ECB borrowings</td></tr>
+        <tr><td>FDI</td><td>Long-term foreign direct investment</td><td>Apple manufacturing in India</td></tr>
+        <tr><td>FPI</td><td>Foreign portfolio investment (stocks/bonds)</td><td>FIIs buying NSE-listed stocks</td></tr>
+      </table>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">BoP Identity</div>
+      <div class="formula">
+        <div class="ftitle">Balance of Payments Identity</div>
+        <div class="feq">Current Account + Capital Account + Change in Official Reserves = 0<br>
+        <span style="font-size:11px;color:#6080a0">A CA deficit must be financed by CA surplus, capital inflows, or drawing down reserves</span></div>
+      </div>
+    </div>
+    <div class="conclusion"><strong>Conclusion:</strong> The BoP records a country's complete international economic transactions. A persistent current account deficit signals that a country is living beyond its means internationally — consuming more than it produces — and must attract foreign capital or deplete reserves to finance it.</div>
+  </div>
+</div>
+
+<!-- Q5.2 -->
+<div class="q-block" id="q5_2">
+  <div class="q-header">
+    <div><div class="q-num">Question 5.2</div>
+    <div class="q-text">Explain exchange rates. Distinguish between fixed and flexible exchange rate regimes. What determines exchange rates in a flexible system?</div></div>
+    <div class="q-marks">10 Marks</div>
+  </div>
+  <div class="q-body">
+    <div class="ans-section">
+      <div class="ans-label">Exchange Rate — Definition</div>
+      <div class="def-box">
+        <div class="def-title">Exchange Rate</div>
+        <p>The <strong>exchange rate</strong> is the price of one currency in terms of another. E.g., USD/INR = 83 means 1 USD = ₹83. It determines the relative price of traded goods between countries and affects exports, imports, and capital flows.</p>
+      </div>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Fixed vs. Flexible Exchange Rate</div>
+      <table class="comp-table">
+        <tr><th>Feature</th><th>Fixed Rate</th><th>Flexible (Floating) Rate</th></tr>
+        <tr><td>Set by</td><td>Government/Central bank</td><td>Market forces (supply &amp; demand)</td></tr>
+        <tr><td>Stability</td><td>High — predictable</td><td>Volatile — adjusts constantly</td></tr>
+        <tr><td>Monetary autonomy</td><td>Lost (must defend the peg)</td><td>Full monetary policy independence</td></tr>
+        <tr><td>Adjustment</td><td>Via official reserves or devaluation</td><td>Automatic via exchange rate movement</td></tr>
+        <tr><td>Example</td><td>China's managed peg (historically)</td><td>India, USA, Eurozone</td></tr>
+      </table>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Determinants of Flexible Exchange Rate</div>
+      <ul>
+        <li><strong>Trade flows:</strong> Higher exports → demand for rupee ↑ → rupee appreciates.</li>
+        <li><strong>Capital flows:</strong> FDI/FPI inflows → rupee demand ↑ → appreciation.</li>
+        <li><strong>Interest rate differentials:</strong> Higher domestic i → capital inflows → appreciation.</li>
+        <li><strong>Inflation differentials:</strong> Higher inflation → currency depreciates (Purchasing Power Parity).</li>
+        <li><strong>Speculation:</strong> Expectations of future depreciation trigger selling of currency now.</li>
+        <li><strong>RBI intervention:</strong> Can dampen volatility by buying/selling in forex market.</li>
+      </ul>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Graph — Exchange Rate Determination (Flexible)</div>
+      <div class="graph-box">
+        <div class="graph-title"><span>Fig 5.1</span> — Flexible Exchange Rate: demand &amp; supply of foreign exchange</div>
+        <svg class="econ-graph" viewBox="0 0 680 360" xmlns="http://www.w3.org/2000/svg">
+          <rect width="680" height="360" fill="#fafafa"/>
+          <line x1="70" y1="310" x2="620" y2="310" stroke="#333" stroke-width="2"/>
+          <line x1="70" y1="310" x2="70" y2="40" stroke="#333" stroke-width="2"/>
+          <polygon points="620,310 608,304 608,316" fill="#333"/>
+          <polygon points="70,40 64,52 76,52" fill="#333"/>
+          <!-- Demand curve (downward sloping) -->
+          <line x1="120" y1="70" x2="570" y2="285" stroke="#1a5276" stroke-width="2.5"/>
+          <text x="575" y="290" fill="#1a5276" font-size="13" font-family="serif" font-weight="bold">D (USD)</text>
+          <!-- Supply curve (upward sloping) -->
+          <line x1="120" y1="285" x2="570" y2="70" stroke="#1e8449" stroke-width="2.5"/>
+          <text x="575" y="68" fill="#1e8449" font-size="13" font-family="serif" font-weight="bold">S (USD)</text>
+          <!-- Equilibrium -->
+          <circle cx="345" cy="177" r="6" fill="#c0392b"/>
+          <text x="350" y="165" fill="#c0392b" font-size="13" font-family="serif" font-weight="bold">E*</text>
+          <line x1="345" y1="177" x2="345" y2="310" stroke="#c0392b" stroke-width="1" stroke-dasharray="4,3"/>
+          <line x1="345" y1="177" x2="70" y2="177" stroke="#c0392b" stroke-width="1" stroke-dasharray="4,3"/>
+          <text x="330" y="328" fill="#c0392b" font-size="12" font-family="serif">Q*</text>
+          <text x="36" y="181" fill="#c0392b" font-size="12" font-family="serif">e*</text>
+          <!-- Labels -->
+          <text x="330" y="350" fill="#555" font-size="13" font-family="serif">Quantity of Foreign Exchange</text>
+          <text x="14" y="185" fill="#555" font-size="13" font-family="serif" transform="rotate(-90,14,185)">Exchange Rate (₹ per USD)</text>
+        </svg>
+        <div class="graph-legend">
+          <div class="leg"><div class="leg-line" style="background:#1a5276"></div>Demand for USD (importers, capital outflows)</div>
+          <div class="leg"><div class="leg-line" style="background:#1e8449"></div>Supply of USD (exporters, capital inflows)</div>
+        </div>
+      </div>
+    </div>
+    <div class="conclusion"><strong>Conclusion:</strong> In a flexible system, exchange rate moves to clear the forex market. Depreciation makes exports cheaper and imports dearer, which auto-corrects a trade deficit. The key trade-off: flexibility allows adjustment but creates volatility that can harm trade and investment.</div>
+  </div>
+</div>
+
+<!-- Q5.3 -->
+<div class="q-block" id="q5_3">
+  <div class="q-header">
+    <div><div class="q-num">Question 5.3</div>
+    <div class="q-text">Explain equilibrium output in an open economy. How does an open economy multiplier differ from a closed economy multiplier?</div></div>
+    <div class="q-marks">10 Marks</div>
+  </div>
+  <div class="q-body">
+    <div class="ans-section">
+      <div class="ans-label">Open Economy Equilibrium</div>
+      <p>In an open economy, aggregate expenditure includes exports (X) and subtracts imports (M):</p>
+      <div class="formula">
+        <div class="ftitle">Open Economy AE</div>
+        <div class="feq">AE = C + I + G + (X − M)<br>
+        Net Exports (NX) = X − M<br>
+        Imports: M = M₀ + m·Y &nbsp;(m = marginal propensity to import, 0 &lt; m &lt; 1)<br>
+        Equilibrium: Y* = [Autonomous spending] × 1/(1 − b + m)
+        </div>
+      </div>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Open vs Closed Economy Multiplier</div>
+      <table class="comp-table">
+        <tr><th>Economy</th><th>Multiplier Formula</th><th>Example (b=0.8, m=0.2)</th></tr>
+        <tr><td>Closed Economy</td><td>1 / (1 − b)</td><td>1 / (1 − 0.8) = <strong>5</strong></td></tr>
+        <tr><td>Open Economy</td><td>1 / (1 − b + m)</td><td>1 / (1 − 0.8 + 0.2) = 1/0.4 = <strong>2.5</strong></td></tr>
+      </table>
+      <div class="key-point">
+        <div class="kp-title">Why is the Open Economy Multiplier Smaller?</div>
+        <p>In an open economy, some of every additional rupee of income "leaks out" as imports — it generates income abroad rather than at home. This import leakage reduces the domestic multiplier effect. The more open the economy (higher m), the smaller the multiplier.</p>
+      </div>
+    </div>
+    <div class="conclusion"><strong>Conclusion:</strong> The open economy multiplier = 1/(1−b+m) is always smaller than the closed economy multiplier 1/(1−b) because imports represent a leakage of demand. Countries highly integrated into world trade have smaller fiscal multipliers — a key policy consideration for small open economies like India.</div>
+  </div>
+</div>
+
+<div class="section-label deriv">Derivative Questions</div>
+<div class="q-block deriv-q" id="q5_d1">
+  <div class="q-header">
+    <div><div class="q-num">Derivative Q 5.D1</div>
+    <div class="q-text">Given MPC = 0.75, MPM = 0.15. Calculate the open economy multiplier. If G rises by ₹200 crore, what is the change in equilibrium output? Compare with closed economy outcome.</div></div>
+    <div class="q-marks">10 Marks</div>
+  </div>
+  <div class="q-body">
+    <div class="formula">
+      <div class="ftitle">Solution</div>
+      <div class="feq">
+        Open multiplier = 1/(1 − 0.75 + 0.15) = 1/0.40 = <strong>2.5</strong><br>
+        ΔY (open) = 2.5 × 200 = <strong>₹500 crore</strong><br><br>
+        Closed multiplier = 1/(1 − 0.75) = 1/0.25 = <strong>4</strong><br>
+        ΔY (closed) = 4 × 200 = <strong>₹800 crore</strong><br><br>
+        Difference = 800 − 500 = <strong>₹300 crore lost to import leakage</strong>
+      </div>
+    </div>
+    <div class="conclusion"><strong>Answer:</strong> Open multiplier = 2.5 vs closed = 4. The same ₹200 crore of government spending raises output by ₹500 cr in open economy vs ₹800 cr in closed — ₹300 cr of stimulus effect "leaks" to foreign economies via imports.</div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- CHAPTER 6: LABOUR MARKET & UNEMPLOYMENT -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="chapter-head" id="ch6">
+  <div class="ch-tag">Chapter 06</div>
+  <div class="ch-title">Labour Market &amp; Unemployment</div>
+  <div class="ch-ref">Reference: Dornbusch &amp; Fischer / Mankiw — Labour Market Chapter</div>
+</div>
+
+<div class="section-label">Expected Questions (10 Marks Each)</div>
+
+<!-- Q6.1 -->
+<div class="q-block" id="q6_1">
+  <div class="q-header">
+    <div><div class="q-num">Question 6.1</div>
+    <div class="q-text">Explain the different types of unemployment. Distinguish between frictional, structural, and cyclical unemployment with examples.</div></div>
+    <div class="q-marks">10 Marks</div>
+  </div>
+  <div class="q-body">
+    <div class="ans-section">
+      <div class="ans-label">Types of Unemployment</div>
+      <table class="comp-table">
+        <tr><th>Type</th><th>Cause</th><th>Duration</th><th>Example</th></tr>
+        <tr><td><strong>Frictional</strong></td><td>Time lag between jobs — search and matching</td><td>Short-term</td><td>A software engineer between two jobs</td></tr>
+        <tr><td><strong>Structural</strong></td><td>Mismatch between worker skills and job requirements due to structural change</td><td>Long-term</td><td>Coal miners unemployed as economy shifts to renewables</td></tr>
+        <tr><td><strong>Cyclical</strong></td><td>Economic recession — insufficient aggregate demand</td><td>Medium-term (recession-linked)</td><td>Workers laid off during COVID lockdowns</td></tr>
+        <tr><td><strong>Seasonal</strong></td><td>Jobs that only exist in certain seasons</td><td>Predictable</td><td>Farm labourers after harvest season</td></tr>
+        <tr><td><strong>Classical/Real wage</strong></td><td>Wages stuck above equilibrium (minimum wage, unions)</td><td>Persistent</td><td>Skilled workers priced out due to wage floor</td></tr>
+      </table>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Natural Rate of Unemployment (NRU)</div>
+      <div class="def-box">
+        <div class="def-title">Natural Rate of Unemployment</div>
+        <p>The <strong>NRU</strong> = Frictional + Structural unemployment. It is the "full employment" unemployment rate — the level of unemployment consistent with stable inflation. Cyclical unemployment is zero at the NRU. Also called NAIRU (Non-Accelerating Inflation Rate of Unemployment).</p>
+      </div>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Policy Implications</div>
+      <ul>
+        <li><strong>Frictional:</strong> Improve job information (employment exchanges, portals) to speed up matching.</li>
+        <li><strong>Structural:</strong> Retraining programs, skill development, relocation subsidies.</li>
+        <li><strong>Cyclical:</strong> Expansionary fiscal and monetary policy to boost aggregate demand.</li>
+      </ul>
+    </div>
+    <div class="conclusion"><strong>Conclusion:</strong> Different types of unemployment require different policy responses. Monetary/fiscal stimulus only addresses cyclical unemployment — it cannot cure structural or frictional unemployment. Confusing the types leads to wrong policy prescriptions.</div>
+  </div>
+</div>
+
+<!-- Q6.2 -->
+<div class="q-block" id="q6_2">
+  <div class="q-header">
+    <div><div class="q-num">Question 6.2</div>
+    <div class="q-text">Explain efficiency wage theory. How do minimum wages and labour unions affect unemployment? What role does imperfect information play in labour markets?</div></div>
+    <div class="q-marks">10 Marks</div>
+  </div>
+  <div class="q-body">
+    <div class="ans-section">
+      <div class="ans-label">Efficiency Wage Theory</div>
+      <div class="def-box">
+        <div class="def-title">Efficiency Wages</div>
+        <p><strong>Efficiency wage theory</strong> argues that firms deliberately pay wages <em>above</em> the market-clearing level because higher wages increase worker productivity — by reducing shirking, attracting better workers, lowering turnover, and improving morale. The result is that wages are sticky downward and unemployment persists even in equilibrium.</p>
+      </div>
+      <p>Reasons higher wages boost efficiency: reduce turnover costs, raise effort (workers fear job loss), attract higher-quality applicants, improve nutrition/health (in developing economies).</p>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Minimum Wages &amp; Labour Unions</div>
+      <div class="graph-box">
+        <div class="graph-title"><span>Fig 6.1</span> — Minimum Wage above Equilibrium creates unemployment</div>
+        <svg class="econ-graph" viewBox="0 0 680 360" xmlns="http://www.w3.org/2000/svg">
+          <rect width="680" height="360" fill="#fafafa"/>
+          <line x1="70" y1="310" x2="620" y2="310" stroke="#333" stroke-width="2"/>
+          <line x1="70" y1="310" x2="70" y2="40" stroke="#333" stroke-width="2"/>
+          <polygon points="620,310 608,304 608,316" fill="#333"/>
+          <polygon points="70,40 64,52 76,52" fill="#333"/>
+          <!-- Labour demand (downward) -->
+          <line x1="120" y1="80" x2="570" y2="280" stroke="#1a5276" stroke-width="2.5"/>
+          <text x="575" y="285" fill="#1a5276" font-size="13" font-family="serif" font-weight="bold">L<tspan dy="-4" font-size="10">d</tspan></text>
+          <!-- Labour supply (upward) -->
+          <line x1="120" y1="280" x2="570" y2="80" stroke="#1e8449" stroke-width="2.5"/>
+          <text x="575" y="78" fill="#1e8449" font-size="13" font-family="serif" font-weight="bold">L<tspan dy="-4" font-size="10">s</tspan></text>
+          <!-- Equilibrium wage (W*) -->
+          <circle cx="345" cy="180" r="5" fill="#555"/>
+          <line x1="70" y1="180" x2="620" y2="180" stroke="#888" stroke-width="1" stroke-dasharray="5,4"/>
+          <text x="36" y="184" fill="#555" font-size="12" font-family="serif">W*</text>
+          <!-- Minimum wage (W_min) above equilibrium -->
+          <line x1="70" y1="120" x2="620" y2="120" stroke="#c0392b" stroke-width="2" stroke-dasharray="8,4"/>
+          <text x="36" y="124" fill="#c0392b" font-size="12" font-family="serif">W<tspan dy="-4" font-size="9">min</tspan></text>
+          <!-- Labour demanded at W_min -->
+          <line x1="262" y1="120" x2="262" y2="310" stroke="#c0392b" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="250" y="328" fill="#c0392b" font-size="11">L<tspan dy="-4" font-size="9">d</tspan></text>
+          <!-- Labour supplied at W_min -->
+          <line x1="430" y1="120" x2="430" y2="310" stroke="#1e8449" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="420" y="328" fill="#1e8449" font-size="11">L<tspan dy="-4" font-size="9">s</tspan></text>
+          <!-- Unemployment gap arrow -->
+          <line x1="262" y1="105" x2="430" y2="105" stroke="#e8b84b" stroke-width="2" marker-end="url(#arr2)"/>
+          <line x1="430" y1="105" x2="262" y2="105" stroke="#e8b84b" stroke-width="2"/>
+          <text x="310" y="98" fill="#8a6c00" font-size="11" font-family="monospace">Unemployment</text>
+          <text x="330" y="350" fill="#555" font-size="13" font-family="serif">Employment (L)</text>
+          <text x="14" y="185" fill="#555" font-size="13" font-family="serif" transform="rotate(-90,14,185)">Wage (W)</text>
+        </svg>
+      </div>
+      <p>When minimum wage (W<sub>min</sub>) is set above equilibrium (W*), labour supply exceeds labour demand — creating unemployment equal to (L<sub>s</sub> − L<sub>d</sub>). Similarly, <strong>labour unions</strong> bargain for wages above market clearing, benefiting union members but potentially causing unemployment for non-union workers.</p>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Imperfect Information</div>
+      <p>Labour markets have <strong>asymmetric information</strong> — employers can't fully observe worker quality or effort before hiring. This leads to adverse selection (only low-quality workers accept offers at certain wages) and moral hazard (workers shirk once hired). Efficiency wages, signaling (education credentials), and probation periods are market responses to this information problem.</p>
+    </div>
+    <div class="conclusion"><strong>Conclusion:</strong> Labour markets don't always clear. Efficiency wages, minimum wage laws, union bargaining, and imperfect information all create wage rigidity — keeping wages above equilibrium and generating persistent unemployment. These are supply-side structural features that monetary/fiscal policy cannot easily fix.</div>
+  </div>
+</div>
+
+<div class="section-label deriv">Derivative Questions</div>
+<div class="q-block deriv-q" id="q6_d1">
+  <div class="q-header">
+    <div><div class="q-num">Derivative Q 6.D1</div>
+    <div class="q-text">Labour force = 500 million. Employed = 460 million. Of the unemployed, 15 million are frictionally unemployed, 10 million structurally, and the rest cyclically. What is the unemployment rate, NRU, and cyclical unemployment rate?</div></div>
+    <div class="q-marks">10 Marks</div>
+  </div>
+  <div class="q-body">
+    <div class="formula">
+      <div class="ftitle">Solution</div>
+      <div class="feq">
+        Total unemployed = 500 − 460 = <strong>40 million</strong><br>
+        Unemployment rate = 40/500 = <strong>8%</strong><br><br>
+        NRU = (Frictional + Structural) / Labour Force<br>
+        NRU = (15 + 10) / 500 = 25/500 = <strong>5%</strong><br><br>
+        Cyclical unemployment = 40 − 25 = 15 million<br>
+        Cyclical unemployment rate = 15/500 = <strong>3%</strong><br><br>
+        GDP Gap (Okun's Law approx): ≈ 2 × cyclical rate = <strong>~6% below potential GDP</strong>
+      </div>
+    </div>
+    <div class="conclusion"><strong>Answer:</strong> Unemployment rate = 8%, NRU = 5%, Cyclical = 3%. The economy is 3% below full employment, suggesting expansionary policy (fiscal/monetary) is warranted to close the output gap.</div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- CHAPTER 7: AD–AS & PHILLIPS CURVE -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="chapter-head" id="ch7">
+  <div class="ch-tag">Chapter 07</div>
+  <div class="ch-title">AD–AS Framework &amp; Phillips Curve</div>
+  <div class="ch-ref">Reference: Dornbusch &amp; Fischer — Aggregate Demand, Aggregate Supply &amp; the Price Level</div>
+</div>
+
+<div class="section-label">Expected Questions (10 Marks Each)</div>
+
+<!-- Q7.1 -->
+<div class="q-block" id="q7_1">
+  <div class="q-header">
+    <div><div class="q-num">Question 7.1</div>
+    <div class="q-text">Distinguish between the short-run and long-run Aggregate Supply curves. What determines the shape of the SRAS? Explain with graphs.</div></div>
+    <div class="q-marks">10 Marks</div>
+  </div>
+  <div class="q-body">
+    <div class="ans-section">
+      <div class="ans-label">Short-Run vs Long-Run AS</div>
+      <table class="comp-table">
+        <tr><th>Feature</th><th>SRAS (Short-Run)</th><th>LRAS (Long-Run)</th></tr>
+        <tr><td>Shape</td><td>Upward sloping</td><td>Vertical (at potential output Y*)</td></tr>
+        <tr><td>Prices</td><td>Some prices/wages sticky</td><td>All prices fully flexible</td></tr>
+        <tr><td>Determinant</td><td>Input costs, price stickiness</td><td>Technology, capital, labour (productive capacity)</td></tr>
+        <tr><td>Effect of demand shock</td><td>Output AND prices change</td><td>Only prices change — output returns to Y*</td></tr>
+      </table>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Why is SRAS upward sloping?</div>
+      <ul>
+        <li><strong>Sticky Wages:</strong> Nominal wages are fixed by contracts in the short run. When price level rises, real wages fall → firms hire more → output rises.</li>
+        <li><strong>Sticky Prices:</strong> Firms don't immediately adjust all prices (menu costs, contracts). As demand rises, some firms produce more at existing prices.</li>
+        <li><strong>Misperceptions:</strong> Producers confuse general price level rise with relative price rise and increase supply.</li>
+      </ul>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Graph — SRAS &amp; LRAS</div>
+      <div class="graph-box">
+        <div class="graph-title"><span>Fig 7.1</span> — Short-run (upward) vs Long-run (vertical) AS curves</div>
+        <svg class="econ-graph" viewBox="0 0 680 380" xmlns="http://www.w3.org/2000/svg">
+          <rect width="680" height="380" fill="#fafafa"/>
+          <line x1="70" y1="330" x2="620" y2="330" stroke="#333" stroke-width="2"/>
+          <line x1="70" y1="330" x2="70" y2="40" stroke="#333" stroke-width="2"/>
+          <polygon points="620,330 608,324 608,336" fill="#333"/>
+          <polygon points="70,40 64,52 76,52" fill="#333"/>
+          <!-- LRAS (vertical) at Y* -->
+          <line x1="380" y1="60" x2="380" y2="330" stroke="#c0392b" stroke-width="2.5"/>
+          <text x="384" y="55" fill="#c0392b" font-size="13" font-family="serif" font-weight="bold">LRAS</text>
+          <!-- SRAS (upward sloping) -->
+          <line x1="130" y1="290" x2="560" y2="100" stroke="#1a5276" stroke-width="2.5"/>
+          <text x="565" y="98" fill="#1a5276" font-size="13" font-family="serif" font-weight="bold">SRAS</text>
+          <!-- AD curve -->
+          <path d="M 140,110 Q 320,200 560,300" fill="none" stroke="#1e8449" stroke-width="2.5"/>
+          <text x="565" y="305" fill="#1e8449" font-size="13" font-family="serif" font-weight="bold">AD</text>
+          <!-- Equilibrium intersection -->
+          <circle cx="380" cy="188" r="6" fill="#e8b84b"/>
+          <text x="385" y="177" fill="#8a6c00" font-size="12" font-family="serif" font-weight="bold">E*</text>
+          <line x1="380" y1="188" x2="70" y2="188" stroke="#e8b84b" stroke-width="1" stroke-dasharray="4,3"/>
+          <text x="38" y="192" fill="#8a6c00" font-size="12" font-family="serif">P*</text>
+          <text x="368" y="348" fill="#8a6c00" font-size="12" font-family="serif">Y*</text>
+          <!-- Labels -->
+          <text x="330" y="365" fill="#555" font-size="13" font-family="serif">Output (Y)</text>
+          <text x="14" y="195" fill="#555" font-size="13" font-family="serif" transform="rotate(-90,14,195)">Price Level (P)</text>
+          <!-- Annotations -->
+          <text x="150" y="175" fill="#1a5276" font-size="10" font-family="monospace">Sticky wages/prices</text>
+          <text x="390" y="120" fill="#c0392b" font-size="10" font-family="monospace">Full employment</text>
+          <text x="390" y="133" fill="#c0392b" font-size="10" font-family="monospace">potential output</text>
+        </svg>
+      </div>
+    </div>
+    <div class="conclusion"><strong>Conclusion:</strong> SRAS is upward sloping because of price/wage stickiness in the short run — higher prices temporarily boost output. LRAS is vertical because in the long run all prices adjust and output returns to potential Y*. A demand shock raises both P and Y in the SR, but only P in the LR.</div>
+  </div>
+</div>
+
+<!-- Q7.2 -->
+<div class="q-block" id="q7_2">
+  <div class="q-header">
+    <div><div class="q-num">Question 7.2</div>
+    <div class="q-text">What are the factors that shift the Aggregate Demand (AD) curve and the Aggregate Supply (AS) curve? Explain with graphs.</div></div>
+    <div class="q-marks">10 Marks</div>
+  </div>
+  <div class="q-body">
+    <div class="ans-section">
+      <div class="ans-label">AD Curve — Why Downward Sloping?</div>
+      <ul>
+        <li><strong>Wealth Effect:</strong> Higher price level erodes real wealth → consumption falls.</li>
+        <li><strong>Interest Rate Effect:</strong> Higher P → more money demanded → i rises → investment falls.</li>
+        <li><strong>Exchange Rate Effect:</strong> Higher P → domestic goods costlier → exports fall, imports rise → NX falls.</li>
+      </ul>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Factors Shifting AD</div>
+      <div class="shift-grid">
+        <div class="shift-card">
+          <div class="shift-card-head right">AD Shifts Right (↑)</div>
+          <ul>
+            <li>↑ Government spending (G)</li>
+            <li>↓ Taxes → ↑ Disposable income</li>
+            <li>↑ Investment (optimism, ↓ interest rate)</li>
+            <li>↑ Exports (foreign demand rises)</li>
+            <li>↑ Money supply → lower interest rates</li>
+          </ul>
+        </div>
+        <div class="shift-card">
+          <div class="shift-card-head left">AD Shifts Left (↓)</div>
+          <ul>
+            <li>↓ Government spending (fiscal austerity)</li>
+            <li>↑ Taxes → ↓ Disposable income</li>
+            <li>↓ Consumer confidence</li>
+            <li>↓ Exports (global slowdown)</li>
+            <li>↑ Interest rates (tight monetary policy)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Factors Shifting SRAS</div>
+      <div class="shift-grid">
+        <div class="shift-card">
+          <div class="shift-card-head right">SRAS Shifts Right (↑ supply)</div>
+          <ul>
+            <li>↓ Input costs (oil price fall)</li>
+            <li>↓ Wages (productivity rise)</li>
+            <li>Favourable supply shock (good harvest)</li>
+            <li>↓ Business taxes / subsidies</li>
+          </ul>
+        </div>
+        <div class="shift-card">
+          <div class="shift-card-head left">SRAS Shifts Left (↓ supply)</div>
+          <ul>
+            <li>↑ Oil/input prices (supply shock)</li>
+            <li>↑ Wages (wage-push inflation)</li>
+            <li>Natural disasters reducing capacity</li>
+            <li>↑ Business regulations/costs</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Graph — AD and SRAS Shifts</div>
+      <div class="graph-box">
+        <div class="graph-title"><span>Fig 7.2</span> — Rightward shift of AD: P and Y both rise (SR); and leftward SRAS (supply shock)</div>
+        <svg class="econ-graph" viewBox="0 0 680 380" xmlns="http://www.w3.org/2000/svg">
+          <rect width="680" height="380" fill="#fafafa"/>
+          <line x1="70" y1="330" x2="620" y2="330" stroke="#333" stroke-width="2"/>
+          <line x1="70" y1="330" x2="70" y2="40" stroke="#333" stroke-width="2"/>
+          <polygon points="620,330 608,324 608,336" fill="#333"/>
+          <polygon points="70,40 64,52 76,52" fill="#333"/>
+          <!-- SRAS original -->
+          <line x1="100" y1="300" x2="520" y2="80" stroke="#1a5276" stroke-width="2"/>
+          <text x="524" y="78" fill="#1a5276" font-size="12" font-family="serif">SRAS</text>
+          <!-- SRAS leftward shift (supply shock) -->
+          <line x1="200" y1="300" x2="600" y2="80" stroke="#1a5276" stroke-width="2" stroke-dasharray="7,4"/>
+          <text x="596" y="62" fill="#1a5276" font-size="12" font-family="serif">SRAS'</text>
+          <text x="450" y="52" fill="#1a5276" font-size="10" font-family="monospace">(supply shock → left)</text>
+          <!-- AD original -->
+          <path d="M 110,100 Q 300,200 540,310" fill="none" stroke="#1e8449" stroke-width="2"/>
+          <text x="545" y="315" fill="#1e8449" font-size="12" font-family="serif">AD</text>
+          <!-- AD rightward shift -->
+          <path d="M 200,100 Q 390,200 590,290" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="7,4"/>
+          <text x="562" y="275" fill="#c0392b" font-size="12" font-family="serif">AD'</text>
+          <!-- E1 original equilibrium -->
+          <circle cx="305" cy="203" r="5" fill="#888"/>
+          <text x="285" y="196" fill="#555" font-size="12" font-family="serif">E₁</text>
+          <!-- E2 after AD shift -->
+          <circle cx="390" cy="178" r="5" fill="#c0392b"/>
+          <text x="395" y="172" fill="#c0392b" font-size="12" font-family="serif">E₂</text>
+          <!-- E3 after supply shock -->
+          <circle cx="360" cy="215" r="5" fill="#1a5276"/>
+          <text x="365" y="230" fill="#1a5276" font-size="12" font-family="serif">E₃</text>
+          <!-- Labels -->
+          <text x="330" y="358" fill="#555" font-size="13" font-family="serif">Output (Y)</text>
+          <text x="14" y="195" fill="#555" font-size="13" font-family="serif" transform="rotate(-90,14,195)">Price Level (P)</text>
+          <!-- legend note -->
+          <text x="90" y="360" fill="#555" font-size="10" font-family="monospace">E₁→E₂: AD expansion (↑Y, ↑P) | E₁→E₃: Supply shock (↓Y, ↑P = stagflation)</text>
+        </svg>
+      </div>
+    </div>
+    <div class="conclusion"><strong>Conclusion:</strong> AD shifts are driven by changes in C, I, G, NX, and money supply. SRAS shifts are driven by changes in input costs, wages, and productivity. A rightward AD shift raises both output and prices; a leftward SRAS shift creates stagflation (↑P, ↓Y) — the worst macroeconomic outcome.</div>
+  </div>
+</div>
+
+<!-- Q7.3 -->
+<div class="q-block" id="q7_3">
+  <div class="q-header">
+    <div><div class="q-num">Question 7.3</div>
+    <div class="q-text">Explain the Phillips Curve. What is the trade-off between inflation and unemployment? How does the long-run Phillips Curve differ from the short-run?</div></div>
+    <div class="q-marks">10 Marks</div>
+  </div>
+  <div class="q-body">
+    <div class="ans-section">
+      <div class="ans-label">The Phillips Curve</div>
+      <div class="def-box">
+        <div class="def-title">Phillips Curve</div>
+        <p>The <strong>Phillips Curve</strong> (A.W. Phillips, 1958) describes an empirical inverse relationship between unemployment and inflation — when unemployment is low, wage demands push up prices (inflation rises); when unemployment is high, wage growth moderates (inflation falls).</p>
+      </div>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Short-Run vs Long-Run Phillips Curve</div>
+      <table class="comp-table">
+        <tr><th>Feature</th><th>Short-Run PC</th><th>Long-Run PC</th></tr>
+        <tr><td>Shape</td><td>Downward sloping — trade-off exists</td><td>Vertical at NRU — no long-run trade-off</td></tr>
+        <tr><td>Logic</td><td>Expectations not yet adjusted</td><td>Expectations fully adjusted → real wages unchanged</td></tr>
+        <tr><td>Policy implication</td><td>Lower unemployment via higher inflation — temporarily</td><td>Sustained stimulus only raises inflation, not employment</td></tr>
+      </table>
+      <div class="key-point">
+        <div class="kp-title">Friedman-Phelps Natural Rate Hypothesis</div>
+        <p>The long-run Phillips Curve is vertical at the Natural Rate of Unemployment (NRU). Any attempt to permanently reduce unemployment below NRU via demand stimulus will only raise inflation — it will not reduce unemployment in the long run, as workers will eventually adjust wage expectations upward.</p>
+      </div>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Graph — Phillips Curve (SR and LR)</div>
+      <div class="graph-box">
+        <div class="graph-title"><span>Fig 7.3</span> — Short-run trade-off vs Long-run vertical Phillips Curve</div>
+        <svg class="econ-graph" viewBox="0 0 680 380" xmlns="http://www.w3.org/2000/svg">
+          <rect width="680" height="380" fill="#fafafa"/>
+          <line x1="70" y1="320" x2="620" y2="320" stroke="#333" stroke-width="2"/>
+          <line x1="70" y1="320" x2="70" y2="40" stroke="#333" stroke-width="2"/>
+          <polygon points="620,320 608,314 608,326" fill="#333"/>
+          <polygon points="70,40 64,52 76,52" fill="#333"/>
+          <!-- LRPC — vertical at NRU -->
+          <line x1="380" y1="55" x2="380" y2="320" stroke="#c0392b" stroke-width="2.5"/>
+          <text x="385" y="50" fill="#c0392b" font-size="13" font-family="serif" font-weight="bold">LRPC</text>
+          <!-- SRPC1 -->
+          <path d="M 140,100 Q 280,190 530,300" fill="none" stroke="#1a5276" stroke-width="2.5"/>
+          <text x="535" y="304" fill="#1a5276" font-size="12" font-family="serif">PC₁</text>
+          <!-- SRPC2 (shifted up due to higher expected inflation) -->
+          <path d="M 140,60 Q 280,150 530,260" fill="none" stroke="#1a5276" stroke-width="2" stroke-dasharray="7,4"/>
+          <text x="535" y="264" fill="#1a5276" font-size="12" font-family="serif">PC₂</text>
+          <!-- Point A (original) -->
+          <circle cx="380" cy="198" r="5" fill="#1e8449"/>
+          <text x="388" y="196" fill="#1e8449" font-size="12" font-family="serif">A</text>
+          <!-- Point B (lower unemployment) -->
+          <circle cx="270" cy="172" r="5" fill="#e8b84b"/>
+          <text x="256" y="168" fill="#e8a020" font-size="12" font-family="serif">B</text>
+          <!-- Point C (back to NRU, higher inflation) -->
+          <circle cx="380" cy="155" r="5" fill="#c0392b"/>
+          <text x="388" y="153" fill="#c0392b" font-size="12" font-family="serif">C</text>
+          <!-- Arrows A→B→C -->
+          <path d="M 380,198 Q 320,185 272,174" fill="none" stroke="#888" stroke-width="1.5" marker-end="url(#a1)"/>
+          <path d="M 272,170 Q 320,158 378,157" fill="none" stroke="#888" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#a1)"/>
+          <!-- NRU label -->
+          <text x="368" y="338" fill="#888" font-size="11" font-family="monospace">NRU</text>
+          <!-- Axis labels -->
+          <text x="330" y="355" fill="#555" font-size="13" font-family="serif">Unemployment Rate (u)</text>
+          <text x="14" y="195" fill="#555" font-size="13" font-family="serif" transform="rotate(-90,14,195)">Inflation Rate (π)</text>
+          <text x="90" y="360" fill="#555" font-size="10" font-family="monospace">A: initial | B: stimulus → lower u, higher π (short-run) | C: long-run → u returns to NRU, π stays high</text>
+        </svg>
+      </div>
+    </div>
+    <div class="conclusion"><strong>Conclusion:</strong> The short-run Phillips Curve shows a real trade-off between inflation and unemployment. But the long-run PC is vertical — sustained demand stimulus can permanently raise inflation without reducing unemployment. Policymakers can exploit the SR trade-off but cannot permanently "buy" lower unemployment at the cost of higher inflation.</div>
+  </div>
+</div>
+
+<div class="section-label deriv">Derivative Questions</div>
+<div class="q-block deriv-q" id="q7_d1">
+  <div class="q-header">
+    <div><div class="q-num">Derivative Q 7.D1</div>
+    <div class="q-text">Using the AD-AS model, show the short-run and long-run effects of an expansionary monetary policy. What happens to P, Y, and interest rates?</div></div>
+    <div class="q-marks">10 Marks</div>
+  </div>
+  <div class="q-body">
+    <div class="ans-section">
+      <div class="ans-label">Short Run vs Long Run Effects of Expansionary Monetary Policy</div>
+      <p><strong>Initial state:</strong> Economy at E₁ with P₁, Y* (potential output).</p>
+      <p><strong>Short Run:</strong> RBI increases money supply → lower interest rate → investment rises → AD shifts right → new equilibrium at E₂ with higher output (Y₂ &gt; Y*) and higher prices (P₂ &gt; P₁). Economy is above potential — inflationary gap.</p>
+      <p><strong>Long Run:</strong> Workers demand higher wages to compensate for inflation → SRAS shifts left → SRAS intersects new AD at E₃, which is back at Y* but at an even higher price level P₃. Output returns to potential; only prices are permanently higher.</p>
+    </div>
+    <div class="formula">
+      <div class="ftitle">Summary of Effects</div>
+      <div class="feq">
+        Short Run: ↑M → ↓i → ↑I → AD shifts right → Y↑, P↑<br>
+        Long Run: ↑wages → SRAS shifts left → Y returns to Y*, P↑ further<br>
+        Net LR result: <strong>Only inflation rises — output unchanged at Y*</strong>
+      </div>
+    </div>
+    <div class="conclusion"><strong>Conclusion:</strong> Monetary expansion is effective in the short run (raises Y, lowers i) but is inflationary in the long run — output returns to potential while price level is permanently higher. This is the long-run neutrality of money.</div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- CHAPTER 8: FISCAL POLICY -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="chapter-head" id="ch8">
+  <div class="ch-tag">Chapter 08</div>
+  <div class="ch-title">Government Budget, Deficits &amp; Fiscal Policy</div>
+  <div class="ch-ref">Reference: Dornbusch &amp; Fischer — Fiscal Policy Chapter</div>
+</div>
+
+<div class="section-label">Expected Questions (10 Marks Each)</div>
+
+<!-- Q8.1 -->
+<div class="q-block" id="q8_1">
+  <div class="q-header">
+    <div><div class="q-num">Question 8.1</div>
+    <div class="q-text">Explain the government budget. Distinguish between revenue deficit, fiscal deficit, and primary deficit. What role does fiscal policy play in stabilizing the economy?</div></div>
+    <div class="q-marks">10 Marks</div>
+  </div>
+  <div class="q-body">
+    <div class="ans-section">
+      <div class="ans-label">Government Budget</div>
+      <div class="def-box">
+        <div class="def-title">Government Budget</div>
+        <p>The <strong>government budget</strong> is a statement of the government's expected revenues and expenditures over a financial year. Budget surplus = Revenue &gt; Expenditure; Budget deficit = Expenditure &gt; Revenue.</p>
+      </div>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Types of Deficits</div>
+      <table class="comp-table">
+        <tr><th>Deficit Type</th><th>Formula</th><th>What It Measures</th></tr>
+        <tr><td>Revenue Deficit</td><td>Revenue Expenditure − Revenue Receipts</td><td>Govt spending more on current expenses than it earns — dis-saving</td></tr>
+        <tr><td>Fiscal Deficit</td><td>Total Expenditure − Total Receipts (excl. borrowings)</td><td>Total borrowing requirement of govt — most watched metric</td></tr>
+        <tr><td>Primary Deficit</td><td>Fiscal Deficit − Interest Payments</td><td>Current fiscal position excluding past debt burden</td></tr>
+      </table>
+      <div class="formula">
+        <div class="ftitle">Key Identity</div>
+        <div class="feq">Primary Deficit = Fiscal Deficit − Interest Payments<br>
+        If Primary Deficit = 0 → govt is not adding to debt in real terms (interest-adjusted)<br>
+        <span style="font-size:11px;color:#6080a0">India's fiscal deficit target (FRBM): 3% of GDP</span></div>
+      </div>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Role of Fiscal Policy — Automatic Stabilizers</div>
+      <ul>
+        <li><strong>Recession:</strong> Tax revenues automatically fall (less income) → deficit rises → acts as stimulus. Unemployment benefits rise automatically — sustaining demand.</li>
+        <li><strong>Boom:</strong> Tax revenues automatically rise → surplus → demand dampened. This is automatic stabilization — no legislative action needed.</li>
+      </ul>
+      <div class="key-point">
+        <div class="kp-title">Discretionary vs Automatic Fiscal Policy</div>
+        <p><strong>Discretionary:</strong> Government actively changes G or T (budget decisions). <strong>Automatic:</strong> Progressive taxes and transfer payments that naturally expand/contract with the cycle — acting as built-in stabilizers without explicit policy action.</p>
+      </div>
+    </div>
+    <div class="conclusion"><strong>Conclusion:</strong> Fiscal policy is the government's primary lever for influencing aggregate demand. Deficits serve as useful counter-cyclical tools during recessions, but persistent deficits can crowd out private investment and raise debt burden. The primary deficit is the best indicator of the government's current fiscal health (net of inherited debt).</div>
+  </div>
+</div>
+
+<!-- Q8.2 -->
+<div class="q-block" id="q8_2">
+  <div class="q-header">
+    <div><div class="q-num">Question 8.2</div>
+    <div class="q-text">What is crowding out? How does deficit financing by government affect private investment and interest rates? Explain using the IS-LM framework.</div></div>
+    <div class="q-marks">10 Marks</div>
+  </div>
+  <div class="q-body">
+    <div class="ans-section">
+      <div class="ans-label">Crowding Out — Definition</div>
+      <div class="def-box">
+        <div class="def-title">Crowding Out</div>
+        <p><strong>Crowding out</strong> occurs when government borrowing to finance deficit spending pushes up interest rates, which reduces private investment. The rise in G is partially (or fully) offset by a fall in private I — so the net effect on output is smaller than the simple multiplier suggests.</p>
+      </div>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">IS-LM Analysis of Crowding Out</div>
+      <div class="flow">
+        <div class="flow-node">↑G (deficit spending)</div>
+        <div class="flow-arr">→</div>
+        <div class="flow-node">IS shifts right</div>
+        <div class="flow-arr">→</div>
+        <div class="flow-node">↑ money demand at higher Y</div>
+        <div class="flow-arr">→</div>
+        <div class="flow-node">↑ interest rate (i)</div>
+        <div class="flow-arr">→</div>
+        <div class="flow-node">↓ private investment</div>
+      </div>
+      <p>Net effect: Output rises by less than the full multiplier. If LM is steeply sloped (inelastic money demand) → more crowding out. If LM is flat (elastic money demand / liquidity trap) → less crowding out.</p>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Graph — Crowding Out via IS-LM</div>
+      <div class="graph-box">
+        <div class="graph-title"><span>Fig 8.1</span> — Fiscal expansion: IS shifts right, but interest rate rises → partial crowding out</div>
+        <svg class="econ-graph" viewBox="0 0 680 380" xmlns="http://www.w3.org/2000/svg">
+          <rect width="680" height="380" fill="#fafafa"/>
+          <line x1="70" y1="330" x2="620" y2="330" stroke="#333" stroke-width="2"/>
+          <line x1="70" y1="330" x2="70" y2="40" stroke="#333" stroke-width="2"/>
+          <polygon points="620,330 608,324 608,336" fill="#333"/>
+          <polygon points="70,40 64,52 76,52" fill="#333"/>
+          <!-- LM curve (upward sloping) -->
+          <line x1="100" y1="290" x2="580" y2="100" stroke="#1e8449" stroke-width="2.5"/>
+          <text x="585" y="98" fill="#1e8449" font-size="13" font-family="serif" font-weight="bold">LM</text>
+          <!-- IS original -->
+          <line x1="100" y1="110" x2="560" y2="290" stroke="#1a5276" stroke-width="2.5"/>
+          <text x="564" y="295" fill="#1a5276" font-size="13" font-family="serif" font-weight="bold">IS</text>
+          <!-- IS shifted right -->
+          <line x1="200" y1="110" x2="620" y2="270" stroke="#c0392b" stroke-width="2.5" stroke-dasharray="8,4"/>
+          <text x="565" y="265" fill="#c0392b" font-size="13" font-family="serif" font-weight="bold">IS'</text>
+          <!-- E1 -->
+          <circle cx="310" cy="210" r="6" fill="#1a5276"/>
+          <text x="292" y="205" fill="#1a5276" font-size="12" font-family="serif" font-weight="bold">E₁</text>
+          <!-- E2 -->
+          <circle cx="415" cy="176" r="6" fill="#c0392b"/>
+          <text x="420" y="170" fill="#c0392b" font-size="12" font-family="serif" font-weight="bold">E₂</text>
+          <!-- Horizontal distance -->
+          <line x1="310" y1="210" x2="310" y2="330" stroke="#1a5276" stroke-width="1" stroke-dasharray="4,3"/>
+          <line x1="415" y1="176" x2="415" y2="330" stroke="#c0392b" stroke-width="1" stroke-dasharray="4,3"/>
+          <text x="298" y="348" fill="#1a5276" font-size="12" font-family="serif">Y₁</text>
+          <text x="404" y="348" fill="#c0392b" font-size="12" font-family="serif">Y₂</text>
+          <!-- i-axis markings -->
+          <line x1="60" y1="210" x2="80" y2="210" stroke="#888" stroke-width="1"/>
+          <text x="38" y="214" fill="#555" font-size="12" font-family="serif">i₁</text>
+          <line x1="60" y1="176" x2="80" y2="176" stroke="#888" stroke-width="1"/>
+          <text x="38" y="180" fill="#555" font-size="12" font-family="serif">i₂</text>
+          <!-- Crowding out annotation -->
+          <text x="90" y="360" fill="#c0392b" font-size="10" font-family="monospace">Full multiplier effect → Y₃ (without LM constraint). Actual Y₂ &lt; Y₃ due to crowding out via higher i</text>
+          <!-- Labels -->
+          <text x="310" y="370" fill="#555" font-size="13" font-family="serif">Output (Y)</text>
+          <text x="14" y="195" fill="#555" font-size="13" font-family="serif" transform="rotate(-90,14,195)">Interest Rate (i)</text>
+        </svg>
+      </div>
+    </div>
+    <div class="conclusion"><strong>Conclusion:</strong> Crowding out reduces the effectiveness of fiscal policy. The IS shifts right (by the full multiplier), but the new equilibrium on the LM curve is at a higher i, which crowds out private investment. The actual increase in Y (Y₁→Y₂) is less than the simple Keynesian multiplier predicts. In a liquidity trap (flat LM), crowding out is zero and fiscal policy is fully effective.</div>
+  </div>
+</div>
+
+<!-- Q8.3 -->
+<div class="q-block" id="q8_3">
+  <div class="q-header">
+    <div><div class="q-num">Question 8.3</div>
+    <div class="q-text">Distinguish between expansionary and contractionary fiscal policy. When should each be used? Explain with reference to the business cycle.</div></div>
+    <div class="q-marks">10 Marks</div>
+  </div>
+  <div class="q-body">
+    <div class="ans-section">
+      <div class="ans-label">Types of Fiscal Policy</div>
+      <table class="comp-table">
+        <tr><th>Feature</th><th>Expansionary Fiscal Policy</th><th>Contractionary Fiscal Policy</th></tr>
+        <tr><td>Tools</td><td>↑G, ↓T, ↑transfer payments</td><td>↓G, ↑T, ↓transfer payments</td></tr>
+        <tr><td>Effect on AD</td><td>Shifts AD rightward → ↑Y, ↑P</td><td>Shifts AD leftward → ↓Y, ↓P</td></tr>
+        <tr><td>Used when</td><td>Recession — output gap (Y &lt; Y*)</td><td>Overheating — inflationary gap (Y &gt; Y*)</td></tr>
+        <tr><td>Risk</td><td>Inflation, crowding out, debt</td><td>Recession, unemployment</td></tr>
+        <tr><td>Example</td><td>India's COVID stimulus packages 2020-21</td><td>Fiscal consolidation programs, FRBM targets</td></tr>
+      </table>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Fiscal Policy and the Business Cycle</div>
+      <p><strong>Recession phase</strong> (Y &lt; Y*): Use expansionary policy → ↑G or ↓T → shift AD right → close the output gap.</p>
+      <p><strong>Boom phase</strong> (Y &gt; Y*): Use contractionary policy → ↓G or ↑T → shift AD left → cool inflation.</p>
+      <p><strong>Procyclical vs Counter-cyclical:</strong> Ideally fiscal policy should be counter-cyclical — stimulate in downturns, consolidate in booms. In practice, political pressures often make it procyclical (spend in booms, cut in recessions — worsening cycles).</p>
+    </div>
+    <div class="conclusion"><strong>Conclusion:</strong> Fiscal policy is a powerful stabilization tool that works by shifting aggregate demand. Expansionary policy closes deflationary gaps; contractionary policy closes inflationary gaps. The challenge is timing, size, and avoiding excessive debt accumulation — particularly important for emerging economies like India that need to balance growth with fiscal discipline.</div>
+  </div>
+</div>
+
+<div class="section-label deriv">Derivative Questions</div>
+<div class="q-block deriv-q" id="q8_d1">
+  <div class="q-header">
+    <div><div class="q-num">Derivative Q 8.D1</div>
+    <div class="q-text">Total government expenditure = ₹30 lakh crore. Total receipts (excl. borrowings) = ₹24 lakh crore. Interest payments = ₹8 lakh crore. Revenue expenditure = ₹22 lakh crore. Revenue receipts = ₹20 lakh crore. Calculate fiscal deficit, primary deficit, and revenue deficit.</div></div>
+    <div class="q-marks">10 Marks</div>
+  </div>
+  <div class="q-body">
+    <div class="formula">
+      <div class="ftitle">Solution</div>
+      <div class="feq">
+        Fiscal Deficit = Total Expenditure − Total Receipts (excl. borrowings)<br>
+        = 30 − 24 = <strong>₹6 lakh crore</strong><br><br>
+        Primary Deficit = Fiscal Deficit − Interest Payments<br>
+        = 6 − 8 = <strong>−₹2 lakh crore</strong> (Primary Surplus!)<br><br>
+        Revenue Deficit = Revenue Expenditure − Revenue Receipts<br>
+        = 22 − 20 = <strong>₹2 lakh crore</strong>
+      </div>
+    </div>
+    <div class="conclusion"><strong>Interpretation:</strong> Fiscal deficit = ₹6 lakh cr (borrowing requirement). Primary surplus = ₹2 lakh cr → government's current operations are actually generating surplus; entire deficit is due to past interest burden. Revenue deficit = ₹2 lakh cr → government dis-saving on current account.</div>
+  </div>
+</div>
+
+<div class="q-block deriv-q" id="q8_d2">
+  <div class="q-header">
+    <div><div class="q-num">Derivative Q 8.D2</div>
+    <div class="q-text">MPC = 0.75. Government wants to reduce inflationary gap of ₹600 crore. How much should it cut spending? Alternatively, by how much should it raise taxes to achieve the same effect?</div></div>
+    <div class="q-marks">10 Marks</div>
+  </div>
+  <div class="q-body">
+    <div class="formula">
+      <div class="ftitle">Solution</div>
+      <div class="feq">
+        Spending multiplier = 1/(1−0.75) = <strong>4</strong><br>
+        Tax multiplier = 0.75/0.25 = <strong>3</strong> (in absolute terms)<br><br>
+        To close ₹600 crore gap via spending cut:<br>
+        ΔG = −600/4 = <strong>−₹150 crore</strong> (spending cut needed)<br><br>
+        To close ₹600 crore gap via tax hike:<br>
+        ΔT = 600/3 = <strong>₹200 crore</strong> (tax increase needed)<br><br>
+        → Spending cuts are more efficient: smaller ΔG achieves same output reduction as larger ΔT
+      </div>
+    </div>
+    <div class="conclusion"><strong>Key Insight:</strong> To close the same inflationary gap, a spending cut of ₹150 cr works as well as a tax hike of ₹200 cr — because every rupee of G directly impacts demand, whereas a tax hike only partially dampens consumption (MPC fraction). Same asymmetry as the spending multiplier vs tax multiplier.</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div style="margin-top:80px; padding:30px; border-top:2px solid var(--rule); text-align:center;">
+  <div style="font-family:var(--mono); font-size:10px; letter-spacing:2px; color:var(--ink3); text-transform:uppercase;">
+    IIFT IPM 2024–28 · Macroeconomics Question Bank · All 8 Chapters
+  </div>
+  <div style="font-family:var(--sans); font-size:12px; color:var(--ink3); margin-top:8px;">
+    References: Dornbusch &amp; Fischer (IS-LM, Money, Inflation, AD-AS, Fiscal Policy) · Mankiw (Open Economy) · Course PPT
+  </div>
+</div>
+
+</div><!-- end .main -->
+</body>
+</html>
