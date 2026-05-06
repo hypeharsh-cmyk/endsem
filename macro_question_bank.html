@@ -1494,6 +1494,212 @@ svg.econ-graph { width: 100%; max-width: 680px; display: block; margin: 0 auto; 
   </div>
 </div>
 
+<div class="q-block deriv-q" id="q7_d2">
+  <div class="q-header">
+    <div><div class="q-num">Derivative Q 7.D2</div>
+    <div class="q-text">Derive the Aggregate Demand (AD) curve from the IS-LM model. Show both the graphical derivation and the mathematical derivation.</div></div>
+    <div class="q-marks">10 Marks</div>
+  </div>
+  <div class="q-body">
+    <div class="ans-section">
+      <div class="ans-label">Core Idea</div>
+      <p>The <strong>AD curve</strong> shows the combinations of price level (P) and output (Y) at which both the goods market and the money market are in equilibrium. In Dornbusch-Fischer style, AD is derived from IS-LM by asking: what happens to equilibrium income when the price level changes?</p>
+      <div class="key-point">
+        <div class="kp-title">Exam Trigger</div>
+        <p>If the question says "derive AD graphically", draw the IS-LM panel first and then the AD panel below or beside it. If it says "derive mathematically", start from the IS equation and LM equation and solve for Y as a function of P.</p>
+      </div>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Graphical Derivation</div>
+      <ol>
+        <li>Begin with initial price level P₁. Real money supply is M/P₁, so the LM curve is LM₁.</li>
+        <li>IS and LM₁ intersect at E₁, giving equilibrium output Y₁.</li>
+        <li>Now suppose price level rises from P₁ to P₂. Since nominal money supply M is fixed, real money supply M/P falls.</li>
+        <li>Lower real money supply shifts LM left/up from LM₁ to LM₂.</li>
+        <li>The new IS-LM equilibrium is E₂, with a higher interest rate and lower output Y₂.</li>
+        <li>In the AD diagram, plot point A at (Y₁, P₁) and point B at (Y₂, P₂). Joining these points gives a downward-sloping AD curve.</li>
+      </ol>
+      <div class="graph-box">
+        <div class="graph-title"><span>Fig 7.4</span> — Deriving AD from IS-LM: higher P reduces M/P, shifts LM left, and lowers Y</div>
+        <svg class="econ-graph" viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg">
+          <rect width="720" height="420" fill="#fafafa"/>
+          <!-- left panel: IS-LM -->
+          <text x="170" y="32" fill="#1a1814" font-size="14" font-family="serif" font-weight="bold">IS-LM Panel</text>
+          <line x1="60" y1="190" x2="330" y2="190" stroke="#333" stroke-width="2"/>
+          <line x1="60" y1="190" x2="60" y2="55" stroke="#333" stroke-width="2"/>
+          <polygon points="330,190 319,184 319,196" fill="#333"/>
+          <polygon points="60,55 54,66 66,66" fill="#333"/>
+          <text x="180" y="214" fill="#555" font-size="12" font-family="serif">Output (Y)</text>
+          <text x="20" y="126" fill="#555" font-size="12" font-family="serif" transform="rotate(-90,20,126)">Interest rate (i)</text>
+          <!-- IS -->
+          <line x1="85" y1="75" x2="305" y2="175" stroke="#1a5276" stroke-width="2.5"/>
+          <text x="292" y="168" fill="#1a5276" font-size="13" font-family="serif" font-weight="bold">IS</text>
+          <!-- LM1 and LM2 -->
+          <line x1="105" y1="175" x2="285" y2="75" stroke="#1e8449" stroke-width="2.5"/>
+          <text x="286" y="78" fill="#1e8449" font-size="12" font-family="serif">LM₁ (P₁)</text>
+          <line x1="75" y1="175" x2="245" y2="70" stroke="#c0392b" stroke-width="2.5" stroke-dasharray="7,4"/>
+          <text x="248" y="68" fill="#c0392b" font-size="12" font-family="serif">LM₂ (P₂)</text>
+          <!-- Equilibria -->
+          <circle cx="195" cy="125" r="5" fill="#1e8449"/>
+          <text x="202" y="121" fill="#1e8449" font-size="12" font-family="serif" font-weight="bold">E₁</text>
+          <circle cx="160" cy="112" r="5" fill="#c0392b"/>
+          <text x="141" y="108" fill="#c0392b" font-size="12" font-family="serif" font-weight="bold">E₂</text>
+          <line x1="195" y1="125" x2="195" y2="190" stroke="#1e8449" stroke-width="1" stroke-dasharray="4,3"/>
+          <line x1="160" y1="112" x2="160" y2="190" stroke="#c0392b" stroke-width="1" stroke-dasharray="4,3"/>
+          <text x="187" y="205" fill="#1e8449" font-size="11" font-family="serif">Y₁</text>
+          <text x="152" y="205" fill="#c0392b" font-size="11" font-family="serif">Y₂</text>
+          <text x="80" y="236" fill="#555" font-size="10" font-family="monospace">P rises: M/P falls → LM shifts left → Y falls</text>
+
+          <!-- right panel: AD -->
+          <text x="500" y="32" fill="#1a1814" font-size="14" font-family="serif" font-weight="bold">AD Panel</text>
+          <line x1="410" y1="365" x2="675" y2="365" stroke="#333" stroke-width="2"/>
+          <line x1="410" y1="365" x2="410" y2="230" stroke="#333" stroke-width="2"/>
+          <polygon points="675,365 664,359 664,371" fill="#333"/>
+          <polygon points="410,230 404,241 416,241" fill="#333"/>
+          <text x="525" y="389" fill="#555" font-size="12" font-family="serif">Output (Y)</text>
+          <text x="370" y="304" fill="#555" font-size="12" font-family="serif" transform="rotate(-90,370,304)">Price level (P)</text>
+          <!-- AD curve -->
+          <path d="M 455,250 Q 535,305 640,350" fill="none" stroke="#1a5276" stroke-width="2.5"/>
+          <text x="646" y="351" fill="#1a5276" font-size="13" font-family="serif" font-weight="bold">AD</text>
+          <!-- Points -->
+          <circle cx="565" cy="315" r="5" fill="#1e8449"/>
+          <text x="572" y="311" fill="#1e8449" font-size="12" font-family="serif">A(Y₁,P₁)</text>
+          <circle cx="500" cy="275" r="5" fill="#c0392b"/>
+          <text x="506" y="271" fill="#c0392b" font-size="12" font-family="serif">B(Y₂,P₂)</text>
+          <line x1="565" y1="315" x2="565" y2="365" stroke="#1e8449" stroke-width="1" stroke-dasharray="4,3"/>
+          <line x1="500" y1="275" x2="500" y2="365" stroke="#c0392b" stroke-width="1" stroke-dasharray="4,3"/>
+          <line x1="410" y1="315" x2="565" y2="315" stroke="#1e8449" stroke-width="1" stroke-dasharray="4,3"/>
+          <line x1="410" y1="275" x2="500" y2="275" stroke="#c0392b" stroke-width="1" stroke-dasharray="4,3"/>
+          <text x="557" y="381" fill="#1e8449" font-size="11" font-family="serif">Y₁</text>
+          <text x="492" y="381" fill="#c0392b" font-size="11" font-family="serif">Y₂</text>
+          <text x="387" y="319" fill="#1e8449" font-size="11" font-family="serif">P₁</text>
+          <text x="387" y="279" fill="#c0392b" font-size="11" font-family="serif">P₂</text>
+        </svg>
+      </div>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Mathematical Derivation</div>
+      <div class="formula">
+        <div class="ftitle">Goods Market: IS Equation</div>
+        <div class="feq">
+          Y = C + I + G<br>
+          C = C₀ + c(Y − T)<br>
+          I = I₀ − bi<br><br>
+          Y = C₀ + cY − cT + I₀ − bi + G<br>
+          Y − cY = C₀ − cT + I₀ + G − bi<br>
+          (1 − c)Y = A − bi<br>
+          <strong>IS: Y = [A − bi] / (1 − c)</strong>
+        </div>
+      </div>
+      <div class="formula">
+        <div class="ftitle">Money Market: LM Equation</div>
+        <div class="feq">
+          Real money supply = Real money demand<br>
+          M/P = kY − hi<br>
+          hi = kY − M/P<br>
+          <strong>LM: i = (k/h)Y − (1/h)(M/P)</strong>
+        </div>
+      </div>
+      <div class="formula">
+        <div class="ftitle">Substitute LM into IS</div>
+        <div class="feq">
+          Y = [A − b{(k/h)Y − (1/h)(M/P)}] / (1 − c)<br>
+          Y(1 − c) = A − (bk/h)Y + (b/h)(M/P)<br>
+          Y[(1 − c) + (bk/h)] = A + (b/h)(M/P)<br><br>
+          <strong>AD equation:</strong><br>
+          <strong>Y = [A + (b/h)(M/P)] / [(1 − c) + (bk/h)]</strong>
+        </div>
+      </div>
+      <p>Since P is in the denominator of M/P, a higher P reduces real money balances. That lowers equilibrium Y. Therefore the AD curve slopes downward.</p>
+    </div>
+    <div class="conclusion"><strong>Conclusion:</strong> AD is downward sloping because a rise in P reduces real money supply M/P, shifts LM left/up, raises interest rate, reduces investment, and lowers equilibrium output. Mathematically, Y depends positively on M/P, so when P rises, Y falls.</div>
+  </div>
+</div>
+
+<div class="q-block deriv-q" id="q7_d3">
+  <div class="q-header">
+    <div><div class="q-num">Derivative Q 7.D3</div>
+    <div class="q-text">Derive the IS curve and LM curve separately. Explain their slopes graphically and mathematically, and show how equilibrium income and interest rate are determined.</div></div>
+    <div class="q-marks">10 Marks</div>
+  </div>
+  <div class="q-body">
+    <div class="ans-section">
+      <div class="ans-label">IS Curve: Goods Market Equilibrium</div>
+      <p>The <strong>IS curve</strong> shows combinations of income (Y) and interest rate (i) where the goods market is in equilibrium: planned spending equals output, or saving equals investment.</p>
+      <div class="formula">
+        <div class="ftitle">Mathematical Derivation of IS</div>
+        <div class="feq">
+          Y = C + I + G<br>
+          C = C₀ + c(Y − T)<br>
+          I = I₀ − bi<br><br>
+          Y = C₀ + cY − cT + I₀ − bi + G<br>
+          (1 − c)Y = C₀ − cT + I₀ + G − bi<br>
+          Let A = C₀ − cT + I₀ + G<br>
+          <strong>IS: Y = [A − bi] / (1 − c)</strong>
+        </div>
+      </div>
+      <p><strong>Slope:</strong> IS slopes downward because a higher interest rate reduces planned investment, which lowers aggregate expenditure and equilibrium output.</p>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">LM Curve: Money Market Equilibrium</div>
+      <p>The <strong>LM curve</strong> shows combinations of income (Y) and interest rate (i) where money demand equals real money supply.</p>
+      <div class="formula">
+        <div class="ftitle">Mathematical Derivation of LM</div>
+        <div class="feq">
+          Money demand: L = kY − hi<br>
+          Real money supply: M/P<br>
+          Equilibrium: M/P = kY − hi<br>
+          hi = kY − M/P<br>
+          <strong>LM: i = (k/h)Y − (1/h)(M/P)</strong>
+        </div>
+      </div>
+      <p><strong>Slope:</strong> LM slopes upward because higher income increases transaction demand for money. With fixed real money supply, the interest rate must rise to reduce speculative money demand and restore equilibrium.</p>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">Graphical Derivation and Equilibrium</div>
+      <div class="graph-box">
+        <div class="graph-title"><span>Fig 7.5</span> — IS is downward sloping, LM is upward sloping; their intersection gives equilibrium Y and i</div>
+        <svg class="econ-graph" viewBox="0 0 680 380" xmlns="http://www.w3.org/2000/svg">
+          <rect width="680" height="380" fill="#fafafa"/>
+          <line x1="70" y1="330" x2="620" y2="330" stroke="#333" stroke-width="2"/>
+          <line x1="70" y1="330" x2="70" y2="40" stroke="#333" stroke-width="2"/>
+          <polygon points="620,330 608,324 608,336" fill="#333"/>
+          <polygon points="70,40 64,52 76,52" fill="#333"/>
+          <!-- IS and LM -->
+          <line x1="120" y1="90" x2="560" y2="285" stroke="#1a5276" stroke-width="2.8"/>
+          <text x="565" y="290" fill="#1a5276" font-size="14" font-family="serif" font-weight="bold">IS</text>
+          <line x1="120" y1="295" x2="560" y2="80" stroke="#1e8449" stroke-width="2.8"/>
+          <text x="565" y="80" fill="#1e8449" font-size="14" font-family="serif" font-weight="bold">LM</text>
+          <!-- Equilibrium -->
+          <circle cx="340" cy="188" r="6" fill="#c0392b"/>
+          <text x="350" y="183" fill="#c0392b" font-size="13" font-family="serif" font-weight="bold">E</text>
+          <line x1="340" y1="188" x2="340" y2="330" stroke="#c0392b" stroke-width="1" stroke-dasharray="4,3"/>
+          <line x1="70" y1="188" x2="340" y2="188" stroke="#c0392b" stroke-width="1" stroke-dasharray="4,3"/>
+          <text x="331" y="350" fill="#c0392b" font-size="12" font-family="serif">Y*</text>
+          <text x="43" y="192" fill="#c0392b" font-size="12" font-family="serif">i*</text>
+          <!-- Direction notes -->
+          <text x="120" y="60" fill="#1a5276" font-size="10" font-family="monospace">Higher i → lower I → lower Y</text>
+          <text x="365" y="58" fill="#1e8449" font-size="10" font-family="monospace">Higher Y → higher money demand → higher i</text>
+          <text x="310" y="365" fill="#555" font-size="13" font-family="serif">Output / Income (Y)</text>
+          <text x="14" y="195" fill="#555" font-size="13" font-family="serif" transform="rotate(-90,14,195)">Interest Rate (i)</text>
+        </svg>
+      </div>
+    </div>
+    <div class="ans-section">
+      <div class="ans-label">How to Write This in the Exam</div>
+      <table class="comp-table">
+        <tr><th>If Faculty Asks</th><th>What to Include</th></tr>
+        <tr><td>Derive IS graphically</td><td>Show that a fall in i raises I, raises AE, and raises Y; therefore IS slopes downward.</td></tr>
+        <tr><td>Derive IS mathematically</td><td>Use Y = C + I + G, C = C₀ + c(Y − T), I = I₀ − bi, then solve for Y.</td></tr>
+        <tr><td>Derive LM graphically</td><td>Show that higher Y raises transaction demand for money; with fixed M/P, i must rise; therefore LM slopes upward.</td></tr>
+        <tr><td>Derive LM mathematically</td><td>Use M/P = kY − hi, then solve for i.</td></tr>
+        <tr><td>Both together</td><td>Draw IS and LM in one diagram and mark E, Y*, and i* clearly.</td></tr>
+      </table>
+    </div>
+    <div class="conclusion"><strong>Conclusion:</strong> The IS curve represents goods market equilibrium and slopes downward. The LM curve represents money market equilibrium and slopes upward. Their intersection gives the simultaneous equilibrium level of income and interest rate in the economy.</div>
+  </div>
+</div>
+
 
 <!-- ══════════════════════════════════════════════════════════════ -->
 <!-- CHAPTER 8: FISCAL POLICY -->
