@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Ch. 7 — Anatomy of Inflation &amp; Unemployment | Macroeconomics</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"/>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}]})"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<style>
+:root{
+  --bg:#0f1117;--surface:#1a1d27;--card:#21253a;--border:#2e3352;
+  --text:#e8eaf0;--muted:#8b91b0;--accent:#6c8eff;--accent2:#50e3c2;
+  --accent3:#f9a825;--red:#ff5c5c;--green:#4caf50;--purple:#c084fc;
+  --sidebar-w:270px;--font:'Inter',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:15px;line-height:1.75}
+a{color:var(--accent);text-decoration:none}
+.layout{display:flex;min-height:100vh}
+aside{width:var(--sidebar-w);background:var(--surface);border-right:1px solid var(--border);
+  position:sticky;top:0;height:100vh;overflow-y:auto;flex-shrink:0;padding:1.5rem 1rem}
+aside h2{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.75rem}
+aside ul{list-style:none}
+aside ul li{margin:.3rem 0}
+aside ul li a{color:var(--muted);font-size:.82rem;display:block;padding:.2rem .5rem;border-radius:4px;transition:all .15s}
+aside ul li a:hover,aside ul li a.active{color:var(--text);background:var(--card)}
+.chapter-badge{display:inline-block;background:var(--red);color:#fff;font-size:.7rem;
+  font-weight:700;padding:.2rem .6rem;border-radius:999px;margin-bottom:1rem}
+main{flex:1;max-width:900px;margin:0 auto;padding:2.5rem 2rem}
+h1{font-size:2rem;font-weight:800;line-height:1.2;margin-bottom:.5rem}
+h2{font-size:1.35rem;font-weight:700;margin:2.5rem 0 1rem;color:var(--accent);padding-bottom:.4rem;border-bottom:1px solid var(--border)}
+h3{font-size:1.05rem;font-weight:600;margin:1.8rem 0 .7rem;color:var(--accent2)}
+h4{font-size:.9rem;font-weight:600;margin:1.2rem 0 .5rem;color:var(--accent3)}
+p{margin-bottom:1rem}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.5rem;margin:1.2rem 0}
+.card.blue{border-left:3px solid var(--accent)}.card.green{border-left:3px solid var(--green)}
+.card.amber{border-left:3px solid var(--accent3)}.card.red{border-left:3px solid var(--red)}
+.card.teal{border-left:3px solid var(--accent2)}.card.purple{border-left:3px solid var(--purple)}
+.label{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem}
+.label.blue{color:var(--accent)}.label.green{color:var(--green)}.label.amber{color:var(--accent3)}
+.label.red{color:var(--red)}.label.teal{color:var(--accent2)}.label.purple{color:var(--purple)}
+table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.88rem}
+th{background:var(--surface);color:var(--muted);font-weight:600;text-align:left;padding:.6rem .9rem;border:1px solid var(--border)}
+td{padding:.55rem .9rem;border:1px solid var(--border)}
+tr:nth-child(even) td{background:var(--surface)}
+.graph-wrap{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1rem;margin:1.2rem 0}
+.graph-title{font-size:.78rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.75rem;text-align:center}
+svg text{font-family:var(--font);fill:var(--text)}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin:.75rem 0}
+.tag{background:var(--surface);border:1px solid var(--border);border-radius:999px;font-size:.72rem;padding:.2rem .65rem;color:var(--muted)}
+.exam-alert{background:rgba(249,168,37,.08);border:1px solid rgba(249,168,37,.3);border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;font-size:.88rem}
+.exam-alert strong{color:var(--accent3)}
+.up{color:var(--green);font-weight:700} .down{color:var(--red);font-weight:700}
+.formula-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.75rem;margin-top:.75rem}
+.formula-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.9rem 1rem}
+.formula-card .fc-name{font-size:.72rem;color:var(--muted);margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.07em}
+.q-block{background:var(--surface);border-left:3px solid var(--accent2);border-radius:6px;padding:.9rem 1.1rem;margin:.7rem 0}
+.q-marks{font-size:.72rem;color:var(--accent3);font-weight:700;margin-bottom:.3rem}
+.meta{display:flex;gap:1rem;flex-wrap:wrap;margin:.75rem 0 1.5rem;font-size:.8rem;color:var(--muted)}
+.cost-box{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin:1rem 0}
+.cost-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.9rem}
+.cost-card .title{font-size:.75rem;font-weight:700;margin-bottom:.5rem}
+@media(max-width:600px){.cost-box{grid-template-columns:1fr}}
+@media print{aside{display:none}main{max-width:100%;padding:1rem}body{background:#fff;color:#000}}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--surface)}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<aside>
+  <div class="chapter-badge">Chapter 7</div>
+  <h2>Contents</h2>
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#costs-unemp">Costs of Unemployment</a></li>
+    <li><a href="#costs-inflation">Costs of Inflation</a></li>
+    <li><a href="#sacrifice-ratio">Sacrifice Ratio</a></li>
+    <li><a href="#unemp-anatomy">Anatomy of Unemployment</a></li>
+    <li><a href="#unemp-pool">Unemployment Pool &amp; Flows</a></li>
+    <li><a href="#cyclical-frictional">Cyclical vs Frictional</a></li>
+    <li><a href="#natural-rate">Natural Rate (NAIRU)</a></li>
+    <li><a href="#determinants">Determinants of u*</a></li>
+    <li><a href="#hysteresis">Hysteresis</a></li>
+    <li><a href="#disinflation">Disinflation</a></li>
+    <li><a href="#political-cycle">Political Business Cycle</a></li>
+    <li><a href="#formula-sheet">Formula Sheet</a></li>
+    <li><a href="#questions">Practice Questions</a></li>
+  </ul>
+</aside>
+
+<main>
+  <p style="color:var(--muted);font-size:.82rem">Macroeconomics · Dornbusch, Fischer &amp; Startz 11e</p>
+  <h1>The Anatomy of Inflation &amp; Unemployment</h1>
+  <div class="meta">
+    <span>📖 Chapter 7</span>
+    <span>🎯 Exam weight: High</span>
+    <span>🔑 Costs · NAIRU · Sacrifice ratio · Hysteresis</span>
+  </div>
+  <div class="tags">
+    <span class="tag">inflation-costs</span>
+    <span class="tag">unemployment-costs</span>
+    <span class="tag">NAIRU</span>
+    <span class="tag">sacrifice-ratio</span>
+    <span class="tag">hysteresis</span>
+    <span class="tag">disinflation</span>
+    <span class="tag">Okun's-law</span>
+    <span class="tag">frictional-unemployment</span>
+  </div>
+
+  <!-- OVERVIEW -->
+  <section id="overview">
+    <h2>Overview</h2>
+    <div class="card red">
+      <div class="label red">Chapter Highlights</div>
+      <ul style="padding-left:1.2rem;line-height:2">
+        <li>Costs of unemployment: mainly <strong>forgone output</strong> — very large</li>
+        <li>Costs of <em>anticipated</em> inflation: small at moderate rates ("shoe-leather costs")</li>
+        <li>Costs of <em>unanticipated</em> inflation: large distributional effects — debtors win, creditors lose</li>
+        <li>Unemployment rates vary widely: by age, race, skill, country</li>
+        <li>The <strong>sacrifice ratio</strong> quantifies the output cost of disinflation</li>
+        <li><strong>Hysteresis</strong>: prolonged high unemployment may raise the natural rate</li>
+      </ul>
+    </div>
+    <div class="card teal">
+      <div class="label teal">Big Picture Costs at a Glance</div>
+      <div class="cost-box">
+        <div class="cost-card">
+          <div class="title" style="color:var(--red)">UNEMPLOYMENT COSTS</div>
+          <ul style="padding-left:1rem;font-size:.87rem;line-height:1.9">
+            <li>Lost production (main cost)</li>
+            <li>Unequal distributional burden</li>
+            <li>Career scarring for new graduates</li>
+            <li>Psychological &amp; social damage</li>
+          </ul>
+        </div>
+        <div class="cost-card">
+          <div class="title" style="color:var(--amber)">INFLATION COSTS</div>
+          <ul style="padding-left:1rem;font-size:.87rem;line-height:1.9">
+            <li>Anticipated: small (shoe-leather, menu costs)</li>
+            <li>Unanticipated: large redistribution</li>
+            <li>Debtors gain; creditors lose</li>
+            <li>Hyperinflation: destroys money as medium of exchange</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COSTS OF UNEMPLOYMENT -->
+  <section id="costs-unemp">
+    <h2>Costs of Unemployment</h2>
+
+    <h3>Output Cost (Okun's Law)</h3>
+    <div class="card blue">
+      <div class="label blue">Okun's Law</div>
+      $$\frac{Y - Y^*}{Y^*} = -\omega(u - u^*), \quad \omega \approx 2$$
+      <p style="margin-top:.5rem;font-size:.88rem">One percentage point of excess unemployment costs approximately <strong>2% of GDP</strong>. A 3-point unemployment spike costs 6% of GDP — hundreds of billions of dollars.</p>
+    </div>
+
+    <!-- Okun's Law Graph -->
+    <div class="graph-wrap">
+      <div class="graph-title">Fig 7-1 — Okun's Law: GDP Growth vs Change in Unemployment</div>
+      <svg id="g-okun" width="100%" viewBox="0 0 500 280"></svg>
+    </div>
+
+    <h3>Distributional Costs</h3>
+    <p>The costs of unemployment fall disproportionately on:</p>
+    <table>
+      <thead><tr><th>Group</th><th>Unemployment rate relative to average</th><th>Mechanism</th></tr></thead>
+      <tbody>
+        <tr><td>Teenagers (16–19)</td><td class="down">Much higher</td><td>Limited skills, higher turnover, minimum wage effects</td></tr>
+        <tr><td>Black workers</td><td class="down">~2× white rate</td><td>Historical discrimination, skills gaps, network effects</td></tr>
+        <tr><td>New graduates in recession</td><td class="down">Severe career scarring</td><td>Slower career start, persistently lower lifetime earnings</td></tr>
+        <tr><td>Long-tenured laid-off workers</td><td class="down">Long spells</td><td>Job-specific skills; wait for recall rather than search</td></tr>
+      </tbody>
+    </table>
+
+    <div class="card amber">
+      <div class="label amber">The Weighted Average Formula</div>
+      $$u = w_1 u_1 + w_2 u_2 + \cdots + w_n u_n$$
+      <p style="margin-top:.5rem;font-size:.88rem">Overall unemployment is a weighted average of group rates. The aggregate rate can rise even if each group's rate is unchanged — if high-unemployment groups (e.g., teenagers) grow as a share of the labour force.</p>
+    </div>
+  </section>
+
+  <!-- COSTS OF INFLATION -->
+  <section id="costs-inflation">
+    <h2>Costs of Inflation</h2>
+
+    <h3>Anticipated Inflation</h3>
+    <div class="card green">
+      <div class="label green">Small at Moderate Rates</div>
+      <ul style="padding-left:1.2rem;line-height:2">
+        <li><strong>Shoe-leather costs:</strong> people hold less cash → more trips to bank (implicit cost of inflation tax)</li>
+        <li><strong>Menu costs:</strong> costs of updating price lists, renegotiating contracts</li>
+        <li><strong>Distorted tax brackets:</strong> bracket creep if tax system not fully indexed</li>
+        <li>At single-digit rates, these costs are <em>minor</em> relative to the costs of unemployment</li>
+      </ul>
+    </div>
+
+    <h3>Unanticipated Inflation</h3>
+    <div class="card red">
+      <div class="label red">Large Distributional Effects</div>
+      <table>
+        <thead><tr><th>Party</th><th>Effect of surprise inflation</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>Debtors (borrowers)</td><td class="up">Gain</td><td>Repay mortgage in cheaper dollars</td></tr>
+          <tr><td>Creditors (lenders)</td><td class="down">Lose</td><td>Receive repayment in cheaper dollars</td></tr>
+          <tr><td>Fixed-income recipients</td><td class="down">Lose</td><td>Pensioners on nominal pensions</td></tr>
+          <tr><td>Workers with indexed wages</td><td>Neutral</td><td>Wages automatically adjust to CPI</td></tr>
+          <tr><td>Government (debtor)</td><td class="up">Gain</td><td>National debt eroded in real terms</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Hyperinflation</h3>
+    <div class="card purple">
+      <div class="label purple">When Money Breaks Down</div>
+      <p>At very high inflation (prices doubling monthly), money ceases to function as a medium of exchange. Barter replaces monetary exchange, transaction costs explode, and output can drop dramatically. Historical examples: Weimar Germany (1923), Zimbabwe (2008), Venezuela (ongoing).</p>
+    </div>
+
+    <div class="exam-alert">
+      <strong>Examiner Insight:</strong> The exam frequently asks you to distinguish anticipated vs unanticipated inflation costs. The key: anticipated inflation allows parties to prepare (index contracts, adjust nominal rates); unanticipated creates arbitrary wealth redistributions.
+    </div>
+  </section>
+
+  <!-- SACRIFICE RATIO -->
+  <section id="sacrifice-ratio">
+    <h2>The Sacrifice Ratio</h2>
+    <div class="card blue">
+      <div class="label blue">Definition</div>
+      <p>The <strong>sacrifice ratio</strong> is the cumulative percentage of GDP lost for each 1 percentage point permanent reduction in the inflation rate.</p>
+      $$\text{Sacrifice Ratio} = \frac{\sum\text{Output losses}}{\Delta\pi} \approx 2\text{–}4\%$$
+    </div>
+
+    <h3>Deriving the Sacrifice Ratio</h3>
+    <p>Using the Phillips curve slope ($\varepsilon \approx 0.5$) and Okun's Law ($\omega \approx 2$):</p>
+    <table>
+      <thead><tr><th>Step</th><th>Equation</th><th>Result</th></tr></thead>
+      <tbody>
+        <tr><td>1 point of $\pi$ reduction</td><td>$\Delta\pi = -\varepsilon \cdot \Delta u = -0.5 \cdot \Delta u$</td><td>Requires $\Delta u = +2$ percentage points</td></tr>
+        <tr><td>2 points of excess unemployment</td><td>$\Delta Y/Y^* = -\omega \cdot \Delta u = -2 \times 2$</td><td>Output loss = 4% of GDP</td></tr>
+        <tr><td>Implied sacrifice ratio</td><td colspan="2">~4% of GDP per point of disinflation (rough)</td></tr>
+      </tbody>
+    </table>
+
+    <div class="card amber">
+      <div class="label amber">Why Ball's Estimates Are Lower (~2.39% for US)</div>
+      <p>During actual disinflations, expectations fall too. The drop in $\pi^e$ causes the short-run Phillips curve to shift <em>down</em>, providing extra disinflation on top of the movement along the curve. This additional effect reduces the sacrifice ratio below the rough 4% estimate.</p>
+    </div>
+
+    <h3>International Sacrifice Ratios</h3>
+    <table>
+      <thead><tr><th>Country</th><th>Sacrifice ratio (%)</th></tr></thead>
+      <tbody>
+        <tr><td>Australia</td><td>1.00</td></tr>
+        <tr><td>Canada</td><td>1.50</td></tr>
+        <tr><td>Germany</td><td>2.92</td></tr>
+        <tr><td>Italy</td><td>1.74</td></tr>
+        <tr><td>United States</td><td>2.39</td></tr>
+        <tr><td>Switzerland</td><td>1.57</td></tr>
+      </tbody>
+    </table>
+
+    <div class="exam-alert">
+      <strong>Policy Implication:</strong> The sacrifice ratio shows that disinflation is very costly. The Volcker disinflation (1980–83) brought US inflation from ~10% to ~3% — but at the cost of unemployment rising to nearly 11% and GDP losses in the trillions.
+    </div>
+  </section>
+
+  <!-- ANATOMY OF UNEMPLOYMENT -->
+  <section id="unemp-anatomy">
+    <h2>Anatomy of Unemployment</h2>
+    <p>Five key characteristics of US labour market unemployment:</p>
+
+    <div class="card teal">
+      <div class="label teal">Five Stylised Facts</div>
+      <ol style="padding-left:1.2rem;line-height:2.2">
+        <li>Large variation across groups (age, race, experience)</li>
+        <li>High turnover: flows into/out of employment are large relative to stocks</li>
+        <li>Cyclical pattern: layoffs spike in recessions, quits fall</li>
+        <li>Most unemployment spells are short in duration</li>
+        <li>Most unemployment is accounted for by workers in long spells — the long-term unemployed</li>
+      </ol>
+    </div>
+
+    <div class="exam-alert">
+      <strong>Note the paradox in points 4 &amp; 5:</strong> Most individual spells are short, but at any given moment, the pool is dominated by people in long spells. This is like a hospital — most patients are discharged quickly, but hospital beds are occupied mostly by the seriously ill.
+    </div>
+  </section>
+
+  <!-- UNEMPLOYMENT POOL -->
+  <section id="unemp-pool">
+    <h2>Unemployment Pool &amp; Flows</h2>
+    <p>At any time there is a <strong>pool</strong> of unemployed people with flows in and out:</p>
+
+    <h3>Flows INTO Unemployment</h3>
+    <table>
+      <thead><tr><th>Source</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td>New entrants</td><td>First-time job seekers entering the labour force</td></tr>
+        <tr><td>Re-entrants</td><td>Returning to labour force after being out for 4+ weeks</td></tr>
+        <tr><td>Voluntary quits</td><td>Workers quitting to search for better jobs</td></tr>
+        <tr><td>Layoffs</td><td>Employer-initiated temporary suspension without pay</td></tr>
+        <tr><td>Job losers</td><td>Fired or employer closed down</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Flows OUT of Unemployment</h3>
+    <table>
+      <thead><tr><th>Exit route</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td>Hired into new job</td><td>Successful job search</td></tr>
+        <tr><td>Recalled to old job</td><td>Laid-off worker called back when demand recovers</td></tr>
+        <tr><td>Leave labour force</td><td>Discouraged workers stop searching; counted as "not in labour force"</td></tr>
+      </tbody>
+    </table>
+
+    <p>During recessions: hours per worker cut first, then layoffs increase, quits fall; prolonged recession creates discouraged workers (undercount of unemployment).</p>
+  </section>
+
+  <!-- CYCLICAL AND FRICTIONAL -->
+  <section id="cyclical-frictional">
+    <h2>Cyclical vs Frictional Unemployment</h2>
+
+    <table>
+      <thead><tr><th>Type</th><th>Definition</th><th>When present</th><th>Policy response</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Frictional</strong> (= natural rate $u^*$)</td>
+          <td>Unemployment even at full employment due to normal search, matching, and turnover</td>
+          <td>Always present; irreducible minimum</td>
+          <td>Structural: job training, placement services</td>
+        </tr>
+        <tr>
+          <td><strong>Cyclical</strong> ($u - u^*$)</td>
+          <td>Unemployment in excess of the natural rate; occurs when $Y < Y^*$</td>
+          <td>During downturns and recessions</td>
+          <td>Aggregate demand policy (fiscal/monetary)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="card amber">
+      <div class="label amber">The Unemployment Rate Identity</div>
+      $$u = u^* + (u - u^*) = \text{frictional} + \text{cyclical}$$
+    </div>
+  </section>
+
+  <!-- NATURAL RATE -->
+  <section id="natural-rate">
+    <h2>The Natural Rate of Unemployment (NAIRU)</h2>
+    <div class="card blue">
+      <div class="label blue">Definition</div>
+      <p>The <strong>NAIRU</strong> (Non-Accelerating Inflation Rate of Unemployment) is the unemployment rate at which inflation is neither accelerating nor decelerating — i.e., where $\pi = \pi^e$.</p>
+      $$u^* = w_1 u_1^* + w_2 u_2^* + \cdots + w_n u_n^*$$
+    </div>
+
+    <!-- NAIRU Graph -->
+    <div class="graph-wrap">
+      <div class="graph-title">Fig 7-2 — Natural Rate vs Actual Unemployment (Stylised)</div>
+      <svg id="g-nairu" width="100%" viewBox="0 0 560 260"></svg>
+    </div>
+
+    <h3>Historical NAIRU Estimates (US)</h3>
+    <table>
+      <thead><tr><th>Period</th><th>NAIRU estimate</th><th>Main driver of change</th></tr></thead>
+      <tbody>
+        <tr><td>1960s</td><td>~4.0%</td><td>Baseline</td></tr>
+        <tr><td>Early 1980s</td><td>~6.0%</td><td>Baby boomers, high benefits, structural change</td></tr>
+        <tr><td>Late 1990s</td><td>~5.2%</td><td>IT productivity boom, favourable supply shocks</td></tr>
+        <tr><td>2000–2010</td><td>~4.8%</td><td>Improved labour market flexibility</td></tr>
+      </tbody>
+    </table>
+
+    <div class="exam-alert">
+      <strong>Important Caveat:</strong> The NAIRU is not a fixed constant — "not an intertemporal constant, something like the speed of light" (Phelps). It shifts with the demographic composition of the labour force, unemployment benefits, search technology, and labour market institutions.
+    </div>
+  </section>
+
+  <!-- DETERMINANTS -->
+  <section id="determinants">
+    <h2>Determinants of the Natural Rate</h2>
+
+    <h3>Duration of Unemployment — Determinants</h3>
+    <table>
+      <thead><tr><th>Factor</th><th>Effect on $u^*$</th><th>Mechanism</th></tr></thead>
+      <tbody>
+        <tr><td>Higher unemployment benefits</td><td class="up">Raises $u^*$</td><td>Longer search; less urgency to accept first offer</td></tr>
+        <tr><td>Better job placement / matching services</td><td class="down">Lowers $u^*$</td><td>Faster matching → shorter spells</td></tr>
+        <tr><td>High tenure workers on layoff</td><td class="up">Raises $u^*$</td><td>Wait for recall rather than searching; long spells</td></tr>
+        <tr><td>Apprenticeship / vocational training</td><td class="down">Lowers $u^*$</td><td>Youth enter with skills; reduce search duration</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Frequency of Unemployment — Determinants</h3>
+    <table>
+      <thead><tr><th>Factor</th><th>Effect on $u^*$</th></tr></thead>
+      <tbody>
+        <tr><td>High variability of demand across firms (reallocation)</td><td class="up">Raises $u^*$</td></tr>
+        <tr><td>Faster labour force growth (more new entrants)</td><td class="up">Raises $u^*$</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Search Unemployment</h3>
+    <div class="card green">
+      <div class="label green">Voluntary Search</div>
+      <p>Workers may <em>voluntarily</em> leave jobs to search for better ones. This is rational: if job quality varies, waiting for a good match is worthwhile. Higher benefits extend search duration. Higher wages at the margin justify longer search. Search unemployment is part of frictional unemployment.</p>
+    </div>
+  </section>
+
+  <!-- HYSTERESIS -->
+  <section id="hysteresis">
+    <h2>Hysteresis and the Rising Natural Rate</h2>
+    <div class="card red">
+      <div class="label red">Unemployment Hysteresis</div>
+      <p><strong>Hysteresis</strong> is the phenomenon where prolonged high unemployment raises the natural rate itself — the natural rate depends on the history of actual unemployment.</p>
+    </div>
+
+    <h3>Mechanisms of Hysteresis</h3>
+    <table>
+      <thead><tr><th>Mechanism</th><th>How it raises u*</th></tr></thead>
+      <tbody>
+        <tr><td>Skill depreciation</td><td>Long-term unemployed lose skills; productivity falls; less attractive to hire</td></tr>
+        <tr><td>Discouragement</td><td>Unemployed learn to live on benefits; reduce effort in job search</td></tr>
+        <tr><td>Employer signalling</td><td>Long unemployment spells signal low quality to employers → self-reinforcing exclusion</td></tr>
+        <tr><td>Insider-outsider dynamics</td><td>Insiders set wages excluding outsiders; high wages persist even with unemployment</td></tr>
+      </tbody>
+    </table>
+
+    <!-- Hysteresis Graph -->
+    <div class="graph-wrap">
+      <div class="graph-title">Fig 7-3 — Hysteresis: Extended Recession Raises u*</div>
+      <svg id="g-hysteresis" width="100%" viewBox="0 0 500 280"></svg>
+    </div>
+
+    <div class="card amber">
+      <div class="label amber">European Evidence</div>
+      <p>European unemployment averaged ~4% in the 1970s, nearly 10% in the 1980s. Hysteresis theorists argue $u^*$ rose dramatically — partly because Europe's strong employment protection laws meant firms hired less, and workers excluded during the 1970s oil shocks were permanently marginalised.</p>
+    </div>
+  </section>
+
+  <!-- DISINFLATION -->
+  <section id="disinflation">
+    <h2>Disinflation</h2>
+    <p>Disinflation is the process of <em>reducing</em> the rate of inflation (not to be confused with deflation = negative inflation).</p>
+
+    <h3>The Disinflation Process in IS-LM / PC Terms</h3>
+    <table>
+      <thead><tr><th>Step</th><th>What happens</th><th>Effect on $u$ and $\pi$</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Central bank tightens money → LM shifts left</td><td>$Y$ falls; $u$ rises above $u^*$</td></tr>
+        <tr><td>2</td><td>$u > u^*$ → $\pi < \pi^e$ (move right along PC)</td><td>Inflation falls; but expected inflation sticky</td></tr>
+        <tr><td>3</td><td>Sustained excess $u$ → $\pi^e$ gradually falls</td><td>PC shifts down; less inflation at any $u$</td></tr>
+        <tr><td>4</td><td>Eventually $\pi^e = \pi_{\text{target}}$; economy at $u^*$ at new lower $\pi$</td><td>Long-run: lower $\pi$, same $u^*$</td></tr>
+      </tbody>
+    </table>
+
+    <div class="card blue">
+      <div class="label blue">Volcker Disinflation (1980–83)</div>
+      <p>Fed raised the federal funds rate sharply → severe recession → $u$ peaked at 10.8% (late 1982) → inflation fell from ~10% to ~3%. Estimated sacrifice ratio: ~2.5 to 3% per point of inflation. Long-term benefit: inflation expectations anchored low for decades.</p>
+    </div>
+
+    <div class="card green">
+      <div class="label green">Cold Turkey vs Gradual Disinflation</div>
+      <table>
+        <thead><tr><th>Strategy</th><th>Inflation fall</th><th>Output cost</th><th>Rational expectations prediction</th></tr></thead>
+        <tbody>
+          <tr><td>Cold turkey (credible, fast)</td><td>Fast</td><td>Lower (if credible)</td><td>$\pi^e$ falls fast → less sacrifice</td></tr>
+          <tr><td>Gradualism</td><td>Slow</td><td>Spread over time</td><td>$\pi^e$ falls slowly; same total cost</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- POLITICAL BUSINESS CYCLE -->
+  <section id="political-cycle">
+    <h2>The Political Business Cycle</h2>
+    <div class="card purple">
+      <div class="label purple">Theory</div>
+      <p>Incumbent politicians manipulate economic policy to create <em>good conditions at election time</em>: expansion before elections (lower $u$, higher $Y$) at the cost of higher inflation or austerity afterwards.</p>
+    </div>
+    <table>
+      <thead><tr><th>Phase</th><th>Policy action</th><th>Economic outcome</th><th>Electoral logic</th></tr></thead>
+      <tbody>
+        <tr><td>Pre-election (2 years)</td><td>Expansionary: ↑G, ↓taxes, loose money</td><td>↓$u$, ↑$Y$, ↑$\pi$ (lagged)</td><td>Voters reward low unemployment</td></tr>
+        <tr><td>Post-election</td><td>Contractionary: tighten to fight inflation</td><td>↑$u$, ↓$\pi$</td><td>Voters forget — next cycle begins</td></tr>
+      </tbody>
+    </table>
+    <div class="exam-alert">
+      <strong>Criticism:</strong> Rational voters should anticipate the cycle and discount it. The theory works better when voters have incomplete information about the economy's true state (informational asymmetry between government and public).
+    </div>
+  </section>
+
+  <!-- FORMULA SHEET -->
+  <section id="formula-sheet">
+    <h2>Formula Sheet</h2>
+    <div class="formula-grid">
+      <div class="formula-card">
+        <div class="fc-name">Okun's Law</div>
+        <div>$$\frac{Y-Y^*}{Y^*} = -\omega(u-u^*), \; \omega\approx2$$</div>
+      </div>
+      <div class="formula-card">
+        <div class="fc-name">Weighted Unemployment Rate</div>
+        <div>$$u = \sum_i w_i u_i$$</div>
+      </div>
+      <div class="formula-card">
+        <div class="fc-name">Natural Rate (weighted)</div>
+        <div>$$u^* = \sum_i w_i u_i^*$$</div>
+      </div>
+      <div class="formula-card">
+        <div class="fc-name">Expectations-Augmented PC</div>
+        <div>$$\pi = \pi^e - \varepsilon(u - u^*)$$</div>
+      </div>
+      <div class="formula-card">
+        <div class="fc-name">Sacrifice Ratio (rough)</div>
+        <div>$$SR \approx \frac{\omega}{\varepsilon} = \frac{2}{0.5} = 4\%$$</div>
+      </div>
+      <div class="formula-card">
+        <div class="fc-name">Cyclical Unemployment</div>
+        <div>$$u_{\text{cyclical}} = u - u^*$$</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRACTICE QUESTIONS -->
+  <section id="questions">
+    <h2>Practice Questions</h2>
+
+    <h3>2-Mark Questions</h3>
+    <div class="q-block">
+      <div class="q-marks">2 MARKS</div>
+      <p>Distinguish between frictional and cyclical unemployment. Which type is addressed by aggregate demand policy?</p>
+    </div>
+    <div class="q-block">
+      <div class="q-marks">2 MARKS</div>
+      <p>What is the sacrifice ratio? Using the Phillips curve and Okun's law, derive a rough estimate.</p>
+    </div>
+    <div class="q-block">
+      <div class="q-marks">2 MARKS</div>
+      <p>Why is unanticipated inflation considered more economically damaging than anticipated inflation?</p>
+    </div>
+
+    <h3>5-Mark Questions</h3>
+    <div class="q-block">
+      <div class="q-marks">5 MARKS</div>
+      <p>Explain three reasons why unemployment rates vary so widely across demographic groups. What policies could reduce these disparities?</p>
+    </div>
+    <div class="q-block">
+      <div class="q-marks">5 MARKS</div>
+      <p>What is unemployment hysteresis? Explain three mechanisms through which prolonged high unemployment can raise the natural rate. What does this imply for the design of stabilisation policy?</p>
+    </div>
+    <div class="q-block">
+      <div class="q-marks">5 MARKS</div>
+      <p>Using the concept of the sacrifice ratio, evaluate whether the Volcker disinflation of 1979–83 was "worth it." Consider both the short-run costs and the long-run benefits.</p>
+    </div>
+
+    <h3>10-Mark Questions</h3>
+    <div class="q-block">
+      <div class="q-marks">10 MARKS</div>
+      <p>Compare and contrast the costs of (a) a 1 percentage point increase in the unemployment rate for one year and (b) a 1 percentage point increase in the inflation rate for one year. In each case, identify who bears the cost and through what mechanism. On balance, which is more harmful to the economy?</p>
+    </div>
+    <div class="q-block">
+      <div class="q-marks">10 MARKS</div>
+      <p>A government wishes to reduce inflation from 8% to 3%. (a) Using the expectations-augmented Phillips curve, explain the process of disinflation and the role of inflation expectations. (b) Calculate the implied sacrifice ratio using the Phillips curve slope ($\varepsilon = 0.5$) and Okun's Law ($\omega = 2$). (c) Under rational expectations, could a credible announced disinflation achieve the goal at lower cost? Critically evaluate.</p>
+    </div>
+  </section>
+
+</main>
+</div>
+
+<script>
+const C = {bg:'#21253a',surface:'#1a1d27',border:'#2e3352',text:'#e8eaf0',muted:'#8b91b0',
+  blue:'#6c8eff',teal:'#50e3c2',amber:'#f9a825',red:'#ff5c5c',green:'#4caf50',purple:'#c084fc'};
+
+function mkPanel(id, xl, yl) {
+  const svg = d3.select('#'+id);
+  const el = svg.node();
+  const tw = el.viewBox.baseVal.width, th = el.viewBox.baseVal.height;
+  const ml=55,mr=20,mt=15,mb=40;
+  const iw = tw-ml-mr, ih = th-mt-mb;
+  let defs = svg.select('defs'); if(defs.empty()) defs = svg.append('defs');
+  const mid = 'ar'+id;
+  if(defs.select('#'+mid).empty()) {
+    defs.append('marker').attr('id',mid).attr('markerWidth',7).attr('markerHeight',7)
+      .attr('refX',5).attr('refY',3).attr('orient','auto')
+      .append('path').attr('d','M0,0 L0,6 L7,3 z').attr('fill',C.text);
+  }
+  const g = svg.append('g').attr('transform',`translate(${ml},${mt})`);
+  g.append('line').attr('x1',0).attr('y1',ih).attr('x2',iw+5).attr('y2',ih)
+    .attr('stroke',C.text).attr('stroke-width',1.5).attr('marker-end',`url(#${mid})`);
+  g.append('line').attr('x1',0).attr('y1',ih).attr('x2',0).attr('y2',-5)
+    .attr('stroke',C.text).attr('stroke-width',1.5).attr('marker-end',`url(#${mid})`);
+  g.append('text').attr('x',iw+8).attr('y',ih+4).text(xl).attr('fill',C.text).attr('font-size',11);
+  g.append('text').attr('x',-12).attr('y',-10).text(yl).attr('fill',C.text).attr('font-size',11).attr('text-anchor','end');
+  return {g,iw,ih};
+}
+
+// ─── OKUN'S LAW GRAPH ───
+(function(){
+  const {g,iw,ih} = mkPanel('g-okun','Δu (pp)','ΔGDP (%)');
+  // Scatter-like dots along Okun line
+  const okunLine = d3.line().x(d=>d[0]).y(d=>d[1]);
+  // regression line: ΔGDP ≈ 3 - 2*Δu (approximation)
+  const pts = [[-0.08*iw, ih*0.25],[0, ih*0.5],[0.12*iw, ih*0.7]];
+  // use x from -3 to +5 percentage points
+  const lpts = [];
+  for(let du=-3.5; du<=5.5; du+=0.5) {
+    const x = ((du+3.5)/9)*iw;
+    const gdp = 3 - 2*du;
+    const y = ih - ((gdp+6)/14)*ih;
+    if(y>=0&&y<=ih) lpts.push([x,y]);
+  }
+  g.append('path').datum(lpts).attr('d',d3.line().x(d=>d[0]).y(d=>d[1]))
+    .attr('fill','none').attr('stroke',C.teal).attr('stroke-width',2.5);
+  g.append('text').attr('x',lpts[lpts.length-1][0]+5).attr('y',lpts[lpts.length-1][1])
+    .text('Okun\'s slope ≈ -2').attr('fill',C.teal).attr('font-size',10);
+
+  // Scatter dots
+  const data = [[-3,8],[-2,6],[-1.5,5.5],[-1,4.5],[0,3],[0.5,2],[1,1],[1.5,0],[2,-1],[3,-2.5],[4,-4],[5,-5]];
+  data.forEach(([du,gdp]) => {
+    const x = ((du+3.5)/9)*iw;
+    const y = ih - ((gdp+6)/14)*ih;
+    if(y>=0&&y<=ih&&x>=0&&x<=iw)
+      g.append('circle').attr('cx',x).attr('cy',y).attr('r',3.5)
+        .attr('fill',C.blue).attr('fill-opacity',0.7);
+  });
+
+  // Zero lines
+  const zero_x = (3.5/9)*iw;
+  const zero_y = (6/14)*ih;
+  g.append('line').attr('x1',0).attr('y1',zero_y).attr('x2',iw).attr('y2',zero_y)
+    .attr('stroke',C.muted).attr('stroke-width',1).attr('stroke-dasharray','3,3');
+  g.append('line').attr('x1',zero_x).attr('y1',0).attr('x2',zero_x).attr('y2',ih)
+    .attr('stroke',C.muted).attr('stroke-width',1).attr('stroke-dasharray','3,3');
+  g.append('text').attr('x',-14).attr('y',zero_y+4).text('0').attr('fill',C.muted).attr('font-size',10).attr('text-anchor','end');
+  g.append('text').attr('x',zero_x+3).attr('y',ih+15).text('0').attr('fill',C.muted).attr('font-size',10);
+})();
+
+// ─── NAIRU GRAPH ───
+(function(){
+  const {g,iw,ih} = mkPanel('g-nairu','Time →','u (%)');
+  // NAIRU line (varies over time) -- stylised piece-wise
+  const nairuY = t => {
+    if(t<0.3) return ih*(1 - 0.35);         // 1960s ~4%
+    if(t<0.55) return ih*(1-0.45);           // 1970s rising
+    if(t<0.7) return ih*(1-0.55);            // early 80s ~6%
+    return ih*(1-0.48);                       // late 90s-2010 ~5%
+  };
+  const npts = [];
+  for(let t=0; t<=1; t+=0.01) npts.push([t*iw, nairuY(t)]);
+  g.append('path').datum(npts).attr('d',d3.line().x(d=>d[0]).y(d=>d[1]).curve(d3.curveBasis))
+    .attr('fill','none').attr('stroke',C.amber).attr('stroke-width',2.5).attr('stroke-dasharray','6,3');
+  g.append('text').attr('x',0.8*iw+5).attr('y',nairuY(0.8)-5).text('u* (NAIRU)').attr('fill',C.amber).attr('font-size',10);
+
+  // Actual unemployment (more volatile)
+  const actY = t => {
+    const base = nairuY(t);
+    const cycle = Math.sin(t*Math.PI*5)*0.08*ih;
+    const shock1 = (t>0.3&&t<0.45) ? (t-0.3)*ih*0.8 : 0;
+    const shock2 = (t>0.65&&t<0.8) ? (t-0.65)*ih*0.6 : 0;
+    const shock3 = (t>0.87&&t<1.0) ? (t-0.87)*ih*1.2 : 0;
+    return Math.max(0.05*ih, Math.min(0.92*ih, base + cycle + shock1 + shock2 + shock3));
+  };
+  const apts = [];
+  for(let t=0; t<=1; t+=0.005) apts.push([t*iw, actY(t)]);
+  g.append('path').datum(apts).attr('d',d3.line().x(d=>d[0]).y(d=>d[1]).curve(d3.curveBasis))
+    .attr('fill','none').attr('stroke',C.red).attr('stroke-width',2);
+  g.append('text').attr('x',0.5*iw+5).attr('y',actY(0.5)-8).text('Actual u').attr('fill',C.red).attr('font-size',10);
+
+  // Recession shading
+  [[0.3,0.45],[0.65,0.8],[0.87,1.0]].forEach(([t1,t2]) => {
+    g.append('rect').attr('x',t1*iw).attr('y',0).attr('width',(t2-t1)*iw).attr('height',ih)
+      .attr('fill',C.red).attr('fill-opacity',0.06);
+  });
+  g.append('text').attr('x',0.05*iw).attr('y',0.95*ih+4).text('←1960s→').attr('fill',C.muted).attr('font-size',8);
+  g.append('text').attr('x',0.35*iw).attr('y',0.95*ih+4).text('←1970s-80s→').attr('fill',C.muted).attr('font-size',8);
+  g.append('text').attr('x',0.7*iw).attr('y',0.95*ih+4).text('←1990s-2010→').attr('fill',C.muted).attr('font-size',8);
+})();
+
+// ─── HYSTERESIS GRAPH ───
+(function(){
+  const {g,iw,ih} = mkPanel('g-hysteresis','Time →','u (%)');
+  // LR equilibrium before shock
+  const initU = 0.35;
+  const postU = 0.48;  // hysteresis raises u*
+
+  // Initial u* line
+  g.append('line').attr('x1',0).attr('y1',ih*(1-initU)).attr('x2',0.35*iw).attr('y2',ih*(1-initU))
+    .attr('stroke',C.green).attr('stroke-width',2.5);
+  g.append('text').attr('x',5).attr('y',ih*(1-initU)-6).text('u* initial').attr('fill',C.green).attr('font-size',10);
+
+  // Recession spike
+  const recStart = 0.35*iw, recPeak = 0.5*iw, recEnd = 0.75*iw;
+  const recPts = [[recStart,ih*(1-initU)],[recPeak,ih*(1-0.75)],[recEnd,ih*(1-postU)]];
+  g.append('path').datum(recPts).attr('d',d3.line().x(d=>d[0]).y(d=>d[1]).curve(d3.curveCatmullRom))
+    .attr('fill','none').attr('stroke',C.red).attr('stroke-width',2.5);
+
+  // New higher u* after hysteresis
+  g.append('line').attr('x1',recEnd).attr('y1',ih*(1-postU)).attr('x2',iw).attr('y2',ih*(1-postU))
+    .attr('stroke',C.amber).attr('stroke-width',2.5).attr('stroke-dasharray','5,3');
+  g.append('text').attr('x',recEnd+5).attr('y',ih*(1-postU)-6).text('u* raised by hysteresis').attr('fill',C.amber).attr('font-size',10);
+
+  // Shaded recession
+  g.append('rect').attr('x',recStart).attr('y',0).attr('width',recEnd-recStart).attr('height',ih)
+    .attr('fill',C.red).attr('fill-opacity',0.07);
+  g.append('text').attr('x',(recStart+recEnd)/2).attr('y',ih+15).text('Extended recession').attr('fill',C.muted).attr('font-size',9).attr('text-anchor','middle');
+
+  // Key annotation
+  g.append('text').attr('x',0.78*iw).attr('y',ih*(1-0.38)).text('Long-run u* stays elevated')
+    .attr('fill',C.red).attr('font-size',9).attr('font-style','italic');
+})();
+
+// sidebar active
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      document.querySelectorAll('aside a').forEach(a=>a.classList.remove('active'));
+      const link = document.querySelector(`aside a[href="#${e.target.id}"]`);
+      if(link) link.classList.add('active');
+    }
+  });
+},{threshold:0.25});
+document.querySelectorAll('section[id]').forEach(s=>obs.observe(s));
+</script>
+</body>
+</html>
