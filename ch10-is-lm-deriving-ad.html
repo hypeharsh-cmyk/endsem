@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch. 10 — IS-LM Model &amp; Deriving AD | Macroeconomics</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<style>
+  :root{--bg:#0f1117;--surface:#1a1d27;--surface2:#222635;--border:#2e3348;--accent:#5b8dee;--green:#3ecf8e;--yellow:#f4c542;--red:#e05c5c;--text:#d4d8f0;--muted:#7a80a0;--heading:#eef0ff;--sidebar-w:260px;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:'Georgia',serif;font-size:16px;line-height:1.75;display:flex;min-height:100vh;}
+  nav#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--surface);border-right:1px solid var(--border);overflow-y:auto;padding:24px 0;z-index:100;}
+  nav#sidebar .nav-header{padding:0 20px 16px;border-bottom:1px solid var(--border);margin-bottom:12px;}
+  nav#sidebar .nav-header span{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);}
+  nav#sidebar .nav-header h3{font-size:13px;color:var(--heading);margin-top:4px;}
+  nav#sidebar a{display:block;padding:6px 20px;font-size:13px;font-family:sans-serif;color:var(--muted);text-decoration:none;transition:color .15s,background .15s;}
+  nav#sidebar a:hover,nav#sidebar a.active{color:var(--accent);background:rgba(91,141,238,.08);}
+  nav#sidebar a.l2{padding-left:34px;font-size:12px;}
+  nav#sidebar a.l3{padding-left:48px;font-size:11.5px;}
+  main{margin-left:var(--sidebar-w);flex:1;max-width:900px;padding:48px 56px 96px;}
+  h1{font-size:2rem;color:var(--heading);line-height:1.2;margin-bottom:6px;}
+  h1 .ch-num{font-size:1rem;color:var(--accent);font-family:sans-serif;font-weight:600;display:block;margin-bottom:8px;}
+  h2{font-size:1.35rem;color:var(--heading);margin:52px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+  h3{font-size:1.1rem;color:var(--heading);margin:32px 0 12px;}
+  p{margin-bottom:14px;}strong{color:var(--heading);}
+  .ch-meta{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0 40px;}
+  .ch-meta span{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:4px 12px;font-size:12px;font-family:sans-serif;color:var(--muted);}
+  .ch-meta span b{color:var(--text);}
+  .highlights{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:6px;padding:20px 24px;margin-bottom:40px;}
+  .highlights h4{margin:0 0 12px;font-size:.8rem;font-family:sans-serif;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);}
+  .highlights ul{padding-left:18px;}
+  .highlights li{margin-bottom:6px;font-size:.95rem;}
+  .def{background:rgba(91,141,238,.07);border:1px solid rgba(91,141,238,.25);border-left:3px solid var(--accent);border-radius:6px;padding:16px 20px;margin:20px 0;}
+  .def .def-label{font-size:10.5px;font-family:sans-serif;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;}
+  .def .def-term{font-weight:bold;color:var(--heading);}
+  .derivation{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:20px 24px;margin:24px 0;}
+  .derivation .deriv-label{font-size:10.5px;font-family:sans-serif;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:14px;}
+  .derivation .step{display:flex;gap:16px;margin-bottom:10px;align-items:flex-start;}
+  .derivation .step-num{flex-shrink:0;width:22px;height:22px;background:var(--surface2);border-radius:50%;font-size:11px;font-family:sans-serif;display:flex;align-items:center;justify-content:center;color:var(--muted);margin-top:2px;}
+  .derivation .step-body{flex:1;}
+  .derivation .step-note{font-size:.85rem;color:var(--muted);margin-top:4px;}
+  .eq-block{text-align:center;margin:24px 0;padding:16px;background:var(--surface);border-radius:6px;overflow-x:auto;}
+  .eq-label{font-size:11px;font-family:sans-serif;color:var(--muted);margin-top:8px;}
+  .graph-wrap{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:20px;margin:28px 0;}
+  .graph-title{font-family:sans-serif;font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;}
+  .graph-caption{font-size:.82rem;color:var(--muted);margin-top:10px;font-style:italic;}
+  .examiner{background:rgba(244,197,66,.06);border:1px solid rgba(244,197,66,.2);border-left:3px solid var(--yellow);border-radius:6px;padding:14px 18px;margin:20px 0;font-size:.9rem;}
+  .examiner .ex-label{font-size:10px;font-family:sans-serif;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--yellow);margin-bottom:6px;}
+  .trap{background:rgba(224,92,92,.06);border:1px solid rgba(224,92,92,.2);border-left:3px solid var(--red);border-radius:6px;padding:14px 18px;margin:16px 0;font-size:.9rem;}
+  .trap .trap-label{font-size:10px;font-family:sans-serif;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:6px;}
+  .two-panel{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:28px 0;}
+  @media(max-width:680px){.two-panel{grid-template-columns:1fr;}}
+  .formula-sheet{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:24px;margin:40px 0;}
+  .formula-sheet h3{margin-top:0;color:var(--accent);}
+  .formula-row{display:flex;align-items:flex-start;gap:16px;padding:10px 0;border-bottom:1px solid var(--border);font-size:.9rem;}
+  .formula-row:last-child{border-bottom:none;}
+  .formula-row .fr-eq{flex:0 0 280px;}
+  .formula-row .fr-desc{color:var(--muted);}
+  .slope-table{margin:20px 0;overflow-x:auto;}
+  .slope-table table{width:100%;border-collapse:collapse;font-size:.88rem;}
+  .slope-table th{background:var(--surface2);color:var(--accent);font-family:sans-serif;font-size:11px;letter-spacing:.05em;text-transform:uppercase;padding:9px 13px;border-bottom:2px solid var(--border);text-align:left;}
+  .slope-table td{padding:8px 13px;border-bottom:1px solid var(--border);}
+  .slope-table tr:last-child td{border-bottom:none;}
+  .revision{background:var(--surface2);border-radius:8px;padding:20px 24px;margin:40px 0;}
+  .revision h3{color:var(--accent);margin-top:0;}
+  .revision ul{padding-left:20px;}
+  .revision li{margin-bottom:8px;font-size:.9rem;}
+  .questions{margin-top:48px;}
+  .q-item{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:16px 20px;margin-bottom:12px;}
+  .q-item .q-meta{display:flex;gap:8px;margin-bottom:8px;}
+  .q-badge{font-size:10.5px;font-family:sans-serif;font-weight:700;padding:2px 8px;border-radius:3px;}
+  .q-badge.marks-2{background:rgba(62,207,142,.15);color:var(--green);}
+  .q-badge.marks-5{background:rgba(91,141,238,.15);color:var(--accent);}
+  .q-badge.marks-10{background:rgba(244,197,66,.15);color:var(--yellow);}
+  .q-badge.type{background:var(--surface2);color:var(--muted);}
+  @media print{nav#sidebar{display:none;}main{margin-left:0;padding:20px;}}
+</style>
+</head>
+<body>
+
+<nav id="sidebar">
+  <div class="nav-header">
+    <span>Macroeconomics</span>
+    <h3>Dornbusch · Fischer · Startz</h3>
+  </div>
+  <a href="#overview">Overview</a>
+  <a href="#is-curve" class="l2">The IS Curve</a>
+  <a href="#investment-demand" class="l3">Investment Demand</a>
+  <a href="#is-derivation" class="l3">IS Derivation</a>
+  <a href="#is-slope" class="l3">IS Slope</a>
+  <a href="#is-position" class="l3">IS Shifts</a>
+  <a href="#lm-curve" class="l2">The LM Curve</a>
+  <a href="#money-demand" class="l3">Money Demand</a>
+  <a href="#lm-derivation" class="l3">LM Derivation</a>
+  <a href="#lm-slope" class="l3">LM Slope &amp; Shifts</a>
+  <a href="#islm-equilibrium" class="l2">IS-LM Equilibrium</a>
+  <a href="#fiscal-shock" class="l3">Fiscal Expansion</a>
+  <a href="#monetary-shock" class="l3">Monetary Expansion</a>
+  <a href="#deriving-ad" class="l2">Deriving the AD Curve</a>
+  <a href="#formal" class="l2">Formal Algebra</a>
+  <a href="#multipliers" class="l3">IS-LM Multipliers</a>
+  <a href="#formulas" class="l2">Formula Sheet</a>
+  <a href="#questions" class="l2">Practice Questions</a>
+</nav>
+
+<main>
+
+<h1>
+  <span class="ch-num">Chapter 10</span>
+  Money, Interest and Income: The IS-LM Model
+</h1>
+<div class="ch-meta">
+  <span>Book pp. <b>219–247</b></span>
+  <span>PDF pp. <b>237–265</b></span>
+  <span>Exam weight <b>High</b></span>
+  <span>Dornbusch · Fischer · Startz 11e</span>
+</div>
+
+<div class="highlights" id="overview">
+  <h4>Chapter Highlights</h4>
+  <ul>
+    <li>The <strong>IS-LM model</strong> is the core of short-run macroeconomics. It simultaneously determines income $Y$ and the interest rate $i$.</li>
+    <li>The <strong>IS curve</strong> — goods market equilibrium — slopes <em>downward</em>: higher $i$ → lower investment → lower $Y$.</li>
+    <li>The <strong>LM curve</strong> — money market equilibrium — slopes <em>upward</em>: higher $Y$ → higher money demand → higher $i$.</li>
+    <li>Fiscal expansion shifts IS right → both $Y$ and $i$ rise. Higher $i$ crowds out investment — fiscal multiplier is <em>smaller</em> than the Ch. 9 multiplier $\alpha_G$.</li>
+    <li>Monetary expansion shifts LM right → $Y$ rises, $i$ falls.</li>
+    <li>The AD curve is derived by tracing IS-LM equilibria at different price levels: higher $P$ → lower $M/P$ → LM shifts left → lower $Y$.</li>
+  </ul>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<h2 id="is-curve">1 · The IS Curve — Goods Market Equilibrium</h2>
+
+<p>Chapter 9 treated investment as entirely exogenous. Now we make it endogenous: investment depends on the interest rate.</p>
+
+<h3 id="investment-demand">1.1  Investment Demand Function</h3>
+
+<div class="eq-block">
+  $$I = \bar{I} - b\,i \qquad b > 0$$
+  <div class="eq-label">Equation (1) — Investment Demand</div>
+</div>
+
+<ul style="margin-bottom:14px">
+  <li>$\bar{I}$ = autonomous investment (independent of both $i$ and $Y$).</li>
+  <li>$b$ = interest-sensitivity of investment. Large $b$ → flatter IS. Small $b$ → steeper IS.</li>
+  <li>Higher $i$ raises borrowing costs → reduces profitability → firms invest less.</li>
+</ul>
+
+<h3 id="is-derivation">1.2  Deriving the IS Curve</h3>
+
+<p>Insert the investment function into the aggregate demand identity:</p>
+
+<div class="eq-block">
+  $$AD = \underbrace{\bigl[\bar{C} + c\,\overline{TR} + \bar{I} + G + \overline{NX}\bigr]}_{\bar{A}} + c(1-t)Y - bi$$
+  <div class="eq-label">Equation (2) — Aggregate Demand with Interest Rate</div>
+</div>
+
+<div class="derivation">
+  <div class="deriv-label">IS Curve Derivation</div>
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">Goods market equilibrium: $Y = AD = \bar{A} + c(1-t)Y - bi$</div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">$Y - c(1-t)Y = \bar{A} - bi$ → $Y[1-c(1-t)] = \bar{A} - bi$</div>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      $$\boxed{Y = \alpha_G(\bar{A} - bi)}$$
+      <div class="step-note">where $\alpha_G = \dfrac{1}{1-c(1-t)}$ is the Ch. 9 multiplier. IS Equation (5).</div>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-body">Rearranging for $i$:
+      $$i = \frac{\bar{A}}{b} - \frac{Y}{\alpha_G b} \quad \text{(IS as }i\text{ function of }Y)$$
+      <div class="step-note">Negative slope in $(Y, i)$ space — confirms IS is downward-sloping.</div>
+    </div>
+  </div>
+</div>
+
+<div class="graph-wrap">
+  <div class="graph-title">Fig 10.1 — IS Curve Derivation</div>
+  <svg id="fig-is-derivation" width="100%" viewBox="0 0 520 300"></svg>
+  <div class="graph-caption">Lower interest rate $i_2 < i_1$ increases investment → shifts AD up → higher equilibrium income $Y_2 > Y_1$. Plotting $(i,Y)$ pairs traces the downward-sloping IS curve.</div>
+</div>
+
+<h3 id="is-slope">1.3  Slope of the IS Curve</h3>
+
+<p>From the IS equation: $\Delta i / \Delta Y = -1/(\alpha_G b)$. The IS curve is <strong>steeper</strong> when:</p>
+
+<div class="slope-table">
+  <table>
+    <thead><tr><th>Parameter</th><th>Larger value</th><th>Effect on IS</th><th>Economic reason</th></tr></thead>
+    <tbody>
+      <tr><td>$b$ (invest. sensitivity to $i$)</td><td>Large $b$</td><td><strong>Flatter</strong> IS</td><td>A small $\Delta i$ causes a large $\Delta I$ → large $\Delta Y$</td></tr>
+      <tr><td>$b$ small</td><td>Small $b$</td><td><strong>Steeper</strong> IS</td><td>$\Delta i$ has little effect on investment</td></tr>
+      <tr><td>$\alpha_G$ (multiplier)</td><td>Large $\alpha_G$</td><td><strong>Flatter</strong> IS</td><td>Any $\Delta I$ amplified more through multiplier</td></tr>
+      <tr><td>Tax rate $t$</td><td>Higher $t$</td><td><strong>Steeper</strong> IS</td><td>$t\uparrow$ reduces $\alpha_G$ → less amplification</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h3 id="is-position">1.4  IS Curve Shifts</h3>
+
+<p>The IS curve shifts <strong>horizontally by $\alpha_G \Delta\bar{A}$</strong> when autonomous spending changes.</p>
+<ul style="margin-bottom:14px; padding-left:20px;">
+  <li><strong>Rightward shift (IS→IS'):</strong> $\uparrow G$, $\uparrow\bar{I}$, $\uparrow\overline{TR}$, $\downarrow\overline{TA}$, $\uparrow\overline{NX}$, $\uparrow\bar{C}$</li>
+  <li><strong>Leftward shift:</strong> opposite of above — contractionary fiscal policy, fall in investment confidence</li>
+</ul>
+
+<div class="examiner">
+  <div class="ex-label">Examiner Note</div>
+  The IS shift is horizontal and equals $\alpha_G \Delta G$ (the Ch. 9 multiplier times the policy change). But the <em>actual change in income</em> in IS-LM is smaller than this shift, because the upward-sloping LM means the interest rate rises and crowds out some investment. This is the essential difference from Ch. 9.
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<h2 id="lm-curve">2 · The LM Curve — Money Market Equilibrium</h2>
+
+<h3 id="money-demand">2.1  Demand for Real Balances</h3>
+
+<div class="def">
+  <div class="def-label">Definition</div>
+  <p><span class="def-term">Real money demand (L)</span> — demand for money expressed in purchasing power terms (nominal demand ÷ price level). People care about what money buys, not how many dollars they hold.</p>
+</div>
+
+<div class="eq-block">
+  $$L = kY - hi \qquad k, h > 0$$
+  <div class="eq-label">Equation (6) — Real Money Demand</div>
+</div>
+
+<ul style="margin-bottom:14px">
+  <li>$k$ = income sensitivity of money demand. Higher $Y$ → more transactions → more money needed.</li>
+  <li>$h$ = interest sensitivity of money demand. Higher $i$ → higher opportunity cost of holding money → people economise on cash.</li>
+</ul>
+
+<h3 id="lm-derivation">2.2  Deriving the LM Curve</h3>
+
+<p>The central bank fixes the nominal money supply $\bar{M}$. With price level $\bar{P}$ constant, real money supply is $\bar{M}/\bar{P}$. Money market equilibrium: $L = \bar{M}/\bar{P}$.</p>
+
+<div class="derivation">
+  <div class="deriv-label">LM Curve Derivation</div>
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">Set $L = M/P$: $kY - hi = \bar{M}/\bar{P}$</div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">Solve for $i$:
+      $$\boxed{i = \frac{k}{h}Y - \frac{1}{h}\frac{\bar{M}}{\bar{P}}}$$
+      <div class="step-note">Equation (7a) — LM curve. Positive slope in $(Y,i)$ space.</div>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">Slope = $k/h > 0$: higher $Y$ → higher money demand → at fixed $M/P$, interest rate must rise to choke off excess demand.
+    </div>
+  </div>
+</div>
+
+<div class="graph-wrap">
+  <div class="graph-title">Fig 10.2 — LM Curve Derivation</div>
+  <svg id="fig-lm-derivation" width="100%" viewBox="0 0 520 300"></svg>
+  <div class="graph-caption">Higher income $Y_2 > Y_1$ shifts money demand right → at fixed $\bar{M}/\bar{P}$, equilibrium requires higher interest rate $i_2 > i_1$. Plotting these $(Y,i)$ pairs gives the upward-sloping LM.</div>
+</div>
+
+<h3 id="lm-slope">2.3  LM Slope and Shifts</h3>
+
+<div class="slope-table">
+  <table>
+    <thead><tr><th>Parameter / Change</th><th>Effect on LM</th><th>Economic reason</th></tr></thead>
+    <tbody>
+      <tr><td>$k$ large (money demand responds strongly to $Y$)</td><td><strong>Steeper</strong></td><td>Any $\Delta Y$ causes large $\Delta L$ → needs large $\Delta i$ to restore equilibrium</td></tr>
+      <tr><td>$h$ large (money demand responds strongly to $i$)</td><td><strong>Flatter</strong></td><td>Small $\Delta i$ absorbs large $\Delta L$</td></tr>
+      <tr><td>$h \to \infty$ (liquidity trap)</td><td>Horizontal LM</td><td>Money demand perfectly elastic — interest rate cannot change</td></tr>
+      <tr><td>$\uparrow \bar{M}/\bar{P}$ (money supply up)</td><td><strong>Rightward shift</strong></td><td>Excess money supply → lower $i$ at each $Y$</td></tr>
+      <tr><td>$\uparrow P$ (higher price level)</td><td><strong>Leftward shift</strong></td><td>Real supply $\bar{M}/P$ falls → tighter money</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<h2 id="islm-equilibrium">3 · IS-LM Simultaneous Equilibrium</h2>
+
+<div class="def">
+  <div class="def-label">Definition</div>
+  <p>IS-LM equilibrium — the unique $(Y_0, i_0)$ that simultaneously clears both the goods market (IS) and the money market (LM).</p>
+</div>
+
+<div class="graph-wrap">
+  <div class="graph-title">Fig 10.3 — IS-LM Equilibrium</div>
+  <svg id="fig-islm-eq" width="100%" viewBox="0 0 460 300"></svg>
+  <div class="graph-caption">Point $E$ is the only combination of $(Y,i)$ where both markets clear simultaneously. Price level is held fixed; output is demand-determined.</div>
+</div>
+
+<h3 id="fiscal-shock">3.1  Fiscal Expansion: IS Shifts Right</h3>
+
+<p>An increase in $G$ shifts IS right by $\alpha_G \Delta G$. The new equilibrium has <strong>higher $Y$ and higher $i$</strong>.</p>
+
+<div class="graph-wrap">
+  <div class="graph-title">Fig 10.4 — Fiscal Expansion in IS-LM</div>
+  <svg id="fig-fiscal" width="100%" viewBox="0 0 460 300"></svg>
+  <div class="graph-caption">IS shifts right by $\alpha_G \Delta G$. But the actual income increase $\Delta Y < \alpha_G \Delta G$ because the rising interest rate crowds out investment. The higher $i$ is the crowding-out mechanism.</div>
+</div>
+
+<div class="def">
+  <div class="def-label">Definition — Crowding Out</div>
+  <p>When fiscal expansion raises $i$, private investment falls: $\Delta I = -b\Delta i < 0$. Government spending partially displaces private investment. <strong>Crowding out is complete</strong> (fiscal policy is ineffective) only when the LM is vertical ($h = 0$, classical money demand).</p>
+</div>
+
+<div class="examiner">
+  <div class="ex-label">Examiner Note — Why IS-LM Multiplier &lt; Ch. 9 Multiplier</div>
+  In Ch. 9, interest rates were fixed, so $\Delta Y = \alpha_G \Delta G$. In IS-LM, the rising $i$ from the fiscal expansion reduces investment, which partially offsets the multiplier. The correct IS-LM fiscal multiplier is $\gamma = h\alpha_G/(h + kb\alpha_G) < \alpha_G$. Examiners test whether you know this distinction — simply quoting $\alpha_G$ as the IS-LM multiplier is wrong.
+</div>
+
+<h3 id="monetary-shock">3.2  Monetary Expansion: LM Shifts Right</h3>
+
+<p>An increase in $\bar{M}$ (or a decrease in $P$) raises the real money supply $\bar{M}/P$, shifting LM right. The new equilibrium has <strong>higher $Y$ and lower $i$</strong>.</p>
+
+<div class="graph-wrap">
+  <div class="graph-title">Fig 10.5 — Monetary Expansion in IS-LM</div>
+  <svg id="fig-monetary" width="100%" viewBox="0 0 460 300"></svg>
+  <div class="graph-caption">LM shifts right: excess money supply lowers $i$ → investment rises → income rises. Monetary policy works through the interest rate channel: $\uparrow M \to \downarrow i \to \uparrow I \to \uparrow Y$.</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<h2 id="deriving-ad">4 · Deriving the AD Curve from IS-LM</h2>
+
+<p>The AD curve traces IS-LM equilibrium output at different price levels, holding $\bar{M}$ and $\bar{A}$ constant.</p>
+
+<div class="derivation">
+  <div class="deriv-label">AD Derivation Logic</div>
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">At price $P_1$: real money supply $= \bar{M}/P_1$. LM₁ gives equilibrium $(Y_1, i_1)$.</div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">At higher price $P_2 > P_1$: real money supply $= \bar{M}/P_2 < \bar{M}/P_1$. LM₂ is to the left of LM₁.</div>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">LM₂ intersects IS at a lower income $Y_2 < Y_1$ and higher interest rate $i_2 > i_1$.
+      <div class="step-note">Plot $(P_2, Y_2)$ and $(P_1, Y_1)$: as $P \uparrow$, $Y$ falls → downward-sloping AD.</div>
+    </div>
+  </div>
+</div>
+
+<div class="graph-wrap">
+  <div class="graph-title">Fig 10.6 — Deriving the AD Curve from IS-LM</div>
+  <svg id="fig-ad-derivation" width="100%" viewBox="0 0 520 340"></svg>
+  <div class="graph-caption">Top panel: IS-LM at two price levels. Higher $P$ → lower $M/P$ → LM shifts left → lower $Y$. Bottom panel: plotting $(P,Y)$ pairs traces the downward-sloping AD curve.</div>
+</div>
+
+<div class="examiner">
+  <div class="ex-label">Examiner Note — AD Slope Mechanism</div>
+  The AD curve slopes down through the <em>real balance effect</em> (also called the Keynes effect): $P\uparrow \Rightarrow M/P\downarrow \Rightarrow$ LM shifts left $\Rightarrow i\uparrow \Rightarrow I\downarrow \Rightarrow Y\downarrow$. This is the core of what Ch. 5 described as "higher prices reduce the real money supply and lower aggregate demand." Now you have the full IS-LM mechanism behind it.
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<h2 id="formal">5 · Formal IS-LM Algebra (Optional)</h2>
+
+<p>Substitute the LM equation (7a) into the IS equation (5) to solve for equilibrium $Y$ and $i$:</p>
+
+<div class="eq-block">
+  $$\boxed{Y_0 = \frac{h\,\alpha_G}{h + k\,b\,\alpha_G}\,\bar{A} + \frac{b\,\alpha_G}{h + k\,b\,\alpha_G}\,\frac{\bar{M}}{P}}$$
+  <div class="eq-label">Equation (8) — Equilibrium Income (IS-LM)</div>
+</div>
+
+<div class="eq-block">
+  $$i_0 = \frac{k\,\alpha_G}{h + k\,b\,\alpha_G}\,\bar{A} - \frac{\alpha_G}{h + k\,b\,\alpha_G}\,\frac{\bar{M}}{P}$$
+  <div class="eq-label">Equation (9) — Equilibrium Interest Rate</div>
+</div>
+
+<h3 id="multipliers">5.1  IS-LM Policy Multipliers</h3>
+
+<div class="eq-block">
+  $$\gamma_{\text{fiscal}} = \frac{\Delta Y}{\Delta G} = \frac{h\,\alpha_G}{h + k\,b\,\alpha_G} < \alpha_G$$
+  <div class="eq-label">Fiscal multiplier in IS-LM — always less than Ch. 9 multiplier</div>
+</div>
+
+<div class="eq-block">
+  $$\gamma_{\text{monetary}} = \frac{\Delta Y}{\Delta(M/P)} = \frac{b\,\alpha_G}{h + k\,b\,\alpha_G}$$
+  <div class="eq-label">Monetary multiplier in IS-LM</div>
+</div>
+
+<div class="slope-table">
+  <table>
+    <thead><tr><th>Limiting Case</th><th>LM Shape</th><th>Fiscal Policy</th><th>Monetary Policy</th></tr></thead>
+    <tbody>
+      <tr><td>$h \to \infty$ (liquidity trap)</td><td>Horizontal LM</td><td>Maximum effectiveness: $\gamma_F = \alpha_G$</td><td>Zero: $\gamma_M = 0$</td></tr>
+      <tr><td>$h \to 0$ (classical money demand)</td><td>Vertical LM</td><td>Zero: $\gamma_F = 0$ (complete crowding out)</td><td>Maximum effectiveness</td></tr>
+      <tr><td>$b \to 0$ (vertical IS)</td><td>Any LM</td><td>Maximum: $\gamma_F \to \alpha_G$</td><td>Zero: $\gamma_M = 0$</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="trap">
+  <div class="trap-label">Examiner Trap — Liquidity Trap</div>
+  In the liquidity trap ($h \to \infty$, horizontal LM), the monetary multiplier is <em>zero</em> — printing money cannot lower interest rates or raise output. Fiscal policy is fully effective. This is the extreme Keynesian case and was used to argue for fiscal stimulus during the 2008-09 crisis with near-zero interest rates.
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<h2 id="formulas">Formula &amp; Concept Summary</h2>
+
+<div class="formula-sheet">
+  <h3>Quick Reference</h3>
+  <div class="formula-row">
+    <div class="fr-eq">$I = \bar{I} - bi$</div>
+    <div class="fr-desc">Investment demand. $b$ = interest sensitivity. Inverse of $i$.</div>
+  </div>
+  <div class="formula-row">
+    <div class="fr-eq">IS: $Y = \alpha_G(\bar{A} - bi)$</div>
+    <div class="fr-desc">Goods market equilibrium. Downward-sloping. Shifts right by $\alpha_G\Delta\bar{A}$ when $\bar{A}$ rises.</div>
+  </div>
+  <div class="formula-row">
+    <div class="fr-eq">$L = kY - hi$</div>
+    <div class="fr-desc">Real money demand. $k$ = income sensitivity; $h$ = interest sensitivity.</div>
+  </div>
+  <div class="formula-row">
+    <div class="fr-eq">LM: $i = \dfrac{k}{h}Y - \dfrac{1}{h}\dfrac{\bar{M}}{P}$</div>
+    <div class="fr-desc">Money market equilibrium. Upward-sloping. Shifts right when $M/P$ rises.</div>
+  </div>
+  <div class="formula-row">
+    <div class="fr-eq">$Y_0 = \dfrac{h\alpha_G}{h+kb\alpha_G}\bar{A} + \dfrac{b\alpha_G}{h+kb\alpha_G}\dfrac{M}{P}$</div>
+    <div class="fr-desc">IS-LM equilibrium income. Also the aggregate demand schedule.</div>
+  </div>
+  <div class="formula-row">
+    <div class="fr-eq">$\gamma_F = \dfrac{h\alpha_G}{h + kb\alpha_G}$</div>
+    <div class="fr-desc">Fiscal multiplier in IS-LM. Always $< \alpha_G$ due to crowding out.</div>
+  </div>
+  <div class="formula-row">
+    <div class="fr-eq">$\gamma_M = \dfrac{b\alpha_G}{h + kb\alpha_G}$</div>
+    <div class="fr-desc">Monetary multiplier in IS-LM.</div>
+  </div>
+  <div class="formula-row">
+    <div class="fr-eq">AD slope: $P\uparrow \Rightarrow M/P\downarrow \Rightarrow$ LM left $\Rightarrow i\uparrow \Rightarrow I\downarrow \Rightarrow Y\downarrow$</div>
+    <div class="fr-desc">Real balance (Keynes) effect — mechanism behind the downward-sloping AD.</div>
+  </div>
+</div>
+
+<div class="revision">
+  <h3>Revision — Key Distinctions</h3>
+  <ul>
+    <li><strong>IS vs. LM slopes:</strong> IS negative (goods market); LM positive (money market). Different reasons for different slopes — never confuse them.</li>
+    <li><strong>IS-LM multiplier vs. Ch. 9 multiplier:</strong> IS-LM fiscal multiplier $\gamma_F < \alpha_G$ due to interest rate rise (crowding out). This is the central result of Ch. 10.</li>
+    <li><strong>Crowding out:</strong> fiscal expansion → $i\uparrow$ → $I\downarrow$. Complete only if LM is vertical (classical money demand).</li>
+    <li><strong>Fiscal expansion:</strong> shifts IS right → $Y\uparrow$, $i\uparrow$. <strong>Monetary expansion:</strong> shifts LM right → $Y\uparrow$, $i\downarrow$. Sign of $\Delta i$ is the key distinction.</li>
+    <li><strong>Deriving AD:</strong> Hold IS and $\bar{M}$ fixed; vary $P$ → LM shifts → different $Y$. AD slopes down via the real balance effect.</li>
+    <li><strong>Liquidity trap:</strong> $h\to\infty$, horizontal LM → fiscal policy effective ($\gamma_F = \alpha_G$); monetary policy ineffective ($\gamma_M = 0$). Relevant at zero lower bound.</li>
+    <li><strong>What shifts IS:</strong> any change in $\bar{A}$ — government spending, taxes, transfers, autonomous investment, consumer confidence, net exports.</li>
+    <li><strong>What shifts LM:</strong> change in nominal money supply $\bar{M}$, or change in price level $P$ (which changes real balances $M/P$).</li>
+  </ul>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<h2 id="questions">Practice Questions</h2>
+<div class="questions">
+
+  <div class="q-item">
+    <div class="q-meta"><span class="q-badge marks-2">2 Marks</span><span class="q-badge type">Conceptual</span></div>
+    <p>Explain why the IS curve is downward-sloping and the LM curve is upward-sloping. What economic mechanism drives each slope?</p>
+  </div>
+
+  <div class="q-item">
+    <div class="q-meta"><span class="q-badge marks-2">2 Marks</span><span class="q-badge type">Conceptual</span></div>
+    <p>What is the "crowding out" effect in the IS-LM model? Under what conditions is crowding out complete, and under what conditions does it not occur at all?</p>
+  </div>
+
+  <div class="q-item">
+    <div class="q-meta"><span class="q-badge marks-5">5 Marks</span><span class="q-badge type">Diagram + Analysis</span></div>
+    <p>Using IS-LM diagrams, compare the effect on income and interest rates of: (a) a $\$10$ billion increase in government spending; (b) a $\$10$ billion increase in the money supply. In each case, state what happens to $Y$ and $i$, and identify which policy raises investment and which reduces it.</p>
+  </div>
+
+  <div class="q-item">
+    <div class="q-meta"><span class="q-badge marks-5">5 Marks</span><span class="q-badge type">Derivation</span></div>
+    <p>Derive the aggregate demand (AD) schedule from the IS-LM model. Explain: (a) why the AD curve slopes downward; (b) what shifts the AD curve and why; (c) how IS-LM makes the AD mechanism more precise than the simple quantity theory.</p>
+  </div>
+
+  <div class="q-item">
+    <div class="q-meta"><span class="q-badge marks-5">5 Marks</span><span class="q-badge type">Analysis</span></div>
+    <p>Compare the fiscal policy multiplier from Chapter 9 ($\alpha_G$) with the IS-LM fiscal multiplier $\gamma_F = h\alpha_G/(h+kb\alpha_G)$. Show algebraically that $\gamma_F < \alpha_G$. Interpret the parameters $h$, $k$, and $b$ in terms of the dampening mechanism.</p>
+  </div>
+
+  <div class="q-item">
+    <div class="q-meta"><span class="q-badge marks-10">10 Marks</span><span class="q-badge type">Long-form Analytical</span></div>
+    <p>"The effectiveness of fiscal policy depends entirely on the shape of the LM curve, while the effectiveness of monetary policy depends entirely on the shape of the IS curve." Critically evaluate this statement. In your answer: (a) derive the IS and LM curves; (b) identify four limiting cases (steep/flat IS; steep/flat LM) and analyse fiscal and monetary effectiveness in each; (c) discuss the real-world implications for the 2008-09 zero-lower-bound environment; (d) use algebra from Equations (10) and the monetary multiplier to support your arguments.</p>
+  </div>
+
+</div>
+</main>
+
+<!-- ═══════════ D3 GRAPHS ═══════════ -->
+<script>
+const C={accent:"#5b8dee",green:"#3ecf8e",yellow:"#f4c542",red:"#e05c5c",muted:"#7a80a0",heading:"#eef0ff",surface:"#1a1d27",border:"#2e3348"};
+
+function axes(g, iw, ih, xl, yl){
+  g.append("line").attr("x1",0).attr("y1",ih).attr("x2",iw).attr("y2",ih).attr("stroke",C.muted).attr("stroke-width",1.5);
+  g.append("line").attr("x1",0).attr("y1",0).attr("x2",0).attr("y2",ih).attr("stroke",C.muted).attr("stroke-width",1.5);
+  g.append("polygon").attr("points",`${iw},${ih-5} ${iw+7},${ih} ${iw},${ih+5}`).attr("fill",C.muted);
+  g.append("polygon").attr("points",`-5,0 0,-7 5,0`).attr("fill",C.muted);
+  g.append("text").attr("x",iw/2).attr("y",ih+38).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",12).text(xl);
+  g.append("text").attr("transform",`translate(-42,${ih/2}) rotate(-90)`).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",12).text(yl);
+}
+
+/* ── IS derivation (two-panel) ── */
+(function(){
+  const svg=d3.select("#fig-is-derivation");
+  const W=520,H=300,ml=55,mr=20,mt=18,mb=48;
+  const iw=(W-ml-mr)/2-16,ih=H-mt-mb;
+
+  // LEFT panel: 45° diagram
+  const gL=svg.append("g").attr("transform",`translate(${ml},${mt})`);
+  axes(gL,iw,ih,"Output Y","AD");
+  // 45° line
+  gL.append("line").attr("x1",0).attr("y1",ih).attr("x2",iw).attr("y2",0).attr("stroke",C.muted).attr("stroke-width",1).attr("stroke-dasharray","5,4");
+  // AD1 (high i, low intercept)
+  const c=0.65, Abar1=ih*0.18, Abar2=ih*0.30;
+  function adLine(g,Abar,col,lbl){
+    const x2=iw, y0=ih-Abar, y2=y0-c*iw;
+    g.append("line").attr("x1",0).attr("y1",y0).attr("x2",x2).attr("y2",Math.max(2,y2)).attr("stroke",col).attr("stroke-width",2);
+    g.append("text").attr("x",x2-4).attr("y",Math.max(8,y2)-8).attr("fill",col).attr("font-size",11).attr("text-anchor","end").text(lbl);
+    const eqX=Abar/(1-c), eqY=ih-eqX;
+    return {eqX,eqY};
+  }
+  const e1=adLine(gL,Abar1,C.accent,"AD(i₁)");
+  const e2=adLine(gL,Abar2,C.yellow,"AD(i₂)");
+  [[e1,"E₁",C.accent],[e2,"E₂",C.yellow]].forEach(([e,l,col])=>{
+    gL.append("circle").attr("cx",e.eqX).attr("cy",e.eqY).attr("r",4).attr("fill",col);
+    gL.append("text").attr("x",e.eqX+6).attr("y",e.eqY-6).attr("fill",col).attr("font-size",11).text(l);
+    gL.append("line").attr("x1",e.eqX).attr("y1",ih).attr("x2",e.eqX).attr("y2",e.eqY).attr("stroke",C.muted).attr("stroke-dasharray","3,3").attr("stroke-width",1);
+  });
+  gL.append("text").attr("x",e1.eqX).attr("y",ih+16).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",11).text("Y₁");
+  gL.append("text").attr("x",e2.eqX).attr("y",ih+16).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",11).text("Y₂");
+
+  // RIGHT panel: IS curve
+  const ox=ml+iw+52;
+  const gR=svg.append("g").attr("transform",`translate(${ox},${mt})`);
+  axes(gR,iw,ih,"Income Y","Interest rate  i");
+  // IS: negative slope. Map Y to x-axis, i to y-axis
+  // i1 is high (upper), i2 is low (lower)
+  const i1y=ih*0.3, i2y=ih*0.65;
+  gR.append("line").attr("x1",e1.eqX-10).attr("y1",i1y-14).attr("x2",e2.eqX+10).attr("y2",i2y+14).attr("stroke",C.green).attr("stroke-width",2.5);
+  gR.append("text").attr("x",e2.eqX+12).attr("y",i2y+20).attr("fill",C.green).attr("font-size",12).text("IS");
+  [[e1.eqX,i1y,"E₁",C.accent],[e2.eqX,i2y,"E₂",C.yellow]].forEach(([x,y,l,col])=>{
+    gR.append("circle").attr("cx",x).attr("cy",y).attr("r",4).attr("fill",col);
+    gR.append("text").attr("x",x+6).attr("y",y-6).attr("fill",col).attr("font-size",11).text(l);
+    gR.append("line").attr("x1",0).attr("y1",y).attr("x2",x).attr("y2",y).attr("stroke",C.muted).attr("stroke-dasharray","3,3").attr("stroke-width",1);
+    gR.append("line").attr("x1",x).attr("y1",ih).attr("x2",x).attr("y2",y).attr("stroke",C.muted).attr("stroke-dasharray","3,3").attr("stroke-width",1);
+  });
+  gR.append("text").attr("x",-6).attr("y",i1y+4).attr("text-anchor","end").attr("fill",C.muted).attr("font-size",11).text("i₁");
+  gR.append("text").attr("x",-6).attr("y",i2y+4).attr("text-anchor","end").attr("fill",C.muted).attr("font-size",11).text("i₂");
+  gR.append("text").attr("x",e1.eqX).attr("y",ih+16).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",11).text("Y₁");
+  gR.append("text").attr("x",e2.eqX).attr("y",ih+16).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",11).text("Y₂");
+})();
+
+/* ── LM derivation (two-panel) ── */
+(function(){
+  const svg=d3.select("#fig-lm-derivation");
+  const W=520,H=300,ml=55,mr=20,mt=18,mb=48;
+  const iw=(W-ml-mr)/2-16,ih=H-mt-mb;
+
+  // LEFT: money market
+  const gL=svg.append("g").attr("transform",`translate(${ml},${mt})`);
+  axes(gL,iw,ih,"Real Balances  M/P","Interest rate  i");
+  // Fixed money supply vertical line
+  const msX=iw*0.55;
+  gL.append("line").attr("x1",msX).attr("y1",0).attr("x2",msX).attr("y2",ih).attr("stroke",C.green).attr("stroke-width",2.5);
+  gL.append("text").attr("x",msX+4).attr("y",12).attr("fill",C.green).attr("font-size",11).text("M̄/P");
+  // Money demand L1, L2
+  function mdLine(g,intercept,col,lbl){
+    // i = (intercept - x) / h_coef; draw as: at x=msX, y = intercept; slopes down
+    const slope=-0.8;
+    const x1=0,y1=intercept-slope*0; const x2=iw,y2=intercept-slope*iw;
+    g.append("line").attr("x1",Math.max(0,x1)).attr("y1",Math.max(0,y1)).attr("x2",Math.min(iw,x2)).attr("y2",Math.min(ih,y2)).attr("stroke",col).attr("stroke-width",2);
+    g.append("text").attr("x",iw-4).attr("y",Math.min(ih-4,y2)-8).attr("fill",col).attr("font-size",11).attr("text-anchor","end").text(lbl);
+    const iy=intercept; // at x=0 (simplified)
+    // intersection with vertical M̄/P line
+    const intY=intercept-slope*msX;
+    return intY;
+  }
+  const i1y=ih*0.3, i2y=ih*0.58;
+  // Design L1 to hit msX at i1y; intercept = i1y + slope*msX
+  const slope=-0.8;
+  const int1=i1y - slope*msX, int2=i2y - slope*msX;
+  gL.append("line").attr("x1",0).attr("y1",int1).attr("x2",iw).attr("y2",int1-slope*iw).attr("stroke",C.accent).attr("stroke-width",2);
+  gL.append("text").attr("x",iw-4).attr("y",int1-slope*iw-8).attr("fill",C.accent).attr("font-size",11).attr("text-anchor","end").text("L₁=kY₁−hi");
+  gL.append("line").attr("x1",0).attr("y1",int2).attr("x2",iw).attr("y2",int2-slope*iw).attr("stroke",C.yellow).attr("stroke-width",2);
+  gL.append("text").attr("x",iw-4).attr("y",int2-slope*iw-8).attr("fill",C.yellow).attr("font-size",11).attr("text-anchor","end").text("L₂=kY₂−hi");
+  // Equilibrium circles
+  [[msX,i1y,"E₁",C.accent],[msX,i2y,"E₂",C.yellow]].forEach(([x,y,l,col])=>{
+    gL.append("circle").attr("cx",x).attr("cy",y).attr("r",4).attr("fill",col);
+    gL.append("text").attr("x",x+6).attr("y",y-6).attr("fill",col).attr("font-size",11).text(l);
+    gL.append("line").attr("x1",0).attr("y1",y).attr("x2",x).attr("y2",y).attr("stroke",C.muted).attr("stroke-dasharray","3,3").attr("stroke-width",1);
+  });
+  gL.append("text").attr("x",-6).attr("y",i1y+4).attr("text-anchor","end").attr("fill",C.muted).attr("font-size",11).text("i₁");
+  gL.append("text").attr("x",-6).attr("y",i2y+4).attr("text-anchor","end").attr("fill",C.muted).attr("font-size",11).text("i₂");
+
+  // RIGHT: LM curve
+  const ox=ml+iw+52;
+  const gR=svg.append("g").attr("transform",`translate(${ox},${mt})`);
+  axes(gR,iw,ih,"Income Y","Interest rate  i");
+  // Y1 < Y2, i1 > i2 → LM positive slope
+  const y1x=iw*0.3, y2x=iw*0.65;
+  gR.append("line").attr("x1",y1x-10).attr("y1",i1y-14).attr("x2",y2x+10).attr("y2",i2y+14).attr("stroke",C.green).attr("stroke-width",2.5);
+  gR.append("text").attr("x",y2x+12).attr("y",i2y+20).attr("fill",C.green).attr("font-size",12).text("LM");
+  [[y1x,i1y,"E₁",C.accent],[y2x,i2y,"E₂",C.yellow]].forEach(([x,y,l,col])=>{
+    gR.append("circle").attr("cx",x).attr("cy",y).attr("r",4).attr("fill",col);
+    gR.append("text").attr("x",x+6).attr("y",y-6).attr("fill",col).attr("font-size",11).text(l);
+    gR.append("line").attr("x1",0).attr("y1",y).attr("x2",x).attr("y2",y).attr("stroke",C.muted).attr("stroke-dasharray","3,3").attr("stroke-width",1);
+    gR.append("line").attr("x1",x).attr("y1",ih).attr("x2",x).attr("y2",y).attr("stroke",C.muted).attr("stroke-dasharray","3,3").attr("stroke-width",1);
+  });
+  gR.append("text").attr("x",-6).attr("y",i1y+4).attr("text-anchor","end").attr("fill",C.muted).attr("font-size",11).text("i₁");
+  gR.append("text").attr("x",-6).attr("y",i2y+4).attr("text-anchor","end").attr("fill",C.muted).attr("font-size",11).text("i₂");
+  gR.append("text").attr("x",y1x).attr("y",ih+16).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",11).text("Y₁");
+  gR.append("text").attr("x",y2x).attr("y",ih+16).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",11).text("Y₂");
+})();
+
+/* ── IS-LM Equilibrium ── */
+function islmBase(svgId){
+  const svg=d3.select(svgId);
+  const W=460,H=300,ml=55,mr=20,mt=18,mb=48;
+  const iw=W-ml-mr,ih=H-mt-mb;
+  const g=svg.append("g").attr("transform",`translate(${ml},${mt})`);
+  axes(g,iw,ih,"Income  Y","Interest rate  i");
+  return {g,iw,ih};
+}
+
+function drawIS(g,iw,ih,xL,xR,col,lbl){
+  // IS: from (xL, high i) to (xR, low i)
+  const y1=ih*0.2, y2=ih*0.75;
+  g.append("line").attr("x1",xL).attr("y1",y1).attr("x2",xR).attr("y2",y2).attr("stroke",col).attr("stroke-width",2.5);
+  g.append("text").attr("x",xR+4).attr("y",y2+4).attr("fill",col).attr("font-size",12).text(lbl);
+  return {x1:xL,y1,x2:xR,y2};
+}
+function drawLM(g,iw,ih,xL,xR,col,lbl){
+  const y1=ih*0.75, y2=ih*0.2;
+  g.append("line").attr("x1",xL).attr("y1",y1).attr("x2",xR).attr("y2",y2).attr("stroke",col).attr("stroke-width",2.5);
+  g.append("text").attr("x",xR+4).attr("y",y2-4).attr("fill",col).attr("font-size",12).text(lbl);
+  return {x1:xL,y1,x2:xR,y2};
+}
+function lineIntersect(is,lm){
+  // parametric: IS: P = IS.1 + t*(IS.2-IS.1); LM: P = LM.1 + s*(LM.2-LM.1)
+  const dx1=is.x2-is.x1,dy1=is.y2-is.y1;
+  const dx2=lm.x2-lm.x1,dy2=lm.y2-lm.y1;
+  const denom=dx1*dy2-dy1*dx2;
+  const t=((lm.x1-is.x1)*dy2-(lm.y1-is.y1)*dx2)/denom;
+  return {x:is.x1+t*dx1, y:is.y1+t*dy1};
+}
+
+(function(){
+  const {g,iw,ih}=islmBase("#fig-islm-eq");
+  const is=drawIS(g,iw,ih,iw*0.1,iw*0.85,C.green,"IS");
+  const lm=drawLM(g,iw,ih,iw*0.1,iw*0.85,C.accent,"LM");
+  const E=lineIntersect(is,lm);
+  g.append("circle").attr("cx",E.x).attr("cy",E.y).attr("r",5).attr("fill",C.yellow);
+  g.append("text").attr("x",E.x+8).attr("y",E.y-8).attr("fill",C.yellow).attr("font-size",13).text("E");
+  g.append("line").attr("x1",0).attr("y1",E.y).attr("x2",E.x).attr("y2",E.y).attr("stroke",C.muted).attr("stroke-dasharray","3,3").attr("stroke-width",1);
+  g.append("line").attr("x1",E.x).attr("y1",ih).attr("x2",E.x).attr("y2",E.y).attr("stroke",C.muted).attr("stroke-dasharray","3,3").attr("stroke-width",1);
+  g.append("text").attr("x",-6).attr("y",E.y+4).attr("text-anchor","end").attr("fill",C.muted).attr("font-size",12).text("i₀");
+  g.append("text").attr("x",E.x).attr("y",ih+16).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",12).text("Y₀");
+})();
+
+/* ── Fiscal expansion ── */
+(function(){
+  const {g,iw,ih}=islmBase("#fig-fiscal");
+  const is1=drawIS(g,iw,ih,iw*0.08,iw*0.7,C.green,"IS");
+  const is2=drawIS(g,iw,ih,iw*0.26,iw*0.88,C.yellow,"IS'");
+  const lm=drawLM(g,iw,ih,iw*0.08,iw*0.88,C.accent,"LM");
+  const E=lineIntersect(is1,lm), Ep=lineIntersect(is2,lm);
+  [[E,"E",C.green],[Ep,"E'",C.yellow]].forEach(([pt,l,col])=>{
+    g.append("circle").attr("cx",pt.x).attr("cy",pt.y).attr("r",5).attr("fill",col);
+    g.append("text").attr("x",pt.x+7).attr("y",pt.y-7).attr("fill",col).attr("font-size",12).text(l);
+    g.append("line").attr("x1",0).attr("y1",pt.y).attr("x2",pt.x).attr("y2",pt.y).attr("stroke",C.muted).attr("stroke-dasharray","3,3").attr("stroke-width",1);
+    g.append("line").attr("x1",pt.x).attr("y1",ih).attr("x2",pt.x).attr("y2",pt.y).attr("stroke",C.muted).attr("stroke-dasharray","3,3").attr("stroke-width",1);
+  });
+  g.append("text").attr("x",-6).attr("y",E.y+4).attr("text-anchor","end").attr("fill",C.muted).attr("font-size",11).text("i₀");
+  g.append("text").attr("x",-6).attr("y",Ep.y+4).attr("text-anchor","end").attr("fill",C.yellow).attr("font-size",11).text("i'");
+  g.append("text").attr("x",E.x).attr("y",ih+16).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",11).text("Y₀");
+  g.append("text").attr("x",Ep.x).attr("y",ih+16).attr("text-anchor","middle").attr("fill",C.yellow).attr("font-size",11).text("Y'");
+  // Crowding out annotation
+  g.append("text").attr("x",iw*0.5).attr("y",12).attr("text-anchor","middle").attr("fill",C.red).attr("font-size",10.5).text("i rises → investment crowded out → ΔY < αG·ΔG");
+})();
+
+/* ── Monetary expansion ── */
+(function(){
+  const {g,iw,ih}=islmBase("#fig-monetary");
+  const is=drawIS(g,iw,ih,iw*0.1,iw*0.8,C.green,"IS");
+  const lm1=drawLM(g,iw,ih,iw*0.1,iw*0.72,C.accent,"LM");
+  const lm2=drawLM(g,iw,ih,iw*0.25,iw*0.87,C.yellow,"LM'");
+  const E=lineIntersect(is,lm1), Ep=lineIntersect(is,lm2);
+  [[E,"E",C.accent],[Ep,"E'",C.yellow]].forEach(([pt,l,col])=>{
+    g.append("circle").attr("cx",pt.x).attr("cy",pt.y).attr("r",5).attr("fill",col);
+    g.append("text").attr("x",pt.x+7).attr("y",pt.y-7).attr("fill",col).attr("font-size",12).text(l);
+    g.append("line").attr("x1",0).attr("y1",pt.y).attr("x2",pt.x).attr("y2",pt.y).attr("stroke",C.muted).attr("stroke-dasharray","3,3").attr("stroke-width",1);
+    g.append("line").attr("x1",pt.x).attr("y1",ih).attr("x2",pt.x).attr("y2",pt.y).attr("stroke",C.muted).attr("stroke-dasharray","3,3").attr("stroke-width",1);
+  });
+  g.append("text").attr("x",-6).attr("y",E.y+4).attr("text-anchor","end").attr("fill",C.muted).attr("font-size",11).text("i₀");
+  g.append("text").attr("x",-6).attr("y",Ep.y+4).attr("text-anchor","end").attr("fill",C.yellow).attr("font-size",11).text("i'");
+  g.append("text").attr("x",E.x).attr("y",ih+16).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",11).text("Y₀");
+  g.append("text").attr("x",Ep.x).attr("y",ih+16).attr("text-anchor","middle").attr("fill",C.yellow).attr("font-size",11).text("Y'");
+  g.append("text").attr("x",iw*0.5).attr("y",12).attr("text-anchor","middle").attr("fill",C.green).attr("font-size",10.5).text("i falls → investment rises → Y rises");
+})();
+
+/* ── AD derivation (two-panel stacked) ── */
+(function(){
+  const svg=d3.select("#fig-ad-derivation");
+  const W=520,H=340,ml=56,mr=24;
+  const topH=160,botH=140,mt=16,mb=48,gap=28;
+  const iw=W-ml-mr;
+
+  // TOP: IS-LM
+  const gT=svg.append("g").attr("transform",`translate(${ml},${mt})`);
+  gT.append("line").attr("x1",0).attr("y1",topH).attr("x2",iw).attr("y2",topH).attr("stroke",C.muted).attr("stroke-width",1.5);
+  gT.append("line").attr("x1",0).attr("y1",0).attr("x2",0).attr("y2",topH).attr("stroke",C.muted).attr("stroke-width",1.5);
+  gT.append("polygon").attr("points",`${iw},${topH-4} ${iw+7},${topH} ${iw},${topH+4}`).attr("fill",C.muted);
+  gT.append("polygon").attr("points",`-4,0 0,-6 4,0`).attr("fill",C.muted);
+  gT.append("text").attr("x",-36).attr("y",topH/2+4).attr("transform",`translate(-36,${topH/2}) rotate(-90)`).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",11).text("Interest rate  i");
+  // IS
+  const is={x1:iw*0.08,y1:topH*0.15,x2:iw*0.82,y2:topH*0.9};
+  gT.append("line").attr("x1",is.x1).attr("y1",is.y1).attr("x2",is.x2).attr("y2",is.y2).attr("stroke",C.green).attr("stroke-width",2.5);
+  gT.append("text").attr("x",is.x2+4).attr("y",is.y2).attr("fill",C.green).attr("font-size",11).text("IS");
+  // LM1 and LM2 (LM2 to the left)
+  const lm1={x1:iw*0.12,y1:topH*0.88,x2:iw*0.82,y2:topH*0.18};
+  const lm2={x1:iw*0.04,y1:topH*0.88,x2:iw*0.68,y2:topH*0.18};
+  gT.append("line").attr("x1",lm1.x1).attr("y1",lm1.y1).attr("x2",lm1.x2).attr("y2",lm1.y2).attr("stroke",C.accent).attr("stroke-width",2);
+  gT.append("text").attr("x",lm1.x2+4).attr("y",lm1.y2-4).attr("fill",C.accent).attr("font-size",11).text("LM₁(P₁)");
+  gT.append("line").attr("x1",lm2.x1).attr("y1",lm2.y1).attr("x2",lm2.x2).attr("y2",lm2.y2).attr("stroke",C.yellow).attr("stroke-width",2).attr("stroke-dasharray","5,3");
+  gT.append("text").attr("x",lm2.x2+4).attr("y",lm2.y2-4).attr("fill",C.yellow).attr("font-size",11).text("LM₂(P₂)");
+  function lxIntersect(is,lm){
+    const dx1=is.x2-is.x1,dy1=is.y2-is.y1,dx2=lm.x2-lm.x1,dy2=lm.y2-lm.y1;
+    const denom=dx1*dy2-dy1*dx2;
+    const t=((lm.x1-is.x1)*dy2-(lm.y1-is.y1)*dx2)/denom;
+    return {x:is.x1+t*dx1,y:is.y1+t*dy1};
+  }
+  const E1=lxIntersect(is,lm1), E2=lxIntersect(is,lm2);
+  [[E1,"E₁",C.accent],[E2,"E₂",C.yellow]].forEach(([pt,l,col])=>{
+    gT.append("circle").attr("cx",pt.x).attr("cy",pt.y).attr("r",4).attr("fill",col);
+    gT.append("text").attr("x",pt.x+6).attr("y",pt.y-6).attr("fill",col).attr("font-size",11).text(l);
+    gT.append("line").attr("x1",pt.x).attr("y1",topH).attr("x2",pt.x).attr("y2",pt.y).attr("stroke",C.muted).attr("stroke-dasharray","2,3").attr("stroke-width",1);
+  });
+  gT.append("text").attr("x",E1.x).attr("y",topH+14).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",11).text("Y₁");
+  gT.append("text").attr("x",E2.x).attr("y",topH+14).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",11).text("Y₂");
+  gT.append("text").attr("x",iw-4).attr("y",18).attr("fill",C.muted).attr("font-size",10.5).attr("text-anchor","end").text("P₂>P₁ → M/P₂<M/P₁ → LM shifts left → Y₂<Y₁");
+
+  // BOTTOM: AD
+  const botY=mt+topH+gap;
+  const gB=svg.append("g").attr("transform",`translate(${ml},${botY})`);
+  gB.append("line").attr("x1",0).attr("y1",botH).attr("x2",iw).attr("y2",botH).attr("stroke",C.muted).attr("stroke-width",1.5);
+  gB.append("line").attr("x1",0).attr("y1",0).attr("x2",0).attr("y2",botH).attr("stroke",C.muted).attr("stroke-width",1.5);
+  gB.append("polygon").attr("points",`${iw},${botH-4} ${iw+7},${botH} ${iw},${botH+4}`).attr("fill",C.muted);
+  gB.append("polygon").attr("points",`-4,0 0,-6 4,0`).attr("fill",C.muted);
+  gB.append("text").attr("x",iw/2).attr("y",botH+32).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",11).text("Income / Output  Y");
+  gB.append("text").attr("transform",`translate(-42,${botH/2}) rotate(-90)`).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",11).text("Price Level  P");
+  // P1 < P2; Y1 > Y2 → AD downward
+  const P1y=botH*0.7,P2y=botH*0.25;
+  gB.append("line").attr("x1",E2.x-8).attr("y1",P2y-8).attr("x2",E1.x+8).attr("y2",P1y+8).attr("stroke",C.green).attr("stroke-width",2.5);
+  gB.append("text").attr("x",E1.x+10).attr("y",P1y+14).attr("fill",C.green).attr("font-size",12).text("AD");
+  [[E1.x,P1y,"E₁",C.accent],[E2.x,P2y,"E₂",C.yellow]].forEach(([x,y,l,col])=>{
+    gB.append("circle").attr("cx",x).attr("cy",y).attr("r",4).attr("fill",col);
+    gB.append("text").attr("x",x+6).attr("y",y-6).attr("fill",col).attr("font-size",11).text(l);
+    gB.append("line").attr("x1",0).attr("y1",y).attr("x2",x).attr("y2",y).attr("stroke",C.muted).attr("stroke-dasharray","2,3").attr("stroke-width",1);
+    gB.append("line").attr("x1",x).attr("y1",botH).attr("x2",x).attr("y2",y).attr("stroke",C.muted).attr("stroke-dasharray","2,3").attr("stroke-width",1);
+  });
+  gB.append("text").attr("x",-6).attr("y",P1y+4).attr("text-anchor","end").attr("fill",C.muted).attr("font-size",11).text("P₁");
+  gB.append("text").attr("x",-6).attr("y",P2y+4).attr("text-anchor","end").attr("fill",C.muted).attr("font-size",11).text("P₂");
+  gB.append("text").attr("x",E1.x).attr("y",botH+14).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",11).text("Y₁");
+  gB.append("text").attr("x",E2.x).attr("y",botH+14).attr("text-anchor","middle").attr("fill",C.muted).attr("font-size",11).text("Y₂");
+})();
+</script>
+</body>
+</html>
