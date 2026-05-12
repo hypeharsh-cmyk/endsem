@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>END-TERM SURVIVAL GUIDE — Management</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f4ede0;
+    --paper-warm: #ede4d3;
+    --ink: #1a1612;
+    --ink-soft: #2d2620;
+    --ink-mid: #5c5448;
+    --ink-faint: #8a8275;
+    --hot: #ff4d2e;
+    --hot-deep: #d63919;
+    --acid: #c4e538;
+    --electric: #2d5fff;
+    --plum: #6b2d8e;
+    --line: #1a1612;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(26,22,18,0.08) 1px, transparent 0);
+    background-size: 24px 24px;
+  }
+
+  /* ============ MASTHEAD ============ */
+  .masthead {
+    border-bottom: 4px solid var(--ink);
+    padding: 24px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--paper);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+    background: rgba(244, 237, 224, 0.92);
+  }
+  .masthead-logo {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.8rem;
+    font-style: italic;
+    letter-spacing: -0.02em;
+  }
+  .masthead-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+  }
+
+  /* ============ HERO ============ */
+  .hero {
+    padding: 100px 40px 80px;
+    border-bottom: 2px solid var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-tag {
+    display: inline-block;
+    background: var(--hot);
+    color: var(--paper);
+    padding: 6px 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    transform: rotate(-1deg);
+  }
+  h1.title {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800;
+    font-size: clamp(3rem, 11vw, 8rem);
+    line-height: 0.88;
+    letter-spacing: -0.04em;
+    max-width: 1200px;
+  }
+  h1.title em {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--hot);
+  }
+  h1.title .strike {
+    text-decoration: line-through;
+    text-decoration-thickness: 6px;
+    text-decoration-color: var(--hot);
+    color: var(--ink-faint);
+  }
+  .hero-sub {
+    margin-top: 40px;
+    max-width: 640px;
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 50px;
+    margin-top: 60px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    border-left: 3px solid var(--ink);
+    padding-left: 16px;
+  }
+  .stat-num {
+    font-family: 'Instrument Serif', serif;
+    font-size: 2.4rem;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .stat-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    margin-top: 6px;
+  }
+
+  /* ============ TOC ============ */
+  .toc-section {
+    padding: 80px 40px;
+    border-bottom: 2px solid var(--ink);
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .toc-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--acid);
+    margin-bottom: 30px;
+  }
+  .toc-heading {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-style: italic;
+    line-height: 0.95;
+    margin-bottom: 50px;
+    color: var(--paper);
+  }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 0;
+    border: 1px solid var(--ink-faint);
+  }
+  .toc-item {
+    border: 1px solid var(--ink-faint);
+    margin: -1px;
+    padding: 24px 28px;
+    text-decoration: none;
+    color: var(--paper);
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+    background: var(--ink);
+  }
+  .toc-item:hover {
+    background: var(--hot);
+    color: var(--paper);
+    z-index: 10;
+  }
+  .toc-item:hover .toc-num { color: var(--ink); }
+  .toc-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--acid);
+    letter-spacing: 0.15em;
+    font-weight: 600;
+  }
+  .toc-title {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  .toc-arrow {
+    position: absolute;
+    bottom: 24px;
+    right: 28px;
+    font-size: 1.2rem;
+  }
+
+  /* ============ MAIN CONTAINER ============ */
+  .main {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* ============ SECTIONS ============ */
+  section.chapter {
+    padding: 100px 0 60px;
+    border-bottom: 1px dashed var(--ink);
+  }
+  section.chapter:last-of-type { border-bottom: none; }
+
+  .chapter-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--hot-deep);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+  .chapter-tagline {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--ink-mid);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  h2 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+    margin-bottom: 40px;
+  }
+  h2 .accent {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--hot);
+  }
+  h3 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 1.9rem;
+    font-weight: 700;
+    margin-top: 56px;
+    margin-bottom: 20px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    position: relative;
+    padding-left: 24px;
+  }
+  h3::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 12px;
+    bottom: 12px;
+    width: 6px;
+    background: var(--hot);
+  }
+  h4 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 36px;
+    margin-bottom: 14px;
+    color: var(--ink);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--ink);
+    display: inline-block;
+  }
+  p {
+    margin-bottom: 22px;
+    color: var(--ink-soft);
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+  p.lede {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.55rem;
+    line-height: 1.4;
+    color: var(--ink);
+    font-style: italic;
+    margin-bottom: 40px;
+    max-width: 720px;
+  }
+  p.lede::first-letter {
+    font-size: 3.5rem;
+    float: left;
+    line-height: 0.85;
+    padding: 6px 12px 0 0;
+    font-weight: 400;
+    color: var(--hot);
+  }
+  ul, ol {
+    margin-bottom: 28px;
+    padding-left: 0;
+    list-style: none;
+  }
+  ul li, ol li {
+    margin-bottom: 14px;
+    padding-left: 36px;
+    position: relative;
+    color: var(--ink-soft);
+    font-size: 1.02rem;
+    line-height: 1.65;
+  }
+  ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--hot);
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+  ol {
+    counter-reset: olcount;
+  }
+  ol li {
+    counter-increment: olcount;
+  }
+  ol li::before {
+    content: counter(olcount, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 2px;
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--hot);
+    font-weight: 600;
+    font-size: 0.85rem;
+    background: var(--ink);
+    color: var(--acid);
+    padding: 2px 6px;
+    border-radius: 2px;
+  }
+  strong {
+    color: var(--ink);
+    font-weight: 700;
+    background: linear-gradient(180deg, transparent 60%, rgba(196,229,56,0.55) 60%);
+    padding: 0 2px;
+  }
+  em.term {
+    font-style: italic;
+    color: var(--hot-deep);
+    font-weight: 500;
+  }
+
+  /* ============ FILTHY MNEMONIC ============ */
+  .filthy-mnemonic {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 40px 36px;
+    margin: 40px -20px;
+    border: 3px solid var(--ink);
+    position: relative;
+    box-shadow: 12px 12px 0 var(--hot);
+    transform: rotate(-0.4deg);
+  }
+  .filthy-mnemonic::before {
+    content: '🔥 FILTHY MNEMONIC';
+    position: absolute;
+    top: -14px;
+    left: 30px;
+    background: var(--hot);
+    color: var(--paper);
+    padding: 4px 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+  }
+  .filthy-mnemonic .device {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    color: var(--acid);
+    margin-bottom: 18px;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  .filthy-mnemonic .decode {
+    font-size: 0.98rem;
+    color: var(--paper-warm);
+    line-height: 1.65;
+    font-family: 'Bricolage Grotesque', sans-serif;
+  }
+  .filthy-mnemonic .decode strong {
+    color: var(--acid);
+    background: none;
+    padding: 0;
+  }
+
+  /* ============ ANALOGY ============ */
+  .analogy {
+    background: var(--acid);
+    border: 3px solid var(--ink);
+    padding: 32px 32px 28px;
+    margin: 40px 0;
+    position: relative;
+    box-shadow: 8px 8px 0 var(--ink);
+  }
+  .analogy::before {
+    content: '🧠 ANALOGY';
+    position: absolute;
+    top: -14px;
+    left: 24px;
+    background: var(--ink);
+    color: var(--acid);
+    padding: 4px 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+  }
+  .analogy p {
+    margin-bottom: 14px;
+    color: var(--ink);
+    font-size: 1.05rem;
+    line-height: 1.65;
+  }
+  .analogy p:last-child { margin-bottom: 0; }
+  .analogy strong { background: var(--ink); color: var(--acid); padding: 1px 6px; }
+
+  /* ============ CALLOUT ============ */
+  .callout {
+    background: var(--paper);
+    border: 2px dashed var(--ink);
+    padding: 24px 28px;
+    margin: 32px 0;
+    position: relative;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+  .callout::before {
+    content: '💡 EXAM HOOK';
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background: var(--electric);
+    color: var(--paper);
+    padding: 3px 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    font-weight: 600;
+    font-style: normal;
+  }
+  .callout em {
+    color: var(--hot-deep);
+    font-weight: 600;
+  }
+
+  /* ============ FORMULA ============ */
+  .formula {
+    background: var(--ink);
+    color: var(--acid);
+    padding: 18px 24px;
+    margin: 16px 0 22px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.98rem;
+    border-left: 6px solid var(--hot);
+    overflow-x: auto;
+  }
+
+  /* ============ CASELET CARD ============ */
+  .caselet-card {
+    background: var(--paper-warm);
+    border: 3px solid var(--ink);
+    padding: 36px 36px 32px;
+    margin-bottom: 36px;
+    position: relative;
+    box-shadow: 10px 10px 0 var(--ink);
+  }
+  .caselet-card:nth-child(odd) { transform: rotate(-0.3deg); }
+  .caselet-card:nth-child(even) { transform: rotate(0.3deg); }
+  .caselet-card:hover {
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+  }
+  .caselet-tag {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4px 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .caselet-card h4 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-top: 0;
+    margin-bottom: 16px;
+    line-height: 1.2;
+    border: none;
+    padding: 0;
+    text-transform: none;
+    letter-spacing: -0.01em;
+    display: block;
+  }
+  .caselet-card .case-body {
+    background: var(--paper);
+    border-left: 4px solid var(--hot);
+    padding: 16px 20px;
+    margin: 18px 0;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .approach { font-size: 0.98rem; line-height: 1.65; }
+  .approach strong {
+    display: block;
+    margin-top: 14px;
+    margin-bottom: 8px;
+    color: var(--ink);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: none;
+    padding: 0;
+  }
+  .approach strong:first-child { margin-top: 0; }
+
+  /* ============ DIVIDERS ============ */
+  .marquee {
+    background: var(--ink);
+    color: var(--acid);
+    padding: 14px 0;
+    margin: 70px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+  }
+  .marquee-track {
+    display: inline-block;
+    animation: scroll 30s linear infinite;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.95rem;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+  }
+  .marquee-track span { margin: 0 30px; }
+  .marquee-track .star { color: var(--hot); }
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .pull-quote {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    line-height: 1.2;
+    color: var(--ink);
+    padding: 40px 0 40px 32px;
+    margin: 40px 0;
+    border-left: 6px solid var(--hot);
+    max-width: 800px;
+  }
+
+  /* ============ FOOTER ============ */
+  footer {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 80px 40px 50px;
+    text-align: center;
+    border-top: 4px solid var(--ink);
+    margin-top: 100px;
+  }
+  .footer-big {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    line-height: 1;
+    color: var(--acid);
+    margin-bottom: 30px;
+  }
+  .footer-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    color: var(--paper-warm);
+    text-transform: uppercase;
+  }
+  .footer-emoji {
+    font-size: 2rem;
+    margin: 30px 0 10px;
+  }
+
+  /* ============ TAPE STICKER ============ */
+  .tape {
+    display: inline-block;
+    background: rgba(255, 77, 46, 0.25);
+    padding: 2px 14px;
+    transform: rotate(-2deg);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    color: var(--ink);
+    font-weight: 600;
+    border: 1px dashed var(--ink);
+    margin-right: 6px;
+  }
+
+  /* ============ MEDIA QUERIES ============ */
+  @media (max-width: 720px) {
+    .masthead { padding: 16px 20px; }
+    .masthead-logo { font-size: 1.3rem; }
+    .hero { padding: 60px 20px 50px; }
+    .toc-section { padding: 50px 20px; }
+    .main { padding: 0 20px; }
+    section.chapter { padding: 60px 0 40px; }
+    .filthy-mnemonic { margin: 32px 0; padding: 30px 22px; }
+    .filthy-mnemonic::before { left: 14px; }
+    .analogy { padding: 24px 22px; }
+    .caselet-card { padding: 28px 22px; }
+    .pull-quote { padding-left: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="masthead-logo">Manage<em>·</em>or<em>·</em>Die</div>
+  <div class="masthead-meta">VOL.01 / END-TERM EDITION</div>
+</div>
+
+<section class="hero">
+  <div class="hero-tag">⚡ Cram session 2026</div>
+  <h1 class="title">Five functions.<br>One <em>exam</em>.<br><span class="strike">No sleep</span> Twelve hours.</h1>
+  <p class="hero-sub">A friend-to-friend walkthrough of every concept on your paper. Concepts in plain language. Mnemonics that won't leave your brain. Analogies for the slippery bits. Ten expected caselets — diagnosed, dissected, attacked.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">09</div><div class="stat-label">Chapters</div></div>
+    <div class="stat"><div class="stat-num">10</div><div class="stat-label">Caselets</div></div>
+    <div class="stat"><div class="stat-num">7</div><div class="stat-label">Filthy mnemonics</div></div>
+    <div class="stat"><div class="stat-num">50</div><div class="stat-label">Marks at stake</div></div>
+  </div>
+</section>
+
+<section class="toc-section">
+  <div class="toc-label">— What's inside —</div>
+  <div class="toc-heading">Read top<br>to bottom.</div>
+  <div class="toc-grid">
+    <a href="#intro" class="toc-item"><div class="toc-num">CH 01 / FOUNDATION</div><div class="toc-title">Intro to Management — the five functions</div><div class="toc-arrow">→</div></a>
+    <a href="#organising" class="toc-item"><div class="toc-num">CH 02 / STRUCTURE</div><div class="toc-title">Organising — 7S, delegation, decentralisation</div><div class="toc-arrow">→</div></a>
+    <a href="#decisions" class="toc-item"><div class="toc-num">CH 03 / DECISIONS</div><div class="toc-title">Programmed vs Non-Programmed</div><div class="toc-arrow">→</div></a>
+    <a href="#staffing" class="toc-item"><div class="toc-num">CH 04 / PEOPLE</div><div class="toc-title">Staffing &amp; the formula caselets</div><div class="toc-arrow">→</div></a>
+    <a href="#signaling" class="toc-item"><div class="toc-num">CH 05 / THE HR TWIST</div><div class="toc-title">Signaling Theory</div><div class="toc-arrow">→</div></a>
+    <a href="#leadership" class="toc-item"><div class="toc-num">CH 06 / INFLUENCE</div><div class="toc-title">Leadership — theories &amp; styles</div><div class="toc-arrow">→</div></a>
+    <a href="#controlling" class="toc-item"><div class="toc-num">CH 07 / CHECK &amp; CORRECT</div><div class="toc-title">Controlling — process, types, tools</div><div class="toc-arrow">→</div></a>
+    <a href="#mia" class="toc-item"><div class="toc-num">CH 08 / INTEGRATOR</div><div class="toc-title">Management in Action</div><div class="toc-arrow">→</div></a>
+    <a href="#caselets" class="toc-item"><div class="toc-num">CH 09 / EXAM PREP</div><div class="toc-title">Expected caselets + how to attack</div><div class="toc-arrow">→</div></a>
+  </div>
+</section>
+
+<div class="main">
+
+<section class="chapter" id="intro">
+  <div class="chapter-num">CH 01</div>
+  <div class="chapter-tagline">/ Foundation · The five functions</div>
+  <h2>Intro to <span class="accent">Management.</span></h2>
+
+  <p class="lede">Management is the process of getting things done through people, efficiently and effectively. That's the textbook line. The useful version: it's the art of turning resources into outcomes without burning the place down.</p>
+
+  <p>Henri Fayol broke this down into five functions that every manager performs, whether they're running McDonald's or a college fest. These five are the spine of your entire course — every caselet you'll see in the exam is testing one (or two) of them. Burn them in.</p>
+
+  <p>The five functions are <strong>Planning, Organising, Staffing, Leading (or Directing), and Controlling</strong>. Planning is deciding what to do. Organising is structuring who does what. Staffing is putting the right people in those slots. Leading is motivating and guiding them. Controlling is checking if the plan actually worked and fixing it when it doesn't.</p>
+
+  <div class="filthy-mnemonic">
+    <div class="device">"Please Only Sleep Late on Condoms."</div>
+    <div class="decode"><strong>P</strong>lanning · <strong>O</strong>rganising · <strong>S</strong>taffing · <strong>L</strong>eading · <strong>C</strong>ontrolling. Stupid, gross, unforgettable. If the caselet asks "which function of management is being performed," you scan this list in 5 seconds and pick.</div>
+  </div>
+
+  <h3>Effectiveness vs Efficiency</h3>
+  <p>This distinction shows up in every other caselet, so lock it in:</p>
+  <ul>
+    <li><strong>Effectiveness</strong> = doing the right thing. Hitting the goal. Reaching the destination.</li>
+    <li><strong>Efficiency</strong> = doing it with minimum waste. Taking the shortest route.</li>
+  </ul>
+  <p>A company can be effective but inefficient (hits the target but burns ₹10 crore doing it), or efficient but ineffective (uses minimal resources but for the wrong goal). Good management = both.</p>
+
+  <h3>Levels of Management</h3>
+  <p>The McDonald's example your prof used is gold. Two levels worth knowing for caselets:</p>
+  <ul>
+    <li><strong>Functional / Strategic level</strong> — the "brain." Decides standardised cooking processes, supplier contracts, reorder levels. Makes the blueprint.</li>
+    <li><strong>Operational level</strong> — the "hands and legs." Frying fries at the right temp, cleaning tables, serving in 2 minutes, closing the till. Runs the blueprint.</li>
+  </ul>
+  <p>Key caselet hook: <em class="term">functional decisions affect operations directly</em> (raise orange prices → procurement, costs, pricing all shift). But operations can still fail even with a brilliant strategy if the mixer machine breaks down. Strategy is necessary, not sufficient.</p>
+
+  <div class="callout">If a caselet says "the manager decided strategy but execution failed on the floor" — it's testing the strategy/operations divide. Mention that operational staff cannot change strategy, but their failures can sink it.</div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>POLSC ★ POLSC ★ POLSC ★</span><span class="star">★</span><span>FIVE FUNCTIONS</span><span class="star">★</span><span>FIVE FUNCTIONS</span><span class="star">★</span><span>POLSC ★ POLSC ★ POLSC ★</span><span class="star">★</span><span>FIVE FUNCTIONS</span><span class="star">★</span><span>FIVE FUNCTIONS</span><span class="star">★</span>
+  </div>
+</div>
+
+<section class="chapter" id="organising">
+  <div class="chapter-num">CH 02</div>
+  <div class="chapter-tagline">/ Structure · The skeleton</div>
+  <h2><span class="accent">Organising.</span></h2>
+
+  <p class="lede">Organising is what happens after you've planned. It's the process of figuring out who does what, who reports to whom, and how the work gets grouped. It's the function that builds the skeleton of the organisation.</p>
+
+  <h3>The Organising Process</h3>
+  <p>Whenever a caselet describes someone identifying activities, grouping them into departments, assigning duties, and setting up reporting lines — that's the organising function. The textbook steps are: identifying and dividing work, departmentalising (grouping similar activities), assigning duties to people, and establishing reporting relationships. You'll see this exact sequence in cases like Ishita organising the painting exhibition or Karan setting up the travel agency.</p>
+
+  <h3>Functional vs Divisional Structure</h3>
+  <p>Two big structures dominate the caselets. Knowing which one fits the case = easy marks.</p>
+
+  <p><strong>Functional structure</strong> groups people by what they do — production, marketing, finance, HR. Best when the company makes one product or a small number of related products. Big advantage: deep specialisation, less duplication of effort, easier training. Big problem: people stop seeing the bigger picture, departments fight each other for resources.</p>
+
+  <p><strong>Divisional structure</strong> groups people by product, region, or customer. Best when the company has diversified products (electronics + appliances + furniture, say). Each division is like a mini-company with its own production, marketing, finance. Big advantage: clear accountability, faster decisions, divisional heads develop general management skills. Big problem: duplication across divisions, and divisions fight each other for company resources.</p>
+
+  <div class="analogy">
+    <p><strong>Think of a college vs a multinational university.</strong></p>
+    <p>A small college has one Math department, one English department, one Admin department. That's <em class="term">functional</em>. Everyone studying English reports through the English HOD regardless of which course.</p>
+    <p>A multinational university like Manipal has whole separate campuses for Engineering, Medicine, Hotel Management — each with its OWN admin, faculty, finance team. That's <em class="term">divisional</em>. The structure repeats per "product" (degree).</p>
+  </div>
+
+  <h3>Formal vs Informal Organisation</h3>
+  <p><strong>Formal organisation</strong> is the official structure — the org chart, job descriptions, lines of authority. It's created deliberately by management. Communication flows through the scalar chain (top-down). It's rigid, predictable, and slow.</p>
+
+  <p><strong>Informal organisation</strong> is what emerges naturally — the WhatsApp groups, the smoking-break friendships, the dramatic club at work. People interacting beyond their official roles. It's not on any chart. Communication flows in all directions (grapevine), it's fast, and it fulfils social needs employees can't get from formal structure.</p>
+
+  <p>Caselet hook: if the case talks about <em class="term">red tapism, procedural delays, low motivation, lack of social interaction</em> — they want you to recommend introducing informal organisation alongside the formal one. If the case talks about <em class="term">chaos, rumours, lack of accountability</em> — they want more formal structure.</p>
+
+  <h3>Delegation, Centralisation, Decentralisation</h3>
+  <p>This trio is the most heavily tested topic in the organising caselet set. Get it cold.</p>
+
+  <p><strong>Delegation</strong> is one boss handing some authority to one subordinate. It has three elements that always go together: <em class="term">authority</em> (the right to act), <em class="term">responsibility</em> (the duty to perform), and <em class="term">accountability</em> (the answerability for outcomes).</p>
+
+  <div class="filthy-mnemonic">
+    <div class="device">"Always Ride Anal" — every delegation needs all three.</div>
+    <div class="decode"><strong>A</strong>uthority · <strong>R</strong>esponsibility · <strong>A</strong>ccountability. The trap caselets love: a manager gives a subordinate a job (responsibility) but no power to requisition tools (no authority). Subordinate fails. Question asks: can the manager blame him? Answer: NO, because responsibility without authority makes a subordinate ineffective. Manager remains accountable regardless (accountability cannot be delegated).</div>
+  </div>
+
+  <p><strong>Centralisation</strong> means all decision-making sits at the top. The CEO/owner decides everything, even minor stuff. Good for small, stable companies. Bad when the company grows because decisions get bottlenecked at the top.</p>
+
+  <p><strong>Decentralisation</strong> means decision-making authority is systematically dispersed throughout the organisation. Store managers can decide their own promotions, supervisors can approve refunds, regional heads can hire. It's not just one act of delegation — it's a <em class="term">policy</em>.</p>
+
+  <p>Why decentralisation matters (the points caselets ask you to list):</p>
+  <ul>
+    <li>Relief to top management — they focus on strategy, not minor decisions.</li>
+    <li>Develops initiative in subordinates — they learn to think and decide.</li>
+    <li>Develops managerial talent — the pipeline for future leaders.</li>
+    <li>Quick decision-making — local people decide locally, no waiting for HQ.</li>
+    <li>Better control — clear accountability at each level.</li>
+  </ul>
+
+  <div class="callout">Tell-tale phrases for decentralisation in a caselet: "selectively disperse authority," "managers given autonomy," "decisions taken at lower levels," "store managers decide locally." See these → write decentralisation + 3-5 importance points.</div>
+
+  <h3>McKinsey 7S Framework</h3>
+  <p>This is the most "framework-y" thing in your syllabus. The 7S model says an organisation has seven interdependent elements that must align for it to perform. If any one S is weak, alignment breaks and the whole thing wobbles.</p>
+
+  <p>The seven elements split into <strong>Hard S's</strong> (tangible, easy to identify) and <strong>Soft S's</strong> (intangible, culture-driven):</p>
+  <ul>
+    <li><strong>Strategy</strong> — the plan to win in the market</li>
+    <li><strong>Structure</strong> — how the org is arranged (hierarchy, reporting)</li>
+    <li><strong>Systems</strong> — daily processes, procedures, IT</li>
+    <li><strong>Shared Values</strong> — the culture, the "why we do what we do"</li>
+    <li><strong>Style</strong> — leadership style of the top team</li>
+    <li><strong>Staff</strong> — the people, demographics, skill profile</li>
+    <li><strong>Skills</strong> — actual capabilities and competencies</li>
+  </ul>
+
+  <div class="filthy-mnemonic">
+    <div class="device">"Sucking Six Sluts, Sometimes Standing, Sometimes Sitting."</div>
+    <div class="decode"><strong>S</strong>trategy · <strong>S</strong>tructure · <strong>S</strong>ystems · <strong>S</strong>hared Values (the middle one — the core) · <strong>S</strong>tyle · <strong>S</strong>taff · <strong>S</strong>kills. All seven start with S, all seven matter, Shared Values sits at the centre because culture binds the rest.</div>
+  </div>
+
+  <div class="analogy">
+    <p><strong>Think of the 7S as a band.</strong> Strategy is the setlist. Structure is who plays which instrument. Systems is the rehearsal schedule. Shared Values is the band's vibe — why they're in this together. Style is whether the lead singer is a tyrant or collaborative. Staff is who you've got — three guitarists and no drummer is a problem. Skills is whether they can actually play.</p>
+    <p>A great setlist (strategy) means nothing if the drummer quits (staff), or if everyone hates each other (shared values), or if the lead is a control freak (style). One weak S → chaos.</p>
+  </div>
+
+  <p>Three classic 7S-based questions to be ready for:</p>
+  <ol>
+    <li><em class="term">Can a strong leader compensate for weak systems?</em> Partially, short-term yes, but long-term no — leadership burns out without supporting systems.</li>
+    <li><em class="term">Can good strategy fail due to poor shared values?</em> Yes — culture eats strategy for breakfast. Misaligned values cause execution to collapse.</li>
+    <li><em class="term">What happens if skills are high but structure is unclear?</em> Talent gets wasted. People don't know who decides, who owns what, and brilliant individuals work at cross-purposes.</li>
+  </ol>
+</section>
+
+<section class="chapter" id="decisions">
+  <div class="chapter-num">CH 03</div>
+  <div class="chapter-tagline">/ Decisions · Rule or judgment</div>
+  <h2>Programmed vs<br><span class="accent">Non-programmed.</span></h2>
+
+  <p class="lede">Decision-making is the core of every management function. The distinction your prof drilled is: some decisions are routine and repeatable, others are one-off and complex. They need different techniques.</p>
+
+  <p><strong>Programmed decisions</strong> are routine, repetitive, structured. The same situation comes up again and again, and there's a clear rule for handling it. Approving a customer refund within 30 days, reordering stock when it hits a threshold, calculating monthly office supplies budget — these don't need a meeting, they need a rule.</p>
+
+  <p>The techniques for programmed decisions are all about <em class="term">codifying the rule</em>:</p>
+  <ul>
+    <li><strong>SOPs (Standard Operating Procedures)</strong> — step-by-step instructions, like how a pharma plant sterilises machinery every morning.</li>
+    <li><strong>Rule-based decisions</strong> — "if X, then Y." Retail return policies, for example.</li>
+    <li><strong>Checklists</strong> — pilots use them pre-flight; nothing depends on memory.</li>
+    <li><strong>Decision trees</strong> — branching logic. Bank loan: credit score &gt;750 → approve; 650–750 → verify income; &lt;650 → reject.</li>
+    <li><strong>Routine budgeting</strong> — formula-based monthly allocations.</li>
+    <li><strong>Automated systems</strong> — Amazon auto-reorders stock with no human in the loop.</li>
+  </ul>
+
+  <p><strong>Non-programmed decisions</strong> are novel, unstructured, complex. They've never come up exactly like this before. Should we launch 5G nationally? Should we pivot from B2C to B2B? Should we enter the Indian market? These need judgment, not rules.</p>
+
+  <p>Techniques for non-programmed decisions:</p>
+  <ul>
+    <li><strong>Delphi Method</strong> — experts submit opinions anonymously across multiple rounds until consensus emerges. Great for forecasting (5G adoption, future skill demand).</li>
+    <li><strong>Nominal Group Technique</strong> — experts meet face-to-face, write ideas independently, share one by one, vote anonymously. Less time than Delphi, more structured than a normal meeting.</li>
+    <li><strong>Experience</strong> — gut call from someone who's seen this movie before. A fintech founder pivoting based on years of banking experience.</li>
+    <li><strong>Quantitative methods</strong> — Monte Carlo simulations, regression, scenario analysis. Used when you have data to model risk.</li>
+    <li><strong>Quality Circles</strong> — small groups of workers identify and solve recurring problems. Common in manufacturing.</li>
+  </ul>
+
+  <div class="callout">Caselet hook: if the case mentions a manager facing a <em>completely new</em> situation (entering a new country, launching a new tech), the answer is non-programmed + one of the techniques above. If the case is about a <em>recurring</em> situation (returns, reorders, payroll), it's programmed.</div>
+</section>
+
+<div class="pull-quote">"Management is what happens between people at work every single day, not what's written in handbooks."</div>
+
+<section class="chapter" id="staffing">
+  <div class="chapter-num">CH 04</div>
+  <div class="chapter-tagline">/ People · Right people, right slots</div>
+  <h2><span class="accent">Staffing.</span></h2>
+
+  <p class="lede">Staffing is the function that makes sure the right number of right people are in the right place at the right time, doing the right things. It's HR, but with more managerial framing.</p>
+
+  <h3>The Staffing Process</h3>
+  <p>The full sequence, from forecasting to keeping people performing, runs in eight stages. You'll likely see the steps tested directly or asked about the order:</p>
+  <ol>
+    <li><strong>Manpower / HR Planning</strong> — forecasting how many and what kind of people you'll need.</li>
+    <li><strong>Recruitment</strong> — generating a pool of candidates (campus, referrals, job portals, agencies).</li>
+    <li><strong>Selection</strong> — choosing from the pool (tests, interviews, assessments).</li>
+    <li><strong>Placement &amp; Orientation</strong> — putting them in roles and onboarding them.</li>
+    <li><strong>Training &amp; Development</strong> — building their skills (TCS's L&amp;D centre is the textbook example).</li>
+    <li><strong>Remuneration</strong> — salary, bonuses, benefits.</li>
+    <li><strong>Performance Appraisal</strong> — evaluating how well they're doing.</li>
+    <li><strong>Promotion &amp; Transfer</strong> — moving people up or sideways.</li>
+  </ol>
+
+  <div class="filthy-mnemonic">
+    <div class="device">"Many Randy Sluts Pant Through Raw Performance, Panting."</div>
+    <div class="decode"><strong>M</strong>anpower planning · <strong>R</strong>ecruitment · <strong>S</strong>election · <strong>P</strong>lacement · <strong>T</strong>raining · <strong>R</strong>emuneration · <strong>P</strong>erformance appraisal · <strong>P</strong>romotion. Eight steps, eight words. Disgusting and effective.</div>
+  </div>
+
+  <h3>Manpower Planning Methods — The Formula Caselets</h3>
+  <p>This is where staffing gets technical. Your prof gave you actual numerical caselets with these methods. Calculations are easy marks if you know the formula.</p>
+
+  <h4>Bottom-Up Technique</h4>
+  <p>You collect manpower requirements from each department at the lowest level and roll them up. Add them all, then apply organisation-wide adjustments (expansion %, automation reduction %).</p>
+  <div class="formula">Total = (Σ Departmental need) × (1 + net adjustment %)</div>
+  <p>Example: Departments need 80+50+20+30 = 180. Expansion +10%, automation −5%, net +5%. Final = 180 × 1.05 = <strong>189</strong>.</p>
+
+  <h4>Delphi Technique</h4>
+  <p>Experts give independent estimates anonymously, you average them, run another round, re-average. The final number is the average of the last round.</p>
+  <div class="formula">Final estimate = average of last round of expert forecasts</div>
+
+  <h4>Nominal Group Technique</h4>
+  <p>Experts evaluate options face-to-face and assign scores. You compute a weighted average using the scores as weights.</p>
+  <div class="formula">Weighted requirement = Σ(Employees × Score) ÷ Σ(Scores)</div>
+  <p>Example: Plans A/B/C need 150/180/140 employees with scores 5/3/2. Weighted = (150×5 + 180×3 + 140×2) ÷ 10 = 1570 ÷ 10 = <strong>157</strong>.</p>
+
+  <h4>Ratio Analysis</h4>
+  <p>You use a ratio of employees to workload as the base, then adjust for efficiency changes.</p>
+  <div class="formula">Employees needed = Expected output ÷ (Old productivity × (1 + efficiency gain))</div>
+  <p>Example: 1 employee handles 200 units, expected output 50,000 units, efficiency improves 10% → new productivity 220 units/employee → 50,000 ÷ 220 ≈ <strong>228 employees</strong>.</p>
+
+  <h4>Regression Analysis</h4>
+  <p>You use a past statistical relationship between workforce and a driver variable (output, sales, doctors per population, whatever).</p>
+  <div class="formula">Y = a + bX  (e.g., Y = 0.01 × Output)</div>
+  <p>Plug in the future X to get the future Y. If Y = 0.01X and X = 5,000 units, employees = <strong>50</strong>.</p>
+
+  <h4>Markov Analysis</h4>
+  <p>This one looks scary but it's just probability matrices. You start with current workforce at each level (junior/senior/manager), and you have transition probabilities for what fraction stays, gets promoted, or exits. You multiply through to get next year's distribution.</p>
+
+  <div class="analogy">
+    <p><strong>Markov analysis is like predicting where students in a hostel will be next year.</strong></p>
+    <p>If 70% of first-years stay first-years (re-take papers), 20% become second-years, and 10% leave… and you start with 100 first-years, then next year you'll have 70 first-years still in first year, 20 moving up to second year, and 10 gone. Do this for every level, add the promotions into the next level, and you've got next year's headcount distribution. It's just bookkeeping with probabilities.</p>
+  </div>
+
+  <p>Worked example from your slides:</p>
+  <ul>
+    <li>100 Juniors → 70 stay, 20 promoted to Senior, 10 exit.</li>
+    <li>50 Seniors → 30 stay, 15 promoted to Manager, 5 exit.</li>
+    <li>20 Managers → 16 stay, 4 exit.</li>
+    <li>Final: Juniors = 70, Seniors = 30 + 20 = 50, Managers = 16 + 15 = <strong>31</strong>.</li>
+  </ul>
+
+  <h3>Internal vs External Supply</h3>
+  <p>Once you know how many people you need, you decide where they come from:</p>
+  <ul>
+    <li><strong>Internal supply</strong> — transfers (sideways moves) and promotions (upward moves). Cheap, fast, motivating, but limited pool.</li>
+    <li><strong>External supply</strong> — campus hiring, advertising, placement agencies, job portals, employee referrals, social media (LinkedIn). Wider pool, fresh blood, but expensive and slow.</li>
+  </ul>
+
+  <p>The L&amp;T Infotech case in your slides walks through this elaborately — campus = 25-50%, job portals = 70-90% for lateral hiring, consultancy 5-25%. If a caselet asks about recruitment channel choice, mention the trade-off between speed, cost, fit, and cultural alignment.</p>
+</section>
+
+<section class="chapter" id="signaling">
+  <div class="chapter-num">CH 05</div>
+  <div class="chapter-tagline">/ The HR twist · Spence's insight</div>
+  <h2>Signaling <span class="accent">Theory.</span></h2>
+
+  <p class="lede">Michael Spence's theory. The big idea: when employers can't directly observe a candidate's actual productivity, candidates use visible signals (degrees, certifications, prestigious institutions, work history) to communicate their underlying ability. The signal stands in for the unobservable.</p>
+
+  <p>This is a topic about <em class="term">information asymmetry</em>. The employer knows what they want but can't see inside the candidate's head. The candidate knows their own capability but can't transmit it directly. So the candidate sends signals, and the employer reads them. A degree from IIM signals discipline, intelligence, and capability — even if the actual job doesn't require any IIM-specific content.</p>
+
+  <p>The catch your prof emphasised: <strong>signals don't necessarily increase actual productivity.</strong> They differentiate candidates based on <em class="term">perceived</em> ability. This creates two real problems for HR:</p>
+  <ul>
+    <li><strong>Bias risk</strong> — over-relying on signals means favouring people from "top" institutions or "right" backgrounds regardless of job-fit. Talented candidates without those signals get filtered out.</li>
+    <li><strong>Signal inflation</strong> — when everyone has a degree, the degree stops differentiating. So people pile on more credentials (MBA + certifications + courses) just to stand out, regardless of whether those credentials help them do the job.</li>
+  </ul>
+
+  <div class="analogy">
+    <p><strong>Signaling is like Tinder bios.</strong> You can't actually verify if someone's a good partner from a profile, so they use signals — gym pics, job titles, "loves travel," dog photos. These signals don't guarantee they're a good partner, but they shift the perceived odds. Over time, everyone learns the signals and starts gaming them, so the signals stop being useful and you need new ones.</p>
+    <p>Hiring works the same way. Resumes are signal bundles. Some are real (skills, projects). Many are just signal theatre.</p>
+  </div>
+
+  <p><strong>How modern HR fights signal-only hiring:</strong> by combining signals with actual evaluation — skill-based assessments, behavioural interviews, work simulations, case studies. Employer branding becomes a counter-signal too — companies signal their culture, growth, and values to attract real talent rather than just resume-builders.</p>
+
+  <div class="callout">If a caselet talks about hiring bias, over-reliance on degrees, or candidates being filtered by institution name — Signaling Theory is the lens. Mention information asymmetry, signals as imperfect proxies, and recommend combining signals with skill-based assessment.</div>
+</section>
+
+<section class="chapter" id="leadership">
+  <div class="chapter-num">CH 06</div>
+  <div class="chapter-tagline">/ Influence · Get them to want it</div>
+  <h2><span class="accent">Leadership.</span></h2>
+
+  <p class="lede">Koontz and O'Donnell defined leadership as "the art of inducing subordinates to accomplish their assignments with zeal and confidence." Translation: it's the ability to get people to want to do things, not just be told to.</p>
+
+  <p>Your professor stressed an important contrast that almost always shows up in caselets: <strong>bosses vs leaders.</strong> Bosses use authority — they tell people what to do. Leaders use influence — they make people want to do it. Bosses manage tasks; leaders manage meaning. Ratan Tata responding to a street vendor during 26/11 was leadership, not management.</p>
+
+  <h3>Characteristics of Leadership</h3>
+  <ul>
+    <li><strong>Co-existence with followership</strong> — no leader exists without willing followers. Leadership is earned, not assigned.</li>
+    <li><strong>Responsibility</strong> — the leader takes ownership of the group's success AND failure.</li>
+    <li><strong>Understanding nature</strong> — sensing what the group feels and needs.</li>
+    <li><strong>Precedence</strong> — the leader has to be competent and self-aware enough that others look up.</li>
+    <li><strong>Situation</strong> — leadership patterns shift with context; what works in a crisis doesn't work in a calm.</li>
+  </ul>
+
+  <h3>Theories — Three Approaches</h3>
+
+  <h4>01 · Trait Approach</h4>
+  <p>The oldest theory: leaders are born with certain traits. Keith Davis identified four:</p>
+  <ul>
+    <li><strong>Intelligence</strong> — leaders are generally smarter than the average follower (but not so much smarter that they can't relate).</li>
+    <li><strong>Social maturity and breadth</strong> — emotionally stable, wide interests, secure self-concept.</li>
+    <li><strong>Inner motivation and achievement drive</strong> — driven by intrinsic rewards more than extrinsic.</li>
+    <li><strong>Human relations attitude</strong> — they respect followers, empathise, are employee-centred.</li>
+  </ul>
+  <p>Critique: traits alone don't predict leadership. Lots of intelligent, mature people aren't leaders. Lots of leaders don't fit the trait list.</p>
+
+  <h4>02 · Behavioural Approach</h4>
+  <p>Forget traits — focus on what leaders <em class="term">do</em>. Three behaviours:</p>
+  <ul>
+    <li><strong>Autocratic</strong> — commands, expects compliance, uses rewards/punishments. Quick, decisive, but kills initiative.</li>
+    <li><strong>Participative / Supportive</strong> — assumes people want to contribute, allows initiative, gives support. Slower, but builds engagement.</li>
+    <li><strong>Instrumental / Instrumental-Supportive</strong> — focuses on the rational manager role: planning, organising, controlling. Process-oriented.</li>
+  </ul>
+
+  <h4>03 · Situational / Contingency Approach</h4>
+  <p>The most modern: the right leadership style depends on the situation. No one style works always.</p>
+
+  <p><strong>Fiedler's Model</strong> says effectiveness depends on the fit between leadership style and three situational factors: leader-member relations (are you liked?), task structure (is the task clear?), and position power (do you have formal authority?). High control + favourable conditions favour task-oriented leaders; ambiguous middle situations favour relationship-oriented leaders.</p>
+
+  <p><strong>Situational Leadership Theory (Hersey-Blanchard)</strong> focuses on follower <em class="term">readiness</em> — the combination of ability and willingness. Four levels: unable + unwilling, unable + willing, able + unwilling, able + willing. As readiness grows, leadership shifts from directive to supportive to participative to delegating.</p>
+
+  <h4>04 · Path-Goal Theory</h4>
+  <p>The leader's job is to clear the path to the goal. Four behaviours:</p>
+  <ul>
+    <li><strong>Directive</strong> — tell them what to do (when tasks are ambiguous).</li>
+    <li><strong>Supportive</strong> — show care (when tasks are stressful or repetitive).</li>
+    <li><strong>Participative</strong> — consult them (when they have expertise).</li>
+    <li><strong>Achievement-oriented</strong> — set challenging goals (when they have high need for achievement).</li>
+  </ul>
+
+  <div class="analogy">
+    <p><strong>Path-Goal theory is like being a coach.</strong> If your player is new and lost, you give detailed instructions (directive). If they're stressed before a big game, you reassure them (supportive). If they're an experienced senior, you ask for their input (participative). If they're a star with high ambition, you push them harder (achievement-oriented). Same coach, different behaviour, based on what the player needs.</p>
+  </div>
+
+  <h3>Leadership Styles (Kurt Lewin + Extensions)</h3>
+  <p>This is the practical taxonomy that caselets test most. Six styles:</p>
+
+  <ul>
+    <li><strong>Autocratic</strong> — leader decides alone, no input. Fast decisions, but kills initiative, creates frustration.</li>
+    <li><strong>Democratic / Participative</strong> — leader consults the group. Mutual acceptance of decisions, better attitudes. Slow, needs capable subordinates.</li>
+    <li><strong>Laissez-Faire / Free Rein</strong> — leader steps back, group decides. Great when subordinates are highly skilled and self-motivated. Risky — control collapses if they're not.</li>
+    <li><strong>Functional</strong> — leader is a domain expert. Subordinates learn skills, but the expert may not connect with the average worker.</li>
+    <li><strong>Institutional</strong> — leader is in charge because of position/title, not expertise. Has official authority but may lack moral authority or domain knowledge.</li>
+    <li><strong>Paternalistic</strong> — leader acts like a parent. Takes care of subordinates' welfare. Good for loyalty, but limits subordinates' intellectual autonomy.</li>
+  </ul>
+
+  <div class="filthy-mnemonic">
+    <div class="device">"All Dirty Lads Fuck In Parties."</div>
+    <div class="decode"><strong>A</strong>utocratic · <strong>D</strong>emocratic · <strong>L</strong>aissez-Faire · <strong>F</strong>unctional · <strong>I</strong>nstitutional · <strong>P</strong>aternalistic. If a caselet describes leader behaviour, run through this list, pick the closest match, justify it.</div>
+  </div>
+
+  <h3>Contemporary Theories</h3>
+  <p><strong>Transactional leaders</strong> are exchange-based — clarify roles, set rewards for performance, fix problems. Stable, predictable, good for steady-state operations. They keep the machine running.</p>
+
+  <p><strong>Charismatic leaders</strong> use personal magnetism and vision to inspire people to do more than they normally would. Unpredictable, atmosphere of change, sometimes obsessed by their own vision. Think Dhirubhai Ambani.</p>
+
+  <p><strong>Transformational leaders</strong> are charismatic with substance — they recognise followers' deeper needs, help them see old problems in new ways, encourage them to question the status quo. They don't just inspire, they <em class="term">transform</em> followers into people who can lead themselves. Think Howard Schultz at Starbucks, or Narayana Murthy.</p>
+
+  <div class="callout">If a caselet shows a leader who only manages tasks and rewards = transactional. If a leader inspires through vision and personal charm = charismatic. If a leader inspires AND grows their people into better versions of themselves = transformational.</div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>SET · MEASURE · COMPARE · CORRECT</span><span class="star">★</span><span>CONTROL THE LOOP</span><span class="star">★</span><span>SET · MEASURE · COMPARE · CORRECT</span><span class="star">★</span><span>CONTROL THE LOOP</span><span class="star">★</span>
+  </div>
+</div>
+
+<section class="chapter" id="controlling">
+  <div class="chapter-num">CH 07</div>
+  <div class="chapter-tagline">/ Check &amp; Correct · Close the loop</div>
+  <h2><span class="accent">Controlling.</span></h2>
+
+  <p class="lede">Controlling is the management function that checks whether actual performance matches planned performance — and corrects deviations. It's the closing of the loop. Planning sets the goals; controlling makes sure you hit them.</p>
+
+  <p>The link between planning and controlling is intimate. Planning without controlling is wishful thinking. Controlling without planning is meaningless because you'd have no standard to compare against. They're the bookends of execution.</p>
+
+  <h3>The Control Process — Five Steps</h3>
+  <ol>
+    <li><strong>Setting objectives</strong> — what are we trying to achieve?</li>
+    <li><strong>Establishing standards</strong> — measurable targets (quantitative like units/sales, or qualitative like satisfaction/morale).</li>
+    <li><strong>Measuring actual performance</strong> — through observation, statistical reports, oral or written reports, sample checking.</li>
+    <li><strong>Comparing actual vs standard</strong> — calculating the deviation.</li>
+    <li><strong>Taking corrective action</strong> — three choices: do nothing (if deviation is acceptable), correct performance (immediate or basic), or revise the standard (if it was unrealistic).</li>
+  </ol>
+
+  <div class="filthy-mnemonic">
+    <div class="device">"Sexy Sluts Measure Cocks Carefully."</div>
+    <div class="decode"><strong>S</strong>et objectives · <strong>S</strong>tandards · <strong>M</strong>easure · <strong>C</strong>ompare · <strong>C</strong>orrect. Five steps, in order. If the caselet asks "which step of controlling is being shown," you scan this and identify.</div>
+  </div>
+
+  <h3>Two Principles of Managerial Control</h3>
+  <p>These two get tested all the time — they're how managers handle the avalanche of data without going mad.</p>
+
+  <p><strong>Critical Point Control</strong> says don't waste time monitoring everything. Focus on Key Result Areas (KRAs) — the few critical points where failure would seriously hurt the business. A production manager should focus on machine performance and quality, not on minor stationery expenses.</p>
+
+  <p><strong>Management by Exception (MBE)</strong> says only significant deviations beyond a permissible limit get escalated to management. If raw material costs rise 2% and that's within acceptable range, ignore it. If they rise 5%, escalate. Don't drown leaders in data; surface only what needs decisions.</p>
+
+  <div class="analogy">
+    <p><strong>MBE is like notifications on your phone.</strong> If every app notified you about everything, you'd ignore your phone entirely. So you set rules — only important emails ping, only certain messages buzz, only specific people break through Do Not Disturb. The threshold is the "acceptable range." Anything that crosses the threshold = exception = your attention.</p>
+  </div>
+
+  <h3>Types of Control — By Timing</h3>
+  <p>Three types based on <em class="term">when</em> the control happens relative to the activity:</p>
+
+  <ul>
+    <li><strong>Feedforward control</strong> — <em class="term">before</em> the activity. Prevents problems by setting up the right conditions. Quality checks on incoming raw materials, ISO supplier requirements, design reviews. The cheapest form of control.</li>
+    <li><strong>Concurrent control</strong> — <em class="term">during</em> the activity. Real-time monitoring, direct supervision, "management by walking around." Catches problems as they happen.</li>
+    <li><strong>Feedback control</strong> — <em class="term">after</em> the activity. Examines results, takes corrective action for next time. Annual appraisals, post-mortem reviews. Useful for learning, but the damage is already done.</li>
+  </ul>
+
+  <div class="filthy-mnemonic">
+    <div class="device">"Before, During, After — Foreplay, Fucking, Feedback."</div>
+    <div class="decode"><strong>Feedforward</strong> (before) · <strong>Concurrent</strong> (during) · <strong>Feedback</strong> (after). Three Fs, three phases. Caselet with "supplier quality checks weak" → feedforward failure. "No real-time monitoring during production" → concurrent failure. "Defects found only after shipment" → feedback-only system, weak prevention.</div>
+  </div>
+
+  <h3>Tools for Controlling Performance</h3>
+
+  <h4>Financial Controls</h4>
+  <p>Traditional tools: <strong>Ratio analysis</strong> (liquidity, leverage, activity, profitability), <strong>budget analysis</strong> (quantitative standards and deviations).</p>
+
+  <p>Modern tools:</p>
+  <ul>
+    <li><strong>Economic Value Added (EVA)</strong> — value created by the company's assets beyond the cost of capital. The "are we actually earning more than what we'd earn if we just invested the money?" measure.</li>
+    <li><strong>Market Value Added (MVA)</strong> — the value the stock market places on the company's investments. If market value &gt; invested capital → managers have created wealth. If &lt;, they've destroyed it.</li>
+  </ul>
+
+  <div class="analogy">
+    <p><strong>EVA is like comparing your business return to your alternative.</strong> If you put ₹100 into your shop and earned ₹8, but you could've parked it in an FD at 7%, your EVA is only ₹1. You created ₹1 of real value beyond the alternative. If the FD was 9%, your EVA would be NEGATIVE — you destroyed value by running the shop.</p>
+    <p>MVA is like asking: "If I tried to sell the whole shop today, would I get more than I put in?" If yes, wealth was created. If no, even if I'm profitable on paper, the market doesn't believe in me.</p>
+  </div>
+
+  <h4>Balanced Scorecard</h4>
+  <p>Argues that finance alone is too narrow. Track four dimensions equally:</p>
+  <ul>
+    <li><strong>Financial</strong> — revenue, profit, costs.</li>
+    <li><strong>Customer</strong> — satisfaction, retention, share.</li>
+    <li><strong>Internal processes</strong> — efficiency, quality, cycle time.</li>
+    <li><strong>Learning &amp; growth</strong> — people, innovation, skills.</li>
+  </ul>
+  <p>Balance matters — overweight finance and you cut training, damage culture, lose long-term capacity.</p>
+
+  <h4>Information Controls &amp; MIS</h4>
+  <p>Managers need the right info at the right time in the right amount. <strong>MIS (Management Information System)</strong> is the system that turns raw data into meaningful information. Data is an unsorted customer list; information is "your top 10% customers by lifetime value." Information is data with meaning.</p>
+
+  <h4>Benchmarking</h4>
+  <p>Comparing your performance against the best practices of competitors or non-competitors to identify gaps and improve. Three types:</p>
+  <ul>
+    <li><strong>Internal benchmarking</strong> — comparing across your own plants/divisions.</li>
+    <li><strong>Competitive benchmarking</strong> — studying direct rivals.</li>
+    <li><strong>Functional benchmarking</strong> — borrowing best practices from totally different industries (e.g., a hospital learning from an airline how to manage scheduling).</li>
+  </ul>
+
+  <h3>Performance &amp; Effectiveness Models</h3>
+  <p>When evaluating organisational effectiveness, three lenses:</p>
+  <ul>
+    <li><strong>Systems resource model</strong> — how well does the firm acquire scarce resources from its environment? Use this for cases about talent wars, raw material shortages, capital access.</li>
+    <li><strong>Process model</strong> — how efficiently does the firm convert inputs into outputs? Use this for production delays, quality issues, throughput problems.</li>
+    <li><strong>Multiple constituencies model</strong> — how well does the firm meet ALL stakeholder needs? Use this when caselets mention conflicting demands from customers, employees, investors, government.</li>
+  </ul>
+
+  <h3>Limitations of Controlling</h3>
+  <p>Important for any "why is control failing" caselet:</p>
+  <ul>
+    <li>Difficult to set quantitative standards for qualitative things (motivation, satisfaction).</li>
+    <li>Controlling is expensive — surveillance, audits, reporting all cost time and money.</li>
+    <li>Resistance from employees — people don't like being monitored. CCTV and tracking can feel invasive.</li>
+    <li>Little control over external factors — competitors, regulations, market shifts.</li>
+  </ul>
+</section>
+
+<section class="chapter" id="mia">
+  <div class="chapter-num">CH 08</div>
+  <div class="chapter-tagline">/ The integrator · Lived, not designed</div>
+  <h2>Management <span class="accent">in Action.</span></h2>
+
+  <p class="lede">This is the "so what?" chapter — the integrator. The big idea: in real organisations, there's always a gap between what's written (formal policies, org charts, manuals) and what's actually lived (the daily reality of how work gets done). Management success depends on the lived reality, not the documents.</p>
+
+  <p>Your professor's point is that a company can have perfect policies, structured hierarchy, defined processes — and still fail. Why? Because the five functions get executed in tiny everyday interactions, not in corporate documents. Management is lived, not designed.</p>
+
+  <h3>How Each Function Plays Out in Real Life</h3>
+
+  <p><strong>Planning in daily reality</strong> isn't long-term strategy documents — it's whether your manager clearly tells you what's expected this week, whether deadlines are realistic, whether expectations are actually communicated. Unclear planning at the employee level creates confusion and rework even if the corporate plan looks beautiful.</p>
+
+  <p><strong>Organising in practice</strong> isn't the org chart — it's whether work is distributed well, communication flows between levels, teams collaborate informally when needed. A well-charted organisation can still fail if coordination is weak or if informal networks dominate without alignment.</p>
+
+  <p><strong>Staffing in real workplaces</strong> isn't just hiring — it's onboarding quality, training depth, role clarity, mentoring. People struggle not because they're unskilled but because they're poorly integrated into the system.</p>
+
+  <p><strong>Leadership in action</strong> is daily manager behaviour — how they communicate, support during pressure, motivate. A strong leader can compensate for weak systems. A weak leader makes even a great system pointless.</p>
+
+  <p><strong>Control in real time</strong> isn't annual appraisal — it's continuous feedback, early correction, fairness in evaluation. Delayed or biased control kills motivation faster than no control.</p>
+
+  <div class="callout">If a caselet describes a "perfect on paper, broken in practice" company → this is the lens. Mention the gap between formal system and lived reality. Recommend strengthening daily execution of the five functions.</div>
+</section>
+
+<div class="pull-quote">"People don't fail because they are incapable.<br>They fail because expectations are unclear."</div>
+
+<section class="chapter" id="caselets">
+  <div class="chapter-num">CH 09</div>
+  <div class="chapter-tagline">/ Exam prep · Diagnose, attack</div>
+  <h2>Expected <span class="accent">Caselets.</span></h2>
+
+  <p class="lede">Based on your prof's pattern across slides and the post-midterm weighting, here are the caselet archetypes most likely to appear. For each: the diagnostic, the concept toolkit, and the answer structure.</p>
+
+  <p>Remember the exam rules: 5 caselets, attempt any 4, 12.5 marks each. Write in points, be precise and analytical, emphasise <em class="term">application</em>. Two hours, so ~30 minutes per caselet. Don't write essays — write structured, point-form answers with concept identification first, then explanation, then application to the case.</p>
+
+  <div class="caselet-card">
+    <span class="caselet-tag">CASELET 01 · MOTIVATION</span>
+    <h4>The Overloaded Star</h4>
+    <div class="case-body">"Ravi is the team's top performer. Lately he's been missing deadlines and seems withdrawn. Neha shows up but contributes the bare minimum. Arjun is a high-potential employee threatening to leave. The manager wonders why one motivation policy isn't working for all three."</div>
+    <div class="approach">
+      <strong>Diagnosis</strong>Three different motivation problems — burnout (Ravi), disengagement (Neha), growth frustration (Arjun). Tests whether you can distinguish root causes.
+      <strong>Concepts to use</strong>Intrinsic vs extrinsic motivation; adaptive management; situational leadership; recognising that uniform interventions worsen at least one case.
+      <strong>Structure</strong>(1) Identify root cause for each person. (2) Recommend tailored intervention — workload reduction for Ravi, ownership task for Neha, stretch assignment for Arjun. (3) Justify why one-size-fits-all fails. (4) Rank by urgency: Ravi first (burnout risk), Arjun next (attrition), Neha last (stable but stagnant).
+    </div>
+  </div>
+
+  <div class="caselet-card">
+    <span class="caselet-tag">CASELET 02 · CONTROLLING</span>
+    <h4>Targets Missed at TechCorp</h4>
+    <div class="case-body">"A company set quarterly targets of 50 projects with 95% on-time completion and 4/5 satisfaction. Actual: 38 projects, 5.5-week average delivery, 3.6/5 satisfaction. Team leaders blame unrealistic timelines, coordination issues, and market complexity."</div>
+    <div class="approach">
+      <strong>Diagnosis</strong>Classic 5-step control process caselet with a variance.
+      <strong>Concepts to use</strong>The five steps of control; deviation analysis; Critical Point Control; Management by Exception; corrective action vs revising standards.
+      <strong>Structure</strong>(1) State the objective, standard, actual performance, and variance clearly. (2) Conclude standard NOT attained, variance significant. (3) Identify internal causes (skills, coordination) and external causes (complexity). (4) Recommend corrective actions first; only revise standards if genuinely unrealistic.
+    </div>
+  </div>
+
+  <div class="caselet-card">
+    <span class="caselet-tag">CASELET 03 · LEADERSHIP</span>
+    <h4>The Silent Supervisor</h4>
+    <div class="case-body">"Ramesh is technically strong but never communicates clearly. Workers complain instructions like 'finish quickly' are vague. Output is up, but rejection rate is also up. Ramesh insists workers should figure it out themselves."</div>
+    <div class="approach">
+      <strong>Diagnosis</strong>Leadership failure in communication + control gap (no clear standards).
+      <strong>Concepts to use</strong>Path-Goal theory (directive behaviour needed when tasks are ambiguous); concurrent vs feedforward control; setting clear standards before measuring performance.
+      <strong>Structure</strong>(1) Identify the dual failure — leadership communication + missing performance standards. (2) Recommend: define quality parameters, daily briefings, demonstration + feedback. (3) Close with the line — "people don't fail because they're incapable; they fail because expectations are unclear."
+    </div>
+  </div>
+
+  <div class="caselet-card">
+    <span class="caselet-tag">CASELET 04 · CONTROL</span>
+    <h4>The Over-Controlling Manager</h4>
+    <div class="case-body">"A manager introduced daily reporting, frequent inspections, and penalties. Errors dropped initially. After 3 months: morale dropped, productivity declined, employees stopped showing initiative. Manager argues 'control is necessary.'"</div>
+    <div class="approach">
+      <strong>Diagnosis</strong>Over-control / micromanagement / punitive control system.
+      <strong>Concepts to use</strong>Limitations of controlling (employee resistance); balance between autonomy and accountability; concurrent vs feedforward; Critical Point Control (focus on what matters, not everything).
+      <strong>Structure</strong>(1) Differentiate control from over-control. (2) Explain how excess punitive control kills initiative and ownership. (3) Recommend self-control systems, KPI-based monitoring, positive reinforcement. (4) Close: "too much control kills the very performance it tries to ensure."
+    </div>
+  </div>
+
+  <div class="caselet-card">
+    <span class="caselet-tag">CASELET 05 · STAFFING</span>
+    <h4>Manpower Planning Calculation</h4>
+    <div class="case-body">"A company needs 80 production, 50 sales, 20 HR, 30 finance employees. Expects 10% expansion, 5% automation reduction." OR "1 employee handles 200 units; expected output 50,000 units; efficiency rises 10%." OR a Markov-style transition matrix.</div>
+    <div class="approach">
+      <strong>Diagnosis</strong>Numerical staffing caselet — easy marks if you know the formula.
+      <strong>Concepts to use</strong>Identify the method (Bottom-up, Ratio, Regression, Markov, Delphi, Nominal Group).
+      <strong>Structure</strong>(1) Name the method. (2) Show the formula explicitly. (3) Plug in numbers step by step. (4) State the final answer clearly. (5) One-line interpretation of what the number means for HR planning. Don't skip steps — partial credit lives in the working.
+    </div>
+  </div>
+
+  <div class="caselet-card">
+    <span class="caselet-tag">CASELET 06 · ORGANISING</span>
+    <h4>Decentralisation vs Centralisation</h4>
+    <div class="case-body">"A growing company had a centralised model that worked pre-1991. Now with MNCs and market changes, even minor decisions sit at the top. CEO is overburdened, decisions are slow, market share is declining."</div>
+    <div class="approach">
+      <strong>Diagnosis</strong>Centralisation hitting its limits in a changed environment.
+      <strong>Concepts to use</strong>Decentralisation as a policy; the five importance points (relief to top management, develops initiative, develops managerial talent, quick decisions, better control); difference from delegation.
+      <strong>Structure</strong>(1) Identify the problem as excessive centralisation. (2) Recommend decentralisation as the structural fix. (3) List 3-4 importance points. (4) Distinguish decentralisation from delegation (policy vs single act). (5) Cite the trigger — "in a fast-changing environment, decision speed at the periphery beats decision quality at the centre."
+    </div>
+  </div>
+
+  <div class="caselet-card">
+    <span class="caselet-tag">CASELET 07 · APPRAISAL</span>
+    <h4>The Feedback Gap</h4>
+    <div class="case-body">"Employees are evaluated annually with no feedback during the year. At appraisal time, many are surprised by low ratings, conflicts rise. Management says 'we have a formal appraisal system.'"</div>
+    <div class="approach">
+      <strong>Diagnosis</strong>Over-reliance on feedback control with no concurrent control.
+      <strong>Concepts to use</strong>Three types of control (feedforward, concurrent, feedback); appraisal as developmental vs evaluative; link to motivation.
+      <strong>Structure</strong>(1) Identify failure of concurrent control (no real-time feedback). (2) Explain why appraisal should be developmental, not just evaluative. (3) Recommend monthly/quarterly check-ins, informal coaching, feedforward guidance. (4) Close: "delayed feedback is as good as no feedback."
+    </div>
+  </div>
+
+  <div class="caselet-card">
+    <span class="caselet-tag">CASELET 08 · HRM</span>
+    <h4>Hiring Bias / Signaling</h4>
+    <div class="case-body">"A company keeps hiring from top-tier institutes; performance variance is high. Some non-IIM hires outperform, but recruiters consistently shortlist by institute brand. HR director wants to redesign the process."</div>
+    <div class="approach">
+      <strong>Diagnosis</strong>Signaling Theory in action with bias risk.
+      <strong>Concepts to use</strong>Information asymmetry; signals as imperfect proxies for productivity; bias risks; modern HR practices.
+      <strong>Structure</strong>(1) Identify Signaling Theory and Spence's framework. (2) Explain why signals are useful (screening) but flawed (don't directly cause productivity). (3) Recommend combining signals with skill assessments, behavioural interviews, work simulations. (4) Mention employer branding as a counter-signal to attract talent beyond resume builders.
+    </div>
+  </div>
+
+  <div class="caselet-card">
+    <span class="caselet-tag">CASELET 09 · 7S FRAMEWORK</span>
+    <h4>McKinsey 7S Misalignment</h4>
+    <div class="case-body">"A company has great strategy and skilled staff, but recently introduced a new top leader with an aggressive style. Shared values are eroding, systems haven't been updated, structure is unclear after restructuring. Performance has dropped."</div>
+    <div class="approach">
+      <strong>Diagnosis</strong>Multi-S misalignment — strategy and skills are fine but style, systems, structure, and shared values are off.
+      <strong>Concepts to use</strong>The 7S framework; alignment over individual element strength; interdependence of hard and soft S's.
+      <strong>Structure</strong>(1) Lay out all 7 S's. (2) Score each as strong/weak for this case. (3) Show how soft S misalignment is dragging hard S effectiveness. (4) Recommend culture and structure realignment before doubling down on strategy.
+    </div>
+  </div>
+
+  <div class="caselet-card">
+    <span class="caselet-tag">CASELET 10 · INTEGRATOR</span>
+    <h4>Management in Action</h4>
+    <div class="case-body">"On paper, the company has perfect policies, structured hierarchy, defined processes. But employees report confusion, lack of motivation, blurred priorities, delayed feedback. The CEO is puzzled."</div>
+    <div class="approach">
+      <strong>Diagnosis</strong>Gap between formal system (written) and lived reality (executed).
+      <strong>Concepts to use</strong>All five functions in their "lived" form — daily planning clarity, real-time organising, integration in staffing, daily leadership behaviour, continuous control.
+      <strong>Structure</strong>(1) Identify the formal-vs-lived gap as the core diagnosis. (2) Walk through each function showing how it should be lived day-to-day. (3) Recommend strengthening daily execution at the manager-employee interaction level. (4) Close: "management is what happens between people at work every single day, not what's written in handbooks."
+    </div>
+  </div>
+
+  <h3>Final Exam Tactics</h3>
+  <ul>
+    <li><strong>Read all 5 caselets first.</strong> Pick the 4 you're most confident on. Don't burn time on one you don't recognise.</li>
+    <li><strong>Concept identification = first line of every answer.</strong> "This case demonstrates [Concept] under the [Function] of management." Marker sees you got the diagnosis right immediately.</li>
+    <li><strong>Use sub-headings and points, not paragraphs.</strong> Your prof literally said this.</li>
+    <li><strong>Apply, don't just define.</strong> Every concept must be tied back to the case facts. "Ramesh is showing directive leadership failure because…"</li>
+    <li><strong>Close each answer with a one-liner insight.</strong> Pick from the slide quotes — "people don't fail from incapacity, but from unclear expectations," "too much control kills the very performance it tries to ensure," "delayed feedback is as good as no feedback," "management is lived, not designed."</li>
+    <li><strong>Time check at 1 hour.</strong> If you're more than halfway through caselet 2, you're slow. Speed up.</li>
+    <li><strong>Don't leave any of the 4 blank.</strong> A weak answer beats a missing one. Even rough application earns marks.</li>
+  </ul>
+</section>
+
+</div>
+
+<footer>
+  <div class="footer-emoji">🔥</div>
+  <div class="footer-big">Now go burn it.</div>
+  <div class="footer-sub">— END-TERM SURVIVAL GUIDE · 2026 —</div>
+</footer>
+
+</body>
+</html>
