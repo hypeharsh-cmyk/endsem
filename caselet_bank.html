@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CASELET BANK — End-Term Edition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f4ede0;
+    --paper-warm: #ede4d3;
+    --ink: #1a1612;
+    --ink-soft: #2d2620;
+    --ink-mid: #5c5448;
+    --ink-faint: #8a8275;
+    --hot: #ff4d2e;
+    --hot-deep: #d63919;
+    --acid: #c4e538;
+    --electric: #2d5fff;
+    --plum: #6b2d8e;
+    --line: #1a1612;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(26,22,18,0.08) 1px, transparent 0);
+    background-size: 24px 24px;
+  }
+
+  /* MASTHEAD */
+  .masthead {
+    border-bottom: 4px solid var(--ink);
+    padding: 24px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(244, 237, 224, 0.92);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+  }
+  .masthead-logo {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.8rem;
+    font-style: italic;
+    letter-spacing: -0.02em;
+  }
+  .masthead-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+  }
+
+  /* HERO */
+  .hero {
+    padding: 80px 40px 60px;
+    border-bottom: 2px solid var(--ink);
+  }
+  .hero-tag {
+    display: inline-block;
+    background: var(--electric);
+    color: var(--paper);
+    padding: 6px 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    transform: rotate(-1deg);
+  }
+  h1.title {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.8rem, 10vw, 7rem);
+    line-height: 0.88;
+    letter-spacing: -0.04em;
+    max-width: 1200px;
+  }
+  h1.title em {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--hot);
+  }
+  .hero-sub {
+    margin-top: 32px;
+    max-width: 720px;
+    font-size: 1.1rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 50px;
+    margin-top: 50px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    border-left: 3px solid var(--ink);
+    padding-left: 16px;
+  }
+  .stat-num {
+    font-family: 'Instrument Serif', serif;
+    font-size: 2.4rem;
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    margin-top: 6px;
+  }
+
+  /* SECTION NAV */
+  .section-nav {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 50px 40px;
+    border-bottom: 2px solid var(--ink);
+  }
+  .nav-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--acid);
+    margin-bottom: 24px;
+  }
+  .nav-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 8px;
+  }
+  .nav-pill {
+    background: var(--ink);
+    color: var(--paper);
+    border: 2px solid var(--paper);
+    padding: 14px 18px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: all 0.15s ease;
+    text-align: center;
+  }
+  .nav-pill:hover {
+    background: var(--hot);
+    border-color: var(--hot);
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 var(--acid);
+  }
+  .nav-pill .count {
+    display: block;
+    font-size: 0.65rem;
+    color: var(--acid);
+    margin-top: 4px;
+    letter-spacing: 0.15em;
+  }
+  .nav-pill:hover .count { color: var(--paper); }
+
+  /* MAIN */
+  .main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* SECTION HEADERS */
+  section.bank {
+    padding: 80px 0 40px;
+    border-bottom: 1px dashed var(--ink);
+  }
+  section.bank:last-of-type { border-bottom: none; }
+
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--hot-deep);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+  .section-tagline {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--ink-mid);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  h2 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 800;
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+    margin-bottom: 40px;
+  }
+  h2 .accent {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--hot);
+  }
+
+  /* CASELET CARDS */
+  .caselet {
+    background: var(--paper-warm);
+    border: 3px solid var(--ink);
+    padding: 32px;
+    margin-bottom: 32px;
+    position: relative;
+    box-shadow: 8px 8px 0 var(--ink);
+  }
+  .caselet:nth-child(odd) { transform: rotate(-0.2deg); }
+  .caselet:nth-child(even) { transform: rotate(0.2deg); }
+  .caselet:hover { transform: rotate(0deg); transition: transform 0.3s ease; }
+
+  .caselet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .caselet-id {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4px 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+  }
+  .caselet-source {
+    background: var(--acid);
+    color: var(--ink);
+    padding: 4px 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+    border: 2px solid var(--ink);
+  }
+  .caselet-source.predicted {
+    background: var(--hot);
+    color: var(--paper);
+  }
+
+  .caselet h3 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 18px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .caselet-body {
+    background: var(--paper);
+    border-left: 4px solid var(--hot);
+    padding: 18px 22px;
+    margin: 18px 0;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 18px 0;
+  }
+  .tag {
+    background: var(--ink);
+    color: var(--acid);
+    padding: 4px 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .tag.fn {
+    background: var(--electric);
+    color: var(--paper);
+  }
+  .tag.theory {
+    background: var(--plum);
+    color: var(--paper);
+  }
+
+  .solution {
+    margin-top: 20px;
+    border-top: 2px dashed var(--ink);
+    padding-top: 18px;
+  }
+  .solution-label {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--acid);
+    padding: 4px 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    margin-bottom: 14px;
+  }
+  .solution p {
+    margin-bottom: 12px;
+    color: var(--ink-soft);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  .solution ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 12px;
+  }
+  .solution ul li {
+    padding-left: 28px;
+    position: relative;
+    margin-bottom: 8px;
+    color: var(--ink-soft);
+    font-size: 0.98rem;
+    line-height: 1.6;
+  }
+  .solution ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--hot);
+    font-weight: 700;
+  }
+  .solution strong {
+    color: var(--ink);
+    font-weight: 700;
+    background: linear-gradient(180deg, transparent 60%, rgba(196,229,56,0.55) 60%);
+    padding: 0 2px;
+  }
+  .punchline {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--hot-deep);
+    border-left: 3px solid var(--hot);
+    padding: 10px 16px;
+    margin-top: 14px;
+    background: rgba(255, 77, 46, 0.05);
+  }
+
+  /* MARQUEE */
+  .marquee {
+    background: var(--ink);
+    color: var(--acid);
+    padding: 14px 0;
+    margin: 70px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+  }
+  .marquee-track {
+    display: inline-block;
+    animation: scroll 30s linear infinite;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.95rem;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+  }
+  .marquee-track span { margin: 0 30px; }
+  .marquee-track .star { color: var(--hot); }
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 80px 40px 50px;
+    text-align: center;
+    border-top: 4px solid var(--ink);
+    margin-top: 80px;
+  }
+  .footer-big {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    line-height: 1;
+    color: var(--acid);
+    margin-bottom: 30px;
+  }
+  .footer-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    color: var(--paper-warm);
+    text-transform: uppercase;
+  }
+  .footer-emoji {
+    font-size: 2rem;
+    margin: 30px 0 10px;
+  }
+
+  /* LEGEND */
+  .legend {
+    background: var(--paper);
+    border: 2px dashed var(--ink);
+    padding: 20px 24px;
+    margin-bottom: 40px;
+  }
+  .legend-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    margin-bottom: 12px;
+  }
+  .legend-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+  }
+  .legend-row:last-child { margin-bottom: 0; }
+  .legend-row strong { font-weight: 600; color: var(--ink); }
+
+  /* RESPONSIVE */
+  @media (max-width: 720px) {
+    .masthead { padding: 16px 20px; }
+    .masthead-logo { font-size: 1.3rem; }
+    .hero { padding: 50px 20px 40px; }
+    .section-nav { padding: 32px 20px; }
+    .main { padding: 0 20px; }
+    section.bank { padding: 50px 0 30px; }
+    .caselet { padding: 24px 20px; }
+    .caselet-header { gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="masthead-logo">The <em>Caselet</em> Bank</div>
+  <div class="masthead-meta">VOL.02 / DRILL EDITION</div>
+</div>
+
+<section class="hero">
+  <div class="hero-tag">⚡ practice arsenal</div>
+  <h1 class="title">Read. Diagnose.<br><em>Attack.</em></h1>
+  <p class="hero-sub">Every caselet from your prof's slide deck plus the ones your exam is most likely to throw at you. Each one tagged by concept, with a tight model solution. Read the scenario, try to diagnose it yourself, then check the answer. That's how this becomes muscle memory.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">28</div><div class="stat-label">Caselets</div></div>
+    <div class="stat"><div class="stat-num">16</div><div class="stat-label">From slides</div></div>
+    <div class="stat"><div class="stat-num">12</div><div class="stat-label">High-probability</div></div>
+    <div class="stat"><div class="stat-num">7</div><div class="stat-label">Topics covered</div></div>
+  </div>
+</section>
+
+<section class="section-nav">
+  <div class="nav-label">— Jump to topic —</div>
+  <div class="nav-grid">
+    <a href="#organising" class="nav-pill">Organising<span class="count">06 caselets</span></a>
+    <a href="#staffing" class="nav-pill">Staffing<span class="count">05 caselets</span></a>
+    <a href="#leadership" class="nav-pill">Leadership<span class="count">05 caselets</span></a>
+    <a href="#controlling" class="nav-pill">Controlling<span class="count">06 caselets</span></a>
+    <a href="#motivation" class="nav-pill">Motivation<span class="count">02 caselets</span></a>
+    <a href="#signaling" class="nav-pill">Signaling<span class="count">02 caselets</span></a>
+    <a href="#integrator" class="nav-pill">Integrator<span class="count">02 caselets</span></a>
+  </div>
+</section>
+
+<div class="main">
+
+<div style="margin-top: 60px;">
+  <div class="legend">
+    <div class="legend-title">— Tag legend —</div>
+    <div class="legend-row"><span class="caselet-source">📚 FROM SLIDES</span><strong>Direct from your prof's materials.</strong> Highest probability of repetition (or close variant).</div>
+    <div class="legend-row"><span class="caselet-source predicted">🎯 LIKELY</span><strong>Predicted based on typical patterns.</strong> Same concepts, fresh wrapping.</div>
+    <div class="legend-row"><span class="tag fn">FUNCTION</span><strong>Which management function</strong> the caselet sits under.</div>
+    <div class="legend-row"><span class="tag">CONCEPT</span><strong>Specific concept</strong> being tested.</div>
+    <div class="legend-row"><span class="tag theory">THEORY</span><strong>Named theory or framework</strong> in play.</div>
+  </div>
+</div>
+
+<!-- ============ ORGANISING ============ -->
+<section class="bank" id="organising">
+  <div class="section-num">PART 01</div>
+  <div class="section-tagline">/ Organising · Structure &amp; authority</div>
+  <h2><span class="accent">Organising</span> caselets.</h2>
+
+  <div class="caselet">
+    <div class="caselet-header">
+      <span class="caselet-id">CASELET 01</span>
+      <span class="caselet-source">📚 FROM SLIDES</span>
+    </div>
+    <h3>The Production Manager &amp; The Foreman</h3>
+    <div class="caselet-body">"Gunjan Ltd's directors asked their production manager to hit 150 TVs/day. The production manager passed this target to his foreman but didn't give him authority to requisition tools and materials from stores. The foreman failed to achieve the target. Can the directors blame the production manager? Can the manager blame his foreman?"</div>
+    <div class="tags">
+      <span class="tag fn">Organising</span><span class="tag">Delegation</span><span class="tag">Authority-Responsibility</span><span class="tag">Accountability</span>
+    </div>
+    <div class="solution">
+      <span class="solution-label">solution</span>
+      <ul>
+        <li><strong>Yes</strong>, the directors CAN blame the production manager. <strong>Principle of absoluteness of accountability</strong> — accountability cannot be delegated. Even though he passed work down, he remains answerable.</li>
+        <li><strong>No</strong>, the production manager CANNOT blame the foreman. <strong>Principle of authority and responsibility</strong> — giving responsibility without matching authority makes a subordinate ineffective. Foreman couldn't requisition tools, so couldn't deliver.</li>
+      </ul>
+      <div class="punchline">Authority must always match responsibility. Accountability flows up regardless.</div>
+    </div>
+  </div>
+
+  <div class="caselet">
+    <div class="caselet-header">
+      <span class="caselet-id">CASELET 02</span>
+      <span class="caselet-source">📚 FROM SLIDES</span>
+    </div>
+    <h3>Home Creations Ltd — Empowered Store Managers</h3>
+    <div class="caselet-body">"Home Creations owns 50 department stores. Each store is run autonomously by a manager who decides which products to promote, who to hire, how to handle complaints. This is because local managers know local situations best. The approach has boosted morale and customer service."</div>
+    <div class="tags">
+      <span class="tag fn">Organising</span><span class="tag">Decentralisation</span>
+    </div>
+    <div class="solution">
+      <span class="solution-label">solution</span>
+      <p>Concept = <strong>Decentralisation</strong>. Systematic delegation of authority to all levels except what must be exercised centrally.</p>
+      <p><strong>Importance:</strong></p>
+      <ul>
+        <li>Develops initiative among subordinates</li>
+        <li>Develops managerial talent (pipeline)</li>
+        <li>Quick decision-making (local people decide locally)</li>
+      </ul>
+      <p><strong>Values communicated:</strong> Initiative and Trust.</p>
+    </div>
+  </div>
+
+  <div class="caselet">
+    <div class="caselet-header">
+      <span class="caselet-id">CASELET 03</span>
+      <span class="caselet-source">📚 FROM SLIDES</span>
+    </div>
+    <h3>Sudhir — Strict but Sociable</h3>
+    <div class="caselet-body">"Sudhir is a purchase manager. He's a tough taskmaster demanding strict compliance to rules. But he also chats with subordinates during lunch in the cafeteria — getting insights into their opinions about company policies. Identify the two types of organisation discussed."</div>
+    <div class="tags">
+      <span class="tag fn">Organising</span><span class="tag">Formal vs Informal</span>
+    </div>
+    <div class="solution">
+      <span class="solution-label">solution</span>
+      <p><strong>Formal organisation</strong> = structure of authority relationships deliberately created by management (Sudhir enforcing rules and procedures).</p>
+      <p><strong>Informal organisation</strong> = network of social relationships emerging from employee interaction (Sudhir's lunch chats).</p>
+      <p><strong>Three key differences:</strong></p>
+      <ul>
+        <li><strong>Origin:</strong> Formal is deliberately created; informal emerges spontaneously.</li>
+        <li><strong>Communication flow:</strong> Formal follows scalar chain; informal flows in all directions (grapevine).</li>
+        <li><strong>Purpose:</strong> Formal achieves organisational goals; informal fulfils social needs.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="caselet">
+    <div class="caselet-header">
+      <span class="caselet-id">CASELET 04</span>
+      <span class="caselet-source">📚 FROM SLIDES</span>
+    </div>
+    <h3>Sewing Machine Co. — Stuck in 1946</h3>
+    <div class="caselet-body">"A 1946 sewing machine company follows strict formal organisation structure. Problems: decision-making delays, can't adapt to changing environment, workforce unmotivated, red tapism, high employee turnover. What changes should it bring?"</div>
+    <div class="tags">
+      <span class="tag fn">Organising</span><span class="tag">Formal + Informal</span><span class="tag">Diversification</span>
+    </div>
+    <div class="solution">
+      <span class="solution-label">solution</span>
+      <ul>
+        <li><strong>Recommendation:</strong> Give due importance to <strong>informal organisation alongside formal</strong>. Enhances job satisfaction, motivates workforce, fixes communication problems.</li>
+        <li><strong>Benefits:</strong> Faster information spread, fulfils social needs of employees, fills inadequacies of formal structure.</li>
+        <li><strong>Diversification:</strong> Embroidery machines, special machines for ready-made garment manufacturers — uses existing resources optimally.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="caselet">
+    <div class="caselet-header">
+      <span class="caselet-id">CASELET 05</span>
+      <span class="caselet-source">📚 FROM SLIDES</span>
+    </div>
+    <h3>Steel Manufacturer's Five Functions</h3>
+    <div class="caselet-body">"A steel company has five main jobs: Manufacturing, Finance, Marketing, Personnel, R&amp;D. Which organisational structure should it adopt and why? List six advantages."</div>
+    <div class="tags">
+      <span class="tag fn">Organising</span><span class="tag">Functional Structure</span>
+    </div>
+    <div class="solution">
+      <span class="solution-label">solution</span>
+      <p><strong>Structure:</strong> Functional structure — because activities require high specialisation across distinct functions, and the company is a single product line (steel).</p>
+      <p><strong>Advantages:</strong></p>
+      <ul>
+        <li>Occupational specialisation in each function</li>
+        <li>Promotes control and coordination within each department</li>
+        <li>Increases managerial and operational efficiency → higher profits</li>
+        <li>Minimum duplication of effort</li>
+        <li>Makes employee training easier</li>
+        <li>Ensures each function gets due attention</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="caselet">
+    <div class="caselet-header">
+      <span class="caselet-id">CASELET 06</span>
+      <span class="caselet-source predicted">🎯 LIKELY</span>
+    </div>
+    <h3>The Growing Startup's Identity Crisis</h3>
+    <div class="caselet-body">"BloomTech started as a 15-person startup where the founder personally handled hiring, marketing, and product decisions. Five years later, they have 300 employees across 4 cities. The founder still wants to approve every major decision, but bottlenecks are killing speed. Senior managers are leaving citing 'no autonomy.' New hires are confused about who decides what."</div>
+    <div class="tags">
+      <span class="tag fn">Organising</span><span class="tag">Centralisation → Decentralisation</span><span class="tag">Scaling</span>
+    </div>
+    <div class="solution">
+      <span class="solution-label">solution</span>
+      <ul>
+        <li><strong>Diagnosis:</strong> Founder-led centralisation hitting its scaling limit. Worked for 15 people, fails at 300.</li>
+        <li><strong>Recommendation:</strong> Systematic <strong>decentralisation</strong> — disperse decision-making authority to function heads and city managers.</li>
+        <li><strong>Why it matters:</strong> (1) relief to founder for strategic focus, (2) quick local decisions, (3) develops next-gen leaders, (4) retains talent by giving them ownership.</li>
+        <li>Complement with clear delegation framework: define authority limits at each level (e.g., spend approvals, hiring approvals, policy changes).</li>
+      </ul>
+      <div class="punchline">In a fast-changing environment, decision speed at the periphery beats decision quality at the centre.</div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>ALWAYS RIDE ANAL ★ ARA ★</span><span class="star">★</span><span>AUTHORITY · RESPONSIBILITY · ACCOUNTABILITY</span><span class="star">★</span><span>ALWAYS RIDE ANAL ★ ARA ★</span><span class="star">★</span><span>AUTHORITY · RESPONSIBILITY · ACCOUNTABILITY</span><span class="star">★</span>
+  </div>
+</div>
+
+<!-- ============ STAFFING ============ -->
+<section class="bank" id="staffing">
+  <div class="section-num">PART 02</div>
+  <div class="section-tagline">/ Staffing · Numbers &amp; people</div>
+  <h2><span class="accent">Staffing</span> caselets.</h2>
+
+  <div class="caselet">
+    <div class="caselet-header">
+      <span class="caselet-id">CASELET 07</span>
+      <span class="caselet-source">📚 FROM SLIDES</span>
+    </div>
+    <h3>Bottom-Up Manpower Estimation</h3>
+    <div class="caselet-body">"A company collects requirements: Production 80, Sales 50, HR 20, Finance 30. Top management expects 10% expansion plus 5% reduction due to automation. Estimate total manpower."</div>
+    <div class="tags">
+      <span class="tag fn">Staffing</span><span class="tag">Bottom-Up Technique</span><span class="tag">Calculation</span>
+    </div>
+    <div class="solution">
+      <span class="solution-label">solution</span>
+      <p><strong>Method:</strong> Bottom-Up Technique. Aggregate departmental requirements, then apply net adjustment.</p>
+      <ul>
+        <li>Base = 80 + 50 + 20 + 30 = <strong>180</strong></li>
+        <li>Net change = +10% − 5% = <strong>+5%</strong></li>
+        <li>Final = 180 × 1.05 = <strong>189 employees</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="caselet">
+    <div class="caselet-header">
+      <span class="caselet-id">CASELET 08</span>
+      <span class="caselet-source">📚 FROM SLIDES</span>
+    </div>
+    <h3>Delphi Round Forecasting</h3>
+    <div class="caselet-body">"Five HR experts give independent estimates. Round 1: 100, 120, 140, 130, 110. After feedback discussion, Round 2: 115, 125, 135, 128, 120. What's the final manpower estimate?"</div>
+    <div class="tags">
+      <span class="tag fn">Staffing</span><span class="tag">Delphi Technique</span><span class="tag">Calculation</span>
+    </div>
+    <div class="solution">
+      <span class="solution-label">solution</span>
+      <p><strong>Method:</strong> Delphi Technique — anonymous iterative expert consensus. Final = average of last round.</p>
+      <ul>
+        <li>Sum = 115 + 125 + 135 + 128 + 120 = <strong>623</strong></li>
+        <li>Average = 623 / 5 = 124.6 ≈ <strong>125 employees</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="caselet">
+    <div class="caselet-header">
+      <span class="caselet-id">CASELET 09</span>
+      <span class="caselet-source">📚 FROM SLIDES</span>
+    </div>
+    <h3>Ratio Analysis with Efficiency Gain</h3>
+    <div class="caselet-body">"Past data: 1 employee handles 200 units of output. Expected production = 50,000 units. Efficiency improvement = 10%. Estimate manpower required."</div>
+    <div class="tags">
+      <span class="tag fn">Staffing</span><span class="tag">Ratio Analysis</span><span class="tag">Calculation</span>
+    </div>
+    <div class="solution">
+      <span class="solution-label">solution</span>
+      <ul>
+        <li>New productivity = 200 × 1.10 = <strong>220 units/employee</strong></li>
+        <li>Employees needed = 50,000 ÷ 220 = 227.27 ≈ <strong>228 employees</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="caselet">
+    <div class="caselet-header">
+      <span class="caselet-id">CASELET 10</span>
+      <span class="caselet-source">📚 FROM SLIDES</span>
+    </div>
+    <h3>Markov Workforce Transition</h3>
+    <div class="caselet-body">"Workforce: 100 Juniors, 50 Seniors, 20 Managers. Transition probabilities: Junior → Junior 0.7, Senior 0.2, Exit 0.1. Senior → Senior 0.6, Manager 0.3, Exit 0.1. Manager → Manager 0.8, Exit 0.2. Estimate workforce after 1 year."</div>
+    <div class="tags">
+      <span class="tag fn">Staffing</span><span class="tag theory">Markov Analysis</span><span class="tag">Calculation</span>
+    </div>
+    <div class="solution">
+      <span class="solution-label">solution</span>
+      <p><strong>Method:</strong> Markov Analysis — apply transition probabilities level-by-level.</p>
+      <ul>
+        <li><strong>Juniors:</strong> Stay = 100 × 0.7 = 70 · Promoted = 100 × 0.2 = 20 · Exit = 10</li>
+        <li><strong>Seniors:</strong> Stay = 50 × 0.6 = 30 · Promoted = 50 × 0.3 = 15 · Exit = 5</li>
+        <li><strong>Managers:</strong> Stay = 20 × 0.8 = 16 · Exit = 4</li>
+      </ul>
+      <p><strong>Final workforce:</strong></p>
+      <ul>
+        <li>Junior = 70</li>
+        <li>Senior = 30 + 20 (from promoted Juniors) = <strong>50</strong></li>
+        <li>Manager = 16 + 15 (from promoted Seniors) = <strong>31</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="caselet">
+    <div class="caselet-header">
+      <span class="caselet-id">CASELET 11</span>
+      <span class="caselet-source predicted">🎯 LIKELY</span>
+    </div>
+    <h3>The Hiring Channel Mix</h3>
+    <div class="caselet-body">"A fast-growing IT services firm needs to hire 200 engineers in 6 months. Senior engineers (5+ years) need cultural fit and specialised skills. Freshers can be moulded but need training investment. The HR head debates: campus drives, lateral hiring through portals, employee referrals, or consultancy firms. Budget is tight."</div>
+    <div class="tags">
+      <span class="tag fn">Staffing</span><span class="tag">Recruitment Sources</span><span class="tag">Internal vs External</span>
+    </div>
+    <div class="solution">
+      <span class="solution-label">solution</span>
+      <p><strong>Recommendation: Mixed channel strategy</strong>, not single-source.</p>
+      <ul>
+        <li><strong>Freshers (60-70%) → Campus hiring</strong> — high volume, lower cost, cultural malleability. Invest in training.</li>
+        <li><strong>Senior engineers (20-25%) → Job portals + employee referrals</strong> — portals widen reach; referrals improve cultural fit (insider vouches).</li>
+        <li><strong>Niche/specialised skills (5-10%) → Consultancies</strong> — only when in-house effort fails. Highest cost (~8.33% of CTC).</li>
+        <li>Avoid over-reliance on any single channel — diversification de-risks the hiring funnel.</li>
+      </ul>
+      <div class="punchline">Channel mix matches role type — freshers from campus, laterals from portals, specialists from consultancies.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LEADERSHIP ============ -->
+<section class="bank" id="leadership">
+  <div class="section-num">PART 03</div>
+  <div class="section-tagline">/ Leadership · Influence in motion</div>
+  <h2><span class="accent">Leadership</span> caselets.</h2>
+
+  <div class="caselet">
+    <div class="caselet-header">
+      <span class="caselet-id">CASELET 12</span>
+      <span class="caselet-source">📚 FROM SLIDES</span>
+    </div>
+    <h3>The Silent Supervisor</h3>
+    <div class="caselet-body">"Ramesh is a technically strong supervisor but rarely communicates clearly. Instructions are vague ('finish quickly,' 'maintain quality'). Output is up, but rejection rate has climbed sharply. Workers say expectations are unclear. Ramesh insists: 'Workers should know their job.'"</div>
+    <div class="tags">
+      <span class="tag fn">Leadership</span><span class="tag">Communication failure</span><span class="tag theory">Path-Goal (Directive)</span><span class="tag">Control gap</span>
+    </div>
+    <div class="solution">
+      <span class="solution-label">solution</span>
+      <ul>
+        <li><strong>Dual failure</strong> — (1) leadership communication breakdown, (2) absence of clear performance standards (control gap).</li>
+        <li>Per <strong>Path-Goal theory</strong>, when tasks are ambiguous, leaders should use <strong>directive behaviour</strong> — Ramesh is failing this.</li>
+        <li><strong>Action plan for Ramesh:</strong> define quality parameters with checklists; introduce daily briefings; use demonstration + feedback loops; set measurable output AND quality targets.</li>
+      </ul>
+      <div class="punchline">People don't fail because they're incapable; they fail because expectations are unclear.</div>
+    </div>
+  </div>
+
+  <div class="caselet">
+    <div class="caselet-header">
+      <span class="caselet-id">CASELET 13</span>
+      <span class="caselet-source">📚 FROM SLIDES</span>
+    </div>
+    <h3>The Star Performer Dilemma</h3>
+    <div class="caselet-body">"Priya is the top performer at a dairy company — high output, hits targets. But she argues with team members and ignores standard processes. Her manager hesitates to act: 'She delivers results.'"</div>
+    <div class="tags">
+      <span class="tag fn">Leadership</span><span class="tag">Behaviour vs Results</span><span class="tag">Appraisal design</span>
+    </div>
+    <div class="solution">
+      <span class="solution-label">solution</span>
+      <ul>
+        <li><strong>Performance = What + How.</strong> Ignoring "how" creates toxic culture and norm violations.</li>
+        <li>Inaction signals to the team that bad behaviour is acceptable if results are good — kills team morale.</li>
+        <li><strong>Action:</strong> direct behavioural feedback to Priya; link appraisal to BOTH output and teamwork/process adherence; coaching first, corrective action if needed.</li>
+      </ul>
+      <div class="punchline">Organisations don't just reward results — they reinforce behaviours.</div>
+    </div>
+  </div>
+
+  <div class="caselet">
+    <div class="caselet-header">
+      <span class="caselet-id">CASELET 14</span>
+      <span class="caselet-source">📚 FROM SLIDES</span>
+    </div>
+    <h3>The Crisis Leader</h3>
+    <div class="caselet-body">"An export shipment was rejected for quality issues. The team panicked. The manager avoided communication initially, then blamed workers, didn't involve team in problem-solving. Trust declined. The same issue repeated next month."</div>
+    <div class="tags">
+      <span class="tag fn">Leadership</span><span class="tag">Crisis response</span><span class="tag">Communication</span><span class="tag">Blame culture</span>
+    </div>
+    <div class="solution">
+      <span class="solution-label">solution</span>
+      <ul>
+        <li><strong>Triple failure:</strong> communication, ownership, learning.</li>
+        <li>In crisis, a leader must provide <strong>direction and reassurance</strong>, not silence then blame.</li>
+        <li>Blame culture kills trust AND prevents learning — guaranteeing repeat problems.</li>
+        <li><strong>Correct approach:</strong> immediate transparent communication; involve team in root-cause analysis; conduct post-mortem; build process safeguards from learning.</li>
+      </ul>
+      <div class="punchline">In crisis, leadership is judged not by control, but by response.</div>
+    </div>
+  </div>
+
+  <div class="caselet">
+    <div class="caselet-header">
+      <span class="caselet-id">CASELET 15</span>
+      <span class="caselet-source predicted">🎯 LIKELY</span>
+    </div>
+    <h3>The Two Founders</h3>
+    <div class="caselet-body">"Founders A and B run competing fintechs. Founder A is hands-on, sets weekly goals, rewards top performers monthly, micro-manages execution. Founder B inspires teams with a 10-year vision, mentors employees personally, encourages questioning the status quo. A's company grows steadily. B's team is fewer but produces breakthrough products. The board wants to know which leadership style is 'right.'"</div>
+    <div class="tags">
+      <span class="tag fn">Leadership</span><span class="tag theory">Transactional</span><span class="tag theory">Transformational</span>
+    </div>
+    <div class="solution">
+      <span class="solution-label">solution</span>
+      <ul>
+        <li><strong>Founder A = Transactional leader</strong> — exchange-based, rewards/structure-driven, clear roles. Great for stable execution, but limited in inspiring breakthrough thinking.</li>
+        <li><strong>Founder B = Transformational leader</strong> — vision-driven, develops people, encourages innovation. Slower steady-state growth, but enables paradigm shifts.</li>
+        <li><strong>Neither is universally "right":</strong> stage of company, team maturity, and market context determine fit. Transactional fits scaling/steady operations; Transformational fits innovation-heavy or crisis-recovery phases.</li>
+        <li>Best companies often combine both — transactional for systems, transformational for culture and direction.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="caselet">
+    <div class="caselet-header">
+      <span class="caselet-id">CASELET 16</span>
+      <span class="caselet-source predicted">🎯 LIKELY</span>
+    </div>
+    <h3>The New Team Lead</h3>
+    <div class="caselet-body">"Akash is promoted to lead a 6-person analytics team. Two members are seasoned experts (8+ years). Two are mid-level (3 years). Two are fresh graduates (6 months in). Akash decides to apply the same leadership style with everyone — give detailed instructions, check progress hourly. The senior members start disengaging. The freshers seem comfortable but slow."</div>
+    <div class="tags">
+      <span class="tag fn">Leadership</span><span class="tag theory">Situational Leadership</span><span class="tag theory">Hersey-Blanchard</span>
+    </div>
+    <div class="solution">
+      <span class="solution-label">solution</span>
+      <ul>
+        <li><strong>Diagnosis:</strong> Akash is applying uniform leadership where <strong>situational/contingency theory</strong> demands adaptation to follower <strong>readiness</strong>.</li>
+        <li><strong>Senior members (high ability, high willingness)</strong> → use <strong>Delegating</strong> style. Give autonomy.</li>
+        <li><strong>Mid-level (moderate readiness)</strong> → <strong>Participative</strong> style. Consult them, share decisions.</li>
+        <li><strong>Freshers (low ability, willing to learn)</strong> → <strong>Directive/Selling</strong> style. Detailed instructions, close coaching.</li>
+        <li>Per Path-Goal: directive for ambiguous tasks, supportive for stress, participative for experts, achievement-oriented for high-potential.</li>
+      </ul>
+      <div class="punchline">One leadership style fits no team. Read the readiness, match the style.</div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>FOREPLAY · FUCKING · FEEDBACK</span><span class="star">★</span><span>FEEDFORWARD · CONCURRENT · FEEDBACK</span><span class="star">★</span><span>FOREPLAY · FUCKING · FEEDBACK</span><span class="star">★</span><span>FEEDFORWARD · CONCURRENT · FEEDBACK</span><span class="star">★</span>
+  </div>
+</div>
+
+<!-- ============ CONTROLLING ============ -->
+<section class="bank" id="controlling">
+  <div class="section-num">PART 04</div>
+  <div class="section-tagline">/ Controlling · Standards, deviations, fixes</div>
+  <h2><span class="accent">Controlling</span> caselets.</h2>
+
+  <div class="caselet">
+    <div class="caselet-header">
+      <span class="caselet-id">CASELET 17</span>
+      <span class="caselet-source">📚 FROM SLIDES</span>
+    </div>
+    <h3>Gagan &amp; The 20-Unit Gap</h3>
+    <div class="caselet-body">"Gagan lets his team perform freely. He then calls a meeting and asks them to check what they've achieved. One day, output is 20 units below target. He declares no worker leaves until the 20-unit gap is closed."</div>
+    <div class="tags">
+      <span class="tag fn">Controlling</span><span class="tag">Control Process</span><span class="tag">Deviation</span><span class="tag">Planning-Control link</span>
+    </div>
+    <div class="solution">
+      <span class="solution-label">solution</span>
+      <ul>
+        <li><strong>Function:</strong> Controlling.</li>
+        <li><strong>What is '20'?</strong> The <strong>deviation</strong> — gap between actual performance and set standards.</li>
+        <li><strong>When was the target set?</strong> At the <strong>planning</strong> stage. Planning sets standards; controlling minimises deviations from them.</li>
+      </ul>
+      <div class="punchline">Planning and controlling are bookends — one sets the standard, the other enforces it.</div>
+    </div>
+  </div>
+
+  <div class="caselet">
+    <div class="caselet-header">
+      <span class="caselet-id">CASELET 18</span>
+      <span class="caselet-source">📚 FROM SLIDES</span>
+    </div>
+    <h3>Saurabh &amp; The CCTVs</h3>
+    <div class="caselet-body">"Saurabh creates a proper control atmosphere in his department. He stays alert to dishonest behaviour, takes immediate stern action, and recently installed CCTVs to monitor employees."</div>
+    <div class="tags">
+      <span class="tag fn">Controlling</span><span class="tag">Importance of Control</span>
+    </div>
+    <div class="solution">
+      <span class="solution-label">solution</span>
+      <ul>
+        <li><strong>Importance implemented:</strong> Controlling ensures <strong>proper order and discipline</strong> in the organisation.</li>
+        <li><strong>Another importance:</strong> Controlling helps in <strong>making efficient use of resources</strong>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="caselet">
+    <div class="caselet-header">
+      <span class="caselet-id">CASELET 19</span>
+      <span class="caselet-source">📚 FROM SLIDES</span>
+    </div>
+    <h3>Parasmani Ship Builders — Multiple Frustrations</h3>
+    <div class="caselet-body">"Parasmani is doing well but employees complain there are no standards to judge motivation or job satisfaction. HR is struggling. Other control efforts feel expensive. Workers resist computer monitoring and CCTVs, calling it against their freedom. Despite all controls, a competitor with better technology has caused losses."</div>
+    <div class="tags">
+      <span class="tag fn">Controlling</span><span class="tag">Limitations of Control</span>
+    </div>
+    <div class="solution">
+      <span class="solution-label">solution</span>
+      <p><strong>Concept:</strong> Limitations of controlling. The case highlights all four:</p>
+      <ul>
+        <li>Difficult to set <strong>quantitative standards</strong> for qualitative things (motivation, job satisfaction).</li>
+        <li>Controlling is <strong>costly</strong> (monitoring systems, CCTVs).</li>
+        <li>Faces <strong>resistance from employees</strong> who see surveillance as freedom-violation.</li>
+        <li>Little control over <strong>external factors</strong> (competitor entering with better tech).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="caselet">
+    <div class="caselet-header">
+      <span class="caselet-id">CASELET 20</span>
+      <span class="caselet-source">📚 FROM SLIDES</span>
+    </div>
+    <h3>Peter &amp; The Tyre Machine</h3>
+    <div class="caselet-body">"Peter is production manager. Target = 80 tyres/day. Actual = 65. Beyond acceptable range. He also notices a marginal increase in office stationery expenses, and a machine performing poorly. How should he prioritise?"</div>
+    <div class="tags">
+      <span class="tag fn">Controlling</span><span class="tag">Critical Point Control</span><span class="tag">Management by Exception</span>
+    </div>
+    <div class="solution">
+      <span class="solution-label">solution</span>
+      <ul>
+        <li><strong>Critical Point Control:</strong> Focus on Key Result Areas. Peter should prioritise the <strong>machine performance</strong> (KRA — drives output). Stationery expense is non-critical; address later.</li>
+        <li><strong>Management by Exception:</strong> The 15-unit shortfall is beyond acceptable range, so it MUST be escalated. The stationery rise is within normal range, so it doesn't need management attention.</li>
+        <li><strong>Action:</strong> Repair or replace the machine immediately; the stationery deviation can be tracked routinely.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="caselet">
+    <div class="caselet-header">
+      <span class="caselet-id">CASELET 21</span>
+      <span class="caselet-source">📚 FROM SLIDES</span>
+    </div>
+    <h3>Quality Issues at Swift Manufacturing</h3>
+    <div class="caselet-body">"Swift makes electronic components for phones. Issues: weak raw material quality checks, no supplier standards (feedforward weak). Machines run without real-time monitoring; workers skip intermediate checks under pressure (concurrent weak). Defects discovered only after shipment; customer complaints rising (feedback only)."</div>
+    <div class="tags">
+      <span class="tag fn">Controlling</span><span class="tag">Feedforward · Concurrent · Feedback</span>
+    </div>
+    <div class="solution">
+      <span class="solution-label">solution</span>
+      <ul>
+        <li><strong>Weakest type:</strong> <strong>Feedforward control</strong>. No supplier standards, weak incoming material checks, no design-stage prevention.</li>
+        <li><strong>Problems from weak feedforward:</strong> defective inputs enter production → defects in final goods → higher rework, wastage, cost → customer complaints, brand damage.</li>
+        <li><strong>Concurrent fix:</strong> introduce real-time monitoring; automated quality checks; train workers to detect/fix defects immediately; supervisor checks at every stage; stop defective production early.</li>
+      </ul>
+      <div class="punchline">Effective control = feedforward (prevent) + concurrent (correct in real-time) + feedback (learn). All three.</div>
+    </div>
+  </div>
+
+  <div class="caselet">
+    <div class="caselet-header">
+      <span class="caselet-id">CASELET 22</span>
+      <span class="caselet-source predicted">🎯 LIKELY</span>
+    </div>
+    <h3>The Balanced Scorecard Pushback</h3>
+    <div class="caselet-body">"A mid-sized FMCG company has rewarded managers purely on quarterly financial metrics for years. Profit is up, but customer complaints are rising, employee turnover hit 28%, and the innovation pipeline is empty. The CFO insists 'financials are the truth.' The CHRO is proposing a new performance system."</div>
+    <div class="tags">
+      <span class="tag fn">Controlling</span><span class="tag theory">Balanced Scorecard</span>
+    </div>
+    <div class="solution">
+      <span class="solution-label">solution</span>
+      <ul>
+        <li><strong>Diagnosis:</strong> Single-dimensional control (only financial) is starving the other three dimensions critical to long-term performance.</li>
+        <li><strong>Recommendation:</strong> Adopt the <strong>Balanced Scorecard</strong> — track four dimensions equally:
+          <ul>
+            <li><strong>Financial:</strong> revenue, profit, cost.</li>
+            <li><strong>Customer:</strong> satisfaction, retention, complaint rate.</li>
+            <li><strong>Internal processes:</strong> defect rate, cycle time, on-time delivery.</li>
+            <li><strong>Learning &amp; growth:</strong> employee engagement, training hours, innovation output.</li>
+          </ul>
+        </li>
+        <li><strong>Why it works:</strong> overweighting finance now is depleting customer goodwill, talent, and future capability. Balance is what makes financial performance sustainable.</li>
+      </ul>
+      <div class="punchline">What you measure is what you incentivise — measure only finance, lose everything else that makes finance possible.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MOTIVATION ============ -->
+<section class="bank" id="motivation">
+  <div class="section-num">PART 05</div>
+  <div class="section-tagline">/ Motivation · The human edge</div>
+  <h2><span class="accent">Motivation</span> caselets.</h2>
+
+  <div class="caselet">
+    <div class="caselet-header">
+      <span class="caselet-id">CASELET 23</span>
+      <span class="caselet-source">📚 FROM SLIDES</span>
+    </div>
+    <h3>Ravi, Neha &amp; Arjun</h3>
+    <div class="caselet-body">"Ravi (top performer) is missing deadlines and seems withdrawn. Neha shows up but contributes the bare minimum. Arjun is high-potential and considering leaving. The manager applies the same motivation policy — increased bonuses — to all three. None of them improve."</div>
+    <div class="tags">
+      <span class="tag fn">Motivation</span><span class="tag">Intrinsic vs Extrinsic</span><span class="tag">Adaptive management</span>
+    </div>
+    <div class="solution">
+      <span class="solution-label">solution</span>
+      <p><strong>Root-cause diagnosis (each is different):</strong></p>
+      <ul>
+        <li><strong>Ravi:</strong> Burnout from chronic overload. Needs <strong>workload reduction + recovery time</strong>, not bonuses.</li>
+        <li><strong>Neha:</strong> Disengagement from lack of meaning. Needs <strong>ownership of a visible project + job enrichment</strong>, not money.</li>
+        <li><strong>Arjun:</strong> Growth frustration from underutilisation. Needs <strong>stretch assignment + mentorship + fast-track path</strong>.</li>
+      </ul>
+      <p><strong>Urgency ranking:</strong></p>
+      <ul>
+        <li>1. <strong>Ravi</strong> — burnout risk, performance collapse imminent.</li>
+        <li>2. <strong>Arjun</strong> — attrition risk for high-potential talent.</li>
+        <li>3. <strong>Neha</strong> — stable but stagnant; lower immediate risk.</li>
+      </ul>
+      <div class="punchline">Employees don't fail from the same reason — diagnose the driver before prescribing the fix.</div>
+    </div>
+  </div>
+
+  <div class="caselet">
+    <div class="caselet-header">
+      <span class="caselet-id">CASELET 24</span>
+      <span class="caselet-source predicted">🎯 LIKELY</span>
+    </div>
+    <h3>The Money Myth</h3>
+    <div class="caselet-body">"A food company manager believes 'money is the only real motivator.' He raises incentives 20%. Short-term output jumps. But after 3 months: quality drops, employees focus only on quantity, teamwork declines, two team leads quit citing 'transactional culture.'"</div>
+    <div class="tags">
+      <span class="tag fn">Motivation</span><span class="tag">Intrinsic vs Extrinsic</span><span class="tag">Incentive design</span>
+    </div>
+    <div class="solution">
+      <span class="solution-label">solution</span>
+      <ul>
+        <li><strong>Diagnosis:</strong> Over-reliance on <strong>extrinsic motivation</strong> (money) at the cost of intrinsic drivers (mastery, meaning, autonomy).</li>
+        <li><strong>The trap:</strong> incentives drive what is <strong>measured</strong> (quantity), not what is desired (quality, teamwork).</li>
+        <li><strong>Better approach:</strong>
+          <ul>
+            <li>Balanced incentives across quantity + quality + teamwork.</li>
+            <li>Recognition programs alongside cash.</li>
+            <li>Growth opportunities and skill development.</li>
+            <li>Autonomy in how work gets done.</li>
+          </ul>
+        </li>
+      </ul>
+      <div class="punchline">What you reward is what you get — often at the cost of everything else.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SIGNALING ============ -->
+<section class="bank" id="signaling">
+  <div class="section-num">PART 06</div>
+  <div class="section-tagline">/ Signaling · The HR twist</div>
+  <h2><span class="accent">Signaling</span> caselets.</h2>
+
+  <div class="caselet">
+    <div class="caselet-header">
+      <span class="caselet-id">CASELET 25</span>
+      <span class="caselet-source predicted">🎯 LIKELY</span>
+    </div>
+    <h3>The Brand-Name Hiring Trap</h3>
+    <div class="caselet-body">"A tech firm hires 80% of its analysts from top 5 institutes. Recent data shows performance variance within these hires is high — some are stars, others underperform. Meanwhile, several rejected candidates from tier-2 colleges who joined competitors are outperforming. The HR director wants to redesign the screening process."</div>
+    <div class="tags">
+      <span class="tag fn">HRM / Staffing</span><span class="tag theory">Signaling Theory</span><span class="tag">Hiring bias</span>
+    </div>
+    <div class="solution">
+      <span class="solution-label">solution</span>
+      <ul>
+        <li><strong>Concept:</strong> Michael Spence's <strong>Signaling Theory</strong>. Employers face <strong>information asymmetry</strong> — they can't directly observe productivity, so they rely on signals (degree, institute).</li>
+        <li><strong>Problem:</strong> Signals are <strong>imperfect proxies</strong>. A top-institute degree signals discipline and intelligence but doesn't <em>cause</em> productivity. Over-reliance creates bias — talented non-institute hires get filtered out.</li>
+        <li><strong>Redesign recommendations:</strong>
+          <ul>
+            <li>Combine signals with <strong>skill-based assessments</strong> (coding tests, case studies, work simulations).</li>
+            <li>Use <strong>behavioural interviews</strong> to evaluate problem-solving and culture fit.</li>
+            <li>Track <strong>post-hire performance by source</strong> — let data correct the bias.</li>
+            <li>Build <strong>employer branding</strong> as a counter-signal to attract talent beyond the resume circuit.</li>
+          </ul>
+        </li>
+      </ul>
+      <div class="punchline">Signals get you the interview. Skills get you the job. Don't confuse the two.</div>
+    </div>
+  </div>
+
+  <div class="caselet">
+    <div class="caselet-header">
+      <span class="caselet-id">CASELET 26</span>
+      <span class="caselet-source predicted">🎯 LIKELY</span>
+    </div>
+    <h3>The Credential Inflation Problem</h3>
+    <div class="caselet-body">"A consulting firm's entry-level role required a Bachelor's degree 10 years ago. Today, candidates routinely come with MBAs, multiple certifications, and overseas internships. Recruiters increasingly demand more credentials to filter. But onboarding shows new hires aren't proportionally more productive than past hires. Costs are up, hiring takes 4x longer."</div>
+    <div class="tags">
+      <span class="tag fn">HRM / Staffing</span><span class="tag theory">Signaling Theory</span><span class="tag">Signal inflation</span>
+    </div>
+    <div class="solution">
+      <span class="solution-label">solution</span>
+      <ul>
+        <li><strong>Concept:</strong> <strong>Signal inflation</strong> — when everyone has a degree, the degree stops differentiating, so candidates pile on more credentials, and recruiters demand more to filter.</li>
+        <li><strong>The trap:</strong> credentials grow, but actual productivity doesn't. Cost and time inflate; signal value deflates.</li>
+        <li><strong>Recommendations:</strong>
+          <ul>
+            <li>Decouple credentials from screening — define the <strong>actual skills</strong> needed for the role.</li>
+            <li>Use <strong>structured assessments</strong> (case work, technical tests) that measure capability directly.</li>
+            <li>Pilot <strong>skill-first hiring</strong> with smaller candidate pools and track outcomes.</li>
+            <li>Recognise that signals fail at the margin — the 10th certification doesn't predict performance better than the 2nd.</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INTEGRATOR ============ -->
+<section class="bank" id="integrator">
+  <div class="section-num">PART 07</div>
+  <div class="section-tagline">/ Integrator · The full picture</div>
+  <h2><span class="accent">Integrator</span> caselets.</h2>
+
+  <div class="caselet">
+    <div class="caselet-header">
+      <span class="caselet-id">CASELET 27</span>
+      <span class="caselet-source predicted">🎯 LIKELY</span>
+    </div>
+    <h3>Great on Paper, Broken in Practice</h3>
+    <div class="caselet-body">"GreenHarvest Foods has well-documented HR policies, a clean org chart, ISO-certified processes, and an annual appraisal system. Yet employees report confusion about priorities, unclear daily expectations, low motivation, delayed feedback, and frustration with managers who don't communicate during pressure. The CEO is puzzled — 'We've designed everything correctly.'"</div>
+    <div class="tags">
+      <span class="tag fn">All five functions</span><span class="tag">Management in Action</span><span class="tag">Formal vs Lived</span>
+    </div>
+    <div class="solution">
+      <span class="solution-label">solution</span>
+      <ul>
+        <li><strong>Diagnosis:</strong> Classic <strong>gap between formal system (written) and lived reality (executed)</strong>. Management isn't designed in documents — it's lived in daily interactions.</li>
+        <li><strong>Function-by-function diagnosis:</strong>
+          <ul>
+            <li><strong>Planning:</strong> Long-term plans exist; weekly task clarity doesn't. Fix: clear deadlines, communicated expectations.</li>
+            <li><strong>Organising:</strong> Chart is clear; coordination between teams is weak. Fix: lateral communication norms.</li>
+            <li><strong>Staffing:</strong> Hiring works; onboarding and integration don't. Fix: deep mentoring, role clarity.</li>
+            <li><strong>Leadership:</strong> Managers manage tasks but don't communicate under pressure. Fix: daily check-ins, supportive behaviour.</li>
+            <li><strong>Control:</strong> Annual appraisal exists; real-time feedback doesn't. Fix: monthly/quarterly check-ins, concurrent feedback.</li>
+          </ul>
+        </li>
+        <li>Strengthening daily execution at the manager-employee interface fixes more than redesigning policies ever will.</li>
+      </ul>
+      <div class="punchline">Management is not what's written in handbooks — it's what happens between people at work every single day.</div>
+    </div>
+  </div>
+
+  <div class="caselet">
+    <div class="caselet-header">
+      <span class="caselet-id">CASELET 28</span>
+      <span class="caselet-source predicted">🎯 LIKELY</span>
+    </div>
+    <h3>The McKinsey 7S Stress Test</h3>
+    <div class="caselet-body">"AeroParts Ltd had a strong 20-year run as a precision aerospace components manufacturer. Recently, the board hired an aggressive new CEO from a fast-moving consumer goods background. He's pushed an ambitious growth strategy, but employees say the new style clashes with their precision-craftsmanship culture. The old reporting structure was disrupted in a restructuring, IT systems weren't updated, and skilled engineers are leaving. Quality slipped, growth stalled."</div>
+    <div class="tags">
+      <span class="tag fn">Organising</span><span class="tag theory">McKinsey 7S</span><span class="tag">Misalignment</span>
+    </div>
+    <div class="solution">
+      <span class="solution-label">solution</span>
+      <p><strong>7S Audit:</strong></p>
+      <ul>
+        <li><strong>Strategy</strong> — newly aggressive (growth-focused). ⚠️ doesn't fit precision-craftsmanship industry.</li>
+        <li><strong>Structure</strong> — recently disrupted, unclear after restructuring. <strong>WEAK.</strong></li>
+        <li><strong>Systems</strong> — IT not updated to match new strategy. <strong>WEAK.</strong></li>
+        <li><strong>Shared Values</strong> — precision craftsmanship culture clashing with FMCG-speed style. <strong>WEAK.</strong></li>
+        <li><strong>Style</strong> — aggressive new CEO style alien to the org. <strong>WEAK.</strong></li>
+        <li><strong>Staff</strong> — skilled engineers exiting. <strong>WEAKENING.</strong></li>
+        <li><strong>Skills</strong> — historically strong, but eroding with attrition.</li>
+      </ul>
+      <p><strong>Diagnosis:</strong> Multiple soft S's misaligned (Style + Shared Values) dragging hard S's (Structure + Systems) down. Strategy is now incompatible with the rest.</p>
+      <p><strong>Recommendation:</strong></p>
+      <ul>
+        <li>Realign Style first — CEO must adapt approach or the culture clash will continue bleeding talent.</li>
+        <li>Stabilise Structure and update Systems before chasing growth.</li>
+        <li>Reinforce Shared Values explicitly — celebrate precision and craftsmanship.</li>
+        <li>Only THEN re-evaluate Strategy — aggressive growth may need pacing.</li>
+      </ul>
+      <div class="punchline">Culture eats strategy for breakfast. One misaligned S can topple the rest.</div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="footer-emoji">📚</div>
+  <div class="footer-big">Read. Diagnose. Repeat.</div>
+  <div class="footer-sub">— CASELET BANK · 2026 —</div>
+</footer>
+
+</body>
+</html>
