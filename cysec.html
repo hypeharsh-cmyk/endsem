@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cybersecurity Notes: Classified Study Broadcast</title>
+  <style>
+    :root {
+      --black: #0b0b0d;
+      --ink: #131216;
+      --paper: #f4eadb;
+      --paper-2: #fff7e8;
+      --beige: #d7c1a3;
+      --blue: #1e7bc8;
+      --blue-dark: #0e4f86;
+      --red: #e2352f;
+      --yellow: #ffc84a;
+      --cyan: #67d6e7;
+      --muted: #8a7c69;
+      --shadow: 0 22px 70px rgba(0, 0, 0, .42);
+      --radius: 8px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--black);
+    }
+
+    body {
+      margin: 0;
+      color: var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 18% -8%, rgba(30, 123, 200, .34), transparent 34rem),
+        radial-gradient(circle at 88% 8%, rgba(226, 53, 47, .25), transparent 30rem),
+        linear-gradient(180deg, #07070a 0%, #121013 44%, #08080a 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 50;
+      opacity: .19;
+      background-image:
+        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px),
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.11) 0 1px, transparent 1px);
+      background-size: 100% 4px, 4px 100%, 13px 13px;
+      mix-blend-mode: overlay;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 4px;
+      z-index: 60;
+      background: linear-gradient(90deg, var(--red), var(--yellow), var(--cyan));
+      box-shadow: 0 0 18px rgba(255, 200, 74, .5);
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: .85rem clamp(1rem, 4vw, 2.5rem);
+      background: rgba(8, 8, 10, .78);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(244, 234, 219, .1);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: .84rem;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 2.2rem;
+      height: 2.2rem;
+      color: var(--black);
+      background: var(--yellow);
+      border: 2px solid var(--paper);
+      transform: rotate(-8deg);
+      box-shadow: 5px 5px 0 var(--red);
+    }
+
+    .pill-row {
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .pill {
+      border: 1px solid rgba(244, 234, 219, .18);
+      border-radius: 999px;
+      padding: .45rem .7rem;
+      color: rgba(244, 234, 219, .78);
+      font-size: .72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .hero {
+      min-height: 92vh;
+      position: relative;
+      display: grid;
+      align-items: end;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(244, 234, 219, .14);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(105deg, rgba(11,11,13,.96) 0 38%, rgba(11,11,13,.4) 62%, rgba(11,11,13,.94) 100%),
+        repeating-linear-gradient(135deg, transparent 0 28px, rgba(255, 200, 74, .12) 29px 31px),
+        radial-gradient(circle at 72% 35%, rgba(30, 123, 200, .55), transparent 18rem),
+        radial-gradient(circle at 82% 78%, rgba(226, 53, 47, .5), transparent 16rem);
+    }
+
+    .poster {
+      position: absolute;
+      right: max(2vw, 1rem);
+      top: 12vh;
+      width: min(44vw, 560px);
+      aspect-ratio: 4 / 5;
+      border: 3px solid var(--paper);
+      background:
+        linear-gradient(150deg, transparent 0 42%, rgba(255,255,255,.12) 42% 44%, transparent 44%),
+        radial-gradient(circle at 36% 26%, var(--yellow) 0 11%, transparent 11.5%),
+        linear-gradient(90deg, var(--blue) 0 48%, var(--red) 48% 100%);
+      box-shadow: var(--shadow), 16px 16px 0 rgba(255, 200, 74, .9);
+      transform: rotate(3deg);
+      opacity: .95;
+    }
+
+    .poster::before {
+      content: "TOP SECRET";
+      position: absolute;
+      top: 7%;
+      left: 8%;
+      padding: .28rem .55rem;
+      color: var(--paper);
+      background: var(--black);
+      font: 900 .86rem ui-monospace, SFMono-Regular, Consolas, monospace;
+      letter-spacing: .15em;
+      transform: rotate(-5deg);
+    }
+
+    .poster::after {
+      content: "SYN ACK ACK";
+      position: absolute;
+      left: 9%;
+      bottom: 10%;
+      color: var(--black);
+      font: 1000 clamp(2.7rem, 6vw, 6rem) Impact, Haettenschweiler, "Arial Black", sans-serif;
+      line-height: .82;
+      max-width: 8ch;
+      text-shadow: 3px 3px 0 var(--paper);
+    }
+
+    .hero-inner {
+      position: relative;
+      width: min(var(--max), calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 8rem 0 5rem;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: .65rem;
+      margin-bottom: 1.2rem;
+      color: var(--yellow);
+      font-size: .8rem;
+      font-weight: 900;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 2.3rem;
+      height: .28rem;
+      background: var(--red);
+      box-shadow: 1.3rem .55rem 0 var(--blue);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 900px;
+      color: var(--paper-2);
+      font-family: Impact, Haettenschweiler, "Arial Black", sans-serif;
+      font-size: clamp(4rem, 12vw, 10.5rem);
+      line-height: .78;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      text-wrap: balance;
+      text-shadow: 5px 5px 0 rgba(226, 53, 47, .9), 10px 10px 0 rgba(30, 123, 200, .75);
+    }
+
+    .subtitle {
+      max-width: 680px;
+      margin: 2rem 0 0;
+      color: rgba(244, 234, 219, .86);
+      font-size: clamp(1.08rem, 2vw, 1.35rem);
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .8rem;
+      margin-top: 2rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      min-height: 2.9rem;
+      padding: .8rem 1rem;
+      border: 2px solid var(--paper);
+      color: var(--black);
+      background: var(--paper);
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      box-shadow: 7px 7px 0 var(--red);
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+
+    .button:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 11px 11px 0 var(--blue);
+      background: var(--yellow);
+    }
+
+    .button.secondary {
+      color: var(--paper);
+      background: transparent;
+      box-shadow: 7px 7px 0 rgba(30, 123, 200, .75);
+    }
+
+    .ticker {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      overflow: hidden;
+      background: var(--yellow);
+      color: var(--black);
+      border-top: 2px solid var(--black);
+      border-bottom: 2px solid var(--black);
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      white-space: nowrap;
+    }
+
+    .ticker span {
+      padding: .65rem 1.3rem;
+      animation: ticker 24s linear infinite;
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-100%); }
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap: clamp(1.5rem, 4vw, 3rem);
+      width: min(var(--max), calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 4rem 0 6rem;
+    }
+
+    .side-nav {
+      position: sticky;
+      top: 5.2rem;
+      align-self: start;
+      padding: 1rem;
+      border: 1px solid rgba(244, 234, 219, .17);
+      background: rgba(244, 234, 219, .06);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+    }
+
+    .side-nav strong {
+      display: block;
+      margin-bottom: .9rem;
+      color: var(--yellow);
+      font: 900 .78rem ui-monospace, SFMono-Regular, Consolas, monospace;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .side-nav a {
+      display: block;
+      padding: .75rem .7rem;
+      margin-bottom: .35rem;
+      color: rgba(244, 234, 219, .72);
+      border-left: 3px solid transparent;
+      font-size: .92rem;
+      line-height: 1.25;
+      transition: color .2s ease, background .2s ease, border-color .2s ease, transform .2s ease;
+    }
+
+    .side-nav a:hover,
+    .side-nav a.active {
+      color: var(--paper-2);
+      background: rgba(30, 123, 200, .16);
+      border-color: var(--red);
+      transform: translateX(3px);
+    }
+
+    .content {
+      min-width: 0;
+    }
+
+    section {
+      position: relative;
+      margin-bottom: 5rem;
+      scroll-margin-top: 6rem;
+    }
+
+    .chapter {
+      border: 1px solid rgba(244, 234, 219, .14);
+      background:
+        linear-gradient(180deg, rgba(244, 234, 219, .08), rgba(244, 234, 219, .03)),
+        rgba(11, 11, 13, .52);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .chapter-header {
+      position: relative;
+      padding: clamp(1.2rem, 4vw, 2.2rem);
+      background:
+        linear-gradient(90deg, rgba(226, 53, 47, .92), rgba(226, 53, 47, .08) 50%, rgba(30, 123, 200, .58)),
+        repeating-linear-gradient(135deg, rgba(255,255,255,.11) 0 2px, transparent 2px 10px);
+      border-bottom: 1px solid rgba(244, 234, 219, .18);
+    }
+
+    .chapter-header.blue {
+      background:
+        linear-gradient(90deg, rgba(30, 123, 200, .86), rgba(30, 123, 200, .08) 56%, rgba(255, 200, 74, .55)),
+        repeating-linear-gradient(135deg, rgba(255,255,255,.1) 0 2px, transparent 2px 10px);
+    }
+
+    .chapter-header.gold {
+      color: var(--black);
+      background:
+        linear-gradient(90deg, rgba(255, 200, 74, .95), rgba(255, 200, 74, .3) 55%, rgba(226, 53, 47, .55)),
+        repeating-linear-gradient(135deg, rgba(11,11,13,.15) 0 2px, transparent 2px 10px);
+    }
+
+    .chapter-header h2 {
+      margin: .35rem 0 0;
+      font-family: Impact, Haettenschweiler, "Arial Black", sans-serif;
+      font-size: clamp(2.3rem, 7vw, 5.4rem);
+      line-height: .86;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    .eyebrow {
+      font: 900 .8rem ui-monospace, SFMono-Regular, Consolas, monospace;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .chapter-body {
+      padding: clamp(1.2rem, 4vw, 2.3rem);
+    }
+
+    p {
+      color: rgba(244, 234, 219, .84);
+      font-size: 1.02rem;
+      line-height: 1.78;
+    }
+
+    .lead {
+      max-width: 820px;
+      color: var(--paper-2);
+      font-size: clamp(1.15rem, 2.1vw, 1.5rem);
+      line-height: 1.55;
+    }
+
+    h3 {
+      margin: 2rem 0 .8rem;
+      color: var(--paper-2);
+      font-size: clamp(1.5rem, 2.4vw, 2.2rem);
+      line-height: 1.05;
+      text-transform: uppercase;
+      letter-spacing: .02em;
+    }
+
+    h4 {
+      margin: 1.2rem 0 .4rem;
+      color: var(--yellow);
+      font-size: .92rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    ul, ol {
+      padding-left: 1.15rem;
+      color: rgba(244, 234, 219, .82);
+      line-height: 1.72;
+    }
+
+    li { margin: .35rem 0; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin: 1.3rem 0;
+    }
+
+    .grid.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      position: relative;
+      padding: 1.1rem;
+      border: 1px solid rgba(244, 234, 219, .18);
+      background: rgba(244, 234, 219, .075);
+      box-shadow: 10px 10px 0 rgba(0,0,0,.28);
+      transition: transform .22s ease, border-color .22s ease, background .22s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px) rotate(-.5deg);
+      border-color: rgba(255, 200, 74, .75);
+      background: rgba(244, 234, 219, .105);
+    }
+
+    .card h4 {
+      margin-top: 0;
+    }
+
+    .card p,
+    .card li {
+      font-size: .96rem;
+      line-height: 1.6;
+    }
+
+    .threat-card {
+      padding: 1.2rem;
+      color: var(--black);
+      background: var(--paper);
+      border: 2px solid var(--black);
+      box-shadow: 9px 9px 0 var(--red);
+    }
+
+    .threat-card strong {
+      display: block;
+      margin-bottom: .35rem;
+      font: 1000 1.1rem Impact, Haettenschweiler, "Arial Black", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+    }
+
+    .quote {
+      position: relative;
+      margin: 2rem 0;
+      padding: clamp(1.2rem, 4vw, 2rem);
+      color: var(--black);
+      background: var(--yellow);
+      border: 2px solid var(--black);
+      box-shadow: 12px 12px 0 var(--blue);
+      transform: rotate(-1deg);
+    }
+
+    .quote p {
+      margin: 0;
+      color: var(--black);
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      font-weight: 950;
+      line-height: 1.15;
+      text-transform: uppercase;
+    }
+
+    .classified {
+      margin: 1.5rem 0;
+      border: 1px solid rgba(244, 234, 219, .2);
+      background:
+        linear-gradient(90deg, rgba(226,53,47,.18), transparent 22%),
+        rgba(0,0,0,.34);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.05);
+    }
+
+    .classified .stamp {
+      display: inline-block;
+      margin: 1rem 1rem 0;
+      padding: .3rem .55rem;
+      color: var(--paper);
+      border: 2px solid var(--red);
+      font: 900 .78rem ui-monospace, SFMono-Regular, Consolas, monospace;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      transform: rotate(-2deg);
+    }
+
+    .classified .inside {
+      padding: 1rem;
+    }
+
+    .redacted {
+      color: transparent;
+      background: linear-gradient(90deg, var(--paper) 0 9%, var(--black) 9% 91%, var(--paper) 91%);
+      border-radius: 2px;
+      padding: 0 .18rem;
+    }
+
+    .terminal {
+      margin: 1.4rem 0;
+      overflow: hidden;
+      border: 1px solid rgba(103, 214, 231, .35);
+      background: #08090d;
+      box-shadow: 0 18px 55px rgba(0,0,0,.34);
+    }
+
+    .terminal .bar {
+      display: flex;
+      gap: .45rem;
+      align-items: center;
+      padding: .7rem .9rem;
+      border-bottom: 1px solid rgba(244, 234, 219, .12);
+      color: rgba(244, 234, 219, .68);
+      font: 800 .76rem ui-monospace, SFMono-Regular, Consolas, monospace;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .dot {
+      width: .65rem;
+      height: .65rem;
+      border-radius: 50%;
+      background: var(--red);
+      box-shadow: 1rem 0 0 var(--yellow), 2rem 0 0 var(--cyan);
+      margin-right: 2rem;
+    }
+
+    pre {
+      margin: 0;
+      padding: 1rem;
+      overflow: auto;
+      color: #dff9ff;
+      font: .91rem/1.65 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+      color: var(--cyan);
+    }
+
+    .timeline {
+      display: grid;
+      gap: .85rem;
+      counter-reset: step;
+      margin: 1.4rem 0;
+    }
+
+    .step {
+      counter-increment: step;
+      display: grid;
+      grid-template-columns: 4rem minmax(0, 1fr);
+      gap: 1rem;
+      align-items: start;
+      padding: 1rem;
+      border: 1px solid rgba(244, 234, 219, .14);
+      background: rgba(255,255,255,.045);
+    }
+
+    .step::before {
+      content: counter(step, decimal-leading-zero);
+      display: grid;
+      place-items: center;
+      height: 3rem;
+      color: var(--black);
+      background: var(--paper);
+      font: 1000 1.15rem Impact, Haettenschweiler, "Arial Black", sans-serif;
+      box-shadow: 5px 5px 0 var(--red);
+    }
+
+    .step h4 {
+      margin-top: 0;
+    }
+
+    .divider {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 1rem;
+      margin: 2.5rem 0;
+      color: var(--yellow);
+      font: 1000 .82rem ui-monospace, SFMono-Regular, Consolas, monospace;
+      text-transform: uppercase;
+      letter-spacing: .15em;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      height: .45rem;
+      background:
+        linear-gradient(90deg, var(--red) 0 30%, transparent 30% 36%, var(--blue) 36% 62%, transparent 62% 68%, var(--yellow) 68%);
+    }
+
+    .exam-strip {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 1rem;
+      align-items: stretch;
+      margin-top: 1.5rem;
+    }
+
+    .exam-box {
+      padding: 1rem;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(244, 234, 219, .16);
+    }
+
+    .flash {
+      cursor: pointer;
+    }
+
+    .flash .answer {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows .25s ease;
+    }
+
+    .flash .answer > div {
+      overflow: hidden;
+    }
+
+    .flash.open .answer {
+      grid-template-rows: 1fr;
+    }
+
+    .source-list a {
+      display: inline-block;
+      margin: .2rem .25rem .2rem 0;
+      padding: .38rem .55rem;
+      color: rgba(244, 234, 219, .8);
+      border: 1px solid rgba(244, 234, 219, .18);
+      background: rgba(0,0,0,.25);
+      font-size: .8rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .75s ease, transform .75s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 920px) {
+      .poster {
+        width: 66vw;
+        opacity: .28;
+        right: -12vw;
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+        padding-top: 2rem;
+      }
+
+      .side-nav {
+        position: relative;
+        top: auto;
+        display: flex;
+        overflow-x: auto;
+        gap: .4rem;
+      }
+
+      .side-nav strong { display: none; }
+
+      .side-nav a {
+        min-width: max-content;
+        border-left: 0;
+        border-bottom: 3px solid transparent;
+      }
+
+      .side-nav a:hover,
+      .side-nav a.active {
+        transform: none;
+        border-left: 0;
+        border-bottom-color: var(--red);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .pill-row {
+        justify-content: flex-start;
+      }
+
+      .hero {
+        min-height: 86vh;
+      }
+
+      .hero-inner {
+        padding-top: 6rem;
+      }
+
+      h1 {
+        font-size: clamp(3.5rem, 19vw, 6rem);
+      }
+
+      .grid,
+      .grid.three,
+      .exam-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .step {
+        grid-template-columns: 1fr;
+      }
+
+      .button {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Go to top">
+      <span class="brand-mark">V</span>
+      <span>Vought-ish Cyber Notes</span>
+    </a>
+    <div class="pill-row" aria-label="Study modes">
+      <span class="pill">Exam Mode</span>
+      <span class="pill">No Matrix Green</span>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-label="Hero">
+      <div class="poster" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <span class="kicker">Classified study broadcast</span>
+        <h1>Cybersecurity<br />But Make It<br />Unhinged</h1>
+        <p class="subtitle">A cinematic notes site for your cybersecurity exam: networks, OSI, TCP, CIA, cryptography, IAM, vulnerabilities, testing, DFIR, cybercrime, privacy, cyber law, and continuity. Stylish enough to keep scrolling. Clean enough to actually remember.</p>
+        <div class="hero-actions">
+          <a class="button" href="#network">Start Reading</a>
+          <a class="button secondary" href="#recall">Quick Recall</a>
+        </div>
+      </div>
+      <div class="ticker" aria-hidden="true">
+        <span>Fake security warning: unauthorized boredom detected</span>
+        <span>Threat level: exam season</span>
+        <span>Packets moving, coffee pending, notes declassified</span>
+        <span>Trust no link, verify every concept</span>
+      </div>
+    </section>
+
+    <div class="layout">
+      <nav class="side-nav" aria-label="Section navigation">
+        <strong>Episode List</strong>
+        <a href="#network">01 Networks</a>
+        <a href="#security">02 Core Security</a>
+        <a href="#testing">03 Vulnerabilities</a>
+        <a href="#human">04 Human Layer</a>
+        <a href="#response">05 Response</a>
+        <a href="#privacy">06 Privacy & Law</a>
+        <a href="#recall">Final Recall</a>
+      </nav>
+
+      <div class="content">
+        <section id="network" class="chapter reveal">
+          <div class="chapter-header">
+            <span class="eyebrow">Episode 01 / Network Anatomy</span>
+            <h2>The Internet Is Just Packets With Better PR</h2>
+          </div>
+          <div class="chapter-body">
+            <p class="lead">A computer network is a group of connected devices that exchange data and share resources. Devices are nodes, the paths are links, and protocols are the rules that keep everyone from screaming in different formats.</p>
+
+            <div class="grid three">
+              <div class="threat-card">
+                <strong>Node</strong>
+                Any device that sends, receives, or forwards data: laptop, mobile, printer, server, router.
+              </div>
+              <div class="threat-card">
+                <strong>Packet</strong>
+                A small chunk of data with addressing information. Big files travel as many packets and reassemble later.
+              </div>
+              <div class="threat-card">
+                <strong>Protocol</strong>
+                A rulebook for formatting, sending, receiving, acknowledging, and securing data.
+              </div>
+            </div>
+
+            <h3>Network Devices You Must Know</h3>
+            <div class="grid">
+              <div class="card"><h4>Router</h4><p>Connects different networks, uses IP addresses, and chooses the best path for packets.</p></div>
+              <div class="card"><h4>Switch</h4><p>Connects devices inside the same network and forwards frames to the intended device instead of shouting to everyone.</p></div>
+              <div class="card"><h4>Hub</h4><p>Basic connector that broadcasts data to all ports. Less efficient and less secure than a switch.</p></div>
+              <div class="card"><h4>Gateway</h4><p>Translates between networks that use different protocols. Often used at the edge of private networks.</p></div>
+              <div class="card"><h4>Access Point</h4><p>Extends a wired network into wireless coverage so mobile devices can join.</p></div>
+              <div class="card"><h4>Firewall</h4><p>Monitors and controls traffic based on rules. It allows, blocks, or filters traffic.</p></div>
+            </div>
+
+            <div class="divider">Packet Drama</div>
+
+            <h3>How The Internet Works</h3>
+            <div class="timeline">
+              <div class="step"><div><h4>Connect</h4><p>Your device connects through a router or modem to an ISP.</p></div></div>
+              <div class="step"><div><h4>Resolve</h4><p>DNS translates a domain name like <code>example.com</code> into an IP address.</p></div></div>
+              <div class="step"><div><h4>Handshake</h4><p>TCP establishes reliability. TLS may secure the session before sensitive data moves.</p></div></div>
+              <div class="step"><div><h4>Request</h4><p>The browser sends an HTTP/HTTPS request to the server.</p></div></div>
+              <div class="step"><div><h4>Reassemble</h4><p>HTML, CSS, JavaScript, images, and other data return as packets and are rebuilt by your browser.</p></div></div>
+            </div>
+
+            <h3>OSI Model: The Seven-Layer Cake With Consequences</h3>
+            <div class="grid">
+              <div class="card"><h4>7 Application</h4><p>User-facing network services: HTTP/S, DNS, FTP, SMTP.</p></div>
+              <div class="card"><h4>6 Presentation</h4><p>Formatting, translation, compression, encryption and decryption.</p></div>
+              <div class="card"><h4>5 Session</h4><p>Starts, manages, and terminates communication sessions.</p></div>
+              <div class="card"><h4>4 Transport</h4><p>Segmentation, reliability, flow control. TCP and UDP live here.</p></div>
+              <div class="card"><h4>3 Network</h4><p>Logical addressing and routing. IP, routers, packets.</p></div>
+              <div class="card"><h4>2 Data Link</h4><p>Frames, MAC addresses, node-to-node delivery, local error detection.</p></div>
+              <div class="card"><h4>1 Physical</h4><p>Bits moving through cables, fiber, radio, or electrical signals.</p></div>
+            </div>
+
+            <div class="terminal">
+              <div class="bar"><span class="dot"></span> TCP handshake overlay</div>
+              <pre><code>CLIENT -> SERVER : SYN      // can we talk?
+SERVER -> CLIENT : SYN-ACK  // yes, I hear you
+CLIENT -> SERVER : ACK      // locked in, send data</code></pre>
+            </div>
+
+            <div class="quote"><p>Exam line: TCP is reliable because it uses sequencing, acknowledgements, checksums, and retransmission.</p></div>
+          </div>
+        </section>
+
+        <section id="security" class="chapter reveal">
+          <div class="chapter-header blue">
+            <span class="eyebrow">Episode 02 / Core Security Principles</span>
+            <h2>Trust Is Cute. Verification Is Hot.</h2>
+          </div>
+          <div class="chapter-body">
+            <p class="lead">Cybersecurity protects networks, devices, identities, data, and systems from unauthorized access, disruption, damage, or misuse. The goal is not magical invincibility. It is reducing exposure, detecting trouble early, and recovering well.</p>
+
+            <h3>CIA Triad</h3>
+            <div class="grid three">
+              <div class="card">
+                <h4>Confidentiality</h4>
+                <p>Only authorized people or systems can access sensitive information. Think least privilege, MFA, access control, encryption.</p>
+              </div>
+              <div class="card">
+                <h4>Integrity</h4>
+                <p>Data remains accurate, complete, and protected from unauthorized changes. Think hashing, digital signatures, audit logs.</p>
+              </div>
+              <div class="card">
+                <h4>Availability</h4>
+                <p>Systems and data are accessible when needed. Think backups, redundancy, DDoS protection, disaster recovery.</p>
+              </div>
+            </div>
+
+            <div class="classified">
+              <span class="stamp">Vought Security Advisory</span>
+              <div class="inside">
+                <p><strong>Do not confuse:</strong> Confidentiality hides data, integrity proves data was not messed with, availability keeps data reachable. A ransomware attack often damages availability first, then confidentiality/integrity depending on theft or tampering.</p>
+              </div>
+            </div>
+
+            <h3>IAM: Identity Access Management</h3>
+            <p>IAM answers two exam-friendly questions: <strong>Who are you?</strong> and <strong>what are you allowed to do?</strong> Identity management authenticates the user or device. Access management authorizes resources based on rules, roles, context, and least privilege.</p>
+            <div class="grid">
+              <div class="card"><h4>Authentication</h4><p>Verifies identity using passwords, MFA, biometrics, OTPs, passkeys, or certificates.</p></div>
+              <div class="card"><h4>Authorization</h4><p>Grants permissions after identity is verified. RBAC assigns access based on roles.</p></div>
+              <div class="card"><h4>SSO</h4><p>Single sign-on lets users access multiple services through one authenticated identity flow.</p></div>
+              <div class="card"><h4>Zero Trust</h4><p>Verify explicitly, use least privilege, and assume breach instead of trusting by network location.</p></div>
+            </div>
+
+            <h3>Cryptography Without The Wizard Smoke</h3>
+            <div class="grid">
+              <div class="card"><h4>Symmetric Encryption</h4><p>Same secret key encrypts and decrypts. Fast and useful for bulk data. Key exchange is the hard part. Example: AES.</p></div>
+              <div class="card"><h4>Asymmetric Encryption</h4><p>Public key encrypts or verifies, private key decrypts or signs. Slower but solves key sharing. Example: RSA, ECC.</p></div>
+              <div class="card"><h4>Hashing</h4><p>One-way function that turns data into a fixed digest. Used for integrity checks and password storage. Example: SHA-256.</p></div>
+              <div class="card"><h4>Digital Signature</h4><p>Proves authenticity and integrity. Sender signs with private key; receiver verifies with public key.</p></div>
+            </div>
+
+            <div class="terminal">
+              <div class="bar"><span class="dot"></span> Memory hook</div>
+              <pre><code>encrypt(message, key) -> ciphertext
+hash(message) -> digest
+sign(hash, private_key) -> proof of origin + integrity</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section id="testing" class="chapter reveal">
+          <div class="chapter-header gold">
+            <span class="eyebrow">Episode 03 / Vulnerabilities & Testing</span>
+            <h2>Weakness Is Not The Same As Risk</h2>
+          </div>
+          <div class="chapter-body">
+            <p class="lead">A vulnerability is a weakness that can be exploited. A threat is something that can exploit it. Risk is the likelihood and impact of that exploitation. This matters because a weakness in a worthless isolated system may be low risk, while a simple flaw in a payment server may be critical.</p>
+
+            <div class="grid three">
+              <div class="threat-card"><strong>Vulnerability</strong>A flaw, gap, misconfiguration, bug, weak password, open port, or weak process.</div>
+              <div class="threat-card"><strong>Threat</strong>An attacker, malware, insider, disaster, or mistake that could cause harm.</div>
+              <div class="threat-card"><strong>Risk</strong>Probability multiplied by impact, shaped by asset value and controls.</div>
+            </div>
+
+            <h3>Common Vulnerability Categories</h3>
+            <div class="grid">
+              <div class="card"><h4>Software</h4><p>Input validation flaws, SQL injection, XSS, buffer overflows, unsafe dependencies, missing patches.</p></div>
+              <div class="card"><h4>Network</h4><p>Weak authentication, exposed services, insecure architecture, poor segmentation, open ports.</p></div>
+              <div class="card"><h4>Personnel</h4><p>Weak passwords, poor awareness, unsafe attachments, careless data handling.</p></div>
+              <div class="card"><h4>Organizational</h4><p>No incident response plan, poor audits, weak continuity planning, unclear ownership.</p></div>
+            </div>
+
+            <h3>Security Testing Types</h3>
+            <div class="timeline">
+              <div class="step"><div><h4>Vulnerability Scanning</h4><p>Automated detection of known weaknesses, missing patches, misconfigurations, and open ports.</p></div></div>
+              <div class="step"><div><h4>Security Scanning</h4><p>Finds weak points in systems or networks and recommends mitigations.</p></div></div>
+              <div class="step"><div><h4>Penetration Testing</h4><p>Simulates real attacks to validate whether weaknesses can be exploited.</p></div></div>
+              <div class="step"><div><h4>Risk Assessment</h4><p>Classifies risks as low, medium, or high and prioritizes controls.</p></div></div>
+              <div class="step"><div><h4>Security Audit</h4><p>Inspects configurations, code, standards, policies, and control gaps.</p></div></div>
+              <div class="step"><div><h4>Posture Assessment</h4><p>Combines scanning, ethical hacking, and risk assessment for an overall view.</p></div></div>
+            </div>
+
+            <h3>Pen Test Process</h3>
+            <p>A penetration test is a controlled mock cyberattack. It has permission, scope, rules, reporting, and cleanup. It can be black-box, white-box, or gray-box depending on how much information testers receive.</p>
+            <div class="grid">
+              <div class="card"><h4>Reconnaissance</h4><p>Gather public and technical information about the target.</p></div>
+              <div class="card"><h4>Discovery</h4><p>Identify services, ports, vulnerabilities, and possible attack paths.</p></div>
+              <div class="card"><h4>Exploitation</h4><p>Safely prove impact by exploiting a weakness within agreed scope.</p></div>
+              <div class="card"><h4>Escalation</h4><p>Check whether one foothold can lead to deeper access or privilege abuse.</p></div>
+              <div class="card"><h4>Cleanup</h4><p>Remove test artifacts and avoid leaving new weaknesses behind.</p></div>
+              <div class="card"><h4>Report</h4><p>Explain findings, evidence, severity, business impact, and remediation steps.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="human" class="chapter reveal">
+          <div class="chapter-header">
+            <span class="eyebrow">Episode 04 / The Human Layer</span>
+            <h2>The Exploit Wore A Nice Email Subject</h2>
+          </div>
+          <div class="chapter-body">
+            <p class="lead">Social engineering targets human judgment instead of directly attacking code. It uses trust, urgency, fear, authority, curiosity, or familiarity to make people reveal information or perform unsafe actions.</p>
+
+            <div class="quote"><p>Most defenses check packets. Social engineering checks whether you are tired.</p></div>
+
+            <h3>Social Engineering Flow</h3>
+            <div class="timeline">
+              <div class="step"><div><h4>Information Gathering</h4><p>Collect names, roles, emails, public posts, routines, vendors, or procedures.</p></div></div>
+              <div class="step"><div><h4>Trust Building</h4><p>Pretend to be a known person, support staff, vendor, bank, authority, or friend.</p></div></div>
+              <div class="step"><div><h4>Exploitation</h4><p>Make the victim click, share OTPs, reset passwords, approve payments, or open files.</p></div></div>
+              <div class="step"><div><h4>Execution</h4><p>Use the access or information to steal money, data, identity, or system access.</p></div></div>
+            </div>
+
+            <h3>Common Cybercrime Types</h3>
+            <div class="grid">
+              <div class="card"><h4>Phishing & Email Scams</h4><p>Fake messages impersonate trusted brands or people to steal credentials or money.</p></div>
+              <div class="card"><h4>Banking / UPI / Card Fraud</h4><p>Scams involving payment apps, cards, SIM swap, fake refunds, or transaction deception.</p></div>
+              <div class="card"><h4>Malware</h4><p>Software built to disrupt systems, steal data, spy, or create remote control.</p></div>
+              <div class="card"><h4>Ransomware</h4><p>Encrypts data and demands payment for restoration, often causing downtime.</p></div>
+              <div class="card"><h4>Identity Theft</h4><p>Personal data is stolen and used for fraud, impersonation, or account takeover.</p></div>
+              <div class="card"><h4>Online Harassment</h4><p>Cyberstalking, threats, bullying, doxxing, or sharing sensitive content without consent.</p></div>
+            </div>
+
+            <div class="classified">
+              <span class="stamp">India Reporting Note</span>
+              <div class="inside">
+                <p>The National Cyber Crime Reporting Portal supports online cybercrime complaint reporting, especially crimes against women and children. For cyber financial fraud, India uses the helpline <strong>1930</strong>. Keep incident date/time, details, identity proof, transaction IDs, suspect details, URLs, and evidence ready where applicable.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="response" class="chapter reveal">
+          <div class="chapter-header blue">
+            <span class="eyebrow">Episode 05 / Response & Continuity</span>
+            <h2>Clean Up The Scene. Preserve The Evidence.</h2>
+          </div>
+          <div class="chapter-body">
+            <p class="lead">DFIR combines digital forensics and incident response. The response side contains the threat. The forensics side preserves and analyzes evidence so the incident can be understood, proven, and prevented next time.</p>
+
+            <h3>Incident Response Steps</h3>
+            <div class="timeline">
+              <div class="step"><div><h4>Preparation</h4><p>Write plans, assign roles, train people, manage vulnerabilities, and prepare tools.</p></div></div>
+              <div class="step"><div><h4>Detection & Analysis</h4><p>Monitor alerts, triage suspicious activity, validate incidents, and reduce false positives.</p></div></div>
+              <div class="step"><div><h4>Containment</h4><p>Stop the threat from spreading across the network.</p></div></div>
+              <div class="step"><div><h4>Eradication</h4><p>Remove malware, attacker access, persistence, and malicious changes.</p></div></div>
+              <div class="step"><div><h4>Recovery</h4><p>Restore systems, verify clean operation, and return services safely.</p></div></div>
+              <div class="step"><div><h4>Post-Incident Review</h4><p>Document what happened, root cause, impact, lessons, and control improvements.</p></div></div>
+            </div>
+
+            <h3>BCDR: Business Continuity & Disaster Recovery</h3>
+            <p>Business continuity is proactive: how operations continue during disruption. Disaster recovery is reactive: how IT systems and data are restored after an incident.</p>
+            <div class="grid">
+              <div class="card"><h4>BCP</h4><p>Business Continuity Plan. Keeps critical business functions running before, during, and immediately after disruption.</p></div>
+              <div class="card"><h4>DRP</h4><p>Disaster Recovery Plan. Restores IT systems, applications, infrastructure, and data after an incident.</p></div>
+              <div class="card"><h4>RTO</h4><p>Recovery Time Objective. Maximum acceptable time to restore service.</p></div>
+              <div class="card"><h4>RPO</h4><p>Recovery Point Objective. Maximum acceptable amount of data loss measured in time.</p></div>
+            </div>
+
+            <h3>Cyber Risk Management</h3>
+            <p>Risk management identifies, prioritizes, manages, and monitors risks to information systems. Good exam answer: frame the context, assess threats and vulnerabilities, respond using acceptance/mitigation/remediation/transfer, then monitor continuously.</p>
+
+            <div class="terminal">
+              <div class="bar"><span class="dot"></span> Risk formula</div>
+              <pre><code>risk = likelihood x impact
+mitigation = reduce likelihood or reduce impact
+remediation = remove the weakness
+transfer = shift financial impact, often with insurance
+acceptance = tolerate low risk knowingly</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section id="privacy" class="chapter reveal">
+          <div class="chapter-header gold">
+            <span class="eyebrow">Episode 06 / Privacy, Law & Cyber Warfare</span>
+            <h2>Consent Forms, Nation States, And Other Plot Twists</h2>
+          </div>
+          <div class="chapter-body">
+            <p class="lead">Data privacy is about a person controlling how their personal data is collected, stored, used, shared, corrected, or deleted. Data security protects that data from unauthorized access and misuse. They are related, but not identical.</p>
+
+            <h3>Data Privacy Principles</h3>
+            <div class="grid">
+              <div class="card"><h4>Access</h4><p>People should know what personal data is held and be able to access or correct it.</p></div>
+              <div class="card"><h4>Transparency</h4><p>Organizations should explain what they collect, why, how it is used, and who it is shared with.</p></div>
+              <div class="card"><h4>Consent</h4><p>Personal data should be collected or processed with consent unless a lawful exception applies.</p></div>
+              <div class="card"><h4>Data Minimization</h4><p>Collect only what is needed, use it only for the stated purpose, and keep it only as long as necessary.</p></div>
+              <div class="card"><h4>Privacy By Design</h4><p>Privacy should be built into systems by default, not patched on later.</p></div>
+              <div class="card"><h4>Security</h4><p>Use IAM, MFA, encryption, DLP, backups, audit trails, and vendor controls to protect personal data.</p></div>
+            </div>
+
+            <h3>India DPDP Act</h3>
+            <p>The Digital Personal Data Protection Act, passed in August 2023, balances individual rights over digital personal data with lawful processing needs. It places obligations on Data Fiduciaries, gives rights and duties to Data Principals, and creates penalties for breaches.</p>
+            <div class="classified">
+              <span class="stamp">Redacted Legal File</span>
+              <div class="inside">
+                <p>Remember the actors: <strong>Data Principal</strong> is the person the data belongs to. <strong>Data Fiduciary</strong> decides purpose and means of processing. <span class="redacted">classified filler</span> The Data Protection Board oversees compliance and complaints.</p>
+              </div>
+            </div>
+
+            <h3>Cyber Law In India: Exam Anchors</h3>
+            <ul>
+              <li><strong>IT Act, 2000:</strong> India&apos;s foundational cyber law for electronic records, digital signatures, cyber offences, intermediary duties, and penalties.</li>
+              <li><strong>IT Rules / SPDI Rules:</strong> earlier privacy and reasonable security practice rules for sensitive personal data.</li>
+              <li><strong>DPDP Act, 2023:</strong> India&apos;s dedicated digital personal data protection framework.</li>
+              <li><strong>Reporting:</strong> cybercrime complaints can be reported via the National Cyber Crime Reporting Portal and helpline 1930 for cyber financial fraud.</li>
+            </ul>
+
+            <h3>Cyber Warfare</h3>
+            <p>Cyber warfare usually refers to cyberattacks by or for nation-state interests that target another country. It can involve espionage, sabotage, DoS, attacks on critical infrastructure, propaganda, economic disruption, or surprise attacks.</p>
+            <div class="grid">
+              <div class="card"><h4>Espionage</h4><p>Stealing secrets from government, military, industry, or research systems.</p></div>
+              <div class="card"><h4>Sabotage</h4><p>Destroying, altering, or disabling important information or infrastructure.</p></div>
+              <div class="card"><h4>DoS / DDoS</h4><p>Flooding critical services to make them unavailable to legitimate users.</p></div>
+              <div class="card"><h4>Propaganda</h4><p>Using digital channels to influence opinion, spread falsehoods, or damage trust.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="recall" class="chapter reveal">
+          <div class="chapter-header">
+            <span class="eyebrow">Finale / Quick Recall</span>
+            <h2>Last-Minute Brain Snacks</h2>
+          </div>
+          <div class="chapter-body">
+            <p class="lead">Tap a card to reveal the exam hook. These are built for revision when your brain has twelve tabs open and none of them are helpful.</p>
+
+            <div class="grid">
+              <div class="card flash"><h4>TCP handshake?</h4><div class="answer"><div><p>SYN, SYN-ACK, ACK. It establishes a reliable connection before data transfer.</p></div></div></div>
+              <div class="card flash"><h4>OSI transport layer?</h4><div class="answer"><div><p>Layer 4. Segmentation, reliability, flow control. TCP and UDP.</p></div></div></div>
+              <div class="card flash"><h4>Confidentiality vs Integrity?</h4><div class="answer"><div><p>Confidentiality prevents unauthorized viewing. Integrity prevents unauthorized modification.</p></div></div></div>
+              <div class="card flash"><h4>Authentication vs Authorization?</h4><div class="answer"><div><p>Authentication verifies identity. Authorization grants permissions.</p></div></div></div>
+              <div class="card flash"><h4>Vulnerability vs Risk?</h4><div class="answer"><div><p>Vulnerability is a weakness. Risk is likelihood and impact of that weakness being exploited.</p></div></div></div>
+              <div class="card flash"><h4>DFIR?</h4><div class="answer"><div><p>Digital forensics plus incident response: preserve evidence while containing and recovering from incidents.</p></div></div></div>
+            </div>
+
+            <div class="exam-strip">
+              <div class="exam-box">
+                <h3>One-Page Exam Script</h3>
+                <ol>
+                  <li>Start with the definition.</li>
+                  <li>Name the components or steps.</li>
+                  <li>Add one example.</li>
+                  <li>Explain why it matters to CIA: confidentiality, integrity, availability.</li>
+                  <li>End with a control, mitigation, or prevention method.</li>
+                </ol>
+              </div>
+              <div class="exam-box">
+                <h3>Do Not Mix These Up</h3>
+                <ul>
+                  <li>Hashing is not encryption.</li>
+                  <li>Authentication is not authorization.</li>
+                  <li>Vulnerability is not risk.</li>
+                  <li>BCP is not the same as DRP.</li>
+                  <li>Social engineering is broader than phishing.</li>
+                  <li>Privacy is not the same as security.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="divider">Source Credits</div>
+            <p>Notes are synthesized from the professor&apos;s resource list. The LexisNexis page redirected to a sign-in page during browsing, so the cyber law section uses general exam anchors and the accessible DPDP/cybercrime sources.</p>
+            <div class="source-list">
+              <a href="https://www.geeksforgeeks.org/basics-computer-networking/">Networking</a>
+              <a href="https://www.geeksforgeeks.org/tcp-3-way-handshake-process/">TCP Handshake</a>
+              <a href="https://www.geeksforgeeks.org/open-systems-interconnection-model-osi/">OSI Model</a>
+              <a href="https://www.geeksforgeeks.org/how-does-the-internet-work/">Internet</a>
+              <a href="https://www.simplilearn.com/tutorials/cyber-security-tutorial/cyber-security-for-beginners">Cybersecurity Basics</a>
+              <a href="https://www.sailpoint.com/identity-library/cia-triad">CIA Triad</a>
+              <a href="https://www.geeksforgeeks.org/cryptography-and-its-types/">Cryptography</a>
+              <a href="https://www.microsoft.com/en-in/security/business/security-101/what-is-identity-access-management-iam">IAM</a>
+              <a href="https://www.upguard.com/blog/vulnerability">Vulnerabilities</a>
+              <a href="https://safe.security/resources/insights/what-is-vulnerability-scanning/">Vulnerability Scanning</a>
+              <a href="https://www.hackerone.com/knowledge-center/what-security-testing">Security Testing</a>
+              <a href="https://www.ibm.com/think/topics/penetration-testing">Pen Testing</a>
+              <a href="https://www.proofpoint.com/us/threat-reference/social-engineering">Social Engineering</a>
+              <a href="https://www.ibm.com/think/topics/dfir">DFIR</a>
+              <a href="https://www.proofpoint.com/us/threat-reference/cyber-crime">Cybercrime</a>
+              <a href="https://cybercrime.gov.in/">India Cybercrime Portal</a>
+              <a href="https://www.imperva.com/learn/application-security/cyber-warfare/">Cyber Warfare</a>
+              <a href="https://www.ibm.com/think/topics/business-continuity-disaster-recovery">BCDR</a>
+              <a href="https://www.ibm.com/think/topics/cyber-risk-management">Risk Management</a>
+              <a href="https://www.ibm.com/think/topics/data-privacy">Data Privacy</a>
+              <a href="https://www.fortra.com/blog/what-indias-digital-personal-data-protection-act">DPDP Act</a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const progress = document.querySelector("#progress");
+    const reveals = [...document.querySelectorAll(".reveal")];
+    const navLinks = [...document.querySelectorAll(".side-nav a")];
+    const sections = navLinks.map(link => document.querySelector(link.getAttribute("href"))).filter(Boolean);
+
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add("visible");
+      });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(el => revealObserver.observe(el));
+
+    const activeObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        navLinks.forEach(link => {
+          link.classList.toggle("active", link.getAttribute("href") === "#" + entry.target.id);
+        });
+      });
+    }, { rootMargin: "-35% 0px -55% 0px", threshold: 0 });
+
+    sections.forEach(section => activeObserver.observe(section));
+
+    document.addEventListener("scroll", () => {
+      const height = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = height > 0 ? (window.scrollY / height) * 100 : 0;
+      progress.style.width = pct + "%";
+      document.body.style.setProperty("--scroll", window.scrollY);
+    }, { passive: true });
+
+    document.querySelectorAll(".flash").forEach(card => {
+      card.setAttribute("tabindex", "0");
+      card.setAttribute("role", "button");
+      card.addEventListener("click", () => card.classList.toggle("open"));
+      card.addEventListener("keydown", event => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          card.classList.toggle("open");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
